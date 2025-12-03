@@ -1,0 +1,445 @@
+/**
+ * Phosphor Text CSS
+ * Authentic CRT terminal aesthetics
+ */
+
+/* ========================================
+   Phosphor Display Container
+   ======================================== */
+.phosphor-display {
+    position: relative;
+    font-family: 'Courier New', 'Lucida Console', 'Monaco', monospace;
+    font-size: var(--phosphor-font-size, 19px);
+    line-height: var(--phosphor-line-height, 1.35);
+    background: #000;
+    color: var(--phosphor-primary, #ffaa00);
+    overflow: hidden;
+    
+    /* Subtle CRT curvature via border-radius */
+    border-radius: 4px;
+    
+    /* The phosphor coating has a slight texture */
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 1px,
+            rgba(0, 0, 0, 0.03) 1px,
+            rgba(0, 0, 0, 0.03) 2px
+        );
+}
+
+/* ========================================
+   Layer Structure
+   ======================================== */
+.phosphor-burn-layer,
+.phosphor-ghost-layer,
+.phosphor-text-layer,
+.phosphor-glow-layer,
+.phosphor-caret-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 8px 12px;
+    pointer-events: none;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Burn-in layer - lowest, shows persistent ghosting */
+.phosphor-burn-layer {
+    z-index: 1;
+    opacity: 0.15;
+    filter: blur(1px);
+}
+
+/* Ghost layer - for decay effects */
+.phosphor-ghost-layer {
+    z-index: 2;
+}
+
+/* Main text layer */
+.phosphor-text-layer {
+    z-index: 3;
+    pointer-events: auto;
+}
+
+/* Glow layer - bloom effect */
+.phosphor-glow-layer {
+    z-index: 4;
+    filter: blur(3px);
+    opacity: 0.6;
+    mix-blend-mode: screen;
+}
+
+/* Caret layer - topmost */
+.phosphor-caret-layer {
+    z-index: 5;
+}
+
+/* ========================================
+   Character Styling
+   ======================================== */
+.phosphor-char {
+    display: inline;
+    position: relative;
+    color: var(--phosphor-primary);
+    text-shadow: 
+        0 0 2px var(--phosphor-glow),
+        0 0 4px var(--phosphor-glow),
+        0 0 8px var(--phosphor-primary);
+    transition: opacity 0.1s ease-out, text-shadow 0.15s ease-out;
+}
+
+/* Initial burst when character appears */
+.phosphor-char-burst {
+    animation: phosphor-burst 0.3s ease-out forwards;
+}
+
+@keyframes phosphor-burst {
+    0% {
+        text-shadow: 
+            0 0 4px var(--phosphor-glow),
+            0 0 8px var(--phosphor-glow),
+            0 0 16px var(--phosphor-primary),
+            0 0 24px var(--phosphor-primary),
+            0 0 32px var(--phosphor-glow);
+        filter: brightness(1.5);
+    }
+    100% {
+        text-shadow: 
+            0 0 2px var(--phosphor-glow),
+            0 0 4px var(--phosphor-glow),
+            0 0 8px var(--phosphor-primary);
+        filter: brightness(1);
+    }
+}
+
+/* Glow duplicate */
+.phosphor-char-glow {
+    color: var(--phosphor-glow);
+    opacity: 0.4;
+}
+
+/* Ghost characters (decay effect) */
+.phosphor-ghost {
+    animation: phosphor-decay 1.5s ease-out forwards;
+    color: var(--phosphor-decay);
+}
+
+@keyframes phosphor-decay {
+    0% {
+        opacity: 0.8;
+        filter: blur(0px);
+        color: var(--phosphor-primary);
+    }
+    30% {
+        opacity: 0.5;
+        filter: blur(1px);
+        color: var(--phosphor-dim);
+    }
+    100% {
+        opacity: 0;
+        filter: blur(3px);
+        color: var(--phosphor-decay);
+    }
+}
+
+/* Burn-in characters */
+.phosphor-burn-char {
+    position: absolute;
+    opacity: calc(var(--burn-intensity, 0.5) * 0.3);
+    color: var(--phosphor-dim);
+    filter: blur(1px);
+    left: calc(var(--burn-position, 0) * 0.6em + 12px);
+}
+
+/* ========================================
+   Caret Styling
+   ======================================== */
+.phosphor-caret {
+    display: inline;
+    color: #ffffff; /* hotter than everything else */
+    text-shadow: 
+        0 0 3px var(--phosphor-glow),
+        0 0 6px var(--phosphor-glow),
+        0 0 10px var(--phosphor-primary),
+        0 0 16px var(--phosphor-primary),
+        0 0 24px var(--phosphor-glow),
+        0 0 32px var(--phosphor-glow);
+    animation: caret-glow 0.7s ease-in-out infinite alternate;
+}
+
+@keyframes caret-glow {
+    0% {
+        text-shadow: 
+            0 0 4px var(--phosphor-glow),
+            0 0 8px var(--phosphor-glow),
+            0 0 14px var(--phosphor-primary),
+            0 0 20px var(--phosphor-primary),
+            0 0 28px var(--phosphor-glow);
+        opacity: 1;
+    }
+    100% {
+        text-shadow: 
+            0 0 1px var(--phosphor-glow),
+            0 0 2px var(--phosphor-dim);
+        opacity: 0.15;
+    }
+}
+
+/* Caret ghost (persistence trail) */
+.phosphor-caret-ghost {
+    animation: caret-ghost-fade 0.4s ease-out forwards;
+    color: var(--phosphor-dim);
+}
+
+@keyframes caret-ghost-fade {
+    0% {
+        opacity: 0.6;
+        filter: blur(0px);
+    }
+    100% {
+        opacity: 0;
+        filter: blur(2px);
+    }
+}
+
+/* ========================================
+   Scanline Overlay
+   ======================================== */
+.phosphor-scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 1px,
+        rgba(0, 0, 0, 0.15) 1px,
+        rgba(0, 0, 0, 0.15) 2px
+    );
+    /* Subtle movement for that CRT feel */
+    animation: scanline-scroll 10s linear infinite;
+}
+
+@keyframes scanline-scroll {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100px; }
+}
+
+/* ========================================
+   Flicker Overlay
+   ======================================== */
+.phosphor-flicker-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 11;
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.03);
+    opacity: 0;
+    transition: opacity 0.05s;
+}
+
+/* ========================================
+   Interference Effects
+   ======================================== */
+.phosphor-interference {
+    animation: interference 0.1s steps(2) infinite;
+}
+
+@keyframes interference {
+    0% { 
+        filter: brightness(1) contrast(1);
+        transform: translateX(0);
+    }
+    25% { 
+        filter: brightness(1.1) contrast(1.1);
+        transform: translateX(calc(var(--interference-intensity, 0.5) * 2px));
+    }
+    50% { 
+        filter: brightness(0.9) contrast(0.95);
+        transform: translateX(calc(var(--interference-intensity, 0.5) * -1px));
+    }
+    75% { 
+        filter: brightness(1.05) contrast(1.05);
+        transform: translateX(calc(var(--interference-intensity, 0.5) * 1px));
+    }
+}
+
+/* Horizontal sync loss */
+.phosphor-hsync-loss {
+    animation: hsync-loss 0.05s steps(1) infinite;
+}
+
+@keyframes hsync-loss {
+    0% { 
+        clip-path: inset(0 0 90% 0);
+        transform: translateX(-5px);
+    }
+    20% { 
+        clip-path: inset(10% 0 70% 0);
+        transform: translateX(3px);
+    }
+    40% { 
+        clip-path: inset(30% 0 50% 0);
+        transform: translateX(-2px);
+    }
+    60% { 
+        clip-path: inset(50% 0 30% 0);
+        transform: translateX(4px);
+    }
+    80% { 
+        clip-path: inset(70% 0 10% 0);
+        transform: translateX(-3px);
+    }
+    100% { 
+        clip-path: inset(90% 0 0 0);
+        transform: translateX(2px);
+    }
+}
+
+/* ========================================
+   Terminal Container
+   ======================================== */
+.phosphor-terminal {
+    width: 100%;
+    height: 100%;
+    min-height: calc(var(--terminal-rows, 24) * var(--phosphor-font-size, 14px) * var(--phosphor-line-height, 1.4));
+}
+
+/* ========================================
+   Phosphor Color Themes
+   ======================================== */
+
+/* P1 - Classic Green */
+.phosphor-p1 {
+    --phosphor-primary: #33ff33;
+    --phosphor-glow: #00ff00;
+    --phosphor-dim: #003300;
+    --phosphor-decay: #001a00;
+}
+
+/* P3 - Amber */
+.phosphor-p3 {
+    --phosphor-primary: #ffaa00;
+    --phosphor-glow: #ffc040;
+    --phosphor-dim: #4a3000;
+    --phosphor-decay: #1a1000;
+}
+
+/* P31 - Blue-white (short persistence) */
+.phosphor-p31 {
+    --phosphor-primary: #aaccff;
+    --phosphor-glow: #ffffff;
+    --phosphor-dim: #334455;
+    --phosphor-decay: #111822;
+}
+
+/* P4 - White */
+.phosphor-p4 {
+    --phosphor-primary: #ffffff;
+    --phosphor-glow: #ffffff;
+    --phosphor-dim: #444444;
+    --phosphor-decay: #111111;
+}
+
+/* P7 - Blue with yellow afterglow */
+.phosphor-p7 {
+    --phosphor-primary: #4488ff;
+    --phosphor-glow: #88aaff;
+    --phosphor-dim: #223344;
+    --phosphor-decay: #ffdd44;
+}
+
+/* ========================================
+   Input Field Styling
+   ======================================== */
+.phosphor-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--phosphor-primary);
+    font-family: inherit;
+    font-size: inherit;
+    caret-color: transparent; /* We render our own caret */
+    text-shadow: 
+        0 0 2px var(--phosphor-glow),
+        0 0 4px var(--phosphor-glow);
+}
+
+.phosphor-input::selection {
+    background: var(--phosphor-dim);
+    color: var(--phosphor-glow);
+}
+
+/* ========================================
+   Special Characters
+   ======================================== */
+
+/* Box drawing characters get extra glow */
+.phosphor-char[data-char="│"],
+.phosphor-char[data-char="─"],
+.phosphor-char[data-char="┌"],
+.phosphor-char[data-char="┐"],
+.phosphor-char[data-char="└"],
+.phosphor-char[data-char="┘"],
+.phosphor-char[data-char="├"],
+.phosphor-char[data-char="┤"],
+.phosphor-char[data-char="┬"],
+.phosphor-char[data-char="┴"],
+.phosphor-char[data-char="┼"],
+.phosphor-char[data-char="|"],
+.phosphor-char[data-char="-"],
+.phosphor-char[data-char="+"] {
+    text-shadow: 
+        0 0 1px var(--phosphor-glow),
+        0 0 2px var(--phosphor-primary);
+}
+
+/* Bright punctuation */
+.phosphor-char[data-char="*"],
+.phosphor-char[data-char="@"],
+.phosphor-char[data-char="#"] {
+    filter: brightness(1.1);
+}
+
+/* ========================================
+   Responsive Adjustments
+   ======================================== */
+@media (max-width: 768px) {
+    .phosphor-display {
+        --phosphor-font-size: 12px;
+    }
+}
+
+/* ========================================
+   Print - disable effects
+   ======================================== */
+@media print {
+    .phosphor-display {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .phosphor-scanlines,
+    .phosphor-flicker-overlay,
+    .phosphor-glow-layer,
+    .phosphor-burn-layer,
+    .phosphor-ghost-layer {
+        display: none !important;
+    }
+    
+    .phosphor-char {
+        text-shadow: none !important;
+    }
+}
