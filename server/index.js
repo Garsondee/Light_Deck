@@ -19,6 +19,9 @@ app.use('/assets', express.static(path.join(__dirname, '../assets')));
 // Serve music files
 app.use('/music', express.static(path.join(__dirname, '../music')));
 
+// Serve sound effects and other non-music audio files
+app.use('/sounds', express.static(path.join(__dirname, '../sounds')));
+
 // API endpoint to list available music tracks
 app.get('/api/music', (req, res) => {
     const fs = require('fs');

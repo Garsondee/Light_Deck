@@ -71,22 +71,30 @@ const PhosphorText = (function() {
      * @param {Object} options - Configuration options
      */
     function init(element, options = {}) {
+        // Check if TerminalUI config is available for defaults
+        const termConfig = (typeof TerminalUI !== 'undefined' && TerminalUI.getConfig) 
+            ? TerminalUI.getConfig() 
+            : {};
+        
         const config = {
-            phosphor: options.phosphor || 'p3',
-            fontSize: options.fontSize || 14,
-            lineHeight: options.lineHeight || 1.4,
+            phosphor: options.phosphor || termConfig.phosphorType || 'p3',
+            fontSize: options.fontSize || termConfig.fontSize || 14,
+            lineHeight: options.lineHeight || termConfig.lineHeight || 1.4,
             charWidth: options.charWidth || null, // Auto-calculate if null
+            fontFamily: options.fontFamily || termConfig.fontFamily || 'Courier New',
+            fontWeight: options.fontWeight || termConfig.fontWeight || 400,
+            letterSpacing: options.letterSpacing || termConfig.letterSpacing || 0,
             showCaret: options.showCaret !== false,
-            caretChar: options.caretChar || '█',
-            caretBlinkRate: options.caretBlinkRate || 530, // ms
-            burnInEnabled: options.burnInEnabled !== false,
-            burnInRate: options.burnInRate || 0.002, // How fast burn-in accumulates
-            burnInDecay: options.burnInDecay || 0.0001, // How fast burn-in fades
-            flickerEnabled: options.flickerEnabled !== false,
-            flickerIntensity: options.flickerIntensity || 0.02,
+            caretChar: options.caretChar || termConfig.caretChar || '█',
+            caretBlinkRate: options.caretBlinkRate || termConfig.caretBlinkRate || 530, // ms
+            burnInEnabled: options.burnInEnabled !== false && (termConfig.burnInEnabled !== false),
+            burnInRate: options.burnInRate || termConfig.burnInRate || 0.002, // How fast burn-in accumulates
+            burnInDecay: options.burnInDecay || termConfig.burnInDecay || 0.0001, // How fast burn-in fades
+            flickerEnabled: options.flickerEnabled !== false && (termConfig.flickerEnabled !== false),
+            flickerIntensity: options.flickerIntensity || termConfig.flickerIntensity || 0.02,
             glowEnabled: options.glowEnabled !== false,
-            glowIntensity: options.glowIntensity || 1.0,
-            scanlineOverlay: options.scanlineOverlay !== false,
+            glowIntensity: options.glowIntensity || termConfig.glowIntensity || 1.0,
+            scanlineOverlay: options.scanlineOverlay !== false && (termConfig.scanlinesEnabled !== false),
             ...options
         };
         
@@ -132,6 +140,11 @@ const PhosphorText = (function() {
         element.style.setProperty('--phosphor-persistence', currentPhosphor.persistence);
         element.style.setProperty('--phosphor-font-size', config.fontSize + 'px');
         element.style.setProperty('--phosphor-line-height', config.lineHeight);
+        
+        // Apply font settings
+        element.style.fontFamily = `'${config.fontFamily}', monospace`;
+        element.style.fontWeight = config.fontWeight;
+        element.style.letterSpacing = config.letterSpacing + 'px';
         
         // Create layers
         const layers = `
@@ -373,35 +386,18 @@ const PhosphorText = (function() {
     }
     
     /**
-     * Animation loop
+     * Animation loop - handles flicker and burn-in only
+     * NOTE: Caret animation is now handled by AnimationManager for unified timing
      */
     function animate() {
         const now = performance.now();
         const delta = now - lastTime;
         lastTime = now;
         
-        // Update caret blink
-        caretPhase += delta;
-        
-        // Update all phosphor displays
+        // Update all phosphor displays (flicker and burn-in only)
         textBuffers.forEach((buffer, element) => {
-            // Caret blink
-            if (buffer.config.showCaret) {
-                const caretLayer = element.querySelector('.phosphor-caret-layer');
-                const caret = caretLayer?.querySelector('.phosphor-caret');
-                if (caret) {
-                    const blinkCycle = caretPhase % (buffer.config.caretBlinkRate * 2);
-                    const isOn = blinkCycle < buffer.config.caretBlinkRate;
-                    
-                    // Smooth phosphor-style transition instead of hard blink
-                    const phase = blinkCycle / (buffer.config.caretBlinkRate * 2);
-                    const intensity = isOn 
-                        ? 1.0 - (phase * currentPhosphor.persistence * 2)
-                        : Math.max(0, 1.0 - ((phase - 0.5) * 2) + currentPhosphor.persistence);
-                    
-                    caret.style.opacity = Math.max(0.1, Math.min(1, intensity));
-                }
-            }
+            // NOTE: Caret blink is now handled by AnimationManager
+            // Do NOT animate carets here to avoid conflicts
             
             // Flicker effect
             if (buffer.config.flickerEnabled) {

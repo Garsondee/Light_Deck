@@ -40,7 +40,7 @@ body {
     display: flex;
     flex-direction: column;
     margin: 12px;
-    margin-right: 0;
+    /* margin-right: 0; -- Sidebar removed, full width now */
     background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
     border-radius: 12px;
     padding: 8px;
@@ -68,10 +68,10 @@ body {
     z-index: 10;
 }
 
-.frame-corner.top-left { top: 14px; left: 14px; }
-.frame-corner.top-right { top: 14px; right: 14px; }
-.frame-corner.bottom-left { bottom: 36px; left: 14px; }
-.frame-corner.bottom-right { bottom: 36px; right: 14px; }
+.frame-corner.top-left { top: 8px; left: 8px; }
+.frame-corner.top-right { top: 8px; right: 8px; }
+.frame-corner.bottom-left { bottom: 12px; left: 8px; }
+.frame-corner.bottom-right { bottom: 12px; right: 8px; }
 
 /* Frame label */
 .frame-label {
@@ -117,6 +117,78 @@ body {
     50% { opacity: 0.6; }
 }
 
+/* Diegetic frame button (TERM, etc.) */
+.frame-button {
+    position: absolute;
+    bottom: 4px;
+    left: 20px;
+    z-index: 10;
+    
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    
+    padding: 4px 10px;
+    background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 50%, #151515 100%);
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--amber-dim);
+    
+    cursor: pointer;
+    transition: all 0.15s ease;
+    
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.frame-button:hover {
+    background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 50%, #1a1a1a 100%);
+    color: var(--amber-mid);
+    border-color: var(--amber-dim);
+}
+
+.frame-button:active {
+    transform: translateY(1px);
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.frame-button.active {
+    background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+    color: var(--amber-bright);
+    border-color: var(--amber-mid);
+    box-shadow:
+        0 0 8px rgba(255, 170, 0, 0.2),
+        inset 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.frame-button .btn-label {
+    text-shadow: 0 0 4px currentColor;
+}
+
+.frame-button .btn-led {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    border: 1px solid #3a3a3a;
+    transition: all 0.15s ease;
+}
+
+.frame-button.active .btn-led {
+    background: var(--amber-bright);
+    border-color: var(--amber-glow);
+    box-shadow:
+        0 0 4px var(--amber-bright),
+        0 0 8px var(--amber-glow);
+}
+
 /* Main viewport container */
 #viewport {
     flex: 1;
@@ -124,7 +196,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg-black);
+    background: transparent;
 }
 
 /* Inset CRT screen with rounded corners
@@ -137,32 +209,12 @@ body {
     margin: 4px;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow:
-        /* Inner glow from screen */
-        inset 0 0 60px rgba(255, 170, 0, 0.03),
-        /* Screen depth */
-        inset 0 0 2px rgba(0, 0, 0, 1);
+    /* Box shadow removed - now using 3D chassis bezel */
 }
 
-/* CRT bulge/curvature overlay */
+/* CRT bulge/curvature overlay - disabled, using 3D chassis now */
 .crt-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: 5;
-    /* Subtle barrel distortion simulation via radial gradient */
-    background: radial-gradient(
-        ellipse 120% 120% at 50% 50%,
-        transparent 0%,
-        transparent 60%,
-        rgba(0, 0, 0, 0.15) 90%,
-        rgba(0, 0, 0, 0.4) 100%
-    );
-    /* Subtle curvature via border-radius and transform */
-    border-radius: inherit;
+    display: none;
 }
 
 /* Screen glare/reflection */
@@ -222,6 +274,37 @@ body {
     overflow: hidden;
 }
 
+/* Sidebar controls (TERM / GM buttons) */
+#sidebar-controls {
+    display: flex;
+    gap: 6px;
+    padding: 8px 10px 6px 10px;
+    border-bottom: 1px solid var(--amber-dim);
+    background: linear-gradient(145deg, #151515 0%, #0a0a0a 100%);
+}
+
+#sidebar-controls button {
+    flex: 1;
+    background: var(--bg-black);
+    border: 1px solid var(--amber-dim);
+    color: var(--amber-mid);
+    padding: 6px 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+#sidebar-controls button:hover {
+    border-color: var(--amber-mid);
+    color: var(--amber-bright);
+}
+
+#sidebar-controls #term-btn .btn-label {
+    text-shadow: 0 0 4px currentColor;
+}
+
 /* Chat log */
 #chat-log {
     flex: 1;
@@ -259,6 +342,51 @@ body {
 
 .chat-entry.roll {
     color: var(--amber-glow);
+}
+
+.chat-entry.player {
+    color: var(--amber-bright);
+}
+
+/* Chat input container */
+#chat-input-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-top: 1px solid var(--amber-dim);
+    background: linear-gradient(180deg, #0d0d0d 0%, #0a0a0a 100%);
+}
+
+.chat-prompt {
+    color: var(--amber-bright);
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 0 8px var(--amber-glow);
+    user-select: none;
+}
+
+#chat-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--amber-dim);
+    color: var(--amber-bright);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 4px 2px;
+    outline: none;
+    caret-color: var(--amber-glow);
+}
+
+#chat-input:focus {
+    border-bottom-color: var(--amber-bright);
+    box-shadow: 0 1px 0 var(--amber-dim);
+}
+
+#chat-input::placeholder {
+    color: var(--amber-dim);
+    font-style: italic;
 }
 
 /* Dice panel */
@@ -343,28 +471,6 @@ body {
 
 #clear-dice-btn:hover {
     background: var(--amber-dim);
-}
-
-/* GM access button */
-#gm-access-btn {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    background: var(--bg-black);
-    border: 1px solid var(--amber-dim);
-    color: var(--amber-dim);
-    padding: 5px 10px;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    cursor: pointer;
-    opacity: 0.5;
-    transition: all 0.2s;
-}
-
-#gm-access-btn:hover {
-    opacity: 1;
-    border-color: var(--amber-mid);
-    color: var(--amber-mid);
 }
 
 /* Scrollbar styling */
@@ -455,54 +561,58 @@ body {
     position: relative;
 }
 
-.phosphor-terminal-input-line {
-    display: flex;
-    align-items: center;
-    padding: 8px 16px;
-    background: transparent; /* Visually part of the CRT screen, not a separate bar */
-    border-top: none;
+/* Input line is now fully integrated into the phosphor display */
+/* No separate input bar - typing happens directly in the CRT */
+
+/* Hidden input - used for focus/key capture in terminal mode */
+/* Positioned within viewport but invisible to allow proper focus */
+.phosphor-hidden-input {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    color: transparent;
+    outline: none;
+    opacity: 0.01; /* Nearly invisible but still focusable */
+    z-index: -1;
+    caret-color: transparent;
 }
 
-.phosphor-prompt {
+/* Live input line rendered in phosphor display */
+.phosphor-input-line {
+    display: inline;
+}
+
+.phosphor-input-line-glow {
+    display: inline;
+}
+
+/* Hot caret - brighter than everything else with bloom */
+/* Animation handled by AnimationManager for unified timing */
+.phosphor-hot-caret {
+    display: inline;
+    color: #ffffff;
+    text-shadow: 
+        0 0 4px #ffffff,
+        0 0 8px var(--amber-glow),
+        0 0 12px var(--amber-glow),
+        0 0 20px var(--amber-bright),
+        0 0 30px var(--amber-bright),
+        0 0 40px var(--amber-glow);
+    /* No CSS animation - AnimationManager controls opacity via JS */
+}
+
+/* Prompt character styling */
+.phosphor-prompt-char {
     color: var(--amber-bright);
-    margin-right: 8px;
-    font-size: 19px;
     text-shadow: 
         0 0 4px var(--amber-glow),
         0 0 8px var(--amber-bright);
-    animation: prompt-glow 0.8s ease-in-out infinite alternate;
-}
-
-@keyframes prompt-glow {
-    0% {
-        text-shadow: 
-            0 0 4px var(--amber-glow),
-            0 0 8px var(--amber-bright);
-    }
-    100% {
-        text-shadow: 
-            0 0 2px var(--amber-dim),
-            0 0 4px var(--amber-mid);
-    }
-}
-
-.phosphor-terminal-input-line .phosphor-input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: transparent;           /* Hide typed characters */
-    font-family: var(--font-mono);
-    font-size: 19px;
-    caret-color: transparent;     /* Hide native caret */
-    text-shadow: none;            /* No visible text glow */
-    position: relative;
-    z-index: 1;
-}
-
-.phosphor-terminal-input-line .phosphor-input::selection {
-    background: var(--amber-dim);
-    color: var(--amber-glow);
 }
 
 /* CRT screen effect on terminal */

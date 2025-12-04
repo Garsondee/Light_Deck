@@ -1,16 +1,31 @@
 /**
- * Debug UI using Tweakpane
- * Floating panel for fine-tuning ASCII shader parameters
+ * Scene Viewer UI using Tweakpane
+ * Floating panel for fine-tuning CRT shader parameters
+ * Controls the Scene Viewer display (with optional ASCII art mode)
  */
 
 const DebugUI = (function() {
     let pane;
     let asciiFolder, colorFolder, effectsFolder, glitchFolder;
     
+    // Layout controls state (for positioning displays)
+    const layoutConfig = {
+        // CRT Display position/scale
+        crtX: 0,
+        crtY: 0,
+        crtScaleX: 1.0,
+        crtScaleY: 1.0,
+        // Chat panel position/scale
+        chatX: 0,
+        chatY: 0,
+        chatScaleX: 1.0,
+        chatScaleY: 1.0
+    };
+    
     function init() {
         // Create Tweakpane instance
         pane = new Tweakpane.Pane({
-            title: 'ASCII Shader Controls',
+            title: 'Scene Viewer Controls',
             expanded: true
         });
         
@@ -20,10 +35,248 @@ const DebugUI = (function() {
         pane.element.style.left = '10px';
         pane.element.style.zIndex = '10000';
         
-        const config = ASCIIShader.config;
+        const config = CRTShader.config;
+        
+        // === LAYOUT CONTROLS (Position/Scale for displays) ===
+        const layoutFolder = pane.addFolder({ title: '📐 Layout Controls', expanded: true });
+        
+        // -- CRT Display --
+        const crtLayoutFolder = layoutFolder.addFolder({ title: 'CRT Display', expanded: true });
+        
+        // Initialize from LayoutManager or current position
+        const scenePlane = ThreeSetup.getScenePlane ? ThreeSetup.getScenePlane() : null;
+        if (typeof LayoutManager !== 'undefined' && LayoutManager.isInitialized()) {
+            const rect = LayoutManager.getMainDisplayRect();
+            layoutConfig.crtX = rect.x;
+            layoutConfig.crtY = rect.y;
+            layoutConfig.crtScaleX = 1.0;
+            layoutConfig.crtScaleY = 1.0;
+        } else if (scenePlane) {
+            layoutConfig.crtX = scenePlane.position.x;
+            layoutConfig.crtY = scenePlane.position.y;
+            layoutConfig.crtScaleX = scenePlane.scale.x;
+            layoutConfig.crtScaleY = scenePlane.scale.y;
+        }
+        
+        crtLayoutFolder.addInput(layoutConfig, 'crtX', {
+            label: 'Position X',
+            min: -3, max: 3, step: 0.01
+        }).on('change', () => updateCRTPosition());
+        
+        crtLayoutFolder.addInput(layoutConfig, 'crtY', {
+            label: 'Position Y',
+            min: -2, max: 2, step: 0.01
+        }).on('change', () => updateCRTPosition());
+        
+        crtLayoutFolder.addInput(layoutConfig, 'crtScaleX', {
+            label: 'Scale X',
+            min: 0.5, max: 2.0, step: 0.01
+        }).on('change', () => updateCRTPosition());
+        
+        crtLayoutFolder.addInput(layoutConfig, 'crtScaleY', {
+            label: 'Scale Y',
+            min: 0.5, max: 2.0, step: 0.01
+        }).on('change', () => updateCRTPosition());
+        
+        // -- Chat Panel --
+        const chatFolder = layoutFolder.addFolder({ title: 'Chat Panel', expanded: true });
+        
+        // Initialize from current position
+        if (typeof ChatManager !== 'undefined') {
+            const chatPlane = ChatManager.getPlane();
+            if (chatPlane) {
+                layoutConfig.chatX = chatPlane.position.x;
+                layoutConfig.chatY = chatPlane.position.y;
+                layoutConfig.chatScaleX = chatPlane.scale.x;
+                layoutConfig.chatScaleY = chatPlane.scale.y;
+            }
+        }
+        
+        chatFolder.addInput(layoutConfig, 'chatX', {
+            label: 'Position X',
+            min: -3, max: 3, step: 0.01
+        }).on('change', () => updateChatPosition());
+        
+        chatFolder.addInput(layoutConfig, 'chatY', {
+            label: 'Position Y',
+            min: -2, max: 2, step: 0.01
+        }).on('change', () => updateChatPosition());
+        
+        chatFolder.addInput(layoutConfig, 'chatScaleX', {
+            label: 'Scale X',
+            min: 0.1, max: 2.0, step: 0.01
+        }).on('change', () => updateChatPosition());
+        
+        chatFolder.addInput(layoutConfig, 'chatScaleY', {
+            label: 'Scale Y',
+            min: 0.5, max: 2.0, step: 0.01
+        }).on('change', () => updateChatPosition());
+        
+        // Log current values button
+        layoutFolder.addButton({ title: '📋 Log Current Values' }).on('click', () => {
+            console.log('[DebugUI] Current Layout Config:', JSON.stringify(layoutConfig, null, 2));
+        });
+        
+        // === FONT SETTINGS (for ASCII character atlas) ===
+        const fontFolder = pane.addFolder({ title: '🔤 Font & Characters', expanded: false });
+        
+        fontFolder.addInput(config, 'fontFamily', {
+            label: 'Font Family',
+            options: CRTShader.getFontOptions()
+        }).on('change', () => {
+            regenerateAtlasFromUI();
+        });
+        
+        fontFolder.addInput(config, 'fontWeight', {
+            label: 'Weight',
+            options: {
+                'Light (300)': 300,
+                'Normal (400)': 400,
+                'Medium (500)': 500,
+                'Semi-Bold (600)': 600,
+                'Bold (700)': 700
+            }
+        }).on('change', () => {
+            regenerateAtlasFromUI();
+        });
+        
+        fontFolder.addInput(config, 'charSet', {
+            label: 'Character Set',
+            options: CRTShader.getCharSetOptions()
+        }).on('change', () => {
+            regenerateAtlasFromUI();
+        });
+        
+        fontFolder.addInput(config, 'customCharSet', {
+            label: 'Custom Chars'
+        }).on('change', () => {
+            if (config.charSet === 'custom') {
+                regenerateAtlasFromUI();
+            }
+        });
+        
+        fontFolder.addButton({ title: '🔄 Regenerate Atlas' }).on('click', () => {
+            regenerateAtlasFromUI();
+        });
+        
+        // === COLOR CORRECTION (top-level) ===
+        const ccFolder = pane.addFolder({ title: '🎨 Color Correction', expanded: false });
+        
+        // -- Lift/Gamma/Gain --
+        const lggFolder = ccFolder.addFolder({ title: 'Lift / Gamma / Gain', expanded: true });
+        
+        lggFolder.addInput(config, 'liftR', {
+            label: 'Lift R (Shadows)',
+            min: -0.5, max: 0.5, step: 0.01
+        });
+        lggFolder.addInput(config, 'liftG', {
+            label: 'Lift G',
+            min: -0.5, max: 0.5, step: 0.01
+        });
+        lggFolder.addInput(config, 'liftB', {
+            label: 'Lift B',
+            min: -0.5, max: 0.5, step: 0.01
+        });
+        
+        lggFolder.addSeparator();
+        
+        lggFolder.addInput(config, 'gammaR', {
+            label: 'Gamma R (Mids)',
+            min: 0.5, max: 2.0, step: 0.01
+        });
+        lggFolder.addInput(config, 'gammaG', {
+            label: 'Gamma G',
+            min: 0.5, max: 2.0, step: 0.01
+        });
+        lggFolder.addInput(config, 'gammaB', {
+            label: 'Gamma B',
+            min: 0.5, max: 2.0, step: 0.01
+        });
+        
+        lggFolder.addSeparator();
+        
+        lggFolder.addInput(config, 'gainR', {
+            label: 'Gain R (Highs)',
+            min: 0.0, max: 2.0, step: 0.01
+        });
+        lggFolder.addInput(config, 'gainG', {
+            label: 'Gain G',
+            min: 0.0, max: 2.0, step: 0.01
+        });
+        lggFolder.addInput(config, 'gainB', {
+            label: 'Gain B',
+            min: 0.0, max: 2.0, step: 0.01
+        });
+        
+        // -- Temperature & Tint --
+        const tempFolder = ccFolder.addFolder({ title: 'Temperature & Tint', expanded: true });
+        
+        tempFolder.addInput(config, 'colorTemperature', {
+            label: 'Temperature',
+            min: -1.0, max: 1.0, step: 0.01
+        });
+        
+        tempFolder.addInput(config, 'colorTint', {
+            label: 'Tint (G/M)',
+            min: -1.0, max: 1.0, step: 0.01
+        });
+        
+        // -- Saturation & Vibrance --
+        const satFolder = ccFolder.addFolder({ title: 'Saturation & Vibrance', expanded: true });
+        
+        satFolder.addInput(config, 'saturation', {
+            label: 'Saturation',
+            min: 0.0, max: 2.0, step: 0.01
+        });
+        
+        satFolder.addInput(config, 'vibrance', {
+            label: 'Vibrance',
+            min: -1.0, max: 1.0, step: 0.01
+        });
+        
+        // -- Exposure & Gamma --
+        const expFolder = ccFolder.addFolder({ title: 'Exposure & Gamma', expanded: true });
+        
+        expFolder.addInput(config, 'exposure', {
+            label: 'Exposure (EV)',
+            min: -2.0, max: 2.0, step: 0.05
+        });
+        
+        expFolder.addInput(config, 'gamma', {
+            label: 'Gamma',
+            min: 0.5, max: 2.0, step: 0.01
+        });
+        
+        // === UNREAL BLOOM (Post-Processing) ===
+        const bloomUFolder = pane.addFolder({ title: '✨ Unreal Bloom', expanded: false });
+        
+        bloomUFolder.addInput(config, 'unrealBloomEnabled', {
+            label: 'Enabled'
+        });
+        
+        bloomUFolder.addInput(config, 'unrealBloomStrength', {
+            label: 'Strength',
+            min: 0, max: 3, step: 0.01
+        });
+        
+        bloomUFolder.addInput(config, 'unrealBloomRadius', {
+            label: 'Radius',
+            min: 0, max: 1, step: 0.01
+        });
+        
+        bloomUFolder.addInput(config, 'unrealBloomThreshold', {
+            label: 'Threshold',
+            min: 0, max: 1, step: 0.01
+        });
+        
+        // NOTE: Soft Knee, Bloom Color, and Mix removed - UnrealBloomPass uses strength/radius/threshold only
         
         // === ASCII Settings ===
         asciiFolder = pane.addFolder({ title: 'ASCII', expanded: true });
+        
+        asciiFolder.addInput(config, 'asciiMode', {
+            label: 'ASCII Enabled'
+        });
         
         asciiFolder.addInput(config, 'cellWidth', {
             label: 'Cell Width',
@@ -47,6 +300,33 @@ const DebugUI = (function() {
         
         asciiFolder.addInput(config, 'useShapeMatching', {
             label: 'Shape Matching'
+        });
+        
+        asciiFolder.addSeparator();
+        
+        asciiFolder.addInput(config, 'asciiMinOpacity', {
+            label: 'Min Opacity',
+            min: 0, max: 1, step: 0.01
+        });
+        
+        asciiFolder.addInput(config, 'asciiMaxOpacity', {
+            label: 'Max Opacity',
+            min: 0, max: 1, step: 0.01
+        });
+        
+        asciiFolder.addInput(config, 'asciiContrastBoost', {
+            label: 'Contrast Influence',
+            min: 0, max: 8, step: 0.1
+        });
+        
+        asciiFolder.addInput(config, 'asciiCharBrightness', {
+            label: 'Char Brightness',
+            min: 0, max: 2, step: 0.01
+        });
+        
+        asciiFolder.addInput(config, 'asciiBackgroundStrength', {
+            label: 'Background Strength',
+            min: 0, max: 1, step: 0.01
         });
         
         asciiFolder.addSeparator();
@@ -83,18 +363,7 @@ const DebugUI = (function() {
             min: 0, max: 1, step: 0.01
         });
         
-        // === Bloom ===
-        const bloomFolder = pane.addFolder({ title: 'Bloom', expanded: true });
-        
-        bloomFolder.addInput(config, 'bloomIntensity', {
-            label: 'Intensity',
-            min: 0, max: 1, step: 0.01
-        });
-        
-        bloomFolder.addInput(config, 'bloomThreshold', {
-            label: 'Threshold',
-            min: 0, max: 1, step: 0.01
-        });
+        // NOTE: Old Bloom folder removed - bloom is now controlled via Unreal Bloom (post-processing)
         
         // === Effects ===
         effectsFolder = pane.addFolder({ title: 'Effects', expanded: false });
@@ -138,11 +407,148 @@ const DebugUI = (function() {
         });
         
         glitchFolder.addButton({ title: 'Trigger Glitch (Light)' }).on('click', () => {
-            ASCIIShader.triggerGlitch(0.3, 200);
+            CRTShader.triggerGlitch(0.3, 200);
         });
         
         glitchFolder.addButton({ title: 'Trigger Glitch (Heavy)' }).on('click', () => {
-            ASCIIShader.triggerGlitch(0.8, 500);
+            CRTShader.triggerGlitch(0.8, 500);
+        });
+        
+        // === CRT Effects ===
+        const crtFolder = pane.addFolder({ title: 'CRT Effects', expanded: false });
+        
+        // -- Screen Curvature --
+        const curvatureFolder = crtFolder.addFolder({ title: 'Screen Curvature', expanded: true });
+        
+        curvatureFolder.addInput(config, 'barrelDistortion', {
+            label: 'Barrel Distortion',
+            min: 0, max: 0.5, step: 0.01
+        });
+        
+        curvatureFolder.addInput(config, 'barrelZoom', {
+            label: 'Zoom Compensation',
+            min: 0.9, max: 1.2, step: 0.01
+        });
+        
+        // -- Chromatic Aberration --
+        const chromaFolder = crtFolder.addFolder({ title: 'Chromatic Aberration', expanded: true });
+        
+        chromaFolder.addInput(config, 'chromaticAberration', {
+            label: 'Intensity',
+            min: 0, max: 0.02, step: 0.001
+        });
+        
+        chromaFolder.addInput(config, 'chromaticCenter', {
+            label: 'Edge-Based'
+        });
+        
+        // -- Phosphor Mask --
+        const phosphorFolder = crtFolder.addFolder({ title: 'Phosphor Mask', expanded: true });
+        
+        phosphorFolder.addInput(config, 'phosphorMaskType', {
+            label: 'Type',
+            options: {
+                'Off': 0,
+                'RGB Triads': 1,
+                'Aperture Grille': 2,
+                'Slot Mask': 3
+            }
+        });
+        
+        phosphorFolder.addInput(config, 'phosphorMaskIntensity', {
+            label: 'Intensity',
+            min: 0, max: 1, step: 0.01
+        });
+        
+        phosphorFolder.addInput(config, 'phosphorMaskScale', {
+            label: 'Scale',
+            min: 0.5, max: 4, step: 0.1
+        });
+        
+        // -- Interlacing --
+        const interlaceFolder = crtFolder.addFolder({ title: 'Interlacing', expanded: true });
+        
+        interlaceFolder.addInput(config, 'interlaceEnabled', {
+            label: 'Enabled'
+        });
+        
+        interlaceFolder.addInput(config, 'interlaceIntensity', {
+            label: 'Intensity',
+            min: 0, max: 1, step: 0.01
+        });
+        
+        // -- H-Sync Wobble --
+        const hsyncFolder = crtFolder.addFolder({ title: 'H-Sync Wobble', expanded: true });
+        
+        hsyncFolder.addInput(config, 'hSyncWobble', {
+            label: 'Amount',
+            min: 0, max: 1, step: 0.01
+        });
+        
+        hsyncFolder.addInput(config, 'hSyncWobbleSpeed', {
+            label: 'Speed',
+            min: 0.5, max: 10, step: 0.5
+        });
+        
+        // -- Electron Beam --
+        const beamFolder = crtFolder.addFolder({ title: 'Electron Beam', expanded: true });
+        
+        beamFolder.addInput(config, 'beamWidth', {
+            label: 'Beam Width',
+            min: 0, max: 2, step: 0.1
+        });
+        
+        // -- Phosphor Persistence (placeholder - requires render-to-texture) --
+        const persistFolder = crtFolder.addFolder({ title: 'Phosphor Persistence', expanded: false });
+        
+        persistFolder.addInput(config, 'persistenceEnabled', {
+            label: 'Enabled (WIP)'
+        });
+        
+        persistFolder.addInput(config, 'persistenceIntensity', {
+            label: 'Intensity',
+            min: 0, max: 1, step: 0.01
+        });
+        
+        persistFolder.addInput(config, 'persistenceDecay', {
+            label: 'Decay',
+            min: 0.8, max: 0.99, step: 0.01
+        });
+        
+        // === Glow & Ambient ===
+        const glowFolder = pane.addFolder({ title: 'Glow & Ambient', expanded: false });
+        
+        glowFolder.addInput(config, 'glowIntensity', {
+            label: 'Glow Intensity',
+            min: 0, max: 1, step: 0.01
+        });
+        
+        glowFolder.addInput(config, 'glowRadius', {
+            label: 'Glow Radius',
+            min: 1, max: 16, step: 0.5
+        });
+        
+        glowFolder.addInput(config, 'ambientLight', {
+            label: 'Ambient Light',
+            min: 0, max: 0.1, step: 0.005
+        });
+        
+        // === Film Grain ===
+        const grainFolder = pane.addFolder({ title: 'Film Grain', expanded: false });
+        
+        grainFolder.addInput(config, 'filmGrainIntensity', {
+            label: 'Intensity',
+            min: 0, max: 0.5, step: 0.01
+        });
+        
+        grainFolder.addInput(config, 'filmGrainSize', {
+            label: 'Grain Size',
+            min: 1, max: 8, step: 0.5
+        });
+        
+        grainFolder.addInput(config, 'filmGrainSpeed', {
+            label: 'Animation Speed',
+            min: 1, max: 30, step: 1
         });
         
         // === Presets ===
@@ -182,6 +588,84 @@ const DebugUI = (function() {
         presetsFolder.addButton({ title: 'Chunky ASCII' }).on('click', () => {
             config.cellSize = 16;
             config.shimmerIntensity = 0.2;
+            pane.refresh();
+        });
+        
+        presetsFolder.addSeparator();
+        
+        presetsFolder.addButton({ title: 'CRT: Authentic 80s' }).on('click', () => {
+            config.barrelDistortion = 0.15;
+            config.barrelZoom = 1.04;
+            config.chromaticAberration = 0.004;
+            config.chromaticCenter = true;
+            config.phosphorMaskType = 1; // RGB Triads
+            config.phosphorMaskIntensity = 0.25;
+            config.phosphorMaskScale = 1.0;
+            config.interlaceEnabled = true;
+            config.interlaceIntensity = 0.3;
+            config.scanlineIntensity = 0.1;
+            config.hSyncWobble = 0.05;
+            config.beamWidth = 0.5;
+            pane.refresh();
+        });
+        
+        presetsFolder.addButton({ title: 'CRT: Arcade Monitor' }).on('click', () => {
+            config.barrelDistortion = 0.08;
+            config.barrelZoom = 1.02;
+            config.chromaticAberration = 0.002;
+            config.chromaticCenter = true;
+            config.phosphorMaskType = 2; // Aperture Grille
+            config.phosphorMaskIntensity = 0.2;
+            config.phosphorMaskScale = 1.5;
+            config.interlaceEnabled = false;
+            config.scanlineIntensity = 0.08;
+            config.hSyncWobble = 0;
+            config.beamWidth = 0.3;
+            config.bloomIntensity = 0.5;
+            pane.refresh();
+        });
+        
+        presetsFolder.addButton({ title: 'CRT: Broken VHS' }).on('click', () => {
+            config.barrelDistortion = 0.12;
+            config.chromaticAberration = 0.008;
+            config.chromaticCenter = false;
+            config.hSyncWobble = 0.4;
+            config.hSyncWobbleSpeed = 5;
+            config.interlaceEnabled = true;
+            config.interlaceIntensity = 0.6;
+            config.noiseIntensity = 0.06;
+            config.scanlineIntensity = 0.15;
+            CRTShader.triggerGlitch(0.2, 100);
+            pane.refresh();
+        });
+        
+        presetsFolder.addButton({ title: 'CRT: Clean Modern' }).on('click', () => {
+            config.barrelDistortion = 0.05;
+            config.barrelZoom = 1.01;
+            config.chromaticAberration = 0.001;
+            config.chromaticCenter = true;
+            config.phosphorMaskType = 0; // Off
+            config.interlaceEnabled = false;
+            config.hSyncWobble = 0;
+            config.beamWidth = 0;
+            config.scanlineIntensity = 0.03;
+            config.noiseIntensity = 0.02;
+            pane.refresh();
+        });
+        
+        presetsFolder.addButton({ title: 'Reset CRT Effects' }).on('click', () => {
+            config.barrelDistortion = 0.1;
+            config.barrelZoom = 1.02;
+            config.chromaticAberration = 0.003;
+            config.chromaticCenter = true;
+            config.phosphorMaskType = 0;
+            config.phosphorMaskIntensity = 0.15;
+            config.phosphorMaskScale = 1.0;
+            config.interlaceEnabled = false;
+            config.interlaceIntensity = 0.5;
+            config.hSyncWobble = 0;
+            config.hSyncWobbleSpeed = 3;
+            config.beamWidth = 0;
             pane.refresh();
         });
         
@@ -253,15 +737,54 @@ const DebugUI = (function() {
             console.log('=============================');
         });
         
-        // Toggle visibility with backtick key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === '`') {
-                toggleVisibility();
-            }
-        });
+        // NOTE: Keyboard toggle is handled by InputManager
+        // Do not add duplicate keydown listeners here
         
         console.log('[DEBUG UI] Initialized. Press ` to toggle visibility.');
         return pane;
+    }
+    
+    /**
+     * Regenerate the ASCII character atlas when font settings change
+     * Gets the material from ThreeSetup and updates it
+     */
+    function regenerateAtlasFromUI() {
+        // Get the scene plane material from ThreeSetup
+        if (typeof ThreeSetup !== 'undefined' && ThreeSetup.getScenePlaneMaterial) {
+            const material = ThreeSetup.getScenePlaneMaterial();
+            CRTShader.regenerateAtlas(material);
+            
+            // Refresh the pane to update charCount monitor
+            if (pane) pane.refresh();
+        } else {
+            // Fallback: just regenerate without material update
+            CRTShader.regenerateAtlas(null);
+            console.log('[SCENE UI] Material not available, atlas regenerated but not applied');
+        }
+    }
+    
+    /**
+     * Update CRT display position and scale from layout controls
+     */
+    function updateCRTPosition() {
+        // Temporarily disabled: keep scene plane driven purely by LayoutManager
+        // This avoids manual overrides while we debug layout sizing.
+        return;
+    }
+    
+    /**
+     * Update chat panel position and scale from layout controls
+     */
+    function updateChatPosition() {
+        if (typeof ChatManager !== 'undefined') {
+            const chatPlane = ChatManager.getPlane();
+            if (chatPlane) {
+                chatPlane.position.x = layoutConfig.chatX;
+                chatPlane.position.y = layoutConfig.chatY;
+                chatPlane.scale.x = layoutConfig.chatScaleX;
+                chatPlane.scale.y = layoutConfig.chatScaleY;
+            }
+        }
     }
     
     function toggleVisibility() {
