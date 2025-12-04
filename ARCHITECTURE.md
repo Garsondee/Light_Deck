@@ -1664,29 +1664,29 @@ public/js/
 > All other phases are blocked until the rendering architecture is solid.
 
 ### Phase A: Three.js Foundation (IMMEDIATE)
-1. [ ] Create `TextRenderer` module
-2. [ ] Create `RenderManager` module
-3. [ ] Consolidate animation loop
-4. [ ] Clean up InputManager (single handler)
+1. [x] Create `TextRenderer` module
+2. [x] Create `RenderManager` module
+3. [x] Consolidate animation loop
+4. [x] Clean up InputManager (single handler)
 
 ### Phase B: Terminal Migration
-5. [ ] Create `TerminalManager`
-6. [ ] Canvas-based terminal rendering
-7. [ ] Caret as drawn element
-8. [ ] Terminal scrolling
-9. [ ] Remove PhosphorText/DOM terminal
+5. [x] Create `TerminalManager`
+6. [x] Canvas-based terminal rendering
+7. [x] Caret as drawn element
+8. [x] Terminal scrolling
+9. [x] Remove PhosphorText/DOM terminal
 
 ### Phase C: UI Migration
-10. [ ] Create `ChatManager`
-11. [ ] Migrate dice panel
-12. [ ] Remove DOM sidebar
-13. [ ] Raycasting for clicks
+10. [x] Create `ChatManager`
+11. [x] Migrate dice panel
+12. [x] Remove DOM sidebar
+13. [x] Raycasting for clicks
 
 ### Phase D: Post-Processing
-14. [ ] Multi-pass bloom
-15. [ ] CRT distortion separation
-16. [ ] Unified phosphor glow
-17. [ ] Performance optimization
+14. [x] Multi-pass bloom
+15. [x] CRT distortion separation
+16. [x] Unified phosphor glow
+17. [x] Performance optimization
 
 ### Phase E: Game Systems (After UI Migration)
 18. [ ] Character system

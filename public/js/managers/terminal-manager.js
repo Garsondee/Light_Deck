@@ -30,8 +30,8 @@ const TerminalManager = (function() {
     let plane = null;
 
     const crtConfig = {
-        barrelDistortion: 0.22,
-        barrelZoom: 0.97
+        barrelDistortion: 0.09,
+        barrelZoom: 1.07
     };
     
     // Terminal content
@@ -166,12 +166,10 @@ const TerminalManager = (function() {
             targetY = rect.y;
             targetZ = rect.z + 0.1; // slightly in front of the CRT content
 
-            // Use slightly less horizontal padding in terminal mode while
-            // keeping the same vertical padding as the scene viewer.
-            const horizontalPadding = 0.06;
-            const verticalPadding = 0.08;
-            const targetWidthMax = Math.max(0, rect.width - horizontalPadding * 2);
-            const targetHeightMax = Math.max(0, rect.height - verticalPadding * 2);
+            // Match CRT scene viewer behavior: fit CRT plane directly to the full
+            // main display hole so the black surround fills the bezel.
+            const targetWidthMax = rect.width;
+            const targetHeightMax = rect.height;
 
             // Maintain 4:3 aspect based on canvas layout (width/height)
             const aspect = layout.width / layout.height; // should be 4/3

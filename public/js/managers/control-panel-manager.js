@@ -85,6 +85,9 @@ const ControlPanelManager = (function() {
             return;
         }
         
+        // Check if we should skip creating 3D controls (they're now in ChatManager)
+        const skipPhysicalControls = options.skipPhysicalControls ?? true;
+        
         // Get layout from LayoutManager (single source of truth)
         if (typeof LayoutManager !== 'undefined' && LayoutManager.isInitialized()) {
             const mainRect = LayoutManager.getMainDisplayRect();
@@ -108,22 +111,27 @@ const ControlPanelManager = (function() {
         controlGroup = new THREE.Group();
         controlGroup.name = 'controlPanel';
         
-        // Create buttons below the main display
-        createButtons();
-        
-        // Create dials below the chat panel
-        createDials();
+        if (!skipPhysicalControls) {
+            // Create buttons below the main display
+            createButtons();
+            
+            // Create dials below the chat panel
+            createDials();
+            
+            // Register click handlers
+            registerClickHandlers();
+            
+            console.log('[ControlPanelManager] Initialized with 3D buttons and dials');
+        } else {
+            console.log('[ControlPanelManager] Initialized (3D controls disabled - using ChatManager control bar)');
+        }
         
         // Add to scene
         if (scene) {
             scene.add(controlGroup);
         }
         
-        // Register click handlers
-        registerClickHandlers();
-        
         initialized = true;
-        console.log('[ControlPanelManager] Initialized with buttons and dials');
         
         return controlGroup;
     }

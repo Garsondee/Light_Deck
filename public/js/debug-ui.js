@@ -8,20 +8,6 @@ const DebugUI = (function() {
     let pane;
     let asciiFolder, colorFolder, effectsFolder, glitchFolder;
     
-    // Layout controls state (for positioning displays)
-    const layoutConfig = {
-        // CRT Display position/scale
-        crtX: 0,
-        crtY: 0,
-        crtScaleX: 1.0,
-        crtScaleY: 1.0,
-        // Chat panel position/scale
-        chatX: 0,
-        chatY: 0,
-        chatScaleX: 1.0,
-        chatScaleY: 1.0
-    };
-    
     function init() {
         // Create Tweakpane instance
         pane = new Tweakpane.Pane({
@@ -36,86 +22,6 @@ const DebugUI = (function() {
         pane.element.style.zIndex = '10000';
         
         const config = CRTShader.config;
-        
-        // === LAYOUT CONTROLS (Position/Scale for displays) ===
-        const layoutFolder = pane.addFolder({ title: '📐 Layout Controls', expanded: true });
-        
-        // -- CRT Display --
-        const crtLayoutFolder = layoutFolder.addFolder({ title: 'CRT Display', expanded: true });
-        
-        // Initialize from LayoutManager or current position
-        const scenePlane = ThreeSetup.getScenePlane ? ThreeSetup.getScenePlane() : null;
-        if (typeof LayoutManager !== 'undefined' && LayoutManager.isInitialized()) {
-            const rect = LayoutManager.getMainDisplayRect();
-            layoutConfig.crtX = rect.x;
-            layoutConfig.crtY = rect.y;
-            layoutConfig.crtScaleX = 1.0;
-            layoutConfig.crtScaleY = 1.0;
-        } else if (scenePlane) {
-            layoutConfig.crtX = scenePlane.position.x;
-            layoutConfig.crtY = scenePlane.position.y;
-            layoutConfig.crtScaleX = scenePlane.scale.x;
-            layoutConfig.crtScaleY = scenePlane.scale.y;
-        }
-        
-        crtLayoutFolder.addInput(layoutConfig, 'crtX', {
-            label: 'Position X',
-            min: -3, max: 3, step: 0.01
-        }).on('change', () => updateCRTPosition());
-        
-        crtLayoutFolder.addInput(layoutConfig, 'crtY', {
-            label: 'Position Y',
-            min: -2, max: 2, step: 0.01
-        }).on('change', () => updateCRTPosition());
-        
-        crtLayoutFolder.addInput(layoutConfig, 'crtScaleX', {
-            label: 'Scale X',
-            min: 0.5, max: 2.0, step: 0.01
-        }).on('change', () => updateCRTPosition());
-        
-        crtLayoutFolder.addInput(layoutConfig, 'crtScaleY', {
-            label: 'Scale Y',
-            min: 0.5, max: 2.0, step: 0.01
-        }).on('change', () => updateCRTPosition());
-        
-        // -- Chat Panel --
-        const chatFolder = layoutFolder.addFolder({ title: 'Chat Panel', expanded: true });
-        
-        // Initialize from current position
-        if (typeof ChatManager !== 'undefined') {
-            const chatPlane = ChatManager.getPlane();
-            if (chatPlane) {
-                layoutConfig.chatX = chatPlane.position.x;
-                layoutConfig.chatY = chatPlane.position.y;
-                layoutConfig.chatScaleX = chatPlane.scale.x;
-                layoutConfig.chatScaleY = chatPlane.scale.y;
-            }
-        }
-        
-        chatFolder.addInput(layoutConfig, 'chatX', {
-            label: 'Position X',
-            min: -3, max: 3, step: 0.01
-        }).on('change', () => updateChatPosition());
-        
-        chatFolder.addInput(layoutConfig, 'chatY', {
-            label: 'Position Y',
-            min: -2, max: 2, step: 0.01
-        }).on('change', () => updateChatPosition());
-        
-        chatFolder.addInput(layoutConfig, 'chatScaleX', {
-            label: 'Scale X',
-            min: 0.1, max: 2.0, step: 0.01
-        }).on('change', () => updateChatPosition());
-        
-        chatFolder.addInput(layoutConfig, 'chatScaleY', {
-            label: 'Scale Y',
-            min: 0.5, max: 2.0, step: 0.01
-        }).on('change', () => updateChatPosition());
-        
-        // Log current values button
-        layoutFolder.addButton({ title: '📋 Log Current Values' }).on('click', () => {
-            console.log('[DebugUI] Current Layout Config:', JSON.stringify(layoutConfig, null, 2));
-        });
         
         // === FONT SETTINGS (for ASCII character atlas) ===
         const fontFolder = pane.addFolder({ title: '🔤 Font & Characters', expanded: false });
@@ -760,30 +666,6 @@ const DebugUI = (function() {
             // Fallback: just regenerate without material update
             CRTShader.regenerateAtlas(null);
             console.log('[SCENE UI] Material not available, atlas regenerated but not applied');
-        }
-    }
-    
-    /**
-     * Update CRT display position and scale from layout controls
-     */
-    function updateCRTPosition() {
-        // Temporarily disabled: keep scene plane driven purely by LayoutManager
-        // This avoids manual overrides while we debug layout sizing.
-        return;
-    }
-    
-    /**
-     * Update chat panel position and scale from layout controls
-     */
-    function updateChatPosition() {
-        if (typeof ChatManager !== 'undefined') {
-            const chatPlane = ChatManager.getPlane();
-            if (chatPlane) {
-                chatPlane.position.x = layoutConfig.chatX;
-                chatPlane.position.y = layoutConfig.chatY;
-                chatPlane.scale.x = layoutConfig.chatScaleX;
-                chatPlane.scale.y = layoutConfig.chatScaleY;
-            }
         }
     }
     

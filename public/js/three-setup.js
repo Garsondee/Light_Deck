@@ -116,9 +116,9 @@ const ThreeSetup = (function() {
         glitchSeed: 87.25510321861039,
         chromaticAberration: 0.001,
         chromaticCenter: true,
-        // Terminal-mode curvature (matching Scene Viewer defaults)
-        barrelDistortion: 0.22,
-        barrelZoom: 0.97,
+        // Terminal-mode curvature (slightly flatter than Scene Viewer)
+        barrelDistortion: 0.09,
+        barrelZoom: 1.07,
         phosphorMaskType: 1,
         phosphorMaskIntensity: 0.09999999999999996,
         phosphorMaskScale: 4,
@@ -281,10 +281,11 @@ const ThreeSetup = (function() {
         if (typeof LayoutManager !== 'undefined' && LayoutManager.isInitialized()) {
             const rect = LayoutManager.getMainDisplayRect();
 
-            // We want a clearly inset 4:3 content window inside the main display
-            const padding = 0.08; // world units of gap between content and bezel (more vertical padding)
-            const targetWidthMax = Math.max(0, rect.width - padding * 2);
-            const targetHeightMax = Math.max(0, rect.height - padding * 2);
+            // Fit the curved CRT plane directly to the full main display hole.
+            // The visible image is still inset by the shader/barrel zoom, but the
+            // black surround now fills the entire bezel width and height.
+            const targetWidthMax = rect.width;
+            const targetHeightMax = rect.height;
 
             // Maintain 4:3 aspect
             let targetWidth = targetWidthMax;

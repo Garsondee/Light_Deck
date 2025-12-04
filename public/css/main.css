@@ -1,13 +1,16 @@
 /* Light Deck - Main Styles */
 /* Color palette: Amber on Black */
 
+/* Load IBM Plex Mono for unified CRT/terminal/chat text */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap');
+
 :root {
     --bg-black: #0a0a0a;
     --amber-dim: #4a3000;
     --amber-mid: #b87800;
     --amber-bright: #ffaa00;
     --amber-glow: #ffc040;
-    --font-mono: 'Courier New', Courier, monospace;
+    --font-mono: 'IBM Plex Mono', 'Courier New', Courier, monospace;
 }
 
 * {

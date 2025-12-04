@@ -40,7 +40,36 @@ const ChatManager = (function() {
         
         // Command history
         commandHistory: [],
-        historyIndex: -1
+        historyIndex: -1,
+        
+        // Control bar state
+        controlBarFocused: false,   // Whether control bar has keyboard focus
+        selectedControlIndex: -1,   // Currently selected control (-1 = none)
+        headerMode: 'controls',     // 'controls' or 'sliders'
+        selectedSliderIndex: 0      // Which slider is selected in effects bar
+    };
+    
+    // Control bar configuration
+    const controlBar = {
+        controls: [
+            // OPTIONS starts active/green to match the default DebugUI state
+            { id: 'options', label: 'OPTIONS', active: true },
+            { id: 'gmMode', label: 'GM MODE', active: false },
+            { id: 'terminal', label: 'TERMINAL', active: false }
+        ],
+        // Clickable regions (populated during render)
+        regions: []
+    };
+    
+    // Effects slider bar configuration (brightness / contrast / effects)
+    const effectsBar = {
+        sliders: [
+            // Use 8 discrete steps so sliders fit comfortably under the header
+            { id: 'brightness', label: 'BRT', min: 0.5, max: 1.5, steps: 8, level: 4 },
+            { id: 'contrast', label: 'CON', min: 0.5, max: 1.5, steps: 8, level: 4 },
+            { id: 'effects', label: 'FX', min: 0.0, max: 1.0, steps: 8, level: 8 }
+        ],
+        regions: []
     };
     
     // Layout configuration
@@ -125,18 +154,15 @@ const ChatManager = (function() {
         
         // Create canvas using TextRenderer with calculated dimensions
         const canvasResult = TextRenderer.createCanvas(layout.width, layout.height, {
-            fontSize: layout.fontSize,
-            lineHeight: layout.lineHeight,
-            fontFamily: layout.fontFamily,
             phosphor: options.phosphor || 'p3',
-            glowIntensity: options.glowIntensity ?? 0.9
+            fontSize: layout.fontSize,
+            glowIntensity: options.glowIntensity || 0.9
         });
-        
         canvas = canvasResult.canvas;
         ctx = canvasResult.ctx;
         config = canvasResult.config;
         
-        // Create Three.js texture
+        // Create Three.js texture from the same canvas
         texture = new THREE.CanvasTexture(canvas);
         texture.minFilter = THREE.LinearFilter;
         texture.magFilter = THREE.LinearFilter;
@@ -176,6 +202,13 @@ const ChatManager = (function() {
         }
         
         initialized = true;
+
+        // Sync initial button states (e.g. OPTIONS starts active/green)
+        if (typeof ControlPanelManager !== 'undefined' && typeof ControlPanelManager.setButtonState === 'function') {
+            for (const ctrl of controlBar.controls) {
+                ControlPanelManager.setButtonState(ctrl.id, ctrl.active);
+            }
+        }
         dirty = true;
         
         // Add initial system messages
@@ -227,15 +260,14 @@ const ChatManager = (function() {
         ctx.lineWidth = 1;
         ctx.strokeRect(1, 1, layout.width - 2, layout.height - 2);
         
-        // Draw header
-        const headerHeight = layout.fontSize * 1.5;
+        // Draw header with control bar and effects sliders
+        const headerHeight = layout.fontSize * 3.2;
         ctx.fillStyle = config.phosphorColors.dim;
         ctx.fillRect(0, 0, layout.width, headerHeight);
         
-        TextRenderer.renderLine(ctx, '[ SYSTEM LOG ]', layout.padding, 4, config, {
-            fontSize: layout.fontSize - 1,
-            glowIntensity: 0.4
-        });
+        // Render control bar and effects bar
+        renderControlBar(headerHeight);
+        renderEffectsBar(headerHeight);
         
         // Clear clickable elements
         clickableElements.length = 0;
@@ -312,6 +344,132 @@ const ChatManager = (function() {
     }
     
     /**
+     * Render the control bar at the top of the chat panel
+     */
+    function renderControlBar(headerHeight) {
+        // Clear regions
+        controlBar.regions = [];
+        
+        const y = 4;
+        const controlFontSize = layout.fontSize - 2;
+        let x = layout.padding;
+        
+        // Render each control as [LABEL]
+        for (let i = 0; i < controlBar.controls.length; i++) {
+            const ctrl = controlBar.controls[i];
+            const text = `[${ctrl.label}]`;
+            const textWidth = TextRenderer.measureText(ctx, text, config);
+            
+            // Determine styling based on state
+            const isSelected = state.selectedControlIndex === i;
+            const isActive = ctrl.active;
+            
+            // Base intensity for idle controls (quite dim)
+            let glowIntensity = 0.18;
+            let colorOverride = null;
+            
+            if (isActive) {
+                // Active state: very bright, using colored phosphor overrides
+                glowIntensity = 1.25;
+                colorOverride = ctrl.id === 'gmMode' 
+                    ? { primary: '#ffaa00', glow: '#ff8800', dim: '#553300' }  // Amber for GM
+                    : { primary: '#33ff66', glow: '#00ff44', dim: '#003311' }; // Green for others
+            } else if (isSelected && state.controlBarFocused && state.headerMode === 'controls') {
+                // Selected control when header row has focus: brighter than idle but below active
+                glowIntensity = 0.9;
+            } else if (isSelected) {
+                // Selected but row not focused (e.g., sliders focused): subtle lift from idle
+                glowIntensity = 0.45;
+            }
+            
+            // Render the control text
+            const options = {
+                fontSize: controlFontSize,
+                glowIntensity: glowIntensity
+            };
+            if (colorOverride) {
+                options.phosphorColors = colorOverride;
+            }
+            
+            TextRenderer.renderLine(ctx, text, x, y, config, options);
+            
+            // No underline: selection is communicated purely via brightness
+            
+            // Store clickable region
+            controlBar.regions.push({
+                index: i,
+                id: ctrl.id,
+                x: x,
+                y: y,
+                width: textWidth,
+                height: controlFontSize + 4
+            });
+            
+            // Slightly tighter spacing so all three controls fit comfortably
+            x += textWidth + 4;
+        }
+    }
+    
+    /**
+     * Render the effects slider bar (BRT / CON / FX)
+     */
+    function renderEffectsBar(headerHeight) {
+        // Clear regions
+        effectsBar.regions = [];
+        
+        const sliderFontSize = layout.fontSize - 3;
+        const labelSpacing = 4;
+        const barSpacing = 10;
+        const filledChar = '█';
+        const emptyChar = '░';
+        
+        // Place sliders on second line of header
+        const y = 4 + (layout.fontSize - 2) + 8;
+        let x = layout.padding;
+        
+        for (let i = 0; i < effectsBar.sliders.length; i++) {
+            const slider = effectsBar.sliders[i];
+            const steps = slider.steps;
+            const level = Math.max(0, Math.min(steps, slider.level));
+            const labelText = slider.label + '  ';
+            const barText = '<' + filledChar.repeat(level) + emptyChar.repeat(steps - level) + '>';
+            
+            // Measure label and bar to compute regions
+            const labelWidth = TextRenderer.measureText(ctx, labelText, config);
+            const barWidth = TextRenderer.measureText(ctx, barText, config);
+            
+            // Render label
+            TextRenderer.renderLine(ctx, labelText, x, y, config, {
+                fontSize: sliderFontSize,
+                glowIntensity: 0.5
+            });
+            
+            const barX = x + labelWidth;
+            
+            // Highlight if selected in slider mode
+            const isSelected = state.controlBarFocused && state.headerMode === 'sliders' && state.selectedSliderIndex === i;
+            const barOptions = {
+                fontSize: sliderFontSize,
+                glowIntensity: isSelected ? 1.0 : 0.55
+            };
+            
+            TextRenderer.renderLine(ctx, barText, barX, y, config, barOptions);
+            
+            // Store clickable region for the bar only
+            effectsBar.regions.push({
+                index: i,
+                id: slider.id,
+                x: barX,
+                y: y,
+                width: barWidth,
+                height: sliderFontSize + 4
+            });
+            
+            x = barX + barWidth + barSpacing;
+        }
+    }
+    
+    /**
      * Get visible messages based on scroll offset
      */
     function getVisibleMessages() {
@@ -360,33 +518,34 @@ const ChatManager = (function() {
                         glow: '#ff0000',
                         dim: '#440000'
                     },
-                    glowIntensity: 0.7
+                    glowIntensity: 0.8
                 };
             case 'system':
+                // Make system lines as bright as the header bar
                 return {
-                    glowIntensity: 0.4,
+                    glowIntensity: 0.75,
                     phosphorColors: {
                         ...config.phosphorColors,
-                        primary: config.phosphorColors.dim
+                        primary: config.phosphorColors.primary
                     }
                 };
             case 'roll':
                 return {
-                    glowIntensity: 0.9,
+                    glowIntensity: 0.95,
                     phosphorColors: TextRenderer.PHOSPHOR_PRESETS.p1  // Green for rolls
                 };
             case 'player':
                 return {
-                    glowIntensity: 0.8
+                    glowIntensity: 0.9
                 };
             case 'gm':
                 return {
-                    glowIntensity: 0.9,
+                    glowIntensity: 0.95,
                     phosphorColors: TextRenderer.PHOSPHOR_PRESETS.p31  // Blue for GM
                 };
             default:
                 return {
-                    glowIntensity: 0.6
+                    glowIntensity: 0.8
                 };
         }
     }
@@ -552,6 +711,11 @@ const ChatManager = (function() {
      * @returns {boolean} True if key was handled
      */
     function handleKey(key, modifiers = {}) {
+        // Handle header navigation (control bar + sliders) when focused
+        if (state.controlBarFocused) {
+            return handleControlBarKey(key);
+        }
+        
         if (!state.inputActive) return false;
         
         switch (key) {
@@ -609,9 +773,228 @@ const ChatManager = (function() {
                 state.caretPosition = state.inputBuffer.length;
                 dirty = true;
                 return true;
+                
+            case 'Tab':
+                // Switch to header (control bar first)
+                state.controlBarFocused = true;
+                state.inputActive = false;
+                state.headerMode = 'controls';
+                if (state.selectedControlIndex < 0) {
+                    state.selectedControlIndex = 0;
+                }
+                dirty = true;
+                return true;
         }
         
         return false;
+    }
+    
+    /**
+     * Handle keyboard input for control bar navigation
+     * @returns {boolean} True if key was handled
+     */
+    function handleControlBarKey(key) {
+        const numControls = controlBar.controls.length;
+        const numSliders = effectsBar.sliders.length;
+        
+        if (state.headerMode === 'controls') {
+            switch (key) {
+                case 'ArrowLeft':
+                    // Move selection left
+                    if (state.selectedControlIndex > 0) {
+                        state.selectedControlIndex--;
+                    } else {
+                        state.selectedControlIndex = numControls - 1; // Wrap around
+                    }
+                    dirty = true;
+                    return true;
+                    
+                case 'ArrowRight':
+                    // Move selection right
+                    if (state.selectedControlIndex < numControls - 1) {
+                        state.selectedControlIndex++;
+                    } else {
+                        state.selectedControlIndex = 0; // Wrap around
+                    }
+                    dirty = true;
+                    return true;
+                    
+                case 'Enter':
+                case ' ':
+                    // Activate selected control
+                    if (state.selectedControlIndex >= 0 && state.selectedControlIndex < numControls) {
+                        activateControl(state.selectedControlIndex);
+                    }
+                    return true;
+                    
+                case 'Escape':
+                    // Exit header focus
+                    state.controlBarFocused = false;
+                    state.selectedControlIndex = -1;
+                    dirty = true;
+                    return true;
+                    
+                case 'ArrowDown':
+                    // Move into slider row
+                    state.headerMode = 'sliders';
+                    state.selectedSliderIndex = Math.max(0, Math.min(numSliders - 1, state.selectedSliderIndex));
+                    dirty = true;
+                    return true;
+                    
+                case 'Tab':
+                    // Move focus back to input
+                    state.controlBarFocused = false;
+                    state.inputActive = true;
+                    dirty = true;
+                    return true;
+            }
+        } else if (state.headerMode === 'sliders') {
+            switch (key) {
+                case 'ArrowLeft':
+                    // Decrease slider level
+                    adjustSliderLevel(state.selectedSliderIndex, -1);
+                    return true;
+                    
+                case 'ArrowRight':
+                    // Increase slider level
+                    adjustSliderLevel(state.selectedSliderIndex, 1);
+                    return true;
+                    
+                case 'ArrowDown':
+                    // Cycle to next slider
+                    state.selectedSliderIndex = (state.selectedSliderIndex + 1) % numSliders;
+                    dirty = true;
+                    return true;
+                    
+                case 'ArrowUp':
+                    // Go back to controls row
+                    state.headerMode = 'controls';
+                    dirty = true;
+                    return true;
+                    
+                case 'Escape':
+                    // Exit header focus entirely
+                    state.controlBarFocused = false;
+                    state.headerMode = 'controls';
+                    dirty = true;
+                    return true;
+                    
+                case 'Tab':
+                    // Move focus back to input
+                    state.controlBarFocused = false;
+                    state.headerMode = 'controls';
+                    state.inputActive = true;
+                    dirty = true;
+                    return true;
+            }
+        }
+        
+        return false;
+    }
+
+    /**
+     * Adjust slider level by delta steps and apply effect
+     */
+    function adjustSliderLevel(index, delta) {
+        const slider = effectsBar.sliders[index];
+        if (!slider) return;
+        
+        slider.level = Math.max(0, Math.min(slider.steps, slider.level + delta));
+        applySliderValue(slider);
+        dirty = true;
+    }
+
+    /**
+     * Apply slider value to CRT / ControlPanelManager
+     */
+    function applySliderValue(slider) {
+        const t = slider.steps > 0 ? slider.level / slider.steps : 0;
+        const value = slider.min + (slider.max - slider.min) * t;
+        
+        // Prefer going through ControlPanelManager so existing wiring is reused
+        if (typeof ControlPanelManager !== 'undefined' && typeof ControlPanelManager.setDialValue === 'function') {
+            ControlPanelManager.setDialValue(slider.id, value);
+            return;
+        }
+        
+        // Fallback: write directly to CRTShader.config
+        if (typeof CRTShader !== 'undefined' && CRTShader.config) {
+            switch (slider.id) {
+                case 'brightness':
+                    CRTShader.config.brightness = value;
+                    break;
+                case 'contrast':
+                    CRTShader.config.contrast = value;
+                    break;
+                case 'effects':
+                    CRTShader.config.scanlineIntensity = 0.02 * value;
+                    CRTShader.config.phosphorMaskIntensity = 0.41 * value;
+                    CRTShader.config.chromaticAberration = 0.002 * value;
+                    CRTShader.config.vignetteStrength = 0.59 * value;
+                    break;
+            }
+        }
+    }
+    
+    /**
+     * Activate a control by index
+     */
+    function activateControl(index) {
+        const ctrl = controlBar.controls[index];
+        if (!ctrl) return;
+        
+        // Toggle active state
+        ctrl.active = !ctrl.active;
+        dirty = true;
+        
+        console.log('[ChatManager] Control activated:', ctrl.id, 'active:', ctrl.active);
+        
+        // Trigger action based on control id
+        switch (ctrl.id) {
+            case 'options':
+                if (typeof EventBus !== 'undefined') {
+                    EventBus.emit('ui:options-toggle');
+                }
+                if (typeof DebugUI !== 'undefined') {
+                    DebugUI.toggleVisibility();
+                }
+                break;
+                
+            case 'gmMode':
+                if (typeof EventBus !== 'undefined') {
+                    EventBus.emit('ui:gm-mode-toggle');
+                }
+                break;
+                
+            case 'terminal':
+                if (typeof EventBus !== 'undefined') {
+                    EventBus.emit('ui:terminal-toggle');
+                }
+                break;
+        }
+        
+        // Play click sound
+        if (typeof AudioManager !== 'undefined') {
+            AudioManager.playUISound('click');
+        }
+        
+        // Sync with ControlPanelManager if it exists (for LED state)
+        if (typeof ControlPanelManager !== 'undefined') {
+            ControlPanelManager.setButtonState(ctrl.id, ctrl.active);
+        }
+    }
+
+    
+    /**
+     * Set focus to control bar
+     */
+    function focusControlBar() {
+        state.controlBarFocused = true;
+        state.inputActive = false;
+        if (state.selectedControlIndex < 0) {
+            state.selectedControlIndex = 0;
+        }
+        dirty = true;
     }
     
     /**
@@ -808,6 +1191,58 @@ const ChatManager = (function() {
      * @returns {boolean} True if a clickable element was hit
      */
     function handleClick(x, y) {
+        // Check if click is in header area (controls + sliders)
+        const headerHeight = layout.fontSize * 3.2;
+        if (y < headerHeight) {
+            // Check control bar regions first
+            for (const region of controlBar.regions) {
+                if (x >= region.x && x <= region.x + region.width &&
+                    y >= region.y && y <= region.y + region.height) {
+                    
+                    // Select and activate the control
+                    state.selectedControlIndex = region.index;
+                    state.headerMode = 'controls';
+                    state.controlBarFocused = true;
+                    state.inputActive = false;
+                    activateControl(region.index);
+                    return true;
+                }
+            }
+            
+            // Then check effects slider regions
+            for (const region of effectsBar.regions) {
+                if (x >= region.x && x <= region.x + region.width &&
+                    y >= region.y && y <= region.y + region.height) {
+                    
+                    // Map click position to slider level
+                    const slider = effectsBar.sliders[region.index];
+                    if (slider) {
+                        const relative = (x - region.x) / region.width;
+                        const level = Math.round(relative * slider.steps);
+                        slider.level = Math.max(0, Math.min(slider.steps, level));
+                        applySliderValue(slider);
+                    }
+                    
+                    state.headerMode = 'sliders';
+                    state.selectedSliderIndex = region.index;
+                    state.controlBarFocused = true;
+                    state.inputActive = false;
+                    dirty = true;
+                    return true;
+                }
+            }
+            
+            // Clicked in header but not on a specific element - focus header controls
+            state.controlBarFocused = true;
+            state.inputActive = false;
+            state.headerMode = 'controls';
+            if (state.selectedControlIndex < 0) {
+                state.selectedControlIndex = 0;
+            }
+            dirty = true;
+            return true;
+        }
+        
         for (const element of clickableElements) {
             if (x >= element.x && x <= element.x + element.width &&
                 y >= element.y && y <= element.y + element.height) {
@@ -821,6 +1256,8 @@ const ChatManager = (function() {
         const inputY = layout.height - layout.padding - layout.fontSize * layout.lineHeight;
         if (y >= inputY) {
             setInputActive(true);
+            state.controlBarFocused = false;
+            state.selectedControlIndex = -1;
             return true;
         }
         
@@ -879,6 +1316,25 @@ const ChatManager = (function() {
         handleChar,
         handleKey,
         
+        // Control bar
+        focusControlBar,
+        setControlState: (id, active) => {
+            const ctrl = controlBar.controls.find(c => c.id === id);
+            if (!ctrl) return;
+            ctrl.active = !!active;
+            dirty = true;
+
+            // Keep 3D control panel LEDs in sync if present
+            if (typeof ControlPanelManager !== 'undefined' &&
+                typeof ControlPanelManager.setButtonState === 'function') {
+                ControlPanelManager.setButtonState(id, ctrl.active);
+            }
+        },
+        getControlState: (id) => {
+            const ctrl = controlBar.controls.find(c => c.id === id);
+            return ctrl ? ctrl.active : false;
+        },
+        
         // Scrolling
         scrollUp,
         scrollDown,
@@ -890,6 +1346,7 @@ const ChatManager = (function() {
         // State access
         getState: () => ({ ...state }),
         isInputActive: () => state.inputActive,
+        isControlBarFocused: () => state.controlBarFocused,
         getLayout: () => ({ ...layout }),
         
         // Three.js objects

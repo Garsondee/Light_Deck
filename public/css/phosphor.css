@@ -8,7 +8,7 @@
    ======================================== */
 .phosphor-display {
     position: relative;
-    font-family: 'Courier New', 'Lucida Console', 'Monaco', monospace;
+    font-family: var(--font-mono, 'IBM Plex Mono', 'Courier New', Courier, monospace);
     font-size: var(--phosphor-font-size, 19px);
     line-height: var(--phosphor-line-height, 1.35);
     background: #000;

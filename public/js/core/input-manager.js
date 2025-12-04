@@ -100,11 +100,22 @@ const InputManager = (function() {
         // GLOBAL HOTKEYS (work in any mode)
         // ─────────────────────────────────────────────────────────────────
         
-        // Tab - Toggle window mode overlay
+        // Tab - Focus management
+        //  - In Scene Viewer: reserved for ChatManager header/input focus
+        //  - In Terminal mode: move focus from terminal to chat log input
         if (key === 'Tab') {
             e.preventDefault();
-            if (actionHandlers.onWindowModeToggle) {
-                actionHandlers.onWindowModeToggle();
+            
+            if (currentMode === Mode.TERMINAL) {
+                // Hand keyboard focus to chat input while terminal view is up
+                if (typeof ChatManager !== 'undefined' && typeof ChatManager.setInputActive === 'function') {
+                    ChatManager.setInputActive(true);
+                }
+                // Route subsequent keys through Scene Viewer path (ChatManager)
+                setMode(Mode.SCENE_VIEWER);
+            } else if (currentMode === Mode.SCENE_VIEWER && typeof ChatManager !== 'undefined') {
+                const modifiers = { ctrl: e.ctrlKey, shift: e.shiftKey, alt: e.altKey };
+                ChatManager.handleKey('Tab', modifiers);
             }
             return;
         }
@@ -181,19 +192,20 @@ const InputManager = (function() {
             // Route to ChatManager (canvas-based) if available
             if (typeof ChatManager !== 'undefined') {
                 const modifiers = { ctrl: e.ctrlKey, shift: e.shiftKey, alt: e.altKey };
+                const chatActive = ChatManager.isInputActive() || ChatManager.isControlBarFocused();
                 
-                // Activate chat input on any printable key
-                if (isPrintableKey(key) && !e.ctrlKey && !e.altKey) {
+                // Activate chat input on any printable key (only if not in control bar)
+                if (isPrintableKey(key) && !e.ctrlKey && !e.altKey && !ChatManager.isControlBarFocused()) {
                     ChatManager.setInputActive(true);
                 }
                 
-                // Try special keys first
-                if (ChatManager.isInputActive() && ChatManager.handleKey(key, modifiers)) {
+                // Try special keys first (works for both input and control bar)
+                if (chatActive && ChatManager.handleKey(key, modifiers)) {
                     e.preventDefault();
                     return;
                 }
                 
-                // Handle printable characters
+                // Handle printable characters (only for input, not control bar)
                 if (ChatManager.isInputActive() && key.length === 1 && !e.ctrlKey && !e.altKey) {
                     e.preventDefault();
                     ChatManager.handleChar(key);

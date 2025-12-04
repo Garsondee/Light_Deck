@@ -117,8 +117,8 @@ const CRTShader = (function() {
         
         // Barrel Distortion (CRT screen curvature)
         // Scene Viewer defaults tuned via DebugUI
-        barrelDistortion: 0.22,      // Screen bulge amount
-        barrelZoom: 0.97,            // Zoom compensation to match chosen curvature
+        barrelDistortion: 0.15,      // Screen bulge amount
+        barrelZoom: 1.07,            // Zoom compensation to match chosen curvature
         
         // Phosphor Dot Mask
         phosphorMaskType: 1,         // 0=off, 1=RGB triads, 2=aperture grille, 3=slot mask
@@ -633,11 +633,12 @@ const CRTShader = (function() {
         ctx.fillStyle = '#000000';
         ctx.fillRect(0, 0, atlasWidth, atlasHeight);
         
-        // White characters with configurable font
+        // White characters with unified monospace font stack
         ctx.fillStyle = '#ffffff';
         const fontWeight = config.fontWeight || 400;
-        const fontFamily = config.fontFamily || 'Courier New';
-        ctx.font = `${fontWeight} ${charHeight - 4}px "${fontFamily}", monospace`;
+        const primaryFont = config.fontFamily || 'IBM Plex Mono';
+        // Use same stack as TextRenderer / CSS: IBM Plex Mono, Courier New, monospace
+        ctx.font = `${fontWeight} ${charHeight - 4}px "${primaryFont}", "Courier New", monospace`;
         ctx.textBaseline = 'top';
         ctx.textAlign = 'center';
         
@@ -660,7 +661,7 @@ const CRTShader = (function() {
         texture.magFilter = THREE.NearestFilter;
         texture.needsUpdate = true;
         
-        console.log('[CRT] Character atlas created with', activeCharSet.length, 'characters using font:', fontFamily);
+        console.log('[CRT] Character atlas created with', activeCharSet.length, 'characters using font:', primaryFont);
         return texture;
     }
     
