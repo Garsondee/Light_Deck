@@ -33,6 +33,9 @@ const GMOverlayManager = (function() {
     // Current scene data
     let currentScene = null;
     
+    // Current adventure guide (loaded on demand)
+    let currentGuide = null;
+    
     // Scroll state for narrative/notes
     const scrollState = {
         narrativeOffset: 0,
@@ -419,6 +422,59 @@ const GMOverlayManager = (function() {
         y += lineHeightPx * 0.5;
         
         // ─────────────────────────────────────────────────────────────────
+        // NPCs IN SCENE
+        // ─────────────────────────────────────────────────────────────────
+        if (currentScene.npcs && currentScene.npcs.length > 0) {
+            ctx.font = `bold ${fontSize}px ${layout.fontFamily}`;
+            ctx.fillStyle = colors.accent;
+            ctx.fillText('NPCs', startX, y + fontSize);
+            y += fontSize + lineHeightPx * 0.5;
+            
+            for (const npc of currentScene.npcs) {
+                const btnY = y;
+                const btnWidth = width - padding;
+                const btnHeight = lineHeightPx * 1.3;
+                
+                // State-based styling
+                const isHidden = npc.state === 'hidden';
+                const isDefeated = npc.state === 'defeated';
+                
+                // Button background
+                ctx.fillStyle = isDefeated ? 'rgba(60, 30, 30, 0.9)' : 
+                               isHidden ? 'rgba(30, 30, 60, 0.9)' : colors.button;
+                ctx.fillRect(startX, btnY, btnWidth, btnHeight);
+                
+                // Button border
+                ctx.strokeStyle = isDefeated ? '#663333' : 
+                                 isHidden ? '#333366' : colors.borderDim;
+                ctx.strokeRect(startX, btnY, btnWidth, btnHeight);
+                
+                // NPC name and role
+                ctx.font = `${fontSize - 1}px ${layout.fontFamily}`;
+                ctx.fillStyle = isDefeated ? '#996666' : 
+                               isHidden ? '#6666cc' : colors.text;
+                
+                const stateIcon = isDefeated ? '✗ ' : isHidden ? '◐ ' : '● ';
+                const displayText = `${stateIcon}${npc.name} (${npc.role})`;
+                ctx.fillText(displayText, startX + padding / 2, btnY + btnHeight / 2 + fontSize / 4);
+                
+                // Register clickable region (for viewing statblock)
+                clickableRegions.push({
+                    x: startX,
+                    y: btnY,
+                    width: btnWidth,
+                    height: btnHeight,
+                    type: 'npc',
+                    data: npc
+                });
+                
+                y += btnHeight + 2;
+            }
+            
+            y += lineHeightPx * 0.3;
+        }
+        
+        // ─────────────────────────────────────────────────────────────────
         // TRIGGERS
         // ─────────────────────────────────────────────────────────────────
         if (currentScene.triggers && currentScene.triggers.length > 0) {
@@ -475,14 +531,18 @@ const GMOverlayManager = (function() {
         ctx.stroke();
         
         // Navigation buttons
-        const btnWidth = 120;
+        const btnWidth = 90;
         const btnHeight = 32;
         const btnY = startY + (navBarHeight - btnHeight) / 2;
-        const spacing = 20;
+        const spacing = 12;
         
-        // Center the buttons
-        const totalWidth = btnWidth * 3 + spacing * 2;
+        // Center the buttons (now 4 buttons: GUIDE, PREV, SELECT, NEXT)
+        const totalWidth = btnWidth * 4 + spacing * 3;
         let btnX = (width - totalWidth) / 2;
+        
+        // GUIDE button
+        renderNavButton(btnX, btnY, btnWidth, btnHeight, '📖 GUIDE', true, 'guide');
+        btnX += btnWidth + spacing;
         
         // PREV button
         const hasPrev = typeof SceneManager !== 'undefined' && SceneManager.hasPrev();
@@ -602,6 +662,9 @@ const GMOverlayManager = (function() {
             case 'nav':
                 executeNavAction(region.data.action);
                 break;
+            case 'npc':
+                showNPCInfo(region.data);
+                break;
         }
         
         dirty = true;
@@ -662,20 +725,112 @@ const GMOverlayManager = (function() {
     }
     
     function executeNavAction(action) {
-        if (typeof SceneManager === 'undefined') return;
-        
         switch (action) {
             case 'prev':
-                SceneManager.prevScene();
+                if (typeof SceneManager !== 'undefined') {
+                    SceneManager.prevScene();
+                }
                 break;
             case 'next':
-                SceneManager.nextScene();
+                if (typeof SceneManager !== 'undefined') {
+                    SceneManager.nextScene();
+                }
                 break;
             case 'select':
                 // TODO: Open scene selector modal
                 console.log('[GMOverlayManager] Scene selector not yet implemented');
                 break;
+            case 'guide':
+                openGuide();
+                break;
         }
+    }
+    
+    /**
+     * Show NPC info in chat (quick reference)
+     * If NPC has a statblock, fetch and display key stats
+     */
+    function showNPCInfo(npc) {
+        if (typeof ChatManager === 'undefined') return;
+        
+        ChatManager.addMessage('system', `─── ${npc.name} ───`);
+        ChatManager.addMessage('system', `Role: ${npc.role}`);
+        if (npc.notes) {
+            ChatManager.addMessage('system', `Notes: ${npc.notes}`);
+        }
+        ChatManager.addMessage('system', `State: ${npc.state || 'active'}`);
+        
+        // If NPC has a statblock reference, fetch it
+        if (npc.statblock) {
+            fetch(`/api/npcs/${npc.statblock}`)
+                .then(res => res.json())
+                .then(statblock => {
+                    if (statblock.stats) {
+                        const s = statblock.stats;
+                        ChatManager.addMessage('system', `HP: ${s.hp}/${s.hpMax} | Armor: ${s.armor} | Atk: +${s.attack}`);
+                    }
+                    if (statblock.weapons && statblock.weapons.length > 0) {
+                        const weaponStr = statblock.weapons.map(w => `${w.name} (${w.damage})`).join(', ');
+                        ChatManager.addMessage('system', `Weapons: ${weaponStr}`);
+                    }
+                    if (statblock.behavior && statblock.behavior.tactics) {
+                        ChatManager.addMessage('system', `Tactics: ${statblock.behavior.tactics}`);
+                    }
+                })
+                .catch(err => {
+                    console.log('[GMOverlayManager] Could not load statblock:', npc.statblock);
+                });
+        }
+        
+        console.log('[GMOverlayManager] NPC info shown:', npc.name);
+    }
+    
+    /**
+     * Open the adventure guide
+     * Fetches guide for current adventure and displays index in chat
+     */
+    function openGuide() {
+        if (!currentScene || !currentScene.adventure) {
+            if (typeof ChatManager !== 'undefined') {
+                ChatManager.addMessage('error', 'No adventure loaded');
+            }
+            return;
+        }
+        
+        // Convert adventure name to guide ID (e.g., "A Change of Heart" -> "AChangeOfHeart_Guide")
+        const guideId = currentScene.adventure.replace(/\s+/g, '') + '_Guide';
+        
+        fetch(`/api/guides/${guideId}`)
+            .then(res => {
+                if (!res.ok) throw new Error('Guide not found');
+                return res.json();
+            })
+            .then(guide => {
+                if (typeof ChatManager !== 'undefined') {
+                    ChatManager.addMessage('system', `═══ ${guide.adventure} Guide ═══`);
+                    ChatManager.addMessage('system', guide.overview.synopsis);
+                    ChatManager.addMessage('system', '─── Index ───');
+                    
+                    for (const section of guide.index) {
+                        ChatManager.addMessage('system', `[${section.title}]`);
+                        for (const sub of section.sections) {
+                            ChatManager.addMessage('system', `  • ${sub.title}`);
+                        }
+                    }
+                    
+                    ChatManager.addMessage('system', '─── Use /guide <section> to read ───');
+                }
+                
+                // Store guide for later reference
+                currentGuide = guide;
+                console.log('[GMOverlayManager] Guide loaded:', guide.id);
+            })
+            .catch(err => {
+                if (typeof ChatManager !== 'undefined') {
+                    ChatManager.addMessage('error', 'Guide not found for this adventure');
+                }
+                console.error('[GMOverlayManager] Failed to load guide:', err);
+            });
     }
     
     // ═══════════════════════════════════════════════════════════════════

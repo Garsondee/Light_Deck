@@ -109,6 +109,134 @@ app.get('/api/scenes/:id', (req, res) => {
     }
 });
 
+// API endpoint to list adventure guides
+app.get('/api/guides', (req, res) => {
+    const fs = require('fs');
+    const guidesDir = path.join(__dirname, '../assets/adventures');
+    
+    try {
+        if (!fs.existsSync(guidesDir)) {
+            return res.json([]);
+        }
+        
+        const files = fs.readdirSync(guidesDir)
+            .filter(f => f.endsWith('.json'));
+        
+        const guides = files.map(f => {
+            try {
+                const content = fs.readFileSync(path.join(guidesDir, f), 'utf8');
+                const guide = JSON.parse(content);
+                return {
+                    id: guide.id,
+                    adventure: guide.adventure,
+                    version: guide.version,
+                    lastUpdated: guide.lastUpdated,
+                    overview: guide.overview
+                };
+            } catch (err) {
+                console.error(`Error reading guide ${f}:`, err);
+                return null;
+            }
+        }).filter(g => g !== null);
+        
+        res.json(guides);
+    } catch (err) {
+        console.error('Error listing guides:', err);
+        res.json([]);
+    }
+});
+
+// API endpoint to get a specific adventure guide
+app.get('/api/guides/:id', (req, res) => {
+    const fs = require('fs');
+    const guidesDir = path.join(__dirname, '../assets/adventures');
+    const guideFile = path.join(guidesDir, `${req.params.id}.json`);
+    
+    try {
+        const content = fs.readFileSync(guideFile, 'utf8');
+        const guide = JSON.parse(content);
+        res.json(guide);
+    } catch (err) {
+        res.status(404).json({ error: 'Guide not found' });
+    }
+});
+
+// API endpoint to get a specific section from a guide
+app.get('/api/guides/:id/section/:sectionId', (req, res) => {
+    const fs = require('fs');
+    const guidesDir = path.join(__dirname, '../assets/adventures');
+    const guideFile = path.join(guidesDir, `${req.params.id}.json`);
+    
+    try {
+        const content = fs.readFileSync(guideFile, 'utf8');
+        const guide = JSON.parse(content);
+        
+        const sectionId = req.params.sectionId;
+        if (guide.content && guide.content[sectionId]) {
+            res.json({
+                id: sectionId,
+                ...guide.content[sectionId]
+            });
+        } else {
+            res.status(404).json({ error: 'Section not found' });
+        }
+    } catch (err) {
+        res.status(404).json({ error: 'Guide not found' });
+    }
+});
+
+// API endpoint to get NPC statblock
+app.get('/api/npcs/:id', (req, res) => {
+    const fs = require('fs');
+    const npcsDir = path.join(__dirname, '../assets/characters/npcs');
+    const npcFile = path.join(npcsDir, `${req.params.id}.json`);
+    
+    try {
+        const content = fs.readFileSync(npcFile, 'utf8');
+        const npc = JSON.parse(content);
+        res.json(npc);
+    } catch (err) {
+        res.status(404).json({ error: 'NPC not found' });
+    }
+});
+
+// API endpoint to list all NPCs
+app.get('/api/npcs', (req, res) => {
+    const fs = require('fs');
+    const npcsDir = path.join(__dirname, '../assets/characters/npcs');
+    
+    try {
+        if (!fs.existsSync(npcsDir)) {
+            return res.json([]);
+        }
+        
+        const files = fs.readdirSync(npcsDir)
+            .filter(f => f.endsWith('.json'));
+        
+        const npcs = files.map(f => {
+            try {
+                const content = fs.readFileSync(path.join(npcsDir, f), 'utf8');
+                const npc = JSON.parse(content);
+                return {
+                    id: npc.id,
+                    name: npc.name,
+                    type: npc.type,
+                    archetype: npc.archetype,
+                    description: npc.description
+                };
+            } catch (err) {
+                console.error(`Error reading NPC ${f}:`, err);
+                return null;
+            }
+        }).filter(n => n !== null);
+        
+        res.json(npcs);
+    } catch (err) {
+        console.error('Error listing NPCs:', err);
+        res.json([]);
+    }
+});
+
 // ═══════════════════════════════════════════════════════════════════════════
 // SYNC SYSTEM - Multiplayer state synchronization
 // ═══════════════════════════════════════════════════════════════════════════

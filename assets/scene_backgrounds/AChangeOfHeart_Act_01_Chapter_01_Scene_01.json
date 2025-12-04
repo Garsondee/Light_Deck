@@ -12,6 +12,25 @@
     
     "gmNotes": "The contact is nervous - they've been followed. If players make a Perception check DC 15, they'll notice two figures watching from a nearby alley.\n\nThe package contains encrypted data about corporate experiments.",
     
+    "npcs": [
+        {
+            "id": "yuki_sato",
+            "name": "Yuki Sato",
+            "role": "The Contact",
+            "statblock": null,
+            "state": "active",
+            "notes": "Waiting under the streetlight. Will hand over the job details."
+        },
+        {
+            "id": "street_mook",
+            "name": "Watchers (x2)",
+            "role": "Hidden Threat",
+            "statblock": "street_mook",
+            "state": "hidden",
+            "notes": "Reveal with trigger or Perception DC 15. Gang scouts, not the real threat."
+        }
+    ],
+    
     "skillChecks": [
         {
             "name": "Perception",

@@ -1,0 +1,107 @@
+{
+    "id": "kira_voltage",
+    "name": "Kira Tanaka",
+    "handle": "Voltage",
+    "background": "techie",
+    "portrait": null,
+    
+    "attributes": {
+        "reflex": 1,
+        "body": 0,
+        "tech": 3,
+        "neural": 2,
+        "edge": 1,
+        "presence": 1
+    },
+    
+    "skills": {
+        "firearms": 1,
+        "heavy_weapons": 0,
+        "melee": 0,
+        "evasion": 2,
+        "netrunning": 3,
+        "hardware": 3,
+        "rigging": 2,
+        "medicine": 1,
+        "persuasion": 1,
+        "intimidation": 0,
+        "deception": 2,
+        "streetwise": 2,
+        "perception": 2,
+        "investigation": 1,
+        "stealth": 1,
+        "survival": 0
+    },
+    
+    "derived": {
+        "hp": 10,
+        "hpMax": 10,
+        "humanity": 12,
+        "humanityMax": 12,
+        "armor": 4
+    },
+    
+    "cyberware": [
+        {
+            "id": "neural_link_mk2",
+            "name": "Neural Link Mk.II",
+            "slot": "head",
+            "active": true
+        },
+        {
+            "id": "optic_hud",
+            "name": "Optic HUD Display",
+            "slot": "eyes",
+            "active": true
+        },
+        {
+            "id": "interface_plugs",
+            "name": "Interface Plugs",
+            "slot": "arms",
+            "active": true
+        }
+    ],
+    
+    "gear": [
+        { "id": "cyberdeck_nomad", "name": "Nomad Cyberdeck", "quantity": 1 },
+        { "id": "toolkit_electronics", "name": "Electronics Toolkit", "quantity": 1 },
+        { "id": "drone_recon", "name": "Recon Drone (Sparrow)", "quantity": 1 },
+        { "id": "credstick", "name": "Credstick", "quantity": 1 },
+        { "id": "burner_comm", "name": "Burner Comm", "quantity": 2 }
+    ],
+    
+    "weapons": [
+        {
+            "id": "pistol_light",
+            "name": "Kang Tao Type-7 Pistol",
+            "damage": "2d6",
+            "type": "kinetic",
+            "range": "short",
+            "ammo": 12,
+            "ammoMax": 12
+        }
+    ],
+    
+    "contacts": [
+        {
+            "name": "Marcus \"Patch\" Webb",
+            "relationship": "ally",
+            "description": "Ripperdoc in the Hollows. Owes Kira for saving his clinic from a gang shakedown."
+        },
+        {
+            "name": "Yuki Sato",
+            "relationship": "neutral",
+            "description": "Fixer who deals in tech salvage. Professional relationship, always takes a cut."
+        },
+        {
+            "name": "DataWraith",
+            "relationship": "rival",
+            "description": "Anonymous netrunner who burned Kira on a job. Identity unknown. Score to settle."
+        }
+    ],
+    
+    "notes": "Former Arasaka junior tech who walked away after discovering what they were really building. Now freelances in the sprawl, taking jobs that let her stick it to the corps. Has a soft spot for street kids—reminds her of herself before the scholarship.\n\nSignature move: Uses her drone for recon before any job. Never goes in blind.",
+    
+    "credits": 3200,
+    "experience": 0
+}

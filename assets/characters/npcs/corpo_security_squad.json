@@ -1,0 +1,92 @@
+{
+    "id": "corpo_security_squad",
+    "name": "Militech Security Team",
+    "type": "soldier",
+    "archetype": "security",
+    "description": "Standard Militech corporate security. Professional, well-equipped, and trained to work as a unit. They follow protocol—which can be exploited.",
+    
+    "stats": {
+        "hp": 15,
+        "hpMax": 15,
+        "armor": 8,
+        "attack": 5,
+        "defense": 13,
+        "initiative": 5
+    },
+    
+    "attributes": {
+        "reflex": 2,
+        "body": 2,
+        "tech": 0,
+        "neural": 0,
+        "edge": 1,
+        "presence": 0
+    },
+    
+    "skills": {
+        "primary": "Firearms",
+        "primaryBonus": 2,
+        "secondary": "Perception",
+        "secondaryBonus": 2
+    },
+    
+    "weapons": [
+        {
+            "name": "Militech M-10AF Lexington",
+            "damage": "2d6",
+            "type": "kinetic",
+            "notes": "Standard issue sidearm"
+        },
+        {
+            "name": "Militech M221 Saratoga",
+            "damage": "2d6+2",
+            "type": "kinetic",
+            "notes": "SMG, burst fire capable (+1 damage, -1 to hit)"
+        },
+        {
+            "name": "Stun Baton",
+            "damage": "1d6 + stun",
+            "type": "emp",
+            "notes": "Non-lethal option, target must save vs DC 12 or be stunned 1 round"
+        }
+    ],
+    
+    "abilities": [
+        {
+            "name": "Tactical Formation",
+            "description": "When 2+ security are adjacent, they gain +1 Defense each. They naturally maintain formation.",
+            "cooldown": null
+        },
+        {
+            "name": "Call for Backup",
+            "description": "Can radio for reinforcements. 1d4 additional soldiers arrive in 3 rounds.",
+            "cooldown": "1/encounter"
+        },
+        {
+            "name": "Suppressing Fire",
+            "description": "Can forgo attack to pin down a target. Target has disadvantage on attacks and must succeed DC 12 REF check to move from cover.",
+            "cooldown": null
+        }
+    ],
+    
+    "cyberware": [
+        "Basic Neural Link (comms only)",
+        "Optic Recorder"
+    ],
+    
+    "behavior": {
+        "tactics": "Maintain formation, use cover, suppress and flank. One always stays back to call for backup if things go wrong. Prioritize protecting assets over killing intruders.",
+        "morale": "Will fight until 2/3 of squad is down, then fall back to defensible position. Surrender if clearly outmatched and no backup is coming.",
+        "motivation": "Paycheck. Following orders. Most are just doing a job—not zealots."
+    },
+    
+    "loot": [
+        { "item": "Militech Security ID (expired after incident)", "chance": 100 },
+        { "item": "Credstick (100-300 credits)", "chance": 75 },
+        { "item": "Ammo (2d6 rounds)", "chance": 100 },
+        { "item": "Combat stims (1 dose)", "chance": 25 },
+        { "item": "Encrypted radio (can be hacked for patrol schedules)", "chance": 50 }
+    ],
+    
+    "notes": "Use this statblock for standard corporate security. For Arasaka, add +1 to all stats and better cyberware. For budget corps, reduce armor to 4.\n\nSquad size: Typically 4-6 for patrol, 8-12 for response team.\n\nThey WILL call for backup. Silence them fast or be ready for escalation."
+}

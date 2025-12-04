@@ -1976,6 +1976,9 @@ Trigger buttons execute predefined actions:
 | 2024-12-04 | 1.2 | Wired ChatManager through SyncManager. Chat messages and dice rolls now broadcast to all players. Added commands: /who, /views, /gm, /name, /logout. |
 | 2024-12-04 | 1.3 | Scene Management System. JSON scene files, /scenes and /scene commands, GM can push scene changes to all players. |
 | 2024-12-04 | 1.4 | GM Overlay System. SceneManager + GMOverlayManager. Extended scene JSON with narrative, gmNotes, skillChecks, triggers. Clickable skill checks roll d20 and broadcast results. Navigation buttons (Prev/Select/Next). |
+| 2024-12-04 | 1.5 | CRT Transition System. TransitionManager for unified power-down/power-up effects. Scene changes, terminal toggle, and boot sequence all use consistent CRT fade. |
+| 2024-12-04 | 1.6 | Game System Foundation. Created GAME-SYSTEM.md with "Neon Protocol" rules. Player character and NPC JSON schemas. Example characters created in assets/characters/. |
+| 2024-12-04 | 1.7 | Adventure Guide System. Created AChangeOfHeart_Guide.json with indexed sections. Added NPCs to scene JSONs. API endpoints for guides and NPCs. GM Overlay now shows NPCs with state indicators and GUIDE button. |
 
 ---
 

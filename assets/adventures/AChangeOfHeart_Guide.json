@@ -1,0 +1,170 @@
+{
+    "id": "AChangeOfHeart_Guide",
+    "adventure": "A Change of Heart",
+    "version": "1.0",
+    "author": "GM",
+    "lastUpdated": "2024-12-04",
+    
+    "overview": {
+        "title": "Adventure Overview",
+        "synopsis": "A corporate extraction job goes sideways when the target turns out to have secrets that could shake the foundations of Neo-Tokyo's power structure.",
+        "themes": ["Corporate intrigue", "Identity", "The cost of loyalty", "What makes us human"],
+        "tone": "Neo-noir with moments of dark humor. The sprawl is dangerous but not hopeless.",
+        "estimatedSessions": "3-5 sessions",
+        "playerCount": "3-5 players recommended"
+    },
+    
+    "index": [
+        {
+            "id": "act1",
+            "title": "Act 1: The Job",
+            "sections": [
+                { "id": "act1_setup", "title": "Setup & Hook" },
+                { "id": "act1_locations", "title": "Key Locations" },
+                { "id": "act1_npcs", "title": "NPCs Introduced" },
+                { "id": "act1_scenes", "title": "Scene Breakdown" }
+            ]
+        },
+        {
+            "id": "act2",
+            "title": "Act 2: Complications",
+            "sections": [
+                { "id": "act2_setup", "title": "Setup & Escalation" },
+                { "id": "act2_locations", "title": "Key Locations" },
+                { "id": "act2_npcs", "title": "NPCs Introduced" },
+                { "id": "act2_scenes", "title": "Scene Breakdown" }
+            ]
+        },
+        {
+            "id": "act3",
+            "title": "Act 3: Resolution",
+            "sections": [
+                { "id": "act3_setup", "title": "Setup & Climax" },
+                { "id": "act3_locations", "title": "Key Locations" },
+                { "id": "act3_npcs", "title": "Final Confrontations" },
+                { "id": "act3_endings", "title": "Possible Endings" }
+            ]
+        },
+        {
+            "id": "appendix_npcs",
+            "title": "Appendix: All NPCs",
+            "sections": [
+                { "id": "npc_allies", "title": "Potential Allies" },
+                { "id": "npc_enemies", "title": "Antagonists" },
+                { "id": "npc_neutral", "title": "Neutral Parties" }
+            ]
+        },
+        {
+            "id": "appendix_locations",
+            "title": "Appendix: Locations",
+            "sections": [
+                { "id": "loc_corporate", "title": "Corporate Zones" },
+                { "id": "loc_street", "title": "Street Level" },
+                { "id": "loc_underground", "title": "Underground" }
+            ]
+        },
+        {
+            "id": "appendix_items",
+            "title": "Appendix: Key Items",
+            "sections": [
+                { "id": "items_macguffins", "title": "Plot Items" },
+                { "id": "items_loot", "title": "Notable Loot" }
+            ]
+        }
+    ],
+    
+    "content": {
+        "act1_setup": {
+            "title": "Act 1: Setup & Hook",
+            "text": "The players are contacted by a fixer named Yuki Sato with a job: extract a mid-level Arasaka researcher named Dr. Elena Vasquez before she's 'retired' by corporate security.\n\nThe catch: Vasquez doesn't know she's being extracted. She thinks she's safe.\n\nThe real catch: Vasquez isn't entirely human anymore.",
+            "gmNotes": "Don't reveal the twist about Vasquez until Act 2. Let players think this is a standard extraction.",
+            "hooks": [
+                "Yuki offers 10,000 credits per player, half up front",
+                "One player may have history with Arasaka (use their backstory)",
+                "The job has a 48-hour window before Vasquez is moved to a black site"
+            ]
+        },
+        
+        "act1_npcs": {
+            "title": "Act 1: NPCs Introduced",
+            "npcs": [
+                {
+                    "id": "yuki_sato",
+                    "name": "Yuki Sato",
+                    "role": "Fixer / Quest Giver",
+                    "description": "Professional, cold, always has an angle. Runs jobs out of a noodle bar in the Shibuya undercity.",
+                    "statblock": null
+                },
+                {
+                    "id": "elena_vasquez",
+                    "name": "Dr. Elena Vasquez",
+                    "role": "Extraction Target",
+                    "description": "Arasaka biotech researcher. Nervous, brilliant, hiding something big.",
+                    "statblock": null
+                },
+                {
+                    "id": "corpo_security_squad",
+                    "name": "Arasaka Security",
+                    "role": "Opposition",
+                    "description": "Standard corporate security. Professional but not elite.",
+                    "statblock": "corpo_security_squad"
+                }
+            ]
+        },
+        
+        "appendix_npcs": {
+            "title": "All NPCs",
+            "categories": {
+                "allies": [
+                    { "id": "yuki_sato", "name": "Yuki Sato", "role": "Fixer" },
+                    { "id": "patch_webb", "name": "Marcus 'Patch' Webb", "role": "Ripperdoc" }
+                ],
+                "enemies": [
+                    { "id": "razor_jin", "name": "Razor Jin", "role": "Gang Lieutenant" },
+                    { "id": "director_tanaka", "name": "Director Tanaka", "role": "Arasaka Exec" }
+                ],
+                "neutral": [
+                    { "id": "elena_vasquez", "name": "Dr. Elena Vasquez", "role": "Target" },
+                    { "id": "ghost", "name": "Ghost", "role": "Info Broker" }
+                ]
+            }
+        }
+    },
+    
+    "quickReference": {
+        "dcTable": [
+            { "dc": 8, "difficulty": "Routine" },
+            { "dc": 12, "difficulty": "Standard" },
+            { "dc": 15, "difficulty": "Challenging" },
+            { "dc": 18, "difficulty": "Hard" },
+            { "dc": 22, "difficulty": "Extreme" }
+        ],
+        "commonChecks": [
+            { "situation": "Hack unprotected terminal", "skill": "Netrunning", "dc": 8 },
+            { "situation": "Hack corporate terminal", "skill": "Netrunning", "dc": 15 },
+            { "situation": "Spot hidden threat", "skill": "Perception", "dc": 12 },
+            { "situation": "Bribe a guard", "skill": "Persuasion", "dc": 12 },
+            { "situation": "Intimidate a mook", "skill": "Intimidation", "dc": 10 },
+            { "situation": "Tail someone in a crowd", "skill": "Stealth", "dc": 12 }
+        ],
+        "importantCredits": [
+            { "item": "Street food", "cost": "5-10" },
+            { "item": "Ammo (box)", "cost": "50" },
+            { "item": "Bribe (minor)", "cost": "100-500" },
+            { "item": "Bribe (major)", "cost": "1000+" },
+            { "item": "Fake ID", "cost": "500-2000" },
+            { "item": "Ripperdoc visit", "cost": "500-5000" }
+        ]
+    },
+    
+    "sessionNotes": [
+        {
+            "session": 1,
+            "date": null,
+            "summary": "",
+            "npcsIntroduced": [],
+            "plotThreads": [],
+            "playerActions": []
+        }
+    ]
+}

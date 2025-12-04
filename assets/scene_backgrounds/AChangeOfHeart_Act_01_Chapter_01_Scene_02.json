@@ -12,6 +12,25 @@
     
     "gmNotes": "This is a chase scene. The pursuers are corporate security - well-trained but not elite. They want the data chip recovered intact.\n\nIf players flee: Run a chase skill challenge (3 successes before 3 failures).\nIf players fight: Standard combat, 2 security operatives.",
     
+    "npcs": [
+        {
+            "id": "corpo_security_squad",
+            "name": "Corporate Security (x2)",
+            "role": "Pursuers",
+            "statblock": "corpo_security_squad",
+            "state": "active",
+            "notes": "Want the data chip. Will call for backup if fight goes badly."
+        },
+        {
+            "id": "yuki_sato",
+            "name": "Yuki Sato",
+            "role": "Dying Contact",
+            "statblock": null,
+            "state": "defeated",
+            "notes": "Shot in the opening. Use 'Contact Dies' trigger for last words."
+        }
+    ],
+    
     "skillChecks": [
         {
             "name": "Athletics",
