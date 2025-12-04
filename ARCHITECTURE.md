@@ -1692,11 +1692,278 @@ public/js/
 18. [ ] Character system
 19. [ ] Combat system
 20. [ ] GM tools
-21. [ ] WebSocket sync
+21. [x] WebSocket sync (SyncManager)
 
 ---
 
-## 18. Revision History
+## 18. SyncManager - Multiplayer Synchronization
+
+> **Status:** IMPLEMENTED (2024-12-04)
+
+### 18.1 Overview
+
+SyncManager provides real-time multiplayer synchronization via Socket.io. It enables:
+- **Presence tracking** - Who's connected, their role (GM/Player), current view
+- **Chat synchronization** - Messages broadcast to all session members
+- **Dice roll sharing** - Rolls visible to everyone with attribution
+- **Scene control** - GM can push scene changes to all players
+- **View state awareness** - GM sees when players switch between Scene/Terminal
+
+### 18.2 Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         CLIENT                                   │
+├─────────────────────────────────────────────────────────────────┤
+│  SyncManager                                                     │
+│  ├── Socket.io connection                                        │
+│  ├── Local state (id, name, role, view)                         │
+│  ├── Peer tracking (Map of connected users)                     │
+│  ├── Message handlers (chat, roll, scene, presence)             │
+│  └── Self-test system (validates round-trip on connect)         │
+│                                                                  │
+│  EventBus Integration                                            │
+│  ├── Emits sync:* events for UI updates                         │
+│  └── Listens for terminal:opened/closed for view changes        │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              │ Socket.io
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                         SERVER                                   │
+├─────────────────────────────────────────────────────────────────┤
+│  server/index.js                                                 │
+│  ├── users Map (socketId → user state)                          │
+│  ├── sessions Map (sessionId → { gm, players, scene, state })   │
+│  ├── Message routing (broadcast to session rooms)               │
+│  ├── GM authentication (password-based)                         │
+│  └── Echo endpoint for self-test                                │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 18.3 Message Types
+
+| Type | Direction | Purpose |
+|------|-----------|---------|
+| `sync:join` | Client→Server→Clients | User joined session |
+| `sync:leave` | Server→Clients | User left session |
+| `sync:presence` | Server→Client | Full list of connected users |
+| `sync:view_change` | Client→Server→Clients | User switched Scene/Terminal |
+| `sync:chat` | Client→Server→Clients | Chat message broadcast |
+| `sync:roll` | Client→Server→Clients | Dice roll broadcast |
+| `sync:scene_change` | GM→Server→Clients | GM pushed scene change |
+| `sync:echo_request/response` | Client↔Server | Self-test round-trip |
+
+### 18.4 Self-Test System
+
+On connection, SyncManager automatically runs a self-test:
+1. Sends `sync:echo_request` with random token
+2. Server immediately echoes back `sync:echo_response`
+3. Client validates token match and measures latency
+4. Result shown in chat log: "Self-test passed (Xms round-trip)"
+
+This ensures communication works before the user tries to interact.
+
+### 18.5 Roles
+
+- **Player** (default) - Can chat, roll dice, view scenes
+- **GM** - All player abilities plus:
+  - Push scene changes to all players
+  - See when players switch views (Scene/Terminal)
+  - Future: Control combat, manage characters
+
+GM authentication via `/gm <password>` command (password in `.env`).
+
+### 18.6 View State Tracking
+
+When a player toggles Terminal mode:
+1. `App.toggleTerminalMode()` calls `SyncManager.broadcastViewChange()`
+2. Server broadcasts to session
+3. GM receives `onPeerViewChange` callback
+4. GM's chat shows: "PlayerName switched to TERMINAL"
+
+This lets the GM know if a player is "away" in the terminal.
+
+### 18.7 Files
+
+| File | Purpose |
+|------|---------|
+| `public/js/core/sync-manager.js` | Client-side sync logic |
+| `server/index.js` | Server-side Socket.io handlers |
+| `public/js/core/event-bus.js` | Sync events defined |
+| `public/js/app.js` | SyncManager initialization |
+
+### 18.8 Chat Commands
+
+| Command | Description |
+|---------|-------------|
+| `/roll XdY+Z` | Roll dice, broadcast to all players |
+| `/who` | List connected players |
+| `/name <name>` | Change your display name |
+| `/ping` | Test connection status |
+| `/gm <password>` | Authenticate as GM |
+| `/scenes` | (GM only) List available scenes |
+| `/scene <num>` | (GM only) Change scene (e.g., `/scene 1.1.2`) |
+| `/views` | (GM only) See what each player is viewing |
+| `/logout` | Logout from GM role |
+| `/clear` | Clear chat log |
+| `/help` | Show command help |
+
+---
+
+## 19. Scene Management System
+
+> **Status:** IMPLEMENTED (2024-12-04)
+
+### 19.1 Overview
+
+Scenes are stored as JSON files alongside their image assets. The GM can browse and push scene changes to all connected players.
+
+### 19.2 File Structure
+
+```
+assets/scene_backgrounds/
+├── AChangeOfHeart_Act_01_Chapter_01_Scene_01.json
+├── AChangeOfHeart_Act_01_Chapter_01_Scene_01.png
+├── AChangeOfHeart_Act_01_Chapter_01_Scene_02.json
+├── AChangeOfHeart_Act_01_Chapter_01_Scene_02.png
+└── ...
+```
+
+### 19.3 Scene JSON Schema
+
+```json
+{
+    "id": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+    "adventure": "A Change of Heart",
+    "act": 1,
+    "chapter": 1,
+    "scene": 1,
+    "title": "The Beginning",
+    "description": "The adventure begins...",
+    "image": "AChangeOfHeart_Act_01_Chapter_01_Scene_01.png",
+    "music": null,
+    "ambience": null,
+    "notes": ""
+}
+```
+
+### 19.4 API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/scenes` | GET | List all scenes (sorted by adventure/act/chapter/scene) |
+| `/api/scenes/:id` | GET | Get specific scene by ID |
+
+### 19.5 GM Workflow
+
+1. Authenticate: `/gm SwanSong`
+2. List scenes: `/scenes`
+3. Change scene: `/scene 1.1.2`
+4. All players automatically see the new scene
+
+### 19.6 Future Enhancements
+
+- [ ] Scene transitions (fade, dissolve effects)
+- [ ] Auto-play music/ambience on scene change
+- [ ] Scene selector modal
+- [ ] Scene history (back/forward navigation)
+
+---
+
+## 20. GM Overlay System
+
+> **Status:** IMPLEMENTED (2024-12-04)
+
+### 20.1 Overview
+
+When authenticated as GM, an overlay appears over the Scene Viewer showing:
+- Scene title and position
+- Narrative text (read-aloud to players)
+- GM-only notes
+- Clickable skill check buttons
+- Trigger buttons for story events
+- Navigation (Prev / Select / Next)
+
+Players never see this overlay - they only see the scene image.
+
+### 20.2 Extended Scene JSON Schema
+
+```json
+{
+    "id": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+    "adventure": "A Change of Heart",
+    "act": 1, "chapter": 1, "scene": 1,
+    "title": "The Beginning",
+    "image": "AChangeOfHeart_Act_01_Chapter_01_Scene_01.png",
+    
+    "narrative": "Read aloud to players:\n\nThe story begins...",
+    "gmNotes": "Private notes for GM only",
+    
+    "skillChecks": [
+        { "name": "Perception", "dc": 15, "success": "You notice...", "fail": "Nothing seems amiss" }
+    ],
+    
+    "triggers": [
+        { "id": "reveal_secret", "label": "Reveal Secret", "action": "chat", "text": "A door opens!" }
+    ],
+    
+    "music": null,
+    "ambience": null
+}
+```
+
+### 20.3 GM Commands
+
+| Command | Description |
+|---------|-------------|
+| `/overlay` | Toggle GM overlay visibility |
+| `/next` | Go to next scene |
+| `/prev` | Go to previous scene |
+| `/scene 1.1.2` | Jump to specific scene |
+| `/scenes` | List all available scenes |
+
+### 20.4 Skill Checks
+
+When GM clicks a skill check button:
+1. Rolls d20 automatically
+2. Compares to DC
+3. Broadcasts result + success/fail text to all players via chat
+
+### 20.5 Triggers
+
+Trigger buttons execute predefined actions:
+- `chat` - Broadcast text to all players
+- `sound` - Play a sound effect (future)
+
+### 20.6 Files
+
+| File | Purpose |
+|------|---------|
+| `public/js/managers/scene-manager.js` | Scene state, navigation, caching |
+| `public/js/managers/gm-overlay-manager.js` | GM overlay rendering and interaction |
+
+### 20.7 Future Enhancements
+
+- [ ] Scene selector modal (for /select button)
+- [ ] Collapsible GM notes section
+- [ ] Custom dice expressions for skill checks
+- [ ] Trigger actions: sound, music, scene jump
+
+---
+
+## 21. Future Enhancements (Global)
+
+- [ ] Character state sync (share character sheets)
+- [ ] Combat state sync (initiative, HP, conditions)
+- [ ] Session persistence (reconnect to same state)
+- [ ] Multiple sessions (different "tables")
+- [ ] Spectator mode (view-only)
+- [ ] Private messages (GM ↔ Player)
+
+---
+
+## 21. Revision History
 
 | Date | Version | Notes |
 |------|---------|-------|
@@ -1705,6 +1972,10 @@ public/js/
 | 2024-12-04 | 0.3 | Added Manager System Architecture, Character/Combat systems, GM tools planning, Animation system design |
 | 2024-12-04 | 0.4 | Attempted Phase 7 implementation (EventBus, AnimationManager, DisplayManager) |
 | 2024-12-04 | **1.0** | **CRITICAL DECISION: Full Three.js UI Migration.** Abandoned hybrid DOM/Three.js approach. All UI will render through Three.js with canvas-based text. Complete architectural overhaul documented in Section 16. |
+| 2024-12-04 | 1.1 | Added SyncManager for multiplayer synchronization. Self-test on connect, presence tracking, chat/dice/scene sync, GM view awareness. |
+| 2024-12-04 | 1.2 | Wired ChatManager through SyncManager. Chat messages and dice rolls now broadcast to all players. Added commands: /who, /views, /gm, /name, /logout. |
+| 2024-12-04 | 1.3 | Scene Management System. JSON scene files, /scenes and /scene commands, GM can push scene changes to all players. |
+| 2024-12-04 | 1.4 | GM Overlay System. SceneManager + GMOverlayManager. Extended scene JSON with narrative, gmNotes, skillChecks, triggers. Clickable skill checks roll d20 and broadcast results. Navigation buttons (Prev/Select/Next). |
 
 ---
 

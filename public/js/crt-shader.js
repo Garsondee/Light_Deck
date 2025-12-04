@@ -987,8 +987,8 @@ const CRTShader = (function() {
                 phosphorMaskType: { value: config.phosphorMaskType },
                 phosphorMaskIntensity: { value: config.phosphorMaskIntensity },
                 phosphorMaskScale: { value: config.phosphorMaskScale },
-                interlaceEnabled: { value: config.interlaceEnabled ? 1.0 : 0.0 },
-                interlaceIntensity: { value: config.interlaceIntensity },
+                interlaceEnabled: { value: 0.0 },
+                interlaceIntensity: { value: 0.0 },
                 hSyncWobble: { value: config.hSyncWobble },
                 hSyncWobbleSpeed: { value: config.hSyncWobbleSpeed },
                 beamWidth: { value: config.beamWidth },
@@ -1105,8 +1105,8 @@ const CRTShader = (function() {
         u.phosphorMaskType.value = config.phosphorMaskType;
         u.phosphorMaskIntensity.value = config.phosphorMaskIntensity;
         u.phosphorMaskScale.value = config.phosphorMaskScale;
-        u.interlaceEnabled.value = config.interlaceEnabled ? 1.0 : 0.0;
-        u.interlaceIntensity.value = config.interlaceIntensity;
+        u.interlaceEnabled.value = 0.0;
+        u.interlaceIntensity.value = 0.0;
         u.hSyncWobble.value = config.hSyncWobble;
         u.hSyncWobbleSpeed.value = config.hSyncWobbleSpeed;
         u.beamWidth.value = config.beamWidth;

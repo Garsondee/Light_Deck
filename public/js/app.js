@@ -11,7 +11,6 @@ const App = (function() {
         chatLog: []
     };
     
-    let socket;
     const TERMINAL_STARTUP_SOUND_URL = '/sounds/terminal/Terminal_Startup.mp3';
     let terminalStartupSound = null;
     
@@ -87,6 +86,25 @@ const App = (function() {
             console.log('[APP] ControlPanelManager initialized');
         }
         
+        // Initialize SceneManager (scene state, navigation, caching)
+        if (typeof SceneManager !== 'undefined') {
+            SceneManager.init().then(() => {
+                console.log('[APP] SceneManager initialized');
+                
+                // Load first scene if available
+                if (SceneManager.getSceneCount() > 0) {
+                    SceneManager.firstScene();
+                }
+            });
+        }
+        
+        // Initialize GMOverlayManager (GM-only scene overlay)
+        if (typeof GMOverlayManager !== 'undefined') {
+            const scene = ThreeSetup.getScene();
+            GMOverlayManager.init(scene);
+            console.log('[APP] GMOverlayManager initialized');
+        }
+        
         // Initialize UIManager (raycasting for clickable UI elements)
         if (typeof UIManager !== 'undefined') {
             UIManager.init({
@@ -104,6 +122,15 @@ const App = (function() {
                 });
             }
             
+            // Register GM overlay panel for click handling
+            if (typeof GMOverlayManager !== 'undefined') {
+                const gmLayout = GMOverlayManager.getLayout();
+                UIManager.registerPanel('gm-overlay', GMOverlayManager.getPlane(), GMOverlayManager, {
+                    width: gmLayout.width,
+                    height: gmLayout.height
+                });
+            }
+            
             console.log('[APP] UIManager initialized');
         }
         
@@ -113,8 +140,8 @@ const App = (function() {
         // Initialize Terminal UI (Tweakpane) - Terminal controls
         TerminalUI.init();
         
-        // Initialize Socket.io
-        initSocket();
+        // Initialize SyncManager (multiplayer synchronization)
+        initSyncManager();
         
         // Set up UI event listeners
         initDicePanel();
@@ -174,7 +201,39 @@ const App = (function() {
                 addChatMessage('system', 'Press ~ to toggle Terminal controls.');
             });
         } else {
-            // Normal startup - show messages immediately
+            // Normal startup - fade in from black even without full boot sequence
+            if (CRTShader?.config) {
+                CRTShader.config.brightness = 0;
+
+                if (typeof TransitionManager !== 'undefined') {
+                    // Long, smooth power-up
+                    TransitionManager.powerUp({
+                        duration: 1800,
+                        targetBrightness: 1.0
+                    });
+                } else {
+                    // Simple fallback fade-in
+                    const originalBrightness = 1.0;
+                    const fadeDuration = 1800;
+                    const startTime = performance.now();
+
+                    const animate = (now) => {
+                        const t = Math.min(1, (now - startTime) / fadeDuration);
+                        const eased = 1 - Math.pow(1 - t, 2);
+                        CRTShader.config.brightness = originalBrightness * eased;
+
+                        if (t < 1) {
+                            requestAnimationFrame(animate);
+                        } else {
+                            CRTShader.config.brightness = originalBrightness;
+                        }
+                    };
+
+                    requestAnimationFrame(animate);
+                }
+            }
+
+            // Normal startup messages
             addChatMessage('system', 'Systems online. Awaiting input.');
             addChatMessage('system', 'Press ` to toggle Scene Viewer controls.');
             addChatMessage('system', 'Press ~ to toggle Terminal controls.');
@@ -197,6 +256,7 @@ const App = (function() {
     
     /**
      * Toggle terminal mode (called by EventBus or ChatManager)
+     * Uses TransitionManager for consistent CRT power-down/power-up effects
      */
     function toggleTerminalMode() {
         if (typeof TerminalManager === 'undefined') {
@@ -204,70 +264,230 @@ const App = (function() {
             return;
         }
         
+        // Prevent toggle during transition
+        if (typeof TransitionManager !== 'undefined' && TransitionManager.isTransitioning()) {
+            console.log('[APP] Transition in progress, ignoring toggle');
+            return;
+        }
+        
         const isCurrentlyVisible = TerminalManager.isVisible();
         
-        if (!isCurrentlyVisible && !TerminalManager.isBootComplete()) {
-            // First time entering terminal - fade to black, then boot
-            const originalBrightness = CRTShader.config.brightness;
-            const fadeDuration = 700;
-            const startTime = performance.now();
+        if (!isCurrentlyVisible) {
+            // Entering terminal mode - power down, switch, power up
+            const isFirstBoot = !TerminalManager.isBootComplete();
             
-            const runFade = (now) => {
-                const t = Math.min(1, (now - startTime) / fadeDuration);
-                CRTShader.config.brightness = originalBrightness * (1 - t);
-                
-                if (t < 1) {
-                    requestAnimationFrame(runFade);
-                } else {
-                    CRTShader.config.brightness = originalBrightness;
-                    
-                    // Play startup sound
-                    playTerminalStartupSound();
-                    
-                    // Show terminal and run boot sequence
-                    TerminalManager.runBootSequence();
-                    
-                    // Update UI state
-                    InputManager.setMode(InputManager.Mode.TERMINAL);
-                    if (typeof ChatManager !== 'undefined' && typeof ChatManager.setInputActive === 'function') {
-                        ChatManager.setInputActive(false);
+            if (typeof TransitionManager !== 'undefined') {
+                TransitionManager.transition({
+                    powerDownDuration: 2400,
+                    blackPauseDuration: 1200,
+                    powerUpDuration: 1800,
+                    onMidpoint: () => {
+                        // Play startup sound on first boot
+                        if (isFirstBoot) {
+                            playTerminalStartupSound();
+                        }
+                        
+                        // Show terminal (boot sequence runs if first time)
+                        if (isFirstBoot) {
+                            TerminalManager.runBootSequence();
+                        } else {
+                            TerminalManager.show();
+                        }
+                        
+                        // Update UI state
+                        InputManager.setMode(InputManager.Mode.TERMINAL);
+                        if (typeof ChatManager !== 'undefined' && typeof ChatManager.setInputActive === 'function') {
+                            ChatManager.setInputActive(false);
+                        }
+                        
+                        // Broadcast view change to other players
+                        if (typeof SyncManager !== 'undefined') {
+                            SyncManager.broadcastViewChange(SyncManager.ViewMode.TERMINAL);
+                        }
                     }
-                    
+                }).then(() => {
                     console.log('[APP] Terminal mode enabled');
+                });
+            } else {
+                // Fallback without TransitionManager
+                if (isFirstBoot) {
+                    playTerminalStartupSound();
+                    TerminalManager.runBootSequence();
+                } else {
+                    TerminalManager.show();
                 }
-            };
-            
-            requestAnimationFrame(runFade);
-        } else if (!isCurrentlyVisible) {
-            // Re-entering terminal after boot complete
-            TerminalManager.show();
-            InputManager.setMode(InputManager.Mode.TERMINAL);
-            if (typeof ChatManager !== 'undefined' && typeof ChatManager.setInputActive === 'function') {
-                ChatManager.setInputActive(false);
+                InputManager.setMode(InputManager.Mode.TERMINAL);
+                if (typeof ChatManager !== 'undefined' && typeof ChatManager.setInputActive === 'function') {
+                    ChatManager.setInputActive(false);
+                }
+                if (typeof SyncManager !== 'undefined') {
+                    SyncManager.broadcastViewChange(SyncManager.ViewMode.TERMINAL);
+                }
+                console.log('[APP] Terminal mode enabled');
             }
-            console.log('[APP] Terminal shown');
         } else {
-            // Exiting terminal
-            TerminalManager.hide();
-            InputManager.setMode(InputManager.Mode.SCENE_VIEWER);
-            console.log('[APP] Terminal hidden');
+            // Exiting terminal mode - power down, switch, power up
+            if (typeof TransitionManager !== 'undefined') {
+                TransitionManager.transition({
+                    powerDownDuration: 2400,
+                    blackPauseDuration: 1200,
+                    powerUpDuration: 1800,
+                    onMidpoint: () => {
+                        // Hide terminal
+                        TerminalManager.hide();
+                        
+                        // Update UI state
+                        InputManager.setMode(InputManager.Mode.SCENE_VIEWER);
+                        
+                        // Reactivate chat input
+                        if (typeof ChatManager !== 'undefined' && typeof ChatManager.setInputActive === 'function') {
+                            ChatManager.setInputActive(true);
+                        }
+                        
+                        // Broadcast view change to other players
+                        if (typeof SyncManager !== 'undefined') {
+                            SyncManager.broadcastViewChange(SyncManager.ViewMode.SCENE_VIEWER);
+                        }
+                    }
+                }).then(() => {
+                    console.log('[APP] Terminal mode disabled');
+                });
+            } else {
+                // Fallback without TransitionManager
+                TerminalManager.hide();
+                InputManager.setMode(InputManager.Mode.SCENE_VIEWER);
+                if (typeof ChatManager !== 'undefined' && typeof ChatManager.setInputActive === 'function') {
+                    ChatManager.setInputActive(true);
+                }
+                if (typeof SyncManager !== 'undefined') {
+                    SyncManager.broadcastViewChange(SyncManager.ViewMode.SCENE_VIEWER);
+                }
+                console.log('[APP] Terminal hidden');
+            }
         }
     }
     
-    function initSocket() {
-        socket = io();
+    /**
+     * Initialize SyncManager for multiplayer synchronization
+     */
+    function initSyncManager() {
+        if (typeof SyncManager === 'undefined') {
+            console.warn('[APP] SyncManager not available');
+            return;
+        }
         
-        socket.on('connect', () => {
-            state.connected = true;
-            console.log('[SOCKET] Connected');
-            addChatMessage('system', 'Network link established.');
+        // Generate a random player name for now
+        const playerName = 'Player_' + Math.random().toString(36).substring(2, 6).toUpperCase();
+        
+        // Initialize with self-test enabled
+        SyncManager.init({
+            name: playerName,
+            sessionId: 'default',
+            selfTest: true
         });
         
-        socket.on('disconnect', () => {
-            state.connected = false;
-            console.log('[SOCKET] Disconnected');
-            addChatMessage('system', 'WARNING: Network link lost.');
+        // Register handlers for sync events
+        SyncManager.registerHandlers({
+            onConnect: (localState) => {
+                state.connected = true;
+                addChatMessage('system', `Network link established. You are ${localState.name}`);
+            },
+            
+            onDisconnect: (reason) => {
+                state.connected = false;
+                addChatMessage('system', 'WARNING: Network link lost.');
+            },
+            
+            onPeerJoin: (peer) => {
+                const roleLabel = peer.role === 'gm' ? '[GM]' : '';
+                addChatMessage('system', `${roleLabel} ${peer.name} connected.`);
+            },
+            
+            onPeerLeave: (peer) => {
+                addChatMessage('system', `${peer.name} disconnected.`);
+            },
+            
+            onPeerViewChange: (peer) => {
+                // GM can see when players switch views
+                if (SyncManager.isGM()) {
+                    const viewLabel = peer.view === 'terminal' ? 'TERMINAL' : 'SCENE';
+                    addChatMessage('system', `${peer.name} switched to ${viewLabel}`);
+                }
+            },
+            
+            onChat: (data) => {
+                // Received chat from another player
+                const prefix = data.role === 'gm' ? '[GM] ' : '';
+                addChatMessage(data.type, `${prefix}${data.name}: ${data.text}`);
+            },
+            
+            onRoll: (data) => {
+                // Received dice roll from another player
+                const prefix = data.role === 'gm' ? '[GM] ' : '';
+                const rollsStr = data.rolls.map(r => `[${r}]`).join(' ');
+                addChatMessage('roll', `${prefix}${data.name} rolled ${data.expression}: ${rollsStr} = ${data.total}`);
+            },
+            
+            onSceneChange: (data) => {
+                // GM pushed a scene change - route through SceneManager so
+                // TransitionManager can handle CRT power-down/power-up.
+                addChatMessage('system', `Scene changed to: ${data.scene}`);
+
+                if (typeof SceneManager !== 'undefined') {
+                    // Use SceneManager so the image only swaps at transition midpoint.
+                    // data.scene is the scene ID.
+                    const success = SceneManager.goToScene(data.scene, /* broadcast */ false);
+                    if (!success) {
+                        console.warn('[APP] SceneManager could not go to scene from SyncManager:', data.scene);
+                    }
+                } else {
+                    console.warn('[APP] SceneManager not available; falling back to direct image load');
+
+                    // Fallback: direct image load with no transition
+                    fetch(`/api/scenes/${data.scene}`)
+                        .then(res => res.json())
+                        .then(scene => {
+                            if (scene.imageUrl && typeof ThreeSetup !== 'undefined') {
+                                ThreeSetup.loadSceneImage(scene.imageUrl);
+                            }
+                        })
+                        .catch(err => {
+                            console.error('[APP] Failed to load scene (fallback):', err);
+                        });
+                }
+            },
+            
+            onError: (data) => {
+                addChatMessage('error', `Sync error: ${data.message}`);
+            }
         });
+        
+        // Listen for self-test results via EventBus
+        if (typeof EventBus !== 'undefined') {
+            EventBus.on('sync:self_test_passed', (data) => {
+                addChatMessage('system', `Self-test passed (${data.latency}ms round-trip)`);
+            });
+            
+            EventBus.on('sync:self_test_failed', (data) => {
+                // Don't show error for proxy-related failures (expected in dev)
+                if (data.silent) {
+                    addChatMessage('system', 'Running through proxy (sync limited)');
+                } else {
+                    addChatMessage('error', `Self-test FAILED: ${data.reason}`);
+                }
+            });
+            
+            // Listen for presence updates
+            EventBus.on('sync:presence', (data) => {
+                const count = data.peers.length;
+                if (count > 0) {
+                    const names = data.peers.map(p => p.name).join(', ');
+                    addChatMessage('system', `Online: ${names}`);
+                }
+            });
+        }
+        
+        console.log('[APP] SyncManager initialized');
     }
     
     function initDicePanel() {

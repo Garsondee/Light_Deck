@@ -1067,14 +1067,59 @@ const ChatManager = (function() {
                 case 'help':
                     showHelp();
                     break;
+                case 'who':
+                    showWho();
+                    break;
+                case 'views':
+                    showViews();
+                    break;
+                case 'gm':
+                    authenticateGM(args.join(' '));
+                    break;
+                case 'name':
+                    changeName(args.join(' '));
+                    break;
+                case 'logout':
+                    logoutGM();
+                    break;
+                case 'ping':
+                    testConnection();
+                    break;
+                case 'scenes':
+                    listScenes();
+                    break;
+                case 'scene':
+                    changeScene(args.join(' '));
+                    break;
+                case 'overlay':
+                    toggleGMOverlay();
+                    break;
+                case 'next':
+                    navigateScene('next');
+                    break;
+                case 'prev':
+                    navigateScene('prev');
+                    break;
                 default:
                     addMessage('error', `Unknown command: ${cmd}`);
             }
             return;
         }
         
-        // Regular message - could be sent to server
-        // For now just echo
+        // Regular chat message - broadcast to other players
+        const localName = typeof SyncManager !== 'undefined' ? SyncManager.getLocalState().name : 'You';
+        
+        if (typeof SyncManager !== 'undefined') {
+            if (SyncManager.isConnected()) {
+                SyncManager.broadcastChat(input, 'player');
+                console.log('[ChatManager] Broadcast chat:', input);
+            } else {
+                console.warn('[ChatManager] Not connected, message not broadcast');
+            }
+        }
+        
+        // Show locally with our name
+        addMessage('player', `${localName}: ${input}`);
     }
     
     /**
@@ -1093,6 +1138,12 @@ const ChatManager = (function() {
         const sides = parseInt(match[2]);
         const modifier = parseInt(match[3]) || 0;
         
+        // Validate
+        if (count < 1 || count > 100 || sides < 2 || sides > 1000) {
+            addMessage('error', 'Invalid dice: 1-100 dice, 2-1000 sides');
+            return;
+        }
+        
         // Roll the dice
         const rolls = [];
         let total = 0;
@@ -1105,22 +1156,346 @@ const ChatManager = (function() {
         
         total += modifier;
         
-        // Format result
-        let result = `${count}d${sides}`;
+        // Build expression string
+        let expr = `${count}d${sides}`;
         if (modifier !== 0) {
-            result += modifier > 0 ? `+${modifier}` : modifier;
+            expr += modifier > 0 ? `+${modifier}` : `${modifier}`;
         }
-        result += ` = [${rolls.join(', ')}]`;
+        
+        // Format result for display
+        const rollsStr = rolls.map(r => `[${r}]`).join(' ');
+        let result = `${expr}: ${rollsStr}`;
         if (modifier !== 0) {
             result += ` ${modifier > 0 ? '+' : ''}${modifier}`;
         }
         result += ` = ${total}`;
         
-        addMessage('roll', `🎲 ${result}`);
+        // Get local name
+        const localName = typeof SyncManager !== 'undefined' ? SyncManager.getLocalState().name : 'You';
+        
+        // Show locally
+        addMessage('roll', `${localName} rolled ${result}`);
+        
+        // Broadcast to other players
+        if (typeof SyncManager !== 'undefined' && SyncManager.isConnected()) {
+            SyncManager.broadcastRoll({
+                expression: expr,
+                rolls,
+                modifier,
+                total
+            });
+        }
         
         // Emit event for other systems
         if (typeof EventBus !== 'undefined') {
-            EventBus.emit('dice:rolled', { expression, rolls, modifier, total });
+            EventBus.emit('dice:rolled', { expression: expr, rolls, modifier, total });
+        }
+    }
+    
+    /**
+     * Show who is connected
+     */
+    function showWho() {
+        if (typeof SyncManager === 'undefined') {
+            addMessage('error', 'SyncManager not available');
+            return;
+        }
+        
+        const local = SyncManager.getLocalState();
+        const peers = SyncManager.getPeers();
+        
+        addMessage('system', '─── CONNECTED ───');
+        
+        // Show self
+        const selfRole = local.role === 'gm' ? ' [GM]' : '';
+        addMessage('system', `• ${local.name}${selfRole} (you)`);
+        
+        // Show peers
+        if (peers.length === 0) {
+            addMessage('system', '  (no other players)');
+        } else {
+            for (const peer of peers) {
+                const role = peer.role === 'gm' ? ' [GM]' : '';
+                addMessage('system', `• ${peer.name}${role}`);
+            }
+        }
+        
+        addMessage('system', `─── ${peers.length + 1} online ───`);
+    }
+    
+    /**
+     * Show player views (GM only)
+     */
+    function showViews() {
+        if (typeof SyncManager === 'undefined') {
+            addMessage('error', 'SyncManager not available');
+            return;
+        }
+        
+        if (!SyncManager.isGM()) {
+            addMessage('error', 'GM only command');
+            return;
+        }
+        
+        const views = SyncManager.getPlayerViews();
+        const viewList = Object.values(views);
+        
+        addMessage('system', '─── PLAYER VIEWS ───');
+        
+        if (viewList.length === 0) {
+            addMessage('system', '  (no players connected)');
+        } else {
+            for (const player of viewList) {
+                const viewLabel = player.view === 'terminal' ? 'TERMINAL' : 'SCENE';
+                addMessage('system', `• ${player.name}: ${viewLabel}`);
+            }
+        }
+    }
+    
+    /**
+     * Authenticate as GM
+     */
+    function authenticateGM(password) {
+        if (typeof SyncManager === 'undefined') {
+            addMessage('error', 'SyncManager not available');
+            return;
+        }
+        
+        if (!password) {
+            addMessage('error', 'Usage: /gm <password>');
+            return;
+        }
+        
+        addMessage('system', 'Authenticating...');
+        
+        SyncManager.authenticateGM(password).then(success => {
+            if (success) {
+                addMessage('system', 'GM authentication successful');
+            } else {
+                addMessage('error', 'GM authentication failed');
+            }
+        });
+    }
+    
+    /**
+     * Logout from GM role
+     */
+    function logoutGM() {
+        if (typeof SyncManager === 'undefined') {
+            addMessage('error', 'SyncManager not available');
+            return;
+        }
+        
+        if (!SyncManager.isGM()) {
+            addMessage('error', 'Not logged in as GM');
+            return;
+        }
+        
+        SyncManager.logoutGM();
+        addMessage('system', 'Logged out from GM role');
+    }
+    
+    /**
+     * Change display name
+     */
+    function changeName(newName) {
+        if (typeof SyncManager === 'undefined') {
+            addMessage('error', 'SyncManager not available');
+            return;
+        }
+        
+        if (!newName || newName.trim().length === 0) {
+            addMessage('error', 'Usage: /name <new name>');
+            return;
+        }
+        
+        const trimmed = newName.trim().substring(0, 20); // Max 20 chars
+        SyncManager.setName(trimmed);
+        addMessage('system', `Name changed to: ${trimmed}`);
+    }
+    
+    /**
+     * Test connection status
+     */
+    function testConnection() {
+        if (typeof SyncManager === 'undefined') {
+            addMessage('error', 'SyncManager not available');
+            return;
+        }
+        
+        const connected = SyncManager.isConnected();
+        const local = SyncManager.getLocalState();
+        const peers = SyncManager.getPeers();
+        
+        addMessage('system', '─── CONNECTION STATUS ───');
+        addMessage('system', `Socket: ${connected ? 'CONNECTED' : 'DISCONNECTED'}`);
+        addMessage('system', `Your ID: ${local.id || 'none'}`);
+        addMessage('system', `Session: ${local.sessionId || 'none'}`);
+        addMessage('system', `Peers: ${peers.length}`);
+        
+        if (connected) {
+            addMessage('system', 'Sending ping...');
+            SyncManager.ping();
+        }
+    }
+    
+    /**
+     * List available scenes
+     */
+    function listScenes() {
+        addMessage('system', 'Loading scenes...');
+        
+        fetch('/api/scenes')
+            .then(res => res.json())
+            .then(scenes => {
+                if (scenes.length === 0) {
+                    addMessage('system', 'No scenes available');
+                    return;
+                }
+                
+                addMessage('system', '─── SCENES ───');
+                
+                let currentAdventure = null;
+                for (const scene of scenes) {
+                    // Show adventure header when it changes
+                    if (scene.adventure !== currentAdventure) {
+                        currentAdventure = scene.adventure;
+                        addMessage('system', `[${currentAdventure}]`);
+                    }
+                    
+                    // Format: Act.Chapter.Scene - Title
+                    const num = `${scene.act}.${scene.chapter}.${scene.scene}`;
+                    addMessage('system', `  ${num} - ${scene.title}`);
+                }
+                
+                addMessage('system', '─── /scene <num> to change ───');
+            })
+            .catch(err => {
+                addMessage('error', 'Failed to load scenes');
+                console.error('[ChatManager] Scene list error:', err);
+            });
+    }
+    
+    /**
+     * Change scene (GM only)
+     *
+     * Uses SceneManager so all scene changes go through TransitionManager
+     * and share the same CRT power-down/pause/power-up behavior as the
+     * GM overlay NEXT/PREV buttons.
+     */
+    function changeScene(sceneRef) {
+        if (typeof SyncManager === 'undefined') {
+            addMessage('error', 'SyncManager not available');
+            return;
+        }
+        
+        if (!SyncManager.isGM()) {
+            addMessage('error', 'GM only command');
+            return;
+        }
+        
+        if (!sceneRef) {
+            addMessage('error', 'Usage: /scene <act.chapter.scene>');
+            addMessage('system', 'Example: /scene 1.1.1');
+            return;
+        }
+
+        if (typeof SceneManager === 'undefined') {
+            addMessage('error', 'SceneManager not available');
+            return;
+        }
+        
+        // Parse scene reference (e.g., "1.1.2" or full ID/title)
+        const parts = sceneRef.split('.');
+        
+        addMessage('system', `Loading scene ${sceneRef}...`);
+
+        // Fast path: act.chapter.scene uses SceneManager's own numbering helper
+        if (parts.length === 3 && parts.every(p => !isNaN(parseInt(p)))) {
+            const [act, chapter, scene] = parts.map(p => parseInt(p));
+            const success = SceneManager.goToSceneByNumber(act, chapter, scene, /* broadcast */ true);
+            if (!success) {
+                addMessage('error', `Scene not found: ${sceneRef}`);
+                return;
+            }
+            // SceneManager handles broadcast + events; just log to chat here
+            const current = SceneManager.getCurrentScene();
+            if (current) {
+                addMessage('system', `Scene changed to: ${current.title}`);
+            }
+            return;
+        }
+
+        // Fallback: fetch list and try to match by ID or title, then
+        // delegate to SceneManager.goToScene(id, true) for transition.
+        fetch('/api/scenes')
+            .then(res => res.json())
+            .then(scenes => {
+                let targetScene = scenes.find(s => 
+                    s.id.toLowerCase().includes(sceneRef.toLowerCase()) ||
+                    s.title.toLowerCase().includes(sceneRef.toLowerCase())
+                );
+                
+                if (!targetScene) {
+                    addMessage('error', `Scene not found: ${sceneRef}`);
+                    return;
+                }
+
+                const success = SceneManager.goToScene(targetScene.id, /* broadcast */ true);
+                if (!success) {
+                    addMessage('error', `Failed to change scene: ${targetScene.title}`);
+                    return;
+                }
+                
+                addMessage('system', `Scene changed to: ${targetScene.title}`);
+            })
+            .catch(err => {
+                addMessage('error', 'Failed to load scene');
+                console.error('[ChatManager] Scene change error:', err);
+            });
+    }
+    
+    /**
+     * Toggle GM overlay
+     */
+    function toggleGMOverlay() {
+        if (typeof SyncManager === 'undefined' || !SyncManager.isGM()) {
+            addMessage('error', 'GM only command');
+            return;
+        }
+        
+        if (typeof GMOverlayManager !== 'undefined') {
+            GMOverlayManager.toggle();
+            const visible = GMOverlayManager.isVisible();
+            addMessage('system', `GM Overlay ${visible ? 'shown' : 'hidden'}`);
+        } else {
+            addMessage('error', 'GMOverlayManager not available');
+        }
+    }
+    
+    /**
+     * Navigate scenes (next/prev)
+     */
+    function navigateScene(direction) {
+        if (typeof SyncManager === 'undefined' || !SyncManager.isGM()) {
+            addMessage('error', 'GM only command');
+            return;
+        }
+        
+        if (typeof SceneManager === 'undefined') {
+            addMessage('error', 'SceneManager not available');
+            return;
+        }
+        
+        let success = false;
+        if (direction === 'next') {
+            success = SceneManager.nextScene();
+        } else if (direction === 'prev') {
+            success = SceneManager.prevScene();
+        }
+        
+        if (!success) {
+            addMessage('system', `No ${direction} scene available`);
         }
     }
     
@@ -1130,12 +1505,24 @@ const ChatManager = (function() {
     function showHelp() {
         addMessage('system', '─── COMMANDS ───');
         addMessage('system', '/roll XdY+Z - Roll dice');
+        addMessage('system', '/who - List connected players');
+        addMessage('system', '/name <name> - Change name');
+        addMessage('system', '/ping - Test connection');
         addMessage('system', '/clear - Clear log');
         addMessage('system', '/help - Show this help');
+        addMessage('system', '─── GM COMMANDS ───');
+        addMessage('system', '/gm <pass> - Authenticate as GM');
+        addMessage('system', '/scenes - List available scenes');
+        addMessage('system', '/scene <num> - Change scene');
+        addMessage('system', '/next - Next scene');
+        addMessage('system', '/prev - Previous scene');
+        addMessage('system', '/overlay - Toggle GM overlay');
+        addMessage('system', '/views - See player views');
+        addMessage('system', '/logout - Logout from GM');
         addMessage('system', '─── SHORTCUTS ───');
         addMessage('system', '` - Scene Viewer controls');
         addMessage('system', '~ - Terminal controls');
-        addMessage('system', 'TAB - Window mode');
+        addMessage('system', 'TAB - Header navigation');
     }
     
     // ═══════════════════════════════════════════════════════════════════

@@ -1,0 +1,53 @@
+{
+    "id": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+    "adventure": "A Change of Heart",
+    "act": 1,
+    "chapter": 1,
+    "scene": 2,
+    "title": "The Chase",
+    "description": "Pursuit through the rain-soaked streets.",
+    "image": "AChangeOfHeart_Act_01_Chapter_01_Scene_02.png",
+    
+    "narrative": "Read aloud to players:\n\nGunshots crack through the night air! The contact crumples, the data chip clattering to the wet pavement. The two figures from the alley are running toward you, weapons drawn.\n\nYou have seconds to act.",
+    
+    "gmNotes": "This is a chase scene. The pursuers are corporate security - well-trained but not elite. They want the data chip recovered intact.\n\nIf players flee: Run a chase skill challenge (3 successes before 3 failures).\nIf players fight: Standard combat, 2 security operatives.",
+    
+    "skillChecks": [
+        {
+            "name": "Athletics",
+            "dc": 14,
+            "success": "You vault over a market stall, gaining ground on your pursuers.",
+            "fail": "You stumble on the slick pavement, losing precious seconds."
+        },
+        {
+            "name": "Stealth",
+            "dc": 16,
+            "success": "You duck into a side alley and press against the wall. The pursuers run past.",
+            "fail": "They spot your movement and adjust their pursuit."
+        },
+        {
+            "name": "Technology",
+            "dc": 13,
+            "success": "You hack a nearby drone to create a distraction.",
+            "fail": "The security systems reject your intrusion attempt."
+        }
+    ],
+    
+    "triggers": [
+        {
+            "id": "contact_dies",
+            "label": "Contact Dies",
+            "action": "chat",
+            "text": "The contact's eyes go wide, then empty. Their last words are a whisper: 'Find... Aria...'"
+        },
+        {
+            "id": "chase_begins",
+            "label": "Chase Begins",
+            "action": "chat",
+            "text": "Roll initiative! The chase is on."
+        }
+    ],
+    
+    "music": null,
+    "ambience": null
+}

@@ -1,0 +1,47 @@
+{
+    "id": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+    "adventure": "A Change of Heart",
+    "act": 1,
+    "chapter": 1,
+    "scene": 1,
+    "title": "The Beginning",
+    "description": "The adventure begins...",
+    "image": "AChangeOfHeart_Act_01_Chapter_01_Scene_01.png",
+    
+    "narrative": "Read aloud to players:\n\nThe neon-lit streets of the lower district stretch before you, rain slicking the cracked pavement. Holographic advertisements flicker overhead, their promises of a better life feeling hollow in this forgotten corner of the city.\n\nA figure in a long coat waits beneath a broken streetlight, their face hidden in shadow.",
+    
+    "gmNotes": "The contact is nervous - they've been followed. If players make a Perception check DC 15, they'll notice two figures watching from a nearby alley.\n\nThe package contains encrypted data about corporate experiments.",
+    
+    "skillChecks": [
+        {
+            "name": "Perception",
+            "dc": 15,
+            "success": "You notice two figures lurking in a nearby alley, watching the meeting intently.",
+            "fail": "The rain and flickering lights make it hard to see anything unusual."
+        },
+        {
+            "name": "Insight",
+            "dc": 12,
+            "success": "The contact is genuinely frightened - this isn't an act. They believe they're in real danger.",
+            "fail": "You can't get a read on the contact's emotional state."
+        }
+    ],
+    
+    "triggers": [
+        {
+            "id": "reveal_watchers",
+            "label": "Reveal Watchers",
+            "action": "chat",
+            "text": "Two figures step out from the alley, hands reaching into their coats..."
+        },
+        {
+            "id": "contact_speaks",
+            "label": "Contact Speaks",
+            "action": "chat",
+            "text": "The contact whispers urgently: 'Take this. Don't let them get it. They'll kill us both if they find out what's on here.'"
+        }
+    ],
+    
+    "music": null,
+    "ambience": null
+}

@@ -210,5 +210,22 @@ EventBus.Events = {
     
     // Effect events
     EFFECT_GLITCH: 'effect:glitch',
-    EFFECT_TRANSITION: 'effect:transition'
+    EFFECT_TRANSITION: 'effect:transition',
+    
+    // Sync events (multiplayer)
+    SYNC_CONNECTED: 'sync:connected',
+    SYNC_DISCONNECTED: 'sync:disconnected',
+    SYNC_PEER_JOINED: 'sync:peer_joined',
+    SYNC_PEER_LEFT: 'sync:peer_left',
+    SYNC_PEER_VIEW_CHANGED: 'sync:peer_view_changed',
+    SYNC_PRESENCE: 'sync:presence',
+    SYNC_CHAT: 'sync:chat',
+    SYNC_ROLL: 'sync:roll',
+    SYNC_SCENE_CHANGE: 'sync:scene_change',
+    SYNC_STATE: 'sync:state',
+    SYNC_ERROR: 'sync:error',
+    SYNC_SELF_TEST_PASSED: 'sync:self_test_passed',
+    SYNC_SELF_TEST_FAILED: 'sync:self_test_failed',
+    SYNC_GM_AUTHENTICATED: 'sync:gm_authenticated',
+    SYNC_GM_LOGOUT: 'sync:gm_logout'
 };

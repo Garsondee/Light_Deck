@@ -162,8 +162,8 @@ const StartupManager = (function() {
         // Play startup sound
         playStartupSound();
         
-        // Fade in from black
-        await fadeIn(800, originalBrightness);
+        // Fade in from black (cinematic length)
+        await fadeIn(2400, originalBrightness);
         
         // Process boot sequence
         for (const step of BOOT_SEQUENCE) {
@@ -250,50 +250,53 @@ const StartupManager = (function() {
     
     /**
      * Fade out terminal and fade in to scene viewer
+     * Uses TransitionManager for consistent CRT power-down effect
      */
     function fadeOutToSceneViewer() {
+        // Use TransitionManager if available for consistent transitions
+        if (typeof TransitionManager !== 'undefined') {
+            return TransitionManager.transition({
+                powerDownDuration: 3600,   // Slower power-down for boot sequence
+                blackPauseDuration: 2400,  // Longer pause at black
+                powerUpDuration: 3000,     // Gradual power-up to scene
+                onMidpoint: () => {
+                    // Hide terminal at the black point
+                    TerminalManager.hide();
+                }
+            });
+        }
+        
+        // Fallback if TransitionManager not available
         return new Promise(resolve => {
             if (!CRTShader?.config) {
-                // No shader, just hide terminal
                 TerminalManager.hide();
                 resolve();
                 return;
             }
             
             const originalBrightness = CRTShader.config.brightness;
-            const fadeOutDuration = 1800; // longer fade down
-            const fadeInDuration = 1500;
+            const fadeOutDuration = 1200;
+            const fadeInDuration = 1000;
             const startTime = performance.now();
             
-            // Phase 1: Fade out
             const fadeOut = (now) => {
                 const elapsed = now - startTime;
                 const t = Math.min(1, elapsed / fadeOutDuration);
-                
-                // Ease-in curve for fade out
                 const eased = Math.pow(t, 2);
                 CRTShader.config.brightness = originalBrightness * (1 - eased);
                 
                 if (t < 1) {
                     requestAnimationFrame(fadeOut);
                 } else {
-                    // At black - switch to scene viewer
                     CRTShader.config.brightness = 0;
                     TerminalManager.hide();
                     
-                    // Reset terminal boot state so it can be used normally later
-                    // (The startup boot is separate from the terminal's own boot)
-                    
-                    // Hold at full black before fading up to scene viewer
                     setTimeout(() => {
-                        // Phase 2: Fade in scene viewer
                         const fadeInStart = performance.now();
                         
                         const fadeIn = (now) => {
                             const elapsed = now - fadeInStart;
                             const t = Math.min(1, elapsed / fadeInDuration);
-                            
-                            // Ease-out curve for fade in
                             const eased = 1 - Math.pow(1 - t, 2);
                             CRTShader.config.brightness = originalBrightness * eased;
                             
@@ -306,7 +309,7 @@ const StartupManager = (function() {
                         };
                         
                         requestAnimationFrame(fadeIn);
-                    }, 1000);
+                    }, 800);
                 }
             };
             
