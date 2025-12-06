@@ -1108,6 +1108,16 @@ const ChatManager = (function() {
                 case 'npcs':
                     listNPCs();
                     break;
+                case 'dice':
+                    handleDiceCommand(args);
+                    break;
+                case 'dicecolor':
+                case 'dicecolour':
+                    setDiceColor(args.join(' '));
+                    break;
+                case 'dicetest':
+                    testDice();
+                    break;
                 default:
                     addMessage('error', `Unknown command: ${cmd}`);
             }
@@ -1131,9 +1141,9 @@ const ChatManager = (function() {
     }
     
     /**
-     * Roll dice
+     * Roll dice - uses 3D dice if available, falls back to text-only
      */
-    function rollDice(expression) {
+    async function rollDice(expression) {
         // Parse dice expression like "2d6+3" or "d20"
         const match = expression.match(/^(\d*)d(\d+)([+-]\d+)?$/i);
         
@@ -1152,22 +1162,53 @@ const ChatManager = (function() {
             return;
         }
         
-        // Roll the dice
-        const rolls = [];
-        let total = 0;
-        
-        for (let i = 0; i < count; i++) {
-            const roll = Math.floor(Math.random() * sides) + 1;
-            rolls.push(roll);
-            total += roll;
-        }
-        
-        total += modifier;
-        
         // Build expression string
         let expr = `${count}d${sides}`;
         if (modifier !== 0) {
             expr += modifier > 0 ? `+${modifier}` : `${modifier}`;
+        }
+        
+        // Check if 3D dice is available and supports this die type
+        const supported3DDice = [4, 6, 8, 10, 12, 20, 100];
+        const use3D = typeof DiceManager !== 'undefined' && 
+                      DiceManager.isInitialized() && 
+                      supported3DDice.includes(sides);
+        
+        let rolls = [];
+        let total = 0;
+        
+        if (use3D) {
+            // Show rolling message
+            addMessage('system', `Rolling ${expr}...`);
+            
+            // Show dice box
+            const diceBox = document.getElementById('dice-box');
+            if (diceBox) diceBox.classList.add('active');
+            
+            try {
+                // Use 3D dice - wait for animation to complete
+                const result = await DiceManager.roll(expr);
+                
+                if (result) {
+                    rolls = result.rolls.map(r => r.value);
+                    total = result.total;
+                } else {
+                    // Fallback if 3D roll failed
+                    ({ rolls, total } = rollDiceFallback(count, sides, modifier));
+                }
+            } catch (error) {
+                console.error('[ChatManager] 3D dice error:', error);
+                // Fallback to text-only
+                ({ rolls, total } = rollDiceFallback(count, sides, modifier));
+            }
+            
+            // Hide dice box after delay
+            setTimeout(() => {
+                if (diceBox) diceBox.classList.remove('active');
+            }, 2000);
+        } else {
+            // Text-only fallback for unsupported dice
+            ({ rolls, total } = rollDiceFallback(count, sides, modifier));
         }
         
         // Format result for display
@@ -1181,7 +1222,7 @@ const ChatManager = (function() {
         // Get local name
         const localName = typeof SyncManager !== 'undefined' ? SyncManager.getLocalState().name : 'You';
         
-        // Show locally
+        // Show result locally
         addMessage('roll', `${localName} rolled ${result}`);
         
         // Broadcast to other players
@@ -1198,6 +1239,23 @@ const ChatManager = (function() {
         if (typeof EventBus !== 'undefined') {
             EventBus.emit('dice:rolled', { expression: expr, rolls, modifier, total });
         }
+    }
+    
+    /**
+     * Fallback dice rolling (text-only, no 3D)
+     */
+    function rollDiceFallback(count, sides, modifier) {
+        const rolls = [];
+        let total = 0;
+        
+        for (let i = 0; i < count; i++) {
+            const roll = Math.floor(Math.random() * sides) + 1;
+            rolls.push(roll);
+            total += roll;
+        }
+        
+        total += modifier;
+        return { rolls, total };
     }
     
     /**
@@ -1633,10 +1691,122 @@ const ChatManager = (function() {
         addMessage('system', '/overlay - Toggle GM overlay');
         addMessage('system', '/views - See player views');
         addMessage('system', '/logout - Logout from GM');
+        addMessage('system', '─── DICE COMMANDS ───');
+        addMessage('system', '/dice - Show dice settings');
+        addMessage('system', '/dicecolor #hex - Set dice color');
+        addMessage('system', '/dicetest - Test roll animation');
         addMessage('system', '─── SHORTCUTS ───');
         addMessage('system', '` - Scene Viewer controls');
         addMessage('system', '~ - Terminal controls');
         addMessage('system', 'TAB - Header navigation');
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════
+    // DICE CUSTOMIZATION
+    // ═══════════════════════════════════════════════════════════════════
+    
+    /**
+     * Handle /dice command - show or modify dice settings
+     */
+    function handleDiceCommand(args) {
+        if (typeof DiceManager === 'undefined') {
+            addMessage('error', '3D dice not available');
+            return;
+        }
+        
+        if (args.length === 0) {
+            // Show current settings
+            const settings = DiceManager.getSettings();
+            addMessage('system', '─── DICE SETTINGS ───');
+            addMessage('system', `Theme: ${settings.theme}`);
+            addMessage('system', `Color: ${settings.themeColor}`);
+            addMessage('system', `Scale: ${settings.scale}`);
+            addMessage('system', '─── COMMANDS ───');
+            addMessage('system', '/dicecolor #hex - Set color');
+            addMessage('system', '/dicetest - Test roll');
+            addMessage('system', '/dice reset - Reset to defaults');
+            return;
+        }
+        
+        const subCmd = args[0].toLowerCase();
+        
+        switch (subCmd) {
+            case 'reset':
+                DiceManager.resetSettings();
+                addMessage('system', 'Dice settings reset to defaults');
+                break;
+            case 'color':
+            case 'colour':
+                if (args[1]) {
+                    setDiceColor(args[1]);
+                } else {
+                    addMessage('error', 'Usage: /dice color #hexcode');
+                }
+                break;
+            case 'scale':
+                if (args[1]) {
+                    const scale = parseFloat(args[1]);
+                    if (!isNaN(scale) && scale >= 1 && scale <= 20) {
+                        DiceManager.updateSettings({ scale });
+                        addMessage('system', `Dice scale set to ${scale}`);
+                    } else {
+                        addMessage('error', 'Scale must be between 1 and 20');
+                    }
+                } else {
+                    addMessage('error', 'Usage: /dice scale <1-20>');
+                }
+                break;
+            case 'theme':
+                if (args[1]) {
+                    DiceManager.setTheme(args[1]);
+                    addMessage('system', `Dice theme set to: ${args[1]}`);
+                } else {
+                    const themes = DiceManager.getAvailableThemes();
+                    addMessage('system', `Available themes: ${themes.join(', ')}`);
+                }
+                break;
+            default:
+                addMessage('error', `Unknown dice command: ${subCmd}`);
+        }
+    }
+    
+    /**
+     * Set dice color
+     */
+    function setDiceColor(color) {
+        if (typeof DiceManager === 'undefined') {
+            addMessage('error', '3D dice not available');
+            return;
+        }
+        
+        // Validate hex color
+        const hexMatch = color.match(/^#?([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/);
+        if (!hexMatch) {
+            addMessage('error', 'Invalid color. Use hex format: #ff0000');
+            return;
+        }
+        
+        const hexColor = color.startsWith('#') ? color : `#${color}`;
+        DiceManager.setColor(hexColor);
+        addMessage('system', `Dice color set to ${hexColor}`);
+    }
+    
+    /**
+     * Test dice rolling
+     */
+    function testDice() {
+        if (typeof DiceManager === 'undefined') {
+            addMessage('error', '3D dice not available');
+            return;
+        }
+        
+        if (!DiceManager.isInitialized()) {
+            addMessage('error', '3D dice not initialized');
+            return;
+        }
+        
+        addMessage('system', 'Testing 3D dice...');
+        rollDice('2d6');
     }
     
     // ═══════════════════════════════════════════════════════════════════

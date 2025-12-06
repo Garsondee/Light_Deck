@@ -98,6 +98,16 @@ const App = (function() {
             });
         }
         
+        // Initialize DiceManager (3D dice rolling)
+        if (typeof DiceManager !== 'undefined') {
+            DiceManager.init('#dice-box').then(() => {
+                console.log('[APP] DiceManager initialized');
+            }).catch(err => {
+                console.warn('[APP] DiceManager failed to initialize:', err);
+                console.log('[APP] Dice rolling will use text-only fallback');
+            });
+        }
+        
         // Initialize UIManager (raycasting for clickable UI elements)
         if (typeof UIManager !== 'undefined') {
             UIManager.init({

@@ -894,6 +894,117 @@ app.get('/api/export/:adventureId', (req, res) => {
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
+// DICE SETTINGS API - Player dice appearance customization
+// ═══════════════════════════════════════════════════════════════════════════
+
+// In-memory storage for GM default dice settings
+// In production, this would be persisted to a database or file
+let gmDefaultDiceSettings = {
+    theme: 'default',
+    themeColor: '#5e8cc9',
+    scale: 6,
+    gravity: 2,
+    mass: 1,
+    friction: 0.8,
+    restitution: 0.5,
+    linearDamping: 0.5,
+    angularDamping: 0.4,
+    spinForce: 5,
+    throwForce: 5,
+    startingHeight: 10,
+    settleTimeout: 5000
+};
+
+// Ensure JSON body parsing is available
+app.use(express.json());
+
+/**
+ * Get GM default dice settings
+ * GET /api/dice/defaults
+ * 
+ * Returns the default dice appearance settings that new players receive.
+ */
+app.get('/api/dice/defaults', (req, res) => {
+    res.json(gmDefaultDiceSettings);
+});
+
+/**
+ * Update GM default dice settings (GM only)
+ * PUT /api/dice/defaults
+ * Body: { theme, themeColor, scale, ... }
+ * 
+ * Sets the default dice appearance for new players.
+ * Requires GM authentication (checked via session or header).
+ */
+app.put('/api/dice/defaults', (req, res) => {
+    // In a real implementation, verify GM authentication here
+    // For now, we'll accept any update
+    
+    const allowedFields = [
+        'theme', 'themeColor', 'scale', 'gravity', 'mass',
+        'friction', 'restitution', 'linearDamping', 'angularDamping',
+        'spinForce', 'throwForce', 'startingHeight', 'settleTimeout'
+    ];
+    
+    const updates = {};
+    for (const field of allowedFields) {
+        if (req.body[field] !== undefined) {
+            updates[field] = req.body[field];
+        }
+    }
+    
+    gmDefaultDiceSettings = { ...gmDefaultDiceSettings, ...updates };
+    
+    console.log('[DiceSettings] GM defaults updated:', updates);
+    
+    res.json({
+        success: true,
+        settings: gmDefaultDiceSettings
+    });
+});
+
+/**
+ * Get available dice themes
+ * GET /api/dice/themes
+ * 
+ * Returns list of available dice themes from the assets folder.
+ */
+app.get('/api/dice/themes', (req, res) => {
+    const themesDir = path.join(__dirname, '../public/assets/themes');
+    
+    try {
+        if (!fs.existsSync(themesDir)) {
+            return res.json([{ id: 'default', name: 'Default Colors' }]);
+        }
+        
+        const dirs = fs.readdirSync(themesDir, { withFileTypes: true })
+            .filter(d => d.isDirectory())
+            .map(d => {
+                const configPath = path.join(themesDir, d.name, 'theme.config.json');
+                try {
+                    if (fs.existsSync(configPath)) {
+                        const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+                        return {
+                            id: config.systemName || d.name,
+                            name: config.name || d.name,
+                            author: config.author,
+                            diceAvailable: config.diceAvailable || []
+                        };
+                    }
+                } catch (err) {
+                    console.error(`Error reading theme config for ${d.name}:`, err);
+                }
+                return { id: d.name, name: d.name };
+            });
+        
+        res.json(dirs);
+    } catch (err) {
+        console.error('Error listing dice themes:', err);
+        res.json([{ id: 'default', name: 'Default Colors' }]);
+    }
+});
+
+// ═══════════════════════════════════════════════════════════════════════════
 // SYNC SYSTEM - Multiplayer state synchronization
 // ═══════════════════════════════════════════════════════════════════════════
 

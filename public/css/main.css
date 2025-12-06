@@ -665,3 +665,28 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--amber-mid);
 }
+
+/* ========================================
+   3D Dice Box Container
+   ======================================== */
+#dice-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#dice-box.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#dice-box canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
