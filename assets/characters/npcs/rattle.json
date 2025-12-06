@@ -1,0 +1,99 @@
+{
+    "id": "rattle",
+    "name": "Rattle",
+    "type": "elite",
+    "archetype": "hazer_leader",
+    
+    "public": {
+        "description": "A tall figure in heavy hazmat gear, face completely hidden behind a reinforced gas mask. When they speak, it's through a damaged vocoder that makes their voice sound like static and grinding metal.",
+        "appearance": "Imposing build despite obvious illness. Military-grade hazmat suit, heavily modified. The gas mask has been welded shut - it never comes off. Carries a massive pipe wrench.",
+        "demeanor": "Commands respect from the other Hazers. Moves deliberately, conserving strength. Their mechanical voice carries authority and an unsettling calm.",
+        "known_facts": [
+            "Leader of the Hazers who inhabit Oakhaven",
+            "Voice destroyed - speaks through damaged vocoder",
+            "Clearly ill like the others, but stronger",
+            "Protective of the ruins and the other Hazers"
+        ]
+    },
+    
+    "private": {
+        "full_description": "Wears a heavy gas mask. Voice box destroyed by gas. Type-H blood. Dying of the same genetic timebomb as Jax. Childhood friend of Jax - though Jax doesn't recognize him anymore.",
+        
+        "stats": {
+            "stress": 0,
+            "stressMax": 5,
+            "wounds": 4,
+            "armor": 2,
+            "attack": 6,
+            "defense": 14
+        },
+        
+        "attributes": {
+            "reflex": 2,
+            "body": 2,
+            "tech": 1,
+            "neural": 0,
+            "edge": 1,
+            "presence": 2
+        },
+        
+        "skills": {
+            "primary": "Melee",
+            "primaryBonus": 3,
+            "secondary": "Survival",
+            "secondaryBonus": 3
+        },
+        
+        "weapons": [
+            {
+                "name": "Pipe Wrench (Heavy)",
+                "damage": "2d6+2",
+                "type": "kinetic",
+                "notes": "Slow but devastating"
+            },
+            {
+                "name": "Scavenged Shotgun",
+                "damage": "2d6",
+                "type": "kinetic",
+                "notes": "2 shells only"
+            }
+        ],
+        
+        "abilities": [
+            {
+                "name": "Toxic Resilience",
+                "description": "Immune to gas and poison effects. Has lived in the contaminated zone for 15 years.",
+                "cooldown": null
+            },
+            {
+                "name": "Voice of the Dead",
+                "description": "Speaks through a damaged vocoder. Unsettling. +2 to Intimidation.",
+                "cooldown": null
+            },
+            {
+                "name": "Guardian's Fury",
+                "description": "If a Hazer is killed in his presence, gains +2 to all attacks for the rest of the scene.",
+                "cooldown": null
+            }
+        ],
+        
+        "cyberware": [
+            "Damaged vocoder (voice box replacement)",
+            "Filtration implants (lungs)"
+        ],
+        
+        "behavior": {
+            "tactics": "Protects his people first. Will negotiate if approached peacefully. Fights to the death if Hazers are killed.",
+            "morale": "Never flees. The ruins are his home and his tomb.",
+            "motivation": "Protect the dead. Keep outsiders away. He knows what Bio-Dyne did - and he knows they're all dying from the same invisible poison."
+        },
+        
+        "secrets": {
+            "identity": "Was Jax's childhood friend before the gas attack",
+            "knowledge": "Knows Jax is Subject 89. Knows he traded the vent codes. Knows they share the same blood type and the same death sentence.",
+            "mercy": "If the player spares the Hazers and refuses to help Jax, Rattle will show respect."
+        },
+        
+        "gm_notes": "Rattle is not a villain. He's a survivor protecting a graveyard and the one who posted the final desperate messages on the lobby board 15 years ago. His appearance in the ending depends on player choices.\n\nIf Jax dies AND the player was non-lethal: Rattle appears at the gate and offers a blessing.\nIf the player killed Hazers: Rattle does not appear. The Hazers watch in silence."
+    }
+}

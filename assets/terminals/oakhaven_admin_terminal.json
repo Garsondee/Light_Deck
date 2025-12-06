@@ -1,0 +1,134 @@
+{
+    "id": "oakhaven_admin_terminal",
+    "name": "Oakhaven Admin Terminal",
+    "type": "workstation",
+    "location": "Admin Wing Server Room",
+    "adventure": "A Change of Heart",
+    
+    "description": "A dusty Bio-Dyne workstation. The screen flickers with 15-year-old data. The keyboard is yellowed but functional.",
+    
+    "style": {
+        "theme": "biodyne_corporate",
+        "phosphor": "p1",
+        "primaryColor": "#33ff66",
+        "secondaryColor": "#228844",
+        "accentColor": "#ffaa00",
+        "backgroundColor": "#0a0a0a",
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": 14,
+        "scanlines": true,
+        "scanlineIntensity": 0.15,
+        "flicker": true,
+        "flickerIntensity": 0.03,
+        "noise": true,
+        "noiseIntensity": 0.02,
+        "crtCurvature": 0.09,
+        "bloom": true,
+        "bloomIntensity": 0.4
+    },
+    
+    "boot_sequence": {
+        "enabled": true,
+        "lines": [
+            { "text": "BIO-DYNE SYSTEMS v4.2.1", "speed": 80, "type": "system" },
+            { "text": "(c) 2142 Bio-Dyne Corporation", "speed": 60 },
+            { "text": "", "delay": 200 },
+            { "text": "WARNING: System offline for 5478 days", "speed": 40, "type": "error" },
+            { "text": "Restoring from backup...", "speed": 30 },
+            { "text": "[OK] File system mounted (read-only)", "speed": 50, "type": "system" },
+            { "text": "[OK] User database loaded", "speed": 50, "type": "system" },
+            { "text": "[WARN] Network interface unavailable", "speed": 50, "type": "warning" },
+            { "text": "", "delay": 200 },
+            { "text": "GUEST ACCESS GRANTED", "speed": 30, "type": "system" },
+            { "text": "Type 'help' for commands or 'dir' to list files.", "speed": 40 }
+        ]
+    },
+    
+    "access_level": "guest",
+    "requires_hack": false,
+    "hack_difficulty": null,
+    
+    "filesystem": {
+        "root": "/biodyne/oakhaven",
+        "directories": [
+            {
+                "path": "/",
+                "name": "root",
+                "files": ["readme.txt", "system.log"],
+                "subdirs": ["admin", "subjects", "security"]
+            },
+            {
+                "path": "/admin",
+                "name": "admin",
+                "access_level": "admin",
+                "locked": true,
+                "files": ["budget.csv", "liquidation_order.doc"],
+                "subdirs": []
+            },
+            {
+                "path": "/subjects",
+                "name": "subjects",
+                "files": ["manifest.db", "type_h_protocol.doc"],
+                "subdirs": ["active", "terminated"]
+            },
+            {
+                "path": "/subjects/active",
+                "name": "active",
+                "files": ["subject_01_elena.log", "subject_89_jaxson.log"],
+                "subdirs": []
+            },
+            {
+                "path": "/security",
+                "name": "security",
+                "access_level": "security",
+                "locked": true,
+                "files": ["access_log.txt", "vent_codes.enc"],
+                "subdirs": []
+            }
+        ]
+    },
+    
+    "documents": [
+        "doc_readme_oakhaven",
+        "doc_system_log",
+        "doc_subject_manifest",
+        "doc_type_h_protocol",
+        "doc_subject_01_elena",
+        "doc_subject_89_jaxson",
+        "doc_liquidation_order",
+        "doc_budget_heirloom"
+    ],
+    
+    "programs": [
+        "prog_file_browser",
+        "prog_ice_breaker",
+        "prog_log_viewer"
+    ],
+    
+    "commands": {
+        "available": ["help", "dir", "ls", "cd", "cat", "read", "run", "hack", "exit", "clear"],
+        "custom": [
+            {
+                "name": "decrypt",
+                "description": "Attempt to decrypt an encrypted file",
+                "requires_program": "prog_ice_breaker",
+                "usage": "decrypt <filename>"
+            }
+        ]
+    },
+    
+    "events": {
+        "on_access": {
+            "sets_flag": "accessed_admin_terminal"
+        },
+        "on_read_subject_89": {
+            "sets_flag": "knows_jax_betrayal",
+            "unlocks_clue": "log_evidence"
+        },
+        "on_read_elena": {
+            "unlocks_clue": "elena_location"
+        }
+    },
+    
+    "gmNotes": "This is the main revelation terminal. Players can discover Jax's identity here. The /admin and /security directories require hacking (ICE Breaker program or Netrunning check DC 15)."
+}

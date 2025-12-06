@@ -1,0 +1,61 @@
+╔══════════════════════════════════════════════════════════╗
+║            VTT SIMULATION REPORT                         ║
+╚══════════════════════════════════════════════════════════╝
+
+Start:    2025-12-06T00:43:06.380Z
+End:      2025-12-06T00:43:17.133Z
+Duration: 10753ms
+Dice:     fair
+GM:       thorough
+Player:   thorough
+
+Termination: ✓ completed
+  All selected scenes processed successfully
+
+─── SUMMARY ───────────────────────────────────────────────
+Scenes:        7 / 7
+Wounds:        0 (0 near-death)
+Deaths:        0
+Skill Checks:  6 / 11 passed
+Triggers:      13
+NPCs:          11
+Dead Ends:     0
+Difficulty:    HARD
+Coherence:     60/100
+Info Lookups:  17/17 found
+
+─── DICE STATS ────────────────────────────────────────────
+Total Rolls:   11
+Average:       8.6
+Nat 20s:       1
+Nat 1s:        0
+
+─── SCENES ────────────────────────────────────────────────
+  1. ✓ The Briefing 🎲1/1
+  2. ✓ The Gate 🎲1/2
+  3. ✓ The Shrine 🎲1/2
+  4. ✓ The Courtyard Ambush 🎲0/3
+  5. ✓ The Admin Wing 🎲2/2
+  6. ✓ The Cryo Lab 🎲1/1
+  7. ✓ The Exit
+
+─── NPC STATES ────────────────────────────────────────────
+  Jaxson 'Jax' V.: dying (6 interactions)
+  Noodle Stall Cook: passive (1 interactions)
+  Hazer Guards (x2): active (2 interactions)
+  Elena (Subject 01): unconscious (1 interactions)
+  Rattle: watching (1 interactions)
+
+─── COHERENCE ANALYSIS ────────────────────────────────────
+Breadcrumbs:   STRONG
+Pacing Score:  20/100
+
+─── RECOMMENDATIONS ───────────────────────────────────────
+🟡 [DIFFICULTY] High Difficulty Spike
+   Scene "The Courtyard Ambush" has a very low pass rate on skill checks.
+   💡 Consider lowering DCs or adding alternative paths for failed checks.
+   📍 Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+
+🟢 [PACING] Unbalanced Pacing
+   Adventure pacing score is 20/100.
+   💡 Consider adding more variety between action, social, and exploration scenes.

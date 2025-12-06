@@ -1,0 +1,128 @@
+{
+    "id": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+    "adventure": "A Change of Heart",
+    "act": 2,
+    "chapter": 1,
+    "scene": 4,
+    "type": "combat",
+    "title": "The Courtyard Ambush",
+    "location": "Bio-Dyne Courtyard",
+    "image": null,
+    "visuals": "ASCII_Overlay: Threat detection enabled. Targets marked in Red.",
+    "tone": "Tense, Dangerous, Tragic",
+    "lighting": "Harsh moonlight through broken skylights. Long shadows.",
+    "audio": "Ragged breathing through gas masks, the scrape of boots on rubble, distant coughing.",
+    "smell": "Rust, stagnant water, the chemical tang of old gas residue.",
+    
+    "narrative": "Three Hazers block your path to the Admin Wing. They brandish pipes and old pistols.\n'Scavengers!' one wheezes. 'You don't take the bodies! We protect the sleep!'",
+    
+    "gmNotes": "Combat encounter. Jax will plead for non-lethal resolution. His reaction to player choices matters for the ending.",
+    
+    "npcs": [
+        {
+            "id": "jax",
+            "name": "Jaxson 'Jax' V.",
+            "role": "The Companion",
+            "statblock": null,
+            "state": "active",
+            "notes": "Will shout to spare them. Takes Mental Stress if player kills.",
+            "motivation": "Desperate to avoid more death. These are his people, even if they don't know it.",
+            "personality": "Panicked, pleading. Will physically try to stop lethal attacks."
+        },
+        {
+            "id": "hazer_mook",
+            "name": "Hazer Patrol (x3)",
+            "role": "Combatants",
+            "statblock": "hazer_mook",
+            "state": "active",
+            "notes": "Physically frail. Dying of the genetic timebomb. They cough when moving fast.",
+            "motivation": "Protect the shrine and the 'sleepers' (cryo pods). They think you're scavengers.",
+            "personality": "Desperate, territorial, wheezing. They fight because they have nothing left to lose."
+        }
+    ],
+    
+    "npc_stats": {
+        "name": "Hazer Patrol",
+        "count": 3,
+        "weakness": "They are physically frail. They cough when moving fast."
+    },
+    
+    "challenges": [
+        {
+            "id": "negotiate_hazers",
+            "skill": "Persuasion",
+            "difficulty": 12,
+            "description": "Convince the Hazers you're not scavengers.",
+            "success_effect": {
+                "text": "The lead Hazer lowers his weapon. 'You... you're not with Bio-Dyne?' He coughs. 'Go. But don't touch the sleepers.'",
+                "sets_flag": "hazers_negotiated"
+            },
+            "failure_effect": {
+                "text": "The Hazer spits. 'Lies! All outsiders lie!' Combat begins.",
+                "stress_damage": 0
+            }
+        },
+        {
+            "id": "combat_nonlethal",
+            "skill": "Combat",
+            "difficulty": 10,
+            "description": "Subdue the Hazers without killing them.",
+            "success_effect": {
+                "text": "The Hazers are unconscious. Jax checks a pulse and sighs in relief. 'Good. Let's move.'",
+                "sets_flag": "hazers_spared"
+            },
+            "failure_effect": {
+                "text": "The fight is brutal. You take 1 Stress from the struggle.",
+                "stress_damage": 1
+            }
+        },
+        {
+            "id": "combat_lethal",
+            "skill": "Combat",
+            "difficulty": 8,
+            "description": "Kill the Hazers.",
+            "success_effect": {
+                "text": "The Hazers fall. Jax stares at the bodies. 'I told you... I told you to stop.' He takes Mental Stress.",
+                "sets_flag": "hazers_killed"
+            },
+            "failure_effect": {
+                "text": "Even dying, they fight hard. You take 2 Stress.",
+                "stress_damage": 2
+            }
+        }
+    ],
+    
+    "triggers": [
+        {
+            "id": "jax_intervention",
+            "label": "Jax's Plea",
+            "action": "chat",
+            "text": "Jax shouts: 'Don't kill them! Just knock them down! We aren't butchers!'"
+        },
+        {
+            "id": "combat_result_lethal",
+            "label": "Player Kills",
+            "action": "narrative",
+            "text": "Jax stares at the body. He freezes. 'I told you... I told you to stop.' He takes Mental Stress.",
+            "sets_flag": "hazers_killed"
+        },
+        {
+            "id": "combat_result_nonlethal",
+            "label": "Player Spares",
+            "action": "narrative",
+            "text": "The Hazers are unconscious. Jax checks a pulse and sighs in relief. 'Good. Let's move.'",
+            "sets_flag": "hazers_spared"
+        }
+    ],
+    
+    "exits": [
+        {
+            "target_scene_id": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+            "condition": "default",
+            "label": "Proceed to the Admin Wing"
+        }
+    ],
+    
+    "music": null,
+    "ambience": null
+}

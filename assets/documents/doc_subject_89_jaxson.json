@@ -1,0 +1,58 @@
+{
+    "id": "doc_subject_89_jaxson",
+    "name": "Subject 89 - Jaxson V.",
+    "type": "log_file",
+    "format": "terminal",
+    "adventure": "A Change of Heart",
+    
+    "metadata": {
+        "filename": "subject_89_jaxson.log",
+        "created": "2127-03-15",
+        "modified": "2142-08-22",
+        "author": "Bio-Dyne Medical Division",
+        "classification": "CONFIDENTIAL",
+        "size": "4.2 KB"
+    },
+    
+    "style": {
+        "monospace": true,
+        "color": "#33ff66",
+        "headerColor": "#ffaa00"
+    },
+    
+    "content": {
+        "header": "═══════════════════════════════════════════════════════════════\n  BIO-DYNE CORPORATION - PROJECT HEIRLOOM\n  SUBJECT FILE: 89\n═══════════════════════════════════════════════════════════════",
+        
+        "sections": [
+            {
+                "title": "SUBJECT IDENTIFICATION",
+                "text": "Name:           Jaxson V.\nDesignation:    Subject 89\nBlood Type:     Type-H (Synthetic)\nDOB:            2127-03-15\nStatus:         DEFECTIVE\nExpiration:     Cycle 30 (Estimated)"
+            },
+            {
+                "title": "GENETIC MARKERS",
+                "text": "Lattice Pattern:    PRESENT (Iris)\nOrgan Viability:    DEGRADED\nTimebomb Status:    ACTIVE\nSuppressant Req:    YES (Bio-Dyne Pure)\n\nNOTE: Subject shows accelerated decay following\n      cessation of water treatment program."
+            },
+            {
+                "title": "ACCESS LOG",
+                "text": "2142-08-22 03:14:07 - MAINTENANCE ACCESS GRANTED\n2142-08-22 03:14:12 - VENT CONTROL: REVERSAL AUTHORIZED\n2142-08-22 03:14:15 - USER 89 LOGGED OUT\n\n[FLAGGED: Unusual access pattern detected]\n[FLAGGED: Ventilation reversal preceded gas event]"
+            },
+            {
+                "title": "NOTES",
+                "text": "Subject 89 was granted maintenance access at age 15\nfor janitorial duties. Access chip #4092 issued.\n\nPOST-INCIDENT: Subject survived liquidation event.\nCurrent whereabouts: UNKNOWN\nRecommendation: No action required. Timebomb will\n                resolve within 15 years."
+            }
+        ],
+        
+        "footer": "═══════════════════════════════════════════════════════════════\n  END OF FILE\n═══════════════════════════════════════════════════════════════"
+    },
+    
+    "reveal_flags": ["knows_jax_betrayal"],
+    "unlocks_clues": ["log_evidence", "jax_identity"],
+    
+    "found_in": {
+        "terminals": ["oakhaven_admin_terminal"],
+        "items": ["item_chip_89"],
+        "scenes": ["AChangeOfHeart_Act_03_Chapter_01_Scene_05"]
+    },
+    
+    "gmNotes": "This is THE revelation document. It proves Jax authorized the ventilation reversal that enabled the gas attack. The timestamps and access logs are damning. Players who read this will understand Jax's guilt."
+}

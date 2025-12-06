@@ -1,0 +1,77 @@
+{
+    "id": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+    "adventure": "A Change of Heart",
+    "act": 3,
+    "chapter": 1,
+    "scene": 7,
+    "type": "ending",
+    "title": "The Exit",
+    "location": "Main Gate",
+    "image": null,
+    "visuals": "ASCII_Overlay: Dawn light. The gate silhouette. Hazers watching from rooftops.",
+    "tone": "Bittersweet, Exhausted, Reflective",
+    "lighting": "Pre-dawn grey. First hints of orange on the horizon. Long shadows.",
+    "audio": "Wind through broken buildings, distant birds, the creak of the gate, silence.",
+    "smell": "Morning dew, rust, the fading chemical smell of the zone.",
+    
+    "narrative": "The gate is ahead. The night is ending. What you carry with you - or don't - will define what comes next.",
+    
+    "gmNotes": "Ending scene. Outcome depends on player choices throughout the adventure. THE STING: If Jax lives, remind the player that the genetic timebomb is in his DNA - Elena's heart only bought him time. Months. Maybe a year. The tragedy is complete either way.",
+    
+    "npcs": [
+        {
+            "id": "rattle",
+            "name": "Rattle",
+            "role": "Hazer Leader",
+            "statblock": null,
+            "state": "watching",
+            "notes": "Appears only if Jax is dead and player was non-lethal.",
+            "motivation": "To see how this ends. He knew Jax as a child. He knows what Jax did.",
+            "personality": "Weary, dying, but at peace. He has accepted his fate. He respects the player's choice."
+        }
+    ],
+    
+    "challenges": [],
+    
+    "triggers": [
+        {
+            "id": "ending_jax_dead_nonlethal",
+            "condition": "jax_dead AND !hazers_killed",
+            "label": "Rattle's Mercy",
+            "action": "narrative",
+            "text": "Rattle meets you at the gate. He sees you are empty-handed. He removes his mask - his face is ruined, but his eyes are kind. 'You let him go.' He hands you a fresh air filter. 'Walk in clear air, stranger. She still sleeps. Maybe someone will find a cure someday.' He coughs. Blood flecks his lips. He is dying too. They all are.",
+            "grants_item": "item_air_filter",
+            "sets_flag": "ending_mercy"
+        },
+        {
+            "id": "ending_jax_dead_lethal",
+            "condition": "jax_dead AND hazers_killed",
+            "label": "Silent Judgment",
+            "action": "narrative",
+            "text": "The Hazers watch from the rooftops. No one speaks. No one moves. You walk out alone, past the bodies you made, past the friend you couldn't save. Elena still sleeps in her pod. The cure never came. It never will.",
+            "sets_flag": "ending_judgment"
+        },
+        {
+            "id": "ending_jax_alive",
+            "condition": "jax_alive",
+            "label": "The Weight",
+            "action": "narrative",
+            "text": "You carry Jax out. He's breathing. Elena's heart beats in his chest. The Hazers watch from the rooftops, silent. They know what you did. Jax knows too. He doesn't thank you.",
+            "sets_flag": "ending_weight"
+        },
+        {
+            "id": "ending_jax_alive_epilogue",
+            "condition": "jax_alive",
+            "label": "The Sting",
+            "action": "narrative",
+            "text": "[EPILOGUE - Read after a pause] Three months later, Jax calls you. His voice is weaker. 'It's happening again,' he says. 'The timebomb... it's in my DNA. Her heart just bought me time.' He laughs, but it's hollow. 'She died for months. That's all I got. Months.' The line goes dead. You never hear from him again.",
+            "sets_flag": "ending_sting"
+        }
+    ],
+    
+    "exits": [],
+    
+    "music": null,
+    "ambience": null,
+    "flags": ["adventure_end"]
+}

@@ -1,0 +1,77 @@
+{
+    "id": "prog_message_board",
+    "name": "Community Message Board",
+    "type": "application",
+    "category": "communication",
+    "adventure": "A Change of Heart",
+    
+    "description": "The Oakhaven community message board. Archived posts from residents. Last activity: 15 years ago.",
+    
+    "style": {
+        "theme": "community",
+        "primaryColor": "#00aaff",
+        "secondaryColor": "#0066aa",
+        "backgroundColor": "#001122",
+        "animatedBackground": false
+    },
+    
+    "interface": {
+        "type": "document_viewer",
+        "display": "windowed",
+        "header": "╔════════════════════════════════════════════════════════════╗\n║  OAKHAVEN COMMUNITY MESSAGE BOARD                          ║\n║  Status: ARCHIVED (Read-Only)                              ║\n╚════════════════════════════════════════════════════════════╝"
+    },
+    
+    "mechanics": {
+        "type": "document_browser",
+        "skill": null,
+        "difficulty": null,
+        
+        "menu": {
+            "options": [
+                { "key": "1", "label": "View Recent Posts", "action": "read", "target": "doc_message_board_archive" },
+                { "key": "2", "label": "Search by User", "action": "search" },
+                { "key": "3", "label": "Search by Date", "action": "search" },
+                { "key": "0", "label": "Exit", "action": "exit" }
+            ]
+        },
+        
+        "search_results": {
+            "Rattle_89": {
+                "posts": 47,
+                "last_seen": "2142-08-22 02:30:12",
+                "status": "OFFLINE"
+            },
+            "MamaRosa": {
+                "posts": 234,
+                "last_seen": "2142-08-22 02:22:17",
+                "status": "CONNECTION LOST"
+            }
+        }
+    },
+    
+    "documents": [
+        "doc_message_board_archive"
+    ],
+    
+    "events": {
+        "on_run": {
+            "sets_flag": "opened_message_board"
+        },
+        "on_view_archive": {
+            "sets_flag": "read_panic_messages",
+            "unlocks_clue": "final_messages"
+        },
+        "on_search_rattle": {
+            "sets_flag": "searched_rattle",
+            "unlocks_clue": "rattle_was_there"
+        }
+    },
+    
+    "found_in": {
+        "terminals": ["oakhaven_lobby_kiosk"],
+        "items": [],
+        "scenes": []
+    },
+    
+    "gmNotes": "This program displays the archived message board. The emotional impact comes from reading the final panicked messages. Searching for 'Rattle_89' reveals he was active during the attack and survived."
+}

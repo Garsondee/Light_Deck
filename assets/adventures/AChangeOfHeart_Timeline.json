@@ -1,0 +1,66 @@
+{
+    "id": "AChangeOfHeart_Timeline",
+    "adventure": "A Change of Heart",
+    "type": "timeline",
+    "version": "1.1",
+    "lastUpdated": "2025-12-05",
+    
+    "overview": "A chronological breakdown of events leading to the adventure. Use this to understand character motivations and answer player questions about the past.",
+    
+    "timeline": [
+        {
+            "year": -30,
+            "label": "PROJECT HEIRLOOM BEGINS",
+            "events": [
+                "Bio-Dyne initiates Project Heirloom.",
+                "First generation of Type-H subjects created with the 'Lattice' iris marker.",
+                "Elena is born as Subject 01."
+            ]
+        },
+        {
+            "year": -15,
+            "label": "THE OAKHAVEN GENERATION",
+            "events": [
+                "Jax (Subject 89) is born in Oakhaven.",
+                "Bio-Dyne distributes the stabilizer via 'Bio-Dyne Pure' water bottles."
+            ]
+        },
+        {
+            "year": 0,
+            "label": "THE LIQUIDATION",
+            "events": [
+                "Bio-Dyne moves to liquidate the project.",
+                "Mercenaries approach Jax (15). They ask for the Maintenance Access Chip to 'cut the power and flush the squatters' so the building can be sold.",
+                "Jax, believing it is a non-lethal eviction, trades the chip for a transit pass. He keeps the chip as a lucky charm.",
+                "Mercenaries use the chip's access to reverse the airflow and pump nerve gas. Hundreds die.",
+                "Elena remains frozen in a concealed room.",
+                "Residents flood the local message board with panic as the doors lock."
+            ]
+        },
+        {
+            "year": 15,
+            "label": "PRESENT DAY",
+            "events": [
+                "Jax is 30. He is dying. He still carries the chip, unaware it holds the logs of his complicity.",
+                "The Hazers (survivors) protect the ruin.",
+                "Elena's subconscious has begun to leak into the facility's local intranet."
+            ]
+        }
+    ],
+    
+    "keyRelationships": {
+        "jaxAndRattle": "Childhood friends. Rattle knows Jax traded the vent codes. They haven't spoken in 15 years.",
+        "jaxAndElena": "Jax never knew Elena personally. To him, she's just a compatible donor - a means to survive.",
+        "rattleAndHazers": "Rattle is their leader and protector. He watches them die one by one and can do nothing.",
+        "playerAndJax": "The player thinks Jax is a friend and employer. The truth is more complicated."
+    },
+    
+    "theStingInTheTail": {
+        "revelation": "Even if Jax receives Elena's heart, the genetic timebomb is not cured.",
+        "reason": "The killswitch is in his DNA, not his organs. Elena's heart will slow his decline, but it won't stop it.",
+        "outcome": "All Elena's sacrifice buys him is time. Months. Maybe a year.",
+        "tragedy": "There is no happy ending. The choice is between a quick death and a slow one - and whether an innocent woman dies for those extra months."
+    },
+    
+    "gmNotes": "Use this timeline to answer player questions and maintain consistency. Key dramatic beats: Jax's guilt (he helped kill these people), the mystery of simultaneous illness (the timebomb), and the final revelation (even saving Jax doesn't really save him)."
+}

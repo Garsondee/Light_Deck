@@ -1,0 +1,86 @@
+{
+    "id": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+    "adventure": "A Change of Heart",
+    "act": 2,
+    "chapter": 1,
+    "scene": 3,
+    "type": "exploration",
+    "title": "The Shrine",
+    "location": "Community Center Basement",
+    "image": null,
+    "visuals": "ASCII_Overlay: The room is filled with candle-flame artifacts (flickering '^' symbols). Faces in photos are pixelated.",
+    "tone": "Somber, Reverent, Haunted",
+    "lighting": "Candlelight only. Warm orange glow against cold concrete walls.",
+    "audio": "Dripping water, distant wind through broken windows, the occasional creak of settling debris.",
+    "smell": "Candle wax, mold, old paper, faint chemical residue.",
+    
+    "narrative": "You emerge into a basement. It's not a bunker; it's a shrine. Walls are covered in photos from 15 years ago. Candles burn everywhere.",
+    
+    "gmNotes": "This is the first major clue that the 'Gas Leak' was a murder, not an accident.",
+    
+    "npcs": [
+        {
+            "id": "jax",
+            "name": "Jaxson 'Jax' V.",
+            "role": "The Companion",
+            "statblock": null,
+            "state": "active",
+            "notes": "Visibly uncomfortable. Recognizes faces in the photos but says nothing.",
+            "motivation": "Wants to get through this room as quickly as possible. The guilt is overwhelming.",
+            "personality": "Evasive, tense, avoids eye contact. Will deflect questions about the photos."
+        }
+    ],
+    
+    "challenges": [
+        {
+            "id": "investigate_photos",
+            "skill": "Investigate",
+            "difficulty": 9,
+            "description": "Search the shrine for clues about what happened here.",
+            "success_effect": {
+                "text": "You find a 'Wall of the Missing'. You spot a photo of a 15-year-old boy. The face analysis matches Jaxson V. with 99.9% accuracy.",
+                "sets_flag": "found_jax_photo",
+                "unlocks_clue": "jax_was_here"
+            },
+            "failure_effect": {
+                "text": "You find medical logs. They list 'Genetic Organ Failure' as the cause of death for dozens of people - all within the same month. The same thing happening to Jax.",
+                "unlocks_clue": "genetic_timebomb_clue"
+            }
+        },
+        {
+            "id": "search_offerings",
+            "skill": "Perception",
+            "difficulty": 12,
+            "description": "Examine the offerings left at the shrine.",
+            "success_effect": {
+                "text": "Among the offerings, you find an empty bottle of 'Bio-Dyne Pure' water. The label is faded but readable. Why would they leave corporate water at a memorial?",
+                "grants_item": "item_water_pure",
+                "unlocks_clue": "biodyne_water_clue"
+            },
+            "failure_effect": {
+                "text": "The offerings are personal effects - photos, toys, jewelry. Nothing useful.",
+                "stress_damage": 0
+            }
+        }
+    ],
+    
+    "triggers": [
+        {
+            "id": "jax_reaction",
+            "label": "Jax's Discomfort",
+            "action": "passive",
+            "text": "Jax stares at the photos. His hands are shaking. He won't meet your eyes."
+        }
+    ],
+    
+    "exits": [
+        {
+            "target_scene_id": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+            "condition": "default",
+            "label": "Continue to the Courtyard"
+        }
+    ],
+    
+    "music": null,
+    "ambience": null
+}

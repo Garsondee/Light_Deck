@@ -149,6 +149,11 @@ const ThreeSetup = (function() {
         scene = new THREE.Scene();
         scene.background = new THREE.Color(0x0a0a0a);
         
+        // Initialize GlitchEffects
+        if (typeof GlitchEffects !== 'undefined') {
+            GlitchEffects.init();
+        }
+        
         // Texture loader
         textureLoader = new THREE.TextureLoader();
         
@@ -414,7 +419,10 @@ const ThreeSetup = (function() {
                 nextAutoGlitchTime = nowMs + initialDelay;
             }
 
-            if (nowMs >= nextAutoGlitchTime && CRTShader.config.glitchAmount === 0) {
+            // Don't trigger light glitches if a dramatic effect is running
+            const dramaticEffectActive = typeof GlitchEffects !== 'undefined' && GlitchEffects.isActive();
+
+            if (nowMs >= nextAutoGlitchTime && CRTShader.config.glitchAmount === 0 && !dramaticEffectActive) {
                 // Decide whether to trigger a glitch this frame.
                 // Small chance overall so we don't fire exactly every window.
                 const triggerChance = 0.25; // 25% chance when window opens
@@ -445,6 +453,12 @@ const ThreeSetup = (function() {
                     nextAutoGlitchTime = nowMs + retryDelay;
                 }
             }
+        }
+        
+        // Update dramatic glitch effects (power loss, signal loss, VHS corruption)
+        if (typeof GlitchEffects !== 'undefined') {
+            GlitchEffects.update(scenePlane ? scenePlane.material : null);
+            GlitchEffects.maybeAutoTrigger();
         }
 
         // If we're in terminal mode, continuously refresh the terminal texture

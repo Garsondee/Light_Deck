@@ -1,170 +1,323 @@
 {
     "id": "AChangeOfHeart_Guide",
     "adventure": "A Change of Heart",
-    "version": "1.0",
-    "author": "GM",
-    "lastUpdated": "2024-12-04",
+    "version": "1.1",
+    "authors": ["Ingram Blakelock", "Gemini 3 Pro"],
+    "lastUpdated": "2025-12-05",
     
     "overview": {
-        "title": "Adventure Overview",
-        "synopsis": "A corporate extraction job goes sideways when the target turns out to have secrets that could shake the foundations of Neo-Tokyo's power structure.",
-        "themes": ["Corporate intrigue", "Identity", "The cost of loyalty", "What makes us human"],
-        "tone": "Neo-noir with moments of dark humor. The sprawl is dangerous but not hopeless.",
-        "estimatedSessions": "3-5 sessions",
-        "playerCount": "3-5 players recommended"
+        "title": "A Change of Heart",
+        "synopsis": "A dying Edgerunner hires the player for a data extraction. The mission uncovers a tragedy of corporate negligence and a haunting choice.",
+        "themes": ["Transhumanism", "The cost of survival", "Corporate negligence", "Grief"],
+        "tone": "Tragic Noir. Gritty, rain-soaked, and emotionally heavy.",
+        "visualStyle": "Diegetic Interface. The player views the world through a high-contrast HUD. Look for the 'Lattice' glitch.",
+        "estimatedSessions": "1 session (2-4 hours)",
+        "playerCount": "1 (Duet Style) - Best for a Tech/Netrunner archetype"
     },
+    
+    "lore": {
+        "projectHeirloom": "A Bio-Dyne breeding program from 30 years ago. Goal: Create humans with durable organs for labor. Result: Subjects have above-average organ strength and longevity, but Bio-Dyne engineered two failsafes.",
+        "typeH": "All Heirloom subjects have 'Type-H' blood - an artificial blood type incompatible with normal transfusions. They can only receive organs from other Type-H donors.",
+        "geneticTimebomb": "Bio-Dyne engineered a genetic killswitch. Without a suppressant compound in the water supply, subjects begin terminal organ failure after ~10 years. The water treatment stopped 15 years ago when Bio-Dyne abandoned the project.",
+        "theGasLeak": "The official story: An industrial accident 15 years ago. The truth: Bio-Dyne used nerve gas to liquidate the subjects before selling the land to Omni-Global. But some survived.",
+        "theMystery": "All surviving Heirloom subjects are now falling ill simultaneously - regardless of age, gender, or lifestyle. The genetic timebomb has gone off. There is no cure. No hospital can help them.",
+        "elenaHistory": "Elena (Subject 01) was the Control Subject - kept pristine while others were tested. When the liquidation order came, she was in a biocell awaiting experimental treatment. The raiders cleared the building but missed her room - the entrance was concealed behind a maintenance panel. She has been in stasis for 15 years, frozen mid-treatment, waiting for a cure that never came.",
+        "theStingInTheTail": "Even if Jax receives Elena's heart, the genetic timebomb is not cured. Her organs will slow his decline, but the killswitch is in his DNA. All Elena's sacrifice buys him is time. Months. Maybe a year. The tragedy is complete.",
+        "jaxHistory": "Jax was born 'Subject 89'. At age 15, he traded the ventilation codes to the mercs for his freedom, unknowingly helping them gas his own neighborhood. Now the timebomb is killing him.",
+        "theHazers": "Survivors of the gas living in the ruin. They are all dying from the same genetic timebomb. They protect the zone as a tomb - and soon, their own.",
+        "theGhost": "Elena is not a supernatural ghost. She is a glitched user profile. Her neural link has been active for 15 years, creating a directory of 'dreams' in the local system.",
+        "theMark": "The Lattice. A faint honeycomb pattern in the eyes of all subjects. Establish this early with Jax, then reveal it on the Hazers.",
+        "theBetrayal": "Jax didn't know about the gas. He thought he was helping an eviction. The proof is on the keycard he carries."
+    },
+    
+    "timeline": [
+        { "year": -30, "event": "Project Heirloom begins. Bio-Dyne creates the first Type-H subjects." },
+        { "year": -30, "event": "Elena is born as Subject 01 - the Control Subject." },
+        { "year": -15, "event": "Jax (Subject 89) is born in the Oakhaven block." },
+        { "year": -15, "event": "Bio-Dyne begins adding the suppressant compound to the water supply." },
+        { "year": 0, "label": "THE LIQUIDATION", "event": "Bio-Dyne orders the project terminated. Jax (age 15) trades vent codes for a transit pass. Mercenaries use nerve gas to kill the subjects." },
+        { "year": 0, "event": "Elena is in a biocell awaiting treatment when the raid begins. Raiders miss her concealed room. She remains in stasis." },
+        { "year": 0, "event": "Water treatment stops. The genetic timebomb begins its countdown." },
+        { "year": 0, "event": "Some subjects survive the gas. They become the Hazers." },
+        { "year": "+5", "event": "The timebomb activates. Heirloom subjects begin experiencing organ failure." },
+        { "year": "+15", "label": "PRESENT DAY", "event": "Jax is 30. His heart is failing. He hires the player for one last job." },
+        { "year": "+15", "event": "All surviving Heirloom subjects are dying simultaneously. The Hazers are falling. There is no cure." }
+    ],
     
     "index": [
         {
             "id": "act1",
-            "title": "Act 1: The Job",
+            "title": "Act 1: The Lie",
             "sections": [
-                { "id": "act1_setup", "title": "Setup & Hook" },
-                { "id": "act1_locations", "title": "Key Locations" },
-                { "id": "act1_npcs", "title": "NPCs Introduced" },
-                { "id": "act1_scenes", "title": "Scene Breakdown" }
+                { "id": "scene_01", "title": "The Noodle Bar" },
+                { "id": "scene_02", "title": "The Gate" }
             ]
         },
         {
             "id": "act2",
-            "title": "Act 2: Complications",
+            "title": "Act 2: The Ruins",
             "sections": [
-                { "id": "act2_setup", "title": "Setup & Escalation" },
-                { "id": "act2_locations", "title": "Key Locations" },
-                { "id": "act2_npcs", "title": "NPCs Introduced" },
-                { "id": "act2_scenes", "title": "Scene Breakdown" }
+                { "id": "scene_03", "title": "The Shrine" },
+                { "id": "scene_04", "title": "The Courtyard Ambush" }
             ]
         },
         {
             "id": "act3",
-            "title": "Act 3: Resolution",
+            "title": "Act 3: The Choice",
             "sections": [
-                { "id": "act3_setup", "title": "Setup & Climax" },
-                { "id": "act3_locations", "title": "Key Locations" },
-                { "id": "act3_npcs", "title": "Final Confrontations" },
-                { "id": "act3_endings", "title": "Possible Endings" }
-            ]
-        },
-        {
-            "id": "appendix_npcs",
-            "title": "Appendix: All NPCs",
-            "sections": [
-                { "id": "npc_allies", "title": "Potential Allies" },
-                { "id": "npc_enemies", "title": "Antagonists" },
-                { "id": "npc_neutral", "title": "Neutral Parties" }
-            ]
-        },
-        {
-            "id": "appendix_locations",
-            "title": "Appendix: Locations",
-            "sections": [
-                { "id": "loc_corporate", "title": "Corporate Zones" },
-                { "id": "loc_street", "title": "Street Level" },
-                { "id": "loc_underground", "title": "Underground" }
-            ]
-        },
-        {
-            "id": "appendix_items",
-            "title": "Appendix: Key Items",
-            "sections": [
-                { "id": "items_macguffins", "title": "Plot Items" },
-                { "id": "items_loot", "title": "Notable Loot" }
+                { "id": "scene_05", "title": "The Admin Wing" },
+                { "id": "scene_06", "title": "The Cryo Lab" },
+                { "id": "scene_07", "title": "The Exit" }
             ]
         }
     ],
     
     "content": {
-        "act1_setup": {
-            "title": "Act 1: Setup & Hook",
-            "text": "The players are contacted by a fixer named Yuki Sato with a job: extract a mid-level Arasaka researcher named Dr. Elena Vasquez before she's 'retired' by corporate security.\n\nThe catch: Vasquez doesn't know she's being extracted. She thinks she's safe.\n\nThe real catch: Vasquez isn't entirely human anymore.",
-            "gmNotes": "Don't reveal the twist about Vasquez until Act 2. Let players think this is a standard extraction.",
-            "hooks": [
-                "Yuki offers 10,000 credits per player, half up front",
-                "One player may have history with Arasaka (use their backstory)",
-                "The job has a 48-hour window before Vasquez is moved to a black site"
-            ]
-        },
-        
-        "act1_npcs": {
-            "title": "Act 1: NPCs Introduced",
-            "npcs": [
-                {
-                    "id": "yuki_sato",
-                    "name": "Yuki Sato",
-                    "role": "Fixer / Quest Giver",
-                    "description": "Professional, cold, always has an angle. Runs jobs out of a noodle bar in the Shibuya undercity.",
-                    "statblock": null
+        "npc_manifest": {
+            "allies": [
+                { 
+                    "id": "jax", 
+                    "name": "Jaxson 'Jax' V.", 
+                    "role": "The Companion", 
+                    "description": "Edgerunner. 30 years old. Dying of the genetic timebomb. Type-H blood. Charismatic but desperate.",
+                    "secret": "He is Subject 89. He betrayed his people 15 years ago. No hospital can save him - he needs a Type-H donor." 
+                }
+            ],
+            "enemies": [
+                { 
+                    "id": "rattle", 
+                    "name": "Rattle", 
+                    "role": "Hazer Leader", 
+                    "description": "Wears a heavy gas mask. Voice box destroyed by gas. Protective of the ruins.",
+                    "secret": "Childhood friend of Jax."
                 },
                 {
-                    "id": "elena_vasquez",
-                    "name": "Dr. Elena Vasquez",
-                    "role": "Extraction Target",
-                    "description": "Arasaka biotech researcher. Nervous, brilliant, hiding something big.",
-                    "statblock": null
-                },
+                    "id": "hazer_mook",
+                    "name": "Hazer Sentinel",
+                    "role": "Minion",
+                    "description": "Sickly survivors in scavenged hazmat gear."
+                }
+            ],
+            "neutral": [
                 {
-                    "id": "corpo_security_squad",
-                    "name": "Arasaka Security",
-                    "role": "Opposition",
-                    "description": "Standard corporate security. Professional but not elite.",
-                    "statblock": "corpo_security_squad"
+                    "id": "elena",
+                    "name": "Elena (Subject 01)",
+                    "role": "The MacGuffin",
+                    "description": "A woman in cryo-stasis. Type-H blood. She was in a biocell awaiting treatment when the liquidation happened - the raiders missed her hidden room. She's been frozen for 15 years.",
+                    "state": "Unconscious/Passive"
                 }
             ]
-        },
-        
-        "appendix_npcs": {
-            "title": "All NPCs",
-            "categories": {
-                "allies": [
-                    { "id": "yuki_sato", "name": "Yuki Sato", "role": "Fixer" },
-                    { "id": "patch_webb", "name": "Marcus 'Patch' Webb", "role": "Ripperdoc" }
-                ],
-                "enemies": [
-                    { "id": "razor_jin", "name": "Razor Jin", "role": "Gang Lieutenant" },
-                    { "id": "director_tanaka", "name": "Director Tanaka", "role": "Arasaka Exec" }
-                ],
-                "neutral": [
-                    { "id": "elena_vasquez", "name": "Dr. Elena Vasquez", "role": "Target" },
-                    { "id": "ghost", "name": "Ghost", "role": "Info Broker" }
-                ]
-            }
         }
     },
     
-    "quickReference": {
-        "dcTable": [
-            { "dc": 8, "difficulty": "Routine" },
-            { "dc": 12, "difficulty": "Standard" },
-            { "dc": 15, "difficulty": "Challenging" },
-            { "dc": 18, "difficulty": "Hard" },
-            { "dc": 22, "difficulty": "Extreme" }
-        ],
-        "commonChecks": [
-            { "situation": "Hack unprotected terminal", "skill": "Netrunning", "dc": 8 },
-            { "situation": "Hack corporate terminal", "skill": "Netrunning", "dc": 15 },
-            { "situation": "Spot hidden threat", "skill": "Perception", "dc": 12 },
-            { "situation": "Bribe a guard", "skill": "Persuasion", "dc": 12 },
-            { "situation": "Intimidate a mook", "skill": "Intimidation", "dc": 10 },
-            { "situation": "Tail someone in a crowd", "skill": "Stealth", "dc": 12 }
-        ],
-        "importantCredits": [
-            { "item": "Street food", "cost": "5-10" },
-            { "item": "Ammo (box)", "cost": "50" },
-            { "item": "Bribe (minor)", "cost": "100-500" },
-            { "item": "Bribe (major)", "cost": "1000+" },
-            { "item": "Fake ID", "cost": "500-2000" },
-            { "item": "Ripperdoc visit", "cost": "500-5000" }
+    "state_tracking": {
+        "title": "Campaign Flags",
+        "description": "Boolean and enum flags that track player choices and discoveries throughout the adventure.",
+        "flags": [
+            {
+                "id": "suspects_jax_lying",
+                "type": "boolean",
+                "default": false,
+                "description": "True if player passes the Empathy check in Scene 1 and notices Jax's deception."
+            },
+            {
+                "id": "witnessed_jax_cough",
+                "type": "boolean",
+                "default": false,
+                "description": "True if player witnesses Jax coughing black fluid in Scene 1."
+            },
+            {
+                "id": "entered_undetected",
+                "type": "boolean",
+                "default": false,
+                "description": "True if player bypasses the gate without triggering an alarm."
+            },
+            {
+                "id": "alarm_triggered",
+                "type": "boolean",
+                "default": false,
+                "description": "True if player triggers an alarm at the gate or in the Admin Wing."
+            },
+            {
+                "id": "found_jax_photo",
+                "type": "boolean",
+                "default": false,
+                "description": "True if player finds the photo of young Jax in the Shrine."
+            },
+            {
+                "id": "knows_jax_betrayal",
+                "type": "boolean",
+                "default": false,
+                "description": "True if player reads the logs in Scene 5 or checks the Maintenance Chip."
+            },
+            {
+                "id": "jax_confronted",
+                "type": "boolean",
+                "default": false,
+                "description": "True if player confronts Jax about his role in the massacre."
+            },
+            {
+                "id": "hazers_status",
+                "type": "enum",
+                "options": ["neutral", "negotiated", "spared", "killed"],
+                "default": "neutral",
+                "description": "Tracks how the player resolved the Hazer encounter in Scene 4."
+            },
+            {
+                "id": "jax_fate",
+                "type": "enum",
+                "options": ["alive", "dead"],
+                "default": "alive",
+                "description": "Tracks whether Jax survives the adventure."
+            },
+            {
+                "id": "elena_fate",
+                "type": "enum",
+                "options": ["alive", "harvested"],
+                "default": "alive",
+                "description": "Tracks whether Elena is harvested for her organs."
+            },
+            {
+                "id": "ending",
+                "type": "enum",
+                "options": ["mercy", "judgment", "weight", "sting"],
+                "default": null,
+                "description": "Which ending the player received."
+            }
         ]
     },
     
-    "sessionNotes": [
-        {
-            "session": 1,
-            "date": null,
-            "summary": "",
-            "npcsIntroduced": [],
-            "plotThreads": [],
-            "playerActions": []
-        }
-    ]
+    "items": {
+        "title": "Item Database",
+        "description": "Key items, clutter, and loot that can be found or referenced during the adventure.",
+        "content": [
+            {
+                "id": "item_chip_89",
+                "name": "Rusted Maintenance Chip",
+                "type": "key_item",
+                "description": "Jax's 'lucky charm'. A corroded access chip from 15 years ago.",
+                "data_content": "Log #4092: User 89 authorized ventilation reversal. Timestamp: 15 years ago.",
+                "reveal_flag": "knows_jax_betrayal",
+                "location": "Jax carries this. Can be pickpocketed or given willingly."
+            },
+            {
+                "id": "item_water_pure",
+                "name": "Bio-Dyne Pure (Empty)",
+                "type": "clue",
+                "description": "A yellowed plastic bottle. The label reads 'Bio-Dyne Pure - Fortified Water'. Chemical residue inside.",
+                "data_content": "Lab analysis reveals trace amounts of an unknown compound - possibly a stabilizer or suppressant.",
+                "reveal_flag": null,
+                "location": "Found at the Shrine offerings (Scene 3) or on Hazer bodies."
+            },
+            {
+                "id": "item_photo_jax",
+                "name": "Faded Photo",
+                "type": "clue",
+                "description": "A photo of a 15-year-old boy. Facial recognition matches Jaxson V. with 99.9% accuracy.",
+                "data_content": null,
+                "reveal_flag": "found_jax_photo",
+                "location": "Wall of the Missing in the Shrine (Scene 3)."
+            },
+            {
+                "id": "item_medical_logs",
+                "name": "Medical Logs",
+                "type": "clue",
+                "description": "Printouts listing 'Genetic Organ Failure' as cause of death for dozens of people - all within the same month.",
+                "data_content": "The dates match the present day. The same thing is happening to Jax.",
+                "reveal_flag": null,
+                "location": "Found in the Shrine (Scene 3) on failed Investigate check."
+            },
+            {
+                "id": "item_air_filter",
+                "name": "Fresh Air Filter",
+                "type": "gift",
+                "description": "A clean air filter, still sealed. Given by Rattle as a blessing.",
+                "data_content": null,
+                "reveal_flag": null,
+                "location": "Given by Rattle in the Mercy ending (Scene 7)."
+            },
+            {
+                "id": "item_hazer_loot_bottle",
+                "name": "Empty Bio-Dyne Pure Bottle",
+                "type": "clutter",
+                "description": "An empty water bottle with faded corporate branding.",
+                "data_content": null,
+                "reveal_flag": null,
+                "location": "Hazer Sentinel loot (100% drop rate)."
+            },
+            {
+                "id": "item_hazer_loot_scrap",
+                "name": "Scrap Components",
+                "type": "loot",
+                "description": "Salvageable electronics and metal. Worth a few credits.",
+                "data_content": null,
+                "reveal_flag": null,
+                "location": "Hazer Sentinel loot (60% drop rate)."
+            },
+            {
+                "id": "item_hazer_loot_water",
+                "name": "Filtered Water",
+                "type": "consumable",
+                "description": "One bottle of filtered water. Safe to drink.",
+                "data_content": null,
+                "reveal_flag": null,
+                "location": "Hazer Sentinel loot (40% drop rate)."
+            },
+            {
+                "id": "item_hazer_loot_photo",
+                "name": "Old Family Photo",
+                "type": "clutter",
+                "description": "A worn photo of a family. The faces are smiling. They're all dead now.",
+                "data_content": null,
+                "reveal_flag": null,
+                "location": "Hazer Sentinel loot (20% drop rate)."
+            },
+            {
+                "id": "item_hazer_loot_ammo",
+                "name": "Ammo (1d4 rounds)",
+                "type": "loot",
+                "description": "A handful of mismatched ammunition.",
+                "data_content": null,
+                "reveal_flag": null,
+                "location": "Hazer Sentinel loot (50% drop rate)."
+            }
+        ]
+    },
+    
+    "clues": {
+        "title": "Clue Database",
+        "description": "Information the player can discover that advances the mystery.",
+        "content": [
+            {
+                "id": "jax_was_here",
+                "name": "Jax Was Here",
+                "description": "Jax lived in Oakhaven 15 years ago. He was a child when the massacre happened.",
+                "unlocked_by": ["investigate_photos"]
+            },
+            {
+                "id": "genetic_timebomb_clue",
+                "name": "The Genetic Timebomb",
+                "description": "All the Oakhaven residents are dying of the same genetic condition - simultaneous organ failure.",
+                "unlocked_by": ["investigate_photos_fail", "search_offerings"]
+            },
+            {
+                "id": "biodyne_water_clue",
+                "name": "Bio-Dyne Water",
+                "description": "Bio-Dyne distributed 'fortified' water to Oakhaven. The water contained a suppressant compound.",
+                "unlocked_by": ["search_offerings"]
+            },
+            {
+                "id": "log_evidence",
+                "name": "The Terminal Logs",
+                "description": "Jax traded the ventilation codes to Bio-Dyne mercenaries. They used them to pump nerve gas.",
+                "unlocked_by": ["hack_terminal"]
+            },
+            {
+                "id": "chip_evidence",
+                "name": "The Chip Logs",
+                "description": "Jax's 'lucky charm' contains logs proving he authorized the ventilation reversal.",
+                "unlocked_by": ["read_chip"]
+            }
+        ]
+    }
 }

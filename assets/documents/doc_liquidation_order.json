@@ -1,0 +1,79 @@
+{
+    "id": "doc_liquidation_order",
+    "name": "Project Heirloom - Liquidation Order",
+    "type": "memo",
+    "format": "document",
+    "adventure": "A Change of Heart",
+    
+    "metadata": {
+        "filename": "liquidation_order.doc",
+        "created": "2142-08-20",
+        "modified": "2142-08-20",
+        "author": "Bio-Dyne Executive Board",
+        "classification": "EYES ONLY",
+        "size": "2.1 KB"
+    },
+    
+    "style": {
+        "monospace": false,
+        "color": "#ffffff",
+        "headerColor": "#ff4444",
+        "fontFamily": "serif"
+    },
+    
+    "content": {
+        "header": "══════════════════════════════════════════════════════════════\n                    BIO-DYNE CORPORATION\n                    INTERNAL MEMORANDUM\n                    CLASSIFICATION: EYES ONLY\n══════════════════════════════════════════════════════════════",
+        
+        "sections": [
+            {
+                "title": "TO",
+                "text": "Oakhaven Facility Director\nSecurity Division Chief\nMedical Division Chief"
+            },
+            {
+                "title": "FROM",
+                "text": "Executive Board, Bio-Dyne Corporation"
+            },
+            {
+                "title": "RE",
+                "text": "PROJECT HEIRLOOM - IMMEDIATE TERMINATION"
+            },
+            {
+                "title": "DATE",
+                "text": "2142-08-20"
+            },
+            {
+                "title": "DIRECTIVE",
+                "text": "Effective immediately, Project Heirloom is to be\nterminated with extreme prejudice.\n\nThe Oakhaven facility has been sold to Omni-Global\nDevelopment. Transfer of property requires complete\nvacation of all Bio-Dyne assets, including biological\nmaterials.\n\nYou are authorized to use Protocol CLEAN SWEEP.\n\nNo subjects are to survive.\nNo records are to remain.\nNo witnesses."
+            },
+            {
+                "title": "METHOD",
+                "text": "1. Obtain maintenance access codes from local asset\n2. Seal all exits\n3. Reverse ventilation system\n4. Deploy Agent-7 (Nerve Agent) via HVAC\n5. Wait 4 hours for dispersal\n6. Sweep team confirms zero survivors\n7. Incinerate biological materials\n8. Format all local storage"
+            },
+            {
+                "title": "COVER STORY",
+                "text": "Official cause: Industrial gas leak.\nMedia contacts have been briefed.\nLocal authorities have been compensated."
+            },
+            {
+                "title": "TIMELINE",
+                "text": "Execution: 2142-08-22, 0200 hours\nProperty transfer: 2142-08-25\n\nFailure is not an option."
+            }
+        ],
+        
+        "footer": "══════════════════════════════════════════════════════════════\n              THIS DOCUMENT WILL SELF-DESTRUCT\n                    [DELETION FAILED]\n══════════════════════════════════════════════════════════════"
+    },
+    
+    "requires_access": "admin",
+    "requires_hack": true,
+    "hack_difficulty": 15,
+    
+    "reveal_flags": ["knows_liquidation_order"],
+    "unlocks_clues": ["biodyne_guilt", "planned_massacre"],
+    
+    "found_in": {
+        "terminals": ["oakhaven_admin_terminal"],
+        "items": [],
+        "scenes": ["AChangeOfHeart_Act_03_Chapter_01_Scene_05"]
+    },
+    
+    "gmNotes": "This is the smoking gun proving Bio-Dyne's guilt. It shows the massacre was planned, deliberate, and covered up. The 'local asset' mentioned is Jax - they used him to get the vent codes. The deletion failed note suggests the system crashed before it could destroy evidence."
+}

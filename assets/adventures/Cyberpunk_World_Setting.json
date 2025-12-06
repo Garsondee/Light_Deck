@@ -1,0 +1,141 @@
+{
+    "id": "Cyberpunk_World_Setting",
+    "type": "setting",
+    "name": "Neo-Pacific Sprawl",
+    "version": "1.1",
+    "lastUpdated": "2025-12-05",
+    
+    "overview": {
+        "era": "2087",
+        "location": "Neo-Pacific Sprawl",
+        "tone": "Tragic Noir. Rain-soaked streets, neon reflections, corporate shadows.",
+        "themes": ["Transhumanism", "Corporate control", "The cost of survival", "Identity in a digital age"]
+    },
+    
+    "history": {
+        "theCollapse": "2045 - Global economic collapse. Nation-states fragment.",
+        "theReconstruction": "2050-2070 - Corporations rebuild cities as 'Sprawls'.",
+        "theDigitalAge": "2070-present - Neural interfaces become ubiquitous."
+    },
+    
+    "geography": {
+        "upperCity": "Corporate towers, clean air, security drones. The wealthy live here. Access requires corporate citizenship or a very good fake ID.",
+        "midCity": "The working class. Factories, housing blocks, street markets. Most people live their entire lives here.",
+        "underCity": "The forgotten. Abandoned infrastructure, black markets, gang territories. No corporate oversight - and no corporate protection.",
+        "exclusionZones": "Contaminated or abandoned areas. Officially off-limits. Home to squatters, scavengers, and things best left undisturbed."
+    },
+    
+    "factions": {
+        "megacorps": [
+            {
+                "name": "Omni-Global",
+                "focus": "Infrastructure, real estate, municipal services",
+                "reputation": "The 'clean' corporation. Owns the water, the power, the roads. Quietly ruthless."
+            },
+            {
+                "name": "Bio-Dyne",
+                "focus": "Biotechnology, genetic engineering, pharmaceuticals",
+                "reputation": "Pioneers of human enhancement. Dark history of unethical experiments. Officially 'reformed'."
+            },
+            {
+                "name": "Nexus Security",
+                "focus": "Private military, corporate security, law enforcement contracts",
+                "reputation": "The boot on the Sprawl's neck. Professional, brutal, everywhere."
+            },
+            {
+                "name": "Horizon Digital",
+                "focus": "Software, neural interfaces, virtual reality",
+                "reputation": "Controls the Net. Knows everything about everyone. Sells that data to the highest bidder."
+            }
+        ],
+        "streetLevel": [
+            {
+                "name": "Fixers",
+                "description": "Information brokers and job arrangers. They connect people who need things done with people who do things."
+            },
+            {
+                "name": "Edgerunners",
+                "description": "Freelance operatives. Hackers, mercenaries, thieves. They take the jobs corporations won't officially sanction."
+            },
+            {
+                "name": "Rippers",
+                "description": "Street surgeons. Install cyberware, patch up bullet wounds, ask no questions."
+            },
+            {
+                "name": "Gangs",
+                "description": "Territorial groups controlling underCity blocks. Some are organized crime, some are community defense, most are both."
+            }
+        ]
+    },
+    
+    "technology": {
+        "cyberware": {
+            "description": "Mechanical and electronic augmentations.",
+            "commonTypes": [
+                "Neural Interface",
+                "Cybereyes",
+                "Cyberarms",
+                "Reflex Boosters"
+            ],
+            "risks": "Cyberpsychosis - too much chrome can erode empathy and humanity. The body rejects what the mind cannot accept."
+        },
+        "theNet": {
+            "description": "Global digital network. Visualized as a 3D space when accessed via neural interface.",
+            "netrunning": "Skilled hackers 'run' the Net, breaking through corporate ICE (Intrusion Countermeasures Electronics) to steal data or sabotage systems.",
+            "dangers": "Black ICE can fry a netrunner's brain. Corporate countermeasures are lethal."
+        },
+        "biotech": {
+            "description": "Genetic modification, cloning, organ printing.",
+            "applications": "Designer drugs, custom organs, enhanced humans.",
+            "ethics": "Officially regulated. Unofficially, anything goes if you have the credits.",
+            "special": {
+                "name": "The Lattice (Bio-Dyne Marker)",
+                "description": "A microscopic, honeycomb mesh woven into the iris structure of Project Heirloom subjects. Invisible to the naked eye. Visible only via high-end optic scanners (like a Netrunner's HUD) when zoomed 10x.",
+                "significance": "Designed for automated doors to track subjects without unsightly tattoos."
+            }
+        }
+    },
+    
+    "economy": {
+        "currency": "Credits (universal digital currency) and Scrip (corporate-specific tokens)",
+        "employment": "Most people work for corporations. Freelancers operate in legal grey zones.",
+        "blackMarket": "Thriving trade in stolen data, illegal cyberware, unlicensed biotech, and corporate secrets."
+    },
+    
+    "dailyLife": {
+        "housing": "Corporate dormitories, coffin hotels, or street-level apartments. Privacy is a luxury.",
+        "food": "Synthetic protein, vat-grown meat.",
+        "beverages": {
+            "common": "Sludge-Cola, Recycled H2O.",
+            "rare": "Bio-Dyne Pure - A discontinued brand of bottled water found in the Oakhaven ruins. The plastic is brittle and yellowed. It contained the chemical stabilizer required for Heirloom subjects."
+        },
+        "entertainment": "Virtual reality, braindance recordings (experience someone else's memories), underground clubs.",
+        "healthcare": "Corporate clinics for citizens. Street rippers for everyone else."
+    },
+    
+    "law": {
+        "enforcement": "Nexus Security holds most law enforcement contracts. Corporate citizens get protection. Everyone else gets whatever they can afford.",
+        "justice": "Corporate tribunals for corporate matters. Street justice for street matters.",
+        "rights": "Officially, everyone has rights. Practically, rights cost money."
+    },
+    
+    "slang": {
+        "chrome": "Cyberware",
+        "meat": "Unaugmented human body",
+        "flatline": "To die (from the sound of a heart monitor)",
+        "ice": "Intrusion Countermeasures Electronics (security software)",
+        "jack in": "Connect to the Net via neural interface",
+        "ripper": "Street surgeon",
+        "fixer": "Job broker / information dealer",
+        "edgerunner": "Freelance operative",
+        "corpo": "Corporate employee (often derogatory)",
+        "street samurai": "Combat-focused mercenary",
+        "netrunner": "Hacker who operates in the Net",
+        "gonk": "Idiot",
+        "preem": "Premium, excellent",
+        "delta": "To leave quickly",
+        "zero": "To kill someone"
+    },
+    
+    "gmNotes": "This setting is designed for noir storytelling. The world is corrupt, the powerful are untouchable, and individual actions rarely change the system - but they can change individual lives. Focus on personal stakes, moral compromises, and the human cost of survival in an inhuman world."
+}

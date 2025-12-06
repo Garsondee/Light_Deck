@@ -1,0 +1,94 @@
+{
+    "id": "jax",
+    "name": "Jaxson 'Jax' V.",
+    "type": "companion",
+    "archetype": "edgerunner",
+    
+    "public": {
+        "description": "A charismatic edgerunner in his early 30s. He moves with a slight limp and occasionally winces when exerting himself. Despite his condition, his eyes are sharp and his smile is disarming.",
+        "appearance": "Lean build, dark hair with silver streaks, worn leather jacket. A faded Bio-Dyne logo tattoo on his neck that he tries to hide.",
+        "demeanor": "Friendly and quick-witted, but there's a desperation behind his charm. He deflects personal questions with humor.",
+        "known_facts": [
+            "Goes by 'Jax' - doesn't share his full name easily",
+            "Clearly unwell - occasional coughing fits, pallid complexion",
+            "Knows his way around Oakhaven unusually well",
+            "Skilled netrunner and smooth talker"
+        ]
+    },
+    
+    "private": {
+        "full_description": "Edgerunner. 30 years old. Dying of the genetic timebomb. Type-H blood. Charismatic but desperate. Born as 'Subject 89' in the Bio-Dyne breeding program.",
+        
+        "stats": {
+            "stress": 0,
+            "stressMax": 4,
+            "wounds": 3,
+            "armor": 1,
+            "attack": 5,
+            "defense": 13
+        },
+        
+        "attributes": {
+            "reflex": 2,
+            "body": 0,
+            "tech": 2,
+            "neural": 1,
+            "edge": 2,
+            "presence": 3
+        },
+        
+        "skills": {
+            "primary": "Netrunning",
+            "primaryBonus": 3,
+            "secondary": "Persuasion",
+            "secondaryBonus": 2
+        },
+        
+        "weapons": [
+            {
+                "name": "Worn Pistol",
+                "damage": "1d6+2",
+                "type": "kinetic",
+                "notes": "Reliable but old"
+            }
+        ],
+        
+        "abilities": [
+            {
+                "name": "Genetic Timebomb",
+                "description": "The Bio-Dyne killswitch is active. Cannot sprint or take strenuous actions without taking 1 Stress. If Stress reaches max, collapses. No hospital can help - he needs a Type-H donor.",
+                "cooldown": null
+            },
+            {
+                "name": "Street Charm",
+                "description": "+2 to Persuasion checks against street-level contacts.",
+                "cooldown": null
+            },
+            {
+                "name": "Legacy Access",
+                "description": "Knows Bio-Dyne systems. +3 to Tech checks in Oakhaven.",
+                "cooldown": null
+            }
+        ],
+        
+        "cyberware": [
+            "Basic neural interface",
+            "Subdermal pocket (hidden)"
+        ],
+        
+        "behavior": {
+            "tactics": "Avoids direct combat. Prefers hacking and talking his way out. Will protect the player.",
+            "morale": "Will not flee. This is his last mission.",
+            "motivation": "Survival. He needs Elena's heart AND her Type-H blood to live. No hospital can help him. He's been planning this for months."
+        },
+        
+        "secrets": {
+            "identity": "Subject 89 from Project Heirloom",
+            "guilt": "At age 15, he traded the ventilation codes to Bio-Dyne mercenaries for a transit pass. He didn't know they would use nerve gas.",
+            "condition": "Genetic Timebomb - the Bio-Dyne killswitch activated when the water treatment stopped. His Type-H blood means no normal donor can save him. He has days left.",
+            "item": "The Maintenance Chip - Grants access to Oakhaven, but contains the log proving he authorized the gas attack (unknowingly)."
+        },
+        
+        "gm_notes": "Jax is the tragic heart of this adventure. He's not evil - he was a scared kid who made a terrible choice. Now he's a dying man who will do anything to survive, including killing an innocent woman.\n\nPlay him as likeable and charming early on. Let the player grow attached before the revelations hit."
+    }
+}

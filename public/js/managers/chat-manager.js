@@ -1100,6 +1100,14 @@ const ChatManager = (function() {
                 case 'prev':
                     navigateScene('prev');
                     break;
+                case 'look':
+                case 'examine':
+                case 'inspect':
+                    examineNPC(args.join(' '));
+                    break;
+                case 'npcs':
+                    listNPCs();
+                    break;
                 default:
                     addMessage('error', `Unknown command: ${cmd}`);
             }
@@ -1456,7 +1464,114 @@ const ChatManager = (function() {
     }
     
     /**
-     * Toggle GM overlay
+     * List NPCs in current scene
+     */
+    function listNPCs() {
+        if (typeof SceneManager === 'undefined') {
+            addMessage('error', 'SceneManager not available');
+            return;
+        }
+        
+        const scene = SceneManager.getCurrentScene();
+        if (!scene || !scene.npcs || scene.npcs.length === 0) {
+            addMessage('system', 'No NPCs in current scene');
+            return;
+        }
+        
+        addMessage('system', '─── NPCs IN SCENE ───');
+        for (const npc of scene.npcs) {
+            const stateIcon = {
+                active: '●',
+                passive: '○',
+                hidden: '◐',
+                defeated: '✗'
+            }[npc.state] || '?';
+            addMessage('system', `${stateIcon} ${npc.name} - ${npc.role}`);
+        }
+        addMessage('system', 'Use /look <name> to examine');
+    }
+    
+    /**
+     * Examine an NPC (player gets public info only)
+     */
+    function examineNPC(name) {
+        if (!name) {
+            addMessage('error', 'Usage: /look <npc name>');
+            addMessage('system', 'Example: /look Jax');
+            return;
+        }
+        
+        // Try to find NPC in current scene first
+        let npcId = null;
+        if (typeof SceneManager !== 'undefined') {
+            const scene = SceneManager.getCurrentScene();
+            if (scene && scene.npcs) {
+                const match = scene.npcs.find(n => 
+                    n.name.toLowerCase().includes(name.toLowerCase()) ||
+                    n.id.toLowerCase().includes(name.toLowerCase())
+                );
+                if (match) {
+                    npcId = match.statblock || match.id;
+                }
+            }
+        }
+        
+        // If not found in scene, try direct lookup
+        if (!npcId) {
+            npcId = name.toLowerCase().replace(/\s+/g, '_');
+        }
+        
+        addMessage('system', `Looking up ${name}...`);
+        
+        // Fetch NPC data (player role - public info only)
+        fetch(`/api/npcs/${npcId}`)
+            .then(res => {
+                if (!res.ok) throw new Error('NPC not found');
+                return res.json();
+            })
+            .then(npc => {
+                addMessage('system', '═══════════════════════');
+                addMessage('system', `  ${npc.name.toUpperCase()}`);
+                addMessage('system', '───────────────────────');
+                
+                // Description
+                if (npc.description) {
+                    addMessage('system', npc.description);
+                }
+                
+                // Appearance
+                if (npc.appearance) {
+                    addMessage('system', '');
+                    addMessage('system', 'APPEARANCE:');
+                    addMessage('system', npc.appearance);
+                }
+                
+                // Demeanor
+                if (npc.demeanor) {
+                    addMessage('system', '');
+                    addMessage('system', 'DEMEANOR:');
+                    addMessage('system', npc.demeanor);
+                }
+                
+                // Known facts
+                if (npc.known_facts && npc.known_facts.length > 0) {
+                    addMessage('system', '');
+                    addMessage('system', 'WHAT YOU KNOW:');
+                    for (const fact of npc.known_facts) {
+                        addMessage('system', `• ${fact}`);
+                    }
+                }
+                
+                addMessage('system', '═══════════════════════');
+            })
+            .catch(err => {
+                addMessage('error', `NPC not found: ${name}`);
+                console.error('[ChatManager] NPC lookup error:', err);
+            });
+    }
+    
+    /**
+     * Open GM overlay (React app in new tab)
      */
     function toggleGMOverlay() {
         if (typeof SyncManager === 'undefined' || !SyncManager.isGM()) {
@@ -1464,13 +1579,9 @@ const ChatManager = (function() {
             return;
         }
         
-        if (typeof GMOverlayManager !== 'undefined') {
-            GMOverlayManager.toggle();
-            const visible = GMOverlayManager.isVisible();
-            addMessage('system', `GM Overlay ${visible ? 'shown' : 'hidden'}`);
-        } else {
-            addMessage('error', 'GMOverlayManager not available');
-        }
+        // Open the React GM Overlay in a new tab
+        window.open('/gm-overlay/', '_blank');
+        addMessage('system', 'GM Overlay opened in new tab');
     }
     
     /**
@@ -1510,6 +1621,9 @@ const ChatManager = (function() {
         addMessage('system', '/ping - Test connection');
         addMessage('system', '/clear - Clear log');
         addMessage('system', '/help - Show this help');
+        addMessage('system', '─── NPC COMMANDS ───');
+        addMessage('system', '/npcs - List NPCs in scene');
+        addMessage('system', '/look <name> - Examine NPC');
         addMessage('system', '─── GM COMMANDS ───');
         addMessage('system', '/gm <pass> - Authenticate as GM');
         addMessage('system', '/scenes - List available scenes');

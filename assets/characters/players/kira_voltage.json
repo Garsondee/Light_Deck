@@ -34,11 +34,14 @@
     },
     
     "derived": {
-        "hp": 10,
-        "hpMax": 10,
-        "humanity": 12,
-        "humanityMax": 12,
-        "armor": 4
+        "stress": 0,
+        "stressMax": 5,
+        "wounds": [
+            { "slot": 1, "name": null, "penalty": -1 },
+            { "slot": 2, "name": null, "penalty": -2 },
+            { "slot": 3, "name": null, "penalty": "out" }
+        ],
+        "armor": 1
     },
     
     "cyberware": [
@@ -46,18 +49,21 @@
             "id": "neural_link_mk2",
             "name": "Neural Link Mk.II",
             "slot": "head",
+            "glitch": "Sometimes I hear the Net whisper",
             "active": true
         },
         {
             "id": "optic_hud",
             "name": "Optic HUD Display",
             "slot": "eyes",
+            "glitch": "Ads flicker in my peripheral vision",
             "active": true
         },
         {
             "id": "interface_plugs",
             "name": "Interface Plugs",
             "slot": "arms",
+            "glitch": "My fingers twitch when I'm near unshielded electronics",
             "active": true
         }
     ],

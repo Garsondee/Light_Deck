@@ -1,0 +1,2114 @@
+{
+  "meta": {
+    "startTime": "2025-12-06T00:43:06.380Z",
+    "endTime": "2025-12-06T00:43:17.133Z",
+    "duration": 10753,
+    "config": {
+      "maxScenes": -1,
+      "randomOrder": false,
+      "diceMode": "fair",
+      "gmBehavior": "thorough",
+      "playerBehavior": "thorough",
+      "maxTurnsPerScene": 20,
+      "playerMaxWounds": 6
+    }
+  },
+  "termination": {
+    "reason": "completed",
+    "details": "All selected scenes processed successfully",
+    "atScene": ""
+  },
+  "playerState": {
+    "wounds": 0,
+    "maxWounds": 6,
+    "inventory": [],
+    "flags": [],
+    "skillBonuses": {
+      "Tech": 6,
+      "Netrunning": 5,
+      "Perception": 4,
+      "Investigation": 3,
+      "Investigate": 3,
+      "Empathy": 3,
+      "Insight": 3,
+      "Stealth": 2,
+      "Persuasion": 2,
+      "Streetwise": 3,
+      "Medicine": 2,
+      "Combat": 2,
+      "Evasion": 3
+    }
+  },
+  "npcStates": [
+    {
+      "id": "jax",
+      "name": "Jaxson 'Jax' V.",
+      "state": "dying",
+      "disposition": 0,
+      "lastSeenScene": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+      "interactionCount": 6
+    },
+    {
+      "id": "cook",
+      "name": "Noodle Stall Cook",
+      "state": "passive",
+      "disposition": 0,
+      "lastSeenScene": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+      "interactionCount": 1
+    },
+    {
+      "id": "hazer_mook",
+      "name": "Hazer Guards (x2)",
+      "state": "active",
+      "disposition": 0,
+      "lastSeenScene": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+      "interactionCount": 2
+    },
+    {
+      "id": "elena",
+      "name": "Elena (Subject 01)",
+      "state": "unconscious",
+      "disposition": 0,
+      "lastSeenScene": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+      "interactionCount": 1
+    },
+    {
+      "id": "rattle",
+      "name": "Rattle",
+      "state": "watching",
+      "disposition": 0,
+      "lastSeenScene": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+      "interactionCount": 1
+    }
+  ],
+  "sceneAnalyses": [
+    {
+      "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+      "title": "The Briefing",
+      "completed": true,
+      "woundsTaken": 0,
+      "checksAttempted": 1,
+      "checksPassed": 1,
+      "triggersAvailable": 1,
+      "triggersFired": 1,
+      "npcsPresent": 2,
+      "npcsInteracted": 2,
+      "hasExitPath": true,
+      "exitsTaken": [],
+      "issues": []
+    },
+    {
+      "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+      "title": "The Gate",
+      "completed": true,
+      "woundsTaken": 0,
+      "checksAttempted": 2,
+      "checksPassed": 1,
+      "triggersAvailable": 1,
+      "triggersFired": 1,
+      "npcsPresent": 2,
+      "npcsInteracted": 2,
+      "hasExitPath": true,
+      "exitsTaken": [],
+      "issues": []
+    },
+    {
+      "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+      "title": "The Shrine",
+      "completed": true,
+      "woundsTaken": 0,
+      "checksAttempted": 2,
+      "checksPassed": 1,
+      "triggersAvailable": 1,
+      "triggersFired": 1,
+      "npcsPresent": 1,
+      "npcsInteracted": 1,
+      "hasExitPath": true,
+      "exitsTaken": [],
+      "issues": []
+    },
+    {
+      "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+      "title": "The Courtyard Ambush",
+      "completed": true,
+      "woundsTaken": 0,
+      "checksAttempted": 3,
+      "checksPassed": 0,
+      "triggersAvailable": 3,
+      "triggersFired": 3,
+      "npcsPresent": 2,
+      "npcsInteracted": 2,
+      "hasExitPath": true,
+      "exitsTaken": [],
+      "issues": []
+    },
+    {
+      "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+      "title": "The Admin Wing",
+      "completed": true,
+      "woundsTaken": 0,
+      "checksAttempted": 2,
+      "checksPassed": 2,
+      "triggersAvailable": 1,
+      "triggersFired": 1,
+      "npcsPresent": 1,
+      "npcsInteracted": 1,
+      "hasExitPath": true,
+      "exitsTaken": [],
+      "issues": []
+    },
+    {
+      "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+      "title": "The Cryo Lab",
+      "completed": true,
+      "woundsTaken": 0,
+      "checksAttempted": 1,
+      "checksPassed": 1,
+      "triggersAvailable": 2,
+      "triggersFired": 2,
+      "npcsPresent": 2,
+      "npcsInteracted": 2,
+      "hasExitPath": true,
+      "exitsTaken": [],
+      "issues": []
+    },
+    {
+      "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+      "title": "The Exit",
+      "completed": true,
+      "woundsTaken": 0,
+      "checksAttempted": 0,
+      "checksPassed": 0,
+      "triggersAvailable": 4,
+      "triggersFired": 4,
+      "npcsPresent": 1,
+      "npcsInteracted": 1,
+      "hasExitPath": true,
+      "exitsTaken": [],
+      "issues": []
+    }
+  ],
+  "diceStats": {
+    "totalRolls": 11,
+    "rolls": [
+      14,
+      4,
+      2,
+      5,
+      20,
+      5,
+      6,
+      2,
+      15,
+      16,
+      6
+    ],
+    "average": 8.636363636363637,
+    "criticalSuccesses": 1,
+    "criticalFailures": 0,
+    "successRate": 0.36363636363636365
+  },
+  "coherence": {
+    "breadcrumbStrength": "strong",
+    "forwardReferences": [],
+    "backwardReferences": [],
+    "npcContinuityIssues": [],
+    "informationGaps": [],
+    "paceScore": 20
+  },
+  "recommendations": [
+    {
+      "priority": "medium",
+      "type": "difficulty",
+      "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+      "title": "High Difficulty Spike",
+      "description": "Scene \"The Courtyard Ambush\" has a very low pass rate on skill checks.",
+      "suggestion": "Consider lowering DCs or adding alternative paths for failed checks."
+    },
+    {
+      "priority": "low",
+      "type": "pacing",
+      "title": "Unbalanced Pacing",
+      "description": "Adventure pacing score is 20/100.",
+      "suggestion": "Consider adding more variety between action, social, and exploration scenes."
+    }
+  ],
+  "informationLookups": [
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Scene NPC list",
+      "timeToFind": 22
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "Found NPC jax in scene",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 2,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 627
+    },
+    {
+      "question": {
+        "type": "environment",
+        "query": "What do I see/hear/smell here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_01"
+        }
+      },
+      "searchPath": [
+        "Checking Location section for environment details",
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 4
+    },
+    {
+      "question": {
+        "type": "location_detail",
+        "query": "What is Street Noodle Stand like?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_01"
+        }
+      },
+      "searchPath": [
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 4
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Hazer Guards (x2)?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+          "npcId": "hazer_mook"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "NPCs in Scene (generic)",
+      "timeToFind": 16
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Hazer Guards (x2) want?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+          "npcId": "hazer_mook"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 7
+    },
+    {
+      "question": {
+        "type": "location_detail",
+        "query": "What is Oakhaven Perimeter like?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02"
+        }
+      },
+      "searchPath": [
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 8
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Scene NPC list",
+      "timeToFind": 10
+    },
+    {
+      "question": {
+        "type": "environment",
+        "query": "What do I see/hear/smell here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_03"
+        }
+      },
+      "searchPath": [
+        "Checking Location section for environment details",
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 4
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Hazer Patrol (x3)?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+          "npcId": "hazer_mook"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "NPCs in Scene (generic)",
+      "timeToFind": 12
+    },
+    {
+      "question": {
+        "type": "environment",
+        "query": "What do I see/hear/smell here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04"
+        }
+      },
+      "searchPath": [
+        "Checking Location section for environment details",
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 3
+    },
+    {
+      "question": {
+        "type": "location_detail",
+        "query": "What is Bio-Dyne Courtyard like?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04"
+        }
+      },
+      "searchPath": [
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 10
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Scene NPC list",
+      "timeToFind": 8
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "Found NPC jax in scene",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 2,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 625
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Scene NPC list",
+      "timeToFind": 13
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "Found NPC jax in scene",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 2,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 614
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Rattle?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+          "npcId": "rattle"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "NPCs in Scene (generic)",
+      "timeToFind": 14
+    }
+  ],
+  "events": [
+    {
+      "timestamp": 1764981786380,
+      "actor": "system",
+      "action": "Simulation starting",
+      "details": {
+        "config": {
+          "maxScenes": -1,
+          "randomOrder": false,
+          "diceMode": "fair",
+          "gmBehavior": "thorough",
+          "playerBehavior": "thorough",
+          "maxTurnsPerScene": 20,
+          "playerMaxWounds": 6
+        }
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981786416,
+      "actor": "system",
+      "action": "Scenes loaded",
+      "details": {
+        "count": 7
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981786434,
+      "actor": "system",
+      "action": "Adventure guide loaded",
+      "details": {
+        "adventure": "A Change of Heart",
+        "hasLore": true,
+        "hasNPCs": true
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981786434,
+      "actor": "gm",
+      "action": "Opening GM overlay",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791458,
+      "actor": "gm",
+      "action": "GM overlay may not be fully loaded",
+      "details": {
+        "error": "TimeoutError: page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[class*=\"narrative\"], [class*=\"scene\"]') to be visible\u001b[22m\n"
+      },
+      "result": "warning",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791459,
+      "actor": "system",
+      "action": "═══ SCENE START ═══",
+      "details": {
+        "title": "The Briefing",
+        "id": "AChangeOfHeart_Act_01_Chapter_01_Scene_01"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791459,
+      "actor": "gm",
+      "action": "Activating scene",
+      "details": {
+        "id": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+        "title": "The Briefing"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791766,
+      "actor": "gm",
+      "action": "Processing scene",
+      "details": {
+        "title": "The Briefing",
+        "location": "Street Noodle Stand",
+        "npcs": 2,
+        "triggers": 1,
+        "challenges": 1
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791766,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "The Cough"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791767,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "Jax suddenly doubles over, coughing violently into a synth-napkin. It's a wet, tearing sound. He cru..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791767,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Jaxson 'Jax' V.",
+        "role": "The Companion",
+        "state": "active"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791767,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Noodle Stall Cook",
+        "role": "Background NPC",
+        "state": "passive"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791768,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Empathy",
+        "dc": 10
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791769,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Empathy",
+        "roll": 14,
+        "bonus": 3,
+        "total": 17,
+        "dc": 10,
+        "critical": null
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791770,
+      "actor": "player",
+      "action": "Observing scene",
+      "details": {
+        "location": "Street Noodle Stand"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791770,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Jaxson 'Jax' V.",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791770,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Noodle Stall Cook",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791771,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791793,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 22,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981791793,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792420,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 627,
+        "interactions": 2
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792420,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "environment",
+        "query": "What do I see/hear/smell here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792424,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "environment",
+        "found": true,
+        "timeMs": 4,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792424,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "location_detail",
+        "query": "What is Street Noodle Stand like?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792428,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "location_detail",
+        "found": true,
+        "timeMs": 4,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792428,
+      "actor": "system",
+      "action": "═══ SCENE END ═══",
+      "details": {
+        "title": "The Briefing",
+        "wounds": 0,
+        "checks": "1/1"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792631,
+      "actor": "system",
+      "action": "═══ SCENE START ═══",
+      "details": {
+        "title": "The Gate",
+        "id": "AChangeOfHeart_Act_01_Chapter_01_Scene_02"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792631,
+      "actor": "gm",
+      "action": "Activating scene",
+      "details": {
+        "id": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+        "title": "The Gate"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792939,
+      "actor": "gm",
+      "action": "Processing scene",
+      "details": {
+        "title": "The Gate",
+        "location": "Oakhaven Perimeter",
+        "npcs": 2,
+        "triggers": 1,
+        "challenges": 2
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792939,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Jax's Familiarity"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792939,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "Jax navigates the perimeter without hesitation. He knows exactly where the blind spots are. How?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792939,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Jaxson 'Jax' V.",
+        "role": "The Companion",
+        "state": "active"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792939,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Hazer Guards (x2)",
+        "role": "Perimeter Watch",
+        "state": "active"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792939,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Tech",
+        "dc": 8
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792939,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Tech",
+        "roll": 4,
+        "bonus": 6,
+        "total": 10,
+        "dc": 8,
+        "critical": null
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792939,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Stealth",
+        "dc": 10
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792939,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Stealth",
+        "roll": 2,
+        "bonus": 2,
+        "total": 4,
+        "dc": 10,
+        "critical": null
+      },
+      "result": "FAILURE",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1764981792939,
+      "actor": "player",
+      "action": "Observing scene",
+      "details": {
+        "location": "Oakhaven Perimeter"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792939,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Jaxson 'Jax' V.",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792939,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Hazer Guards (x2)",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792939,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Hazer Guards (x2)?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792955,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 16,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792955,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Hazer Guards (x2) want?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792962,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 7,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792962,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "location_detail",
+        "query": "What is Oakhaven Perimeter like?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792970,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "location_detail",
+        "found": true,
+        "timeMs": 8,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981792970,
+      "actor": "system",
+      "action": "═══ SCENE END ═══",
+      "details": {
+        "title": "The Gate",
+        "wounds": 0,
+        "checks": "1/2"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793185,
+      "actor": "system",
+      "action": "═══ SCENE START ═══",
+      "details": {
+        "title": "The Shrine",
+        "id": "AChangeOfHeart_Act_02_Chapter_01_Scene_03"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793186,
+      "actor": "gm",
+      "action": "Activating scene",
+      "details": {
+        "id": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+        "title": "The Shrine"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793495,
+      "actor": "gm",
+      "action": "Processing scene",
+      "details": {
+        "title": "The Shrine",
+        "location": "Community Center Basement",
+        "npcs": 1,
+        "triggers": 1,
+        "challenges": 2
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793495,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Jax's Discomfort"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793495,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "Jax stares at the photos. His hands are shaking. He won't meet your eyes."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793495,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Jaxson 'Jax' V.",
+        "role": "The Companion",
+        "state": "active"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793495,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Investigate",
+        "dc": 9
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793496,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Investigate",
+        "roll": 5,
+        "bonus": 3,
+        "total": 8,
+        "dc": 9,
+        "critical": null
+      },
+      "result": "FAILURE",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1764981793496,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Perception",
+        "dc": 12
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793496,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Perception",
+        "roll": 20,
+        "bonus": 4,
+        "total": 24,
+        "dc": 12,
+        "critical": "success"
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793496,
+      "actor": "player",
+      "action": "Observing scene",
+      "details": {
+        "location": "Community Center Basement"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793496,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Jaxson 'Jax' V.",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793496,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793506,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 10,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793506,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "environment",
+        "query": "What do I see/hear/smell here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793510,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "environment",
+        "found": true,
+        "timeMs": 4,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793510,
+      "actor": "system",
+      "action": "═══ SCENE END ═══",
+      "details": {
+        "title": "The Shrine",
+        "wounds": 0,
+        "checks": "1/2"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793725,
+      "actor": "system",
+      "action": "═══ SCENE START ═══",
+      "details": {
+        "title": "The Courtyard Ambush",
+        "id": "AChangeOfHeart_Act_02_Chapter_01_Scene_04"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981793726,
+      "actor": "gm",
+      "action": "Activating scene",
+      "details": {
+        "id": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+        "title": "The Courtyard Ambush"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794034,
+      "actor": "gm",
+      "action": "Processing scene",
+      "details": {
+        "title": "The Courtyard Ambush",
+        "location": "Bio-Dyne Courtyard",
+        "npcs": 2,
+        "triggers": 3,
+        "challenges": 3
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794034,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Jax's Plea"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794034,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "Jax shouts: 'Don't kill them! Just knock them down! We aren't butchers!'"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794034,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Player Kills"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794034,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "Jax stares at the body. He freezes. 'I told you... I told you to stop.' He takes Mental Stress."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794034,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Player Spares"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794034,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "The Hazers are unconscious. Jax checks a pulse and sighs in relief. 'Good. Let's move.'"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794034,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Jaxson 'Jax' V.",
+        "role": "The Companion",
+        "state": "active"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794034,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Hazer Patrol (x3)",
+        "role": "Combatants",
+        "state": "active"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794034,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Persuasion",
+        "dc": 12
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794034,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Persuasion",
+        "roll": 5,
+        "bonus": 2,
+        "total": 7,
+        "dc": 12,
+        "critical": null
+      },
+      "result": "FAILURE",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1764981794034,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Combat",
+        "dc": 10
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794035,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Combat",
+        "roll": 6,
+        "bonus": 2,
+        "total": 8,
+        "dc": 10,
+        "critical": null
+      },
+      "result": "FAILURE",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1764981794035,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Combat",
+        "dc": 8
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794035,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Combat",
+        "roll": 2,
+        "bonus": 2,
+        "total": 4,
+        "dc": 8,
+        "critical": null
+      },
+      "result": "FAILURE",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1764981794035,
+      "actor": "player",
+      "action": "Observing scene",
+      "details": {
+        "location": "Bio-Dyne Courtyard"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794035,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Jaxson 'Jax' V.",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794035,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Hazer Guards (x2)",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794035,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Hazer Patrol (x3)?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794047,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 12,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794048,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "environment",
+        "query": "What do I see/hear/smell here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794051,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "environment",
+        "found": true,
+        "timeMs": 3,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794051,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "location_detail",
+        "query": "What is Bio-Dyne Courtyard like?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794061,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "location_detail",
+        "found": true,
+        "timeMs": 10,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794062,
+      "actor": "system",
+      "action": "═══ SCENE END ═══",
+      "details": {
+        "title": "The Courtyard Ambush",
+        "wounds": 0,
+        "checks": "0/3"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794281,
+      "actor": "system",
+      "action": "═══ SCENE START ═══",
+      "details": {
+        "title": "The Admin Wing",
+        "id": "AChangeOfHeart_Act_03_Chapter_01_Scene_05"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794281,
+      "actor": "gm",
+      "action": "Activating scene",
+      "details": {
+        "id": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+        "title": "The Admin Wing"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794590,
+      "actor": "gm",
+      "action": "Processing scene",
+      "details": {
+        "title": "The Admin Wing",
+        "location": "Server Room Access",
+        "npcs": 1,
+        "triggers": 1,
+        "challenges": 2
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794591,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Confront Jax"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794591,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "You can show Jax what you found. His face goes pale. 'I... I didn't know. I was fifteen. They said t..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794591,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Jaxson 'Jax' V.",
+        "role": "The Companion",
+        "state": "active"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794591,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Netrunning",
+        "dc": 11
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794591,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Netrunning",
+        "roll": 15,
+        "bonus": 5,
+        "total": 20,
+        "dc": 11,
+        "critical": null
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794591,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Tech",
+        "dc": 10
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794591,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Tech",
+        "roll": 16,
+        "bonus": 6,
+        "total": 22,
+        "dc": 10,
+        "critical": null
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794591,
+      "actor": "player",
+      "action": "Observing scene",
+      "details": {
+        "location": "Server Room Access"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794591,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Jaxson 'Jax' V.",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794591,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794599,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 8,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981794600,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795225,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 625,
+        "interactions": 2
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795225,
+      "actor": "system",
+      "action": "═══ SCENE END ═══",
+      "details": {
+        "title": "The Admin Wing",
+        "wounds": 0,
+        "checks": "2/2"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795443,
+      "actor": "system",
+      "action": "═══ SCENE START ═══",
+      "details": {
+        "title": "The Cryo Lab",
+        "id": "AChangeOfHeart_Act_03_Chapter_01_Scene_06"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795443,
+      "actor": "gm",
+      "action": "Activating scene",
+      "details": {
+        "id": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+        "title": "The Cryo Lab"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795752,
+      "actor": "gm",
+      "action": "Processing scene",
+      "details": {
+        "title": "The Cryo Lab",
+        "location": "Cold Storage",
+        "npcs": 2,
+        "triggers": 2,
+        "challenges": 1
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795753,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Execute Surgery"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795753,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "You activate the harvester. Elena flatlines. Jax lives. He stands up, healthy, but refuses to look a..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795753,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Refuse"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795753,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "You step back. Jax begs, then screams, then fades. He dies looking at Elena's face, realizing he is ..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795753,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Jaxson 'Jax' V.",
+        "role": "The Companion",
+        "state": "dying"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795753,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Elena (Subject 01)",
+        "role": "The MacGuffin",
+        "state": "unconscious"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795753,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Tech",
+        "dc": 12
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795753,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Tech",
+        "roll": 6,
+        "bonus": 6,
+        "total": 12,
+        "dc": 12,
+        "critical": null
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795753,
+      "actor": "player",
+      "action": "Observing scene",
+      "details": {
+        "location": "Cold Storage"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795753,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Jaxson 'Jax' V.",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795753,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Elena (Subject 01)",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795753,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795766,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 13,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981795766,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796380,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 614,
+        "interactions": 2
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796380,
+      "actor": "system",
+      "action": "═══ SCENE END ═══",
+      "details": {
+        "title": "The Cryo Lab",
+        "wounds": 0,
+        "checks": "1/1"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796596,
+      "actor": "system",
+      "action": "═══ SCENE START ═══",
+      "details": {
+        "title": "The Exit",
+        "id": "AChangeOfHeart_Act_03_Chapter_01_Scene_07"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796597,
+      "actor": "gm",
+      "action": "Activating scene",
+      "details": {
+        "id": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+        "title": "The Exit"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796905,
+      "actor": "gm",
+      "action": "Processing scene",
+      "details": {
+        "title": "The Exit",
+        "location": "Main Gate",
+        "npcs": 1,
+        "triggers": 4,
+        "challenges": 0
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796905,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Rattle's Mercy"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796905,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "Rattle meets you at the gate. He sees you are empty-handed. He removes his mask - his face is ruined..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796905,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Silent Judgment"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796905,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "The Hazers watch from the rooftops. No one speaks. No one moves. You walk out alone, past the bodies..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796905,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "The Weight"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796905,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "You carry Jax out. He's breathing. Elena's heart beats in his chest. The Hazers watch from the rooft..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796905,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "The Sting"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796905,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "[EPILOGUE - Read after a pause] Three months later, Jax calls you. His voice is weaker. 'It's happen..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796905,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Rattle",
+        "role": "Hazer Leader",
+        "state": "watching"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796905,
+      "actor": "player",
+      "action": "Observing scene",
+      "details": {
+        "location": "Main Gate"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796905,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Rattle",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796906,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Rattle?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796920,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 14,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1764981796920,
+      "actor": "system",
+      "action": "═══ SCENE END ═══",
+      "details": {
+        "title": "The Exit",
+        "wounds": 0,
+        "checks": "0/0"
+      },
+      "severity": "info"
+    }
+  ],
+  "issues": [],
+  "summary": {
+    "totalScenes": 7,
+    "scenesCompleted": 7,
+    "totalWounds": 0,
+    "nearDeathCount": 0,
+    "deaths": 0,
+    "triggersActivated": 13,
+    "skillChecksMade": 11,
+    "skillChecksPassed": 6,
+    "npcsInteracted": 11,
+    "deadEndsFound": 0,
+    "softLocksFound": 0,
+    "difficultyRating": "hard",
+    "coherenceScore": 60,
+    "informationLookupsAttempted": 17,
+    "informationLookupsSucceeded": 17,
+    "informationLookupsFailed": 0
+  }
+}

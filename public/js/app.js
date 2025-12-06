@@ -98,13 +98,6 @@ const App = (function() {
             });
         }
         
-        // Initialize GMOverlayManager (GM-only scene overlay)
-        if (typeof GMOverlayManager !== 'undefined') {
-            const scene = ThreeSetup.getScene();
-            GMOverlayManager.init(scene);
-            console.log('[APP] GMOverlayManager initialized');
-        }
-        
         // Initialize UIManager (raycasting for clickable UI elements)
         if (typeof UIManager !== 'undefined') {
             UIManager.init({
@@ -119,15 +112,6 @@ const App = (function() {
                 UIManager.registerPanel('chat', ChatManager.getPlane(), ChatManager, {
                     width: chatLayout.width,
                     height: chatLayout.height
-                });
-            }
-            
-            // Register GM overlay panel for click handling
-            if (typeof GMOverlayManager !== 'undefined') {
-                const gmLayout = GMOverlayManager.getLayout();
-                UIManager.registerPanel('gm-overlay', GMOverlayManager.getPlane(), GMOverlayManager, {
-                    width: gmLayout.width,
-                    height: gmLayout.height
                 });
             }
             

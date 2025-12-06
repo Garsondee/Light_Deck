@@ -1,0 +1,129 @@
+{
+    "id": "doc_message_board_archive",
+    "name": "Community Message Board Archive",
+    "type": "message_log",
+    "format": "chat",
+    "adventure": "A Change of Heart",
+    
+    "metadata": {
+        "filename": "msg_board_archive.log",
+        "created": "2140-01-01",
+        "modified": "2142-08-22",
+        "author": "Oakhaven Community System",
+        "classification": "PUBLIC",
+        "size": "128 KB"
+    },
+    
+    "style": {
+        "monospace": true,
+        "color": "#00aaff",
+        "timestampColor": "#666666",
+        "usernameColor": "#ffaa00"
+    },
+    
+    "content": {
+        "header": "╔════════════════════════════════════════════════════════════╗\n║  OAKHAVEN COMMUNITY MESSAGE BOARD                          ║\n║  Archive: 2142-08-22 (Final Day)                           ║\n╚════════════════════════════════════════════════════════════╝",
+        
+        "messages": [
+            {
+                "timestamp": "2142-08-22 02:14:33",
+                "user": "MamaRosa",
+                "text": "Anyone else smell something weird? Like chemicals?"
+            },
+            {
+                "timestamp": "2142-08-22 02:15:01",
+                "user": "TechBoy_42",
+                "text": "Yeah the vents are making a weird noise too"
+            },
+            {
+                "timestamp": "2142-08-22 02:16:22",
+                "user": "OldManChen",
+                "text": "The doors won't open. Anyone else having this problem?"
+            },
+            {
+                "timestamp": "2142-08-22 02:17:45",
+                "user": "MamaRosa",
+                "text": "My eyes are burning. Something is wrong"
+            },
+            {
+                "timestamp": "2142-08-22 02:18:03",
+                "user": "Rattle_89",
+                "text": "EVERYONE GET TO THE BASEMENT NOW"
+            },
+            {
+                "timestamp": "2142-08-22 02:18:44",
+                "user": "TechBoy_42",
+                "text": "I can't breathe I can't"
+            },
+            {
+                "timestamp": "2142-08-22 02:19:12",
+                "user": "Rattle_89",
+                "text": "THE VENTS ARE PUMPING GAS SEAL YOUR DOORS"
+            },
+            {
+                "timestamp": "2142-08-22 02:19:55",
+                "user": "OldManChen",
+                "text": "God help us"
+            },
+            {
+                "timestamp": "2142-08-22 02:20:33",
+                "user": "MamaRosa",
+                "text": "The children... someone save the children..."
+            },
+            {
+                "timestamp": "2142-08-22 02:21:01",
+                "user": "Rattle_89",
+                "text": "WHO DID THIS WHO REVERSED THE VENTS"
+            },
+            {
+                "timestamp": "2142-08-22 02:22:17",
+                "user": "SYSTEM",
+                "text": "[Connection lost: MamaRosa]"
+            },
+            {
+                "timestamp": "2142-08-22 02:22:18",
+                "user": "SYSTEM",
+                "text": "[Connection lost: TechBoy_42]"
+            },
+            {
+                "timestamp": "2142-08-22 02:22:19",
+                "user": "SYSTEM",
+                "text": "[Connection lost: OldManChen]"
+            },
+            {
+                "timestamp": "2142-08-22 02:25:44",
+                "user": "Rattle_89",
+                "text": "is anyone still there"
+            },
+            {
+                "timestamp": "2142-08-22 02:30:12",
+                "user": "Rattle_89",
+                "text": "please"
+            },
+            {
+                "timestamp": "2142-08-22 02:45:00",
+                "user": "SYSTEM",
+                "text": "[Message board entering archive mode]"
+            },
+            {
+                "timestamp": "2142-08-22 02:45:01",
+                "user": "SYSTEM",
+                "text": "[No active users remaining]"
+            }
+        ],
+        
+        "footer": "╔════════════════════════════════════════════════════════════╗\n║  END OF ARCHIVE                                            ║\n╚════════════════════════════════════════════════════════════╝"
+    },
+    
+    "reveal_flags": ["read_panic_messages"],
+    "unlocks_clues": ["final_messages", "rattle_was_there"],
+    
+    "found_in": {
+        "terminals": ["oakhaven_lobby_kiosk"],
+        "programs": ["prog_message_board"],
+        "items": [],
+        "scenes": []
+    },
+    
+    "gmNotes": "This is extremely emotional content. The messages show the community's final moments during the gas attack. Note that 'Rattle_89' is posting - this is the same Rattle who leads the Hazers now. He survived. He remembers. He knows someone reversed the vents."
+}

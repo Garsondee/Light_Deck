@@ -5,12 +5,29 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
-    "dev": "node server/index.js"
+    "dev": "node server/index.js",
+    "gm-overlay:dev": "cd src/gm-overlay && npm run dev",
+    "gm-overlay:build": "cd src/gm-overlay && npm run build",
+    "dev:all": "concurrently \"npm run dev\" \"npm run gm-overlay:dev\"",
+    "restart:all": "npm run gm-overlay:build && npm run dev:all",
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:simulation": "npx playwright test simulation.spec.ts",
+    "test:simulation:headed": "npx playwright test simulation.spec.ts --headed",
+    "test:simulation:full": "npx playwright test simulation.spec.ts --headed --timeout=300000",
+    "test:report": "npx playwright show-report"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "socket.io": "^4.7.2",
-    "dotenv": "^16.3.1"
+    "multer": "^1.4.5-lts.1",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "concurrently": "^8.2.0"
   },
   "engines": {
     "node": ">=18.0.0"

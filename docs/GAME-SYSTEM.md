@@ -35,7 +35,9 @@ All checks use **d20 + Attribute + Skill** vs a **Difficulty Class (DC)**.
 
 ## 2. Attributes
 
-Six core attributes define a character's baseline capabilities. Range: **-2 to +5** (human average is +0).
+Six core attributes define a character's baseline capabilities. Range: **-1 to +3** (human average is +0).
+
+> **Design Note:** Keeping bonuses tight means the d20 (chaos) matters more than the stat (the hero). This creates the noir feeling of being out of control.
 
 | Attribute | Abbr | Governs |
 |-----------|------|---------|
@@ -88,42 +90,62 @@ Skills represent trained competencies. Range: **0 to +5**.
 
 ## 4. Derived Stats
 
-### 4.1 Hit Points (HP)
-```
-HP = 10 + (BOD × 3)
-```
-- **Wounded:** Below 50% HP — disadvantage on physical checks
-- **Critical:** Below 25% HP — disadvantage on all checks
-- **Down:** 0 HP — unconscious, bleeding out
+### 4.1 Stress Track (The Shield)
 
-### 4.2 Armor
-Reduces incoming damage. Armor has **Stopping Power (SP)** that degrades when hit.
+Stress represents near-misses, luck, and scrambling for cover. It resets when the **scene ends**.
 
-| Armor Type | SP | Notes |
-|------------|-----|-------|
-| Clothing | 0 | No protection |
-| Light Jacket | 4 | Concealable |
-| Armored Vest | 8 | Standard security |
-| Combat Armor | 12 | Military grade |
-| Powered Exo | 16+ | Requires training |
+- **Default:** PCs have **5 Stress boxes**. NPCs have 1–3 based on threat level.
+- When you take harm, mark **1 Stress box** per "hit" the GM calls for.
+- When you can't mark Stress (no empty boxes), you take a **Wound** instead.
 
-### 4.3 Initiative
-```
-Initiative = REF + EDG + 1d10
-```
-Higher goes first. Ties resolved by REF, then player choice.
+### 4.2 Wounds (The Meat)
 
-### 4.4 Humanity
-```
-Starting Humanity = 10 + (PRE × 2)
-```
-Cyberware costs Humanity. At 0 Humanity, character becomes an NPC (cyberpsychosis).
+Wounds are real injuries. They persist until treated in-fiction.
+
+Track **three Wound slots**:
+
+| Slot | Severity | Penalty | Example |
+|------|----------|---------|----------|
+| 1 | Minor | -1 to relevant checks | "Grazed Shoulder" |
+| 2 | Major | -2 to relevant checks | "Broken Ribs" |
+| 3 | Critical | **Out of the scene** | "Gut Shot" |
+
+- Each time you would take a Wound, fill the next empty slot and name it.
+- Penalties stack.
+- **Critical** means you're down — not necessarily dead, but you can't keep fighting.
+
+**Healing Wounds:**
+- Field patch → downgrade Major to Minor
+- Hospital/surgery → clear a Wound slot
+- Critical almost always requires outside help
+
+### 4.3 Armor
+
+Armor provides **flat damage reduction** — it absorbs harm before it becomes Stress or Wounds.
+
+| Armor Type | Rating | Notes |
+|------------|--------|-------|
+| Street Clothes | 0 | No protection |
+| Armored Jacket | 1 | Concealable |
+| Tactical Vest | 2 | Standard security |
+| Combat Armor | 3 | Military grade |
+| Powered Exo | 4 | Requires training |
+
+When you take harm, reduce severity by your Armor Rating at GM's discretion.
+
+### 4.4 Initiative (Simplified)
+
+At the **start** of a violent moment:
+
+1. Everyone rolls **d20 + REF** (Reflex Check)
+2. Highest acts first, then opposition, then others as needed
+3. After the opening exchange, fall back to **Spotlight flow** (see Combat)
 
 ---
 
-## 5. Cyberware
+## 5. Cyberware & Glitches
 
-Augmentations grant power at the cost of Humanity.
+Augmentations grant power at the cost of your humanity — but not as a number. Each major piece of chrome adds a **Glitch**: a narrative complication that defines how the tech changes you.
 
 ### 5.1 Cyberware Categories
 
@@ -136,14 +158,22 @@ Augmentations grant power at the cost of Humanity.
 | **Cyberleg** | Leg | Replacement limbs, jump boosters |
 | **Chipware** | Slot | Skillsofts, memory chips, reflex boosters |
 
-### 5.2 Humanity Cost
+### 5.2 Glitches (Replacing Humanity Points)
 
-| Tier | Humanity Cost | Examples |
-|------|---------------|----------|
-| Minor | 1-2 | Interface plugs, basic optics |
-| Standard | 3-4 | Cyberarm, reflex booster |
-| Major | 5-6 | Full limb replacement, combat chassis |
-| Extreme | 7+ | Full-body conversion, experimental tech |
+Instead of tracking a numeric "Humanity" pool, every **major** cyberware piece adds a **Glitch Aspect** — a narrative flag that complicates your life.
+
+| Cyberware | Example Glitch |
+|-----------|----------------|
+| Cyber-Heart | "Requires specialized meds or I flatline" |
+| Militech Eyes | "I see heat signatures, not faces" |
+| Reflex Booster | "Twitchy — I flinch at sudden movements" |
+| Cyberarm | "Phantom pain when it rains" |
+| Neural Link | "Sometimes I hear the Net whisper" |
+
+**Using Glitches:**
+- The GM can **compel** a Glitch: lean into the complication for spotlight and trouble
+- The player can **invoke** a Glitch: use it creatively for advantage in appropriate situations
+- Glitches are roleplay prompts, not a "Game Over" counter
 
 ### 5.3 Example Cyberware
 
@@ -153,7 +183,7 @@ Augmentations grant power at the cost of Humanity.
     "name": "Neural Link Mk.II",
     "category": "neuralware",
     "slot": "head",
-    "humanityCost": 2,
+    "glitch": "Sometimes I hear the Net whisper",
     "description": "Direct neural interface for device control and netrunning.",
     "effects": [
         { "type": "skill_bonus", "skill": "Netrunning", "value": 1 },
@@ -168,12 +198,15 @@ Augmentations grant power at the cost of Humanity.
 
 ## 6. Combat
 
-### 6.1 Action Economy
+### 6.1 Spotlight Flow (Replacing Action Economy)
 
-Each turn, a character gets:
-- **1 Action** — Attack, hack, use item, complex task
-- **1 Move** — Up to 10m (or 20m if sprinting, no action)
-- **1 Reaction** — Dodge, opportunity attack, interrupt
+Throw out Action/Move/Reaction. Use **Spotlight** instead:
+
+1. **Spotlight on Player:** The camera is on you. Say what you do.
+2. **GM Responds:** Consequences, rolls, new threats.
+3. **World Reacts:** When you pause, hesitate, or the fiction demands it — enemies shoot, clocks advance, alarms escalate.
+
+Treat combat like a tense conversation, not a wargame. If the player freezes, the enemy acts.
 
 ### 6.2 Attack Resolution
 
@@ -183,8 +216,16 @@ vs
 Defense: 10 + Target's REF + Evasion (or cover bonus)
 ```
 
-**Hit:** Roll weapon damage, subtract target's armor SP  
-**Miss:** No effect (or graze for style)
+**Hit:** Target marks Stress (or takes a Wound if Stress is full). Armor reduces severity.  
+**Miss:** No effect (or graze for style).
+
+**Harm Severity (GM guidance):**
+| Weapon | Typical Harm |
+|--------|-------------|
+| Fists, improvised | 1 Stress |
+| Knife, pistol | 1–2 Stress |
+| SMG, rifle | 2 Stress (or Wound if unarmored) |
+| Heavy weapon | Wound directly |
 
 ### 6.3 Damage Types
 
@@ -192,7 +233,7 @@ Defense: 10 + Target's REF + Evasion (or cover bonus)
 |------|--------|
 | **Kinetic** | Standard bullets, blades — reduced by armor |
 | **Energy** | Lasers, plasma — ignores half armor |
-| **EMP** | Disables cyberware, no HP damage |
+| **EMP** | Disables cyberware, no Stress damage |
 | **Bio** | Toxins, viruses — ignores armor, resisted by BOD |
 
 ### 6.4 Cover
@@ -205,29 +246,41 @@ Defense: 10 + Target's REF + Evasion (or cover bonus)
 
 ---
 
-## 7. Netrunning
+## 7. Netrunning (The Diegetic Shift)
 
-Hackers ("Netrunners") jack into systems to manipulate data, disable security, and fight ICE (Intrusion Countermeasures Electronics).
+In *A Change of Heart*, the player uses a **real terminal interface**. If they type the correct command or solve the puzzle, **the hack works** — no roll required for success.
 
-### 7.1 Net Actions
+Rolls determine **Time and Detection**, not success.
 
-| Action | DC | Effect |
-|--------|-----|--------|
-| **Scan** | 12 | Reveal system architecture |
-| **Crack** | 15 | Bypass password/lock |
-| **Control** | 15 | Operate connected device |
-| **Extract** | 18 | Copy protected data |
-| **Crash** | 18 | Disable system/ICE |
-| **Mask** | 15 | Hide your presence |
+### 7.1 The Principle
 
-### 7.2 ICE Types
+> **Player:** "I run the decryption script." *(actually types it)*  
+> **GM:** "Okay, you're running it. Roll Neural. On a success, it runs instantly. On a fail, it takes 30 seconds and the Hazers are banging on the door."
+
+This harmonizes "The Work" (the app) with "The Tension" (the dice).
+
+### 7.2 Net Actions — Time & Heat
+
+| Action | Heat DC | On Fail |
+|--------|---------|----------|
+| **Scan** | 10 | Takes extra time, system logs the probe |
+| **Crack** | 12 | Slow decrypt, ICE may activate |
+| **Control** | 12 | Delayed response, security alerted |
+| **Extract** | 15 | Partial data, trace initiated |
+| **Crash** | 15 | System reboots but alerts backup |
+| **Mask** | 12 | Presence hidden, but not for long |
+
+**On Success:** Fast, clean, minimal trace.  
+**On Fail:** It still works, but costs time or raises heat.
+
+### 7.3 ICE Types
 
 | ICE | Rating | Effect if Triggered |
 |-----|--------|---------------------|
 | **Watchdog** | 12 | Alerts security |
-| **Barrier** | 15 | Blocks access, requires Crack |
+| **Barrier** | 15 | Blocks access until cracked |
 | **Tracer** | 15 | Reveals runner's location |
-| **Black ICE** | 18+ | Deals neural damage (2d6) |
+| **Black ICE** | 18+ | Neural feedback — take a Wound |
 
 ---
 
@@ -260,12 +313,12 @@ Hackers ("Netrunners") jack into systems to manipulate data, disable security, a
 
 ### 9.1 Threat Levels
 
-| Level | HP | Attack | Skills | Description |
-|-------|-----|--------|--------|-------------|
-| **Mook** | 5 | +3 | +1 | Disposable goons, one-hit wonders |
-| **Soldier** | 15 | +5 | +2 | Trained combatants, security |
-| **Elite** | 25 | +7 | +3 | Veterans, specialists |
-| **Boss** | 40+ | +9 | +4 | Major antagonists, legendary threats |
+| Level | Stress | Wounds | Attack | Description |
+|-------|--------|--------|--------|-------------|
+| **Mook** | 1 | 1 | +3 | Disposable goons, one-hit wonders |
+| **Soldier** | 2 | 2 | +5 | Trained combatants, security |
+| **Elite** | 3 | 3 | +7 | Veterans, specialists |
+| **Boss** | 5 | 3 | +9 | Major antagonists, legendary threats |
 
 ### 9.2 NPC Archetypes
 
@@ -290,12 +343,12 @@ Hackers ("Netrunners") jack into systems to manipulate data, disable security, a
     "background": "street_kid | corporate | techie | nomad | medic | enforcer",
     
     "attributes": {
-        "reflex": "number (-2 to +5)",
-        "body": "number (-2 to +5)",
-        "tech": "number (-2 to +5)",
-        "neural": "number (-2 to +5)",
-        "edge": "number (-2 to +5)",
-        "presence": "number (-2 to +5)"
+        "reflex": "number (-1 to +3)",
+        "body": "number (-1 to +3)",
+        "tech": "number (-1 to +3)",
+        "neural": "number (-1 to +3)",
+        "edge": "number (-1 to +3)",
+        "presence": "number (-1 to +3)"
     },
     
     "skills": {
@@ -318,11 +371,14 @@ Hackers ("Netrunners") jack into systems to manipulate data, disable security, a
     },
     
     "derived": {
-        "hp": "number",
-        "hpMax": "number",
-        "humanity": "number",
-        "humanityMax": "number",
-        "armor": "number"
+        "stress": "number (current)",
+        "stressMax": "number (default 5)",
+        "wounds": [
+            { "slot": 1, "name": "string | null", "penalty": -1 },
+            { "slot": 2, "name": "string | null", "penalty": -2 },
+            { "slot": 3, "name": "string | null", "penalty": "out" }
+        ],
+        "armor": "number (0-4)"
     },
     
     "cyberware": [
@@ -330,6 +386,7 @@ Hackers ("Netrunners") jack into systems to manipulate data, disable security, a
             "id": "string",
             "name": "string",
             "slot": "string",
+            "glitch": "string (narrative complication)",
             "active": "boolean"
         }
     ],
@@ -379,12 +436,12 @@ Hackers ("Netrunners") jack into systems to manipulate data, disable security, a
     "description": "string",
     
     "stats": {
-        "hp": "number",
-        "hpMax": "number",
-        "armor": "number",
+        "stress": "number (current)",
+        "stressMax": "number (1-5 based on threat)",
+        "wounds": "number (max wound slots, 1-3)",
+        "armor": "number (0-4)",
         "attack": "number (flat attack bonus)",
-        "defense": "number (flat defense value)",
-        "initiative": "number"
+        "defense": "number (flat defense value)"
     },
     
     "attributes": {
@@ -563,6 +620,7 @@ Future: Players can view their character sheets; GM can view all.
 |------|---------|-------|
 | 2024-12-04 | 0.1 | Initial system stub — attributes, skills, combat basics |
 | 2024-12-04 | 0.2 | Added adventure guide schema, scene NPC registration, API endpoints |
+| 2024-12-05 | 0.3 | **"A Change of Heart" Overhaul** — Stress/Wounds replace HP, Glitches replace Humanity, Spotlight replaces Action Economy, Netrunning becomes Time/Heat, attributes flattened to -1/+3 |
 
 ---
 

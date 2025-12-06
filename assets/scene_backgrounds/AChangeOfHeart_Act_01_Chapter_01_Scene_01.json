@@ -4,63 +4,134 @@
     "act": 1,
     "chapter": 1,
     "scene": 1,
-    "title": "The Beginning",
-    "description": "The adventure begins...",
+    "type": "social",
+    "title": "The Briefing",
+    "location": "Street Noodle Stand",
     "image": "AChangeOfHeart_Act_01_Chapter_01_Scene_01.png",
+    "visuals": "ASCII_Overlay: Static rain interference. Jax is rendered in jittery amber characters. His chest area flickers with 'glitch' artifacts.",
+    "tone": "Noir, Desperate, Grimy",
+    "lighting": "Flickering pink neon from the 'OPEN' sign; harsh white strip lights in the kitchen.",
+    "audio": "Heavy rain on corrugated tin, the hiss of steam, distant sirens, the rhythmic chopping of a cleaver.",
+    "smell": "Ozone, synthetic pork, wet concrete, cheap tobacco.",
     
-    "narrative": "Read aloud to players:\n\nThe neon-lit streets of the lower district stretch before you, rain slicking the cracked pavement. Holographic advertisements flicker overhead, their promises of a better life feeling hollow in this forgotten corner of the city.\n\nA figure in a long coat waits beneath a broken streetlight, their face hidden in shadow.",
+    "narrative": "The rain in the Sprawl doesn't wash things clean; it just makes the grime slicker. It's 02:00 AM in Sector 4, and the sky is the color of a bruised plum. You're standing under the dripping awning of 'Dragon's Breath,' a hole-in-the-wall noodle stall wedged between a pawn shop and a coffin hotel.\n\nSteam rolls off the wet pavement, mixing with the thick, oily smoke venting from the kitchen. Inside, huddled in the back booth away from the street view, is your contact.\n\nJaxson 'Jax' V. usually carries himself with the swagger of a man who knows where the bodies are buried. Tonight, he looks like he's one of them. He's wearing a heavy collar-up trench coat despite the humidity. His cybernetic hand—usually polished chrome—is dull and twitching rhythmically against a ceramic cup of green tea he hasn't touched. He stares at the swirling liquid like it's an oracle reading a bad fortune.",
     
-    "gmNotes": "The contact is nervous - they've been followed. If players make a Perception check DC 15, they'll notice two figures watching from a nearby alley.\n\nThe package contains encrypted data about corporate experiments.",
+    "gmNotes": "Jax is lying about the client (Vane doesn't exist) and the objective. He is paying for this himself. Focus: Establish Jax's desperation and physical deterioration without revealing the specific cause (the genetic timebomb). Pacing: Slow and tense. Let the silence hang before Jax speaks. Key reveal: Jax is hiring the player for a heist in Oakhaven, a condemned exclusion zone. He claims it's for data. It is not. Mechanics: Empathy checks to detect lies; Medical checks to spot his symptoms; Negotiation for the fee.",
     
     "npcs": [
         {
-            "id": "yuki_sato",
-            "name": "Yuki Sato",
-            "role": "The Contact",
+            "id": "jax",
+            "name": "Jaxson 'Jax' V.",
+            "role": "The Companion",
             "statblock": null,
             "state": "active",
-            "notes": "Waiting under the streetlight. Will hand over the job details."
+            "notes": "Dying of the genetic timebomb. Type-H blood. Charismatic but desperate. He is Subject 89. Sweat beading on forehead, pale skin, tremors in extremities. He keeps checking his chrono.",
+            "motivation": "Hire the player for the Oakhaven job. He's running out of time and options.",
+            "personality": "Trying to project confidence but failing. Desperate, sweating, twitching. The mask is slipping."
         },
         {
-            "id": "street_mook",
-            "name": "Watchers (x2)",
-            "role": "Hidden Threat",
-            "statblock": "street_mook",
-            "state": "hidden",
-            "notes": "Reveal with trigger or Perception DC 15. Gang scouts, not the real threat."
+            "id": "cook",
+            "name": "Noodle Stall Cook",
+            "role": "Background NPC",
+            "statblock": null,
+            "state": "passive",
+            "notes": "A massive, silent man chopping synth-meat. He ignores everything.",
+            "motivation": "None. He's just doing his job. He's seen everything and cares about nothing.",
+            "personality": "Stoic, silent, focused on his work. A mountain of a man who minds his own business."
         }
     ],
     
-    "skillChecks": [
+    "challenges": [
         {
-            "name": "Perception",
-            "dc": 15,
-            "success": "You notice two figures lurking in a nearby alley, watching the meeting intently.",
-            "fail": "The rain and flickering lights make it hard to see anything unusual."
-        },
-        {
-            "name": "Insight",
-            "dc": 12,
-            "success": "The contact is genuinely frightened - this isn't an act. They believe they're in real danger.",
-            "fail": "You can't get a read on the contact's emotional state."
+            "id": "assess_jax",
+            "skill": "Empathy",
+            "difficulty": 10,
+            "description": "Read Jax's body language and detect his deception.",
+            "success_effect": {
+                "text": "You notice he isn't checking his agent for the credit transfer. He's paying for the expensive rad-gear out of his personal savings. He smells like ozone and sickness.",
+                "sets_flag": "suspects_jax_lying"
+            },
+            "failure_effect": {
+                "text": "He seems jittery. Probably just the thought of the Exclusion Zone.",
+                "stress_damage": 0
+            }
         }
     ],
     
     "triggers": [
         {
-            "id": "reveal_watchers",
-            "label": "Reveal Watchers",
-            "action": "chat",
-            "text": "Two figures step out from the alley, hands reaching into their coats..."
-        },
+            "id": "clue_sludge",
+            "label": "The Cough",
+            "action": "passive",
+            "text": "Jax suddenly doubles over, coughing violently into a synth-napkin. It's a wet, tearing sound. He crumples the napkin instantly and shoves it into his pocket, but not before you see the stain. It isn't red. It's a thick, oily black fluid. Your optics catch the hex-code of the substance: #000000 (Black). Not blood. Oil and necrotic fluid.",
+            "sets_flag": "witnessed_jax_cough"
+        }
+    ],
+    
+    "exits": [
         {
-            "id": "contact_speaks",
-            "label": "Contact Speaks",
-            "action": "chat",
-            "text": "The contact whispers urgently: 'Take this. Don't let them get it. They'll kill us both if they find out what's on here.'"
+            "target_scene_id": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+            "condition": "default",
+            "label": "Accept the job and head to Oakhaven"
+        }
+    ],
+    
+    "interaction_flow": {
+        "start": {
+            "trigger": "Player approaches the booth.",
+            "read_aloud": "Jax looks up as you slide into the booth. His eyes are bloodshot, the pupils dilated. He tries to smile, but it comes out as a grimace. He pushes a credstick across the greasy table with two fingers.\n\n'Voltage. Thanks for coming. I know it's late. I know I look like slag. Don't mention it.'\n\nHe taps the credstick. 'Two thousand credits. Up front. Two more when we're done. Simple grab-and-go. You in?'"
+        },
+        "dialogue_tree": [
+            {
+                "topic": "The Job",
+                "player_query": "What's the target? And don't tell me 'grab-and-go' for 4k. That's hazard pay.",
+                "npc_response": "Jax shifts uncomfortably. 'Oakhaven. The old residential block in the exclusion zone. I... I used to live there, before the collapse. I left a drive behind. Encrypted server backup. Personal data. Nothing that would interest the corps, but it's worth everything to me.'",
+                "insight_check": {
+                    "difficulty": 11,
+                    "skill": "Empathy / Insight",
+                    "success": "He's telling the truth about it being 'worth everything,' but he's lying about it being a drive. The desperation in his voice is primal.",
+                    "failure": "He seems sentimental. Maybe it's old family photos or a stash of crypto keys."
+                }
+            },
+            {
+                "topic": "The Health",
+                "player_query": "You're shaking, Jax. And you're sweating bullets. Are you using again?",
+                "npc_response": "He pulls his hand back and hides it under the table. 'Clean for two years, V. You know that. It's just... the flu. Or maybe the atmospheric scrubbers are failing again. I'm fine. I can handle the run. I just need you for the tech work. The locks on Oakhaven are old Bio-Dyne legacy systems. Your specialty.'",
+                "medical_check": {
+                    "difficulty": 12,
+                    "skill": "Medicine / Tech",
+                    "success": "That's not the flu. His veins are darkening around the neck. It looks like systemic organ rejection, but he hasn't had new chrome installed in years. Also, when he blinks, you see a faint hexagonal glitch in his iris—the 'Lattice'.",
+                    "failure": "He looks wrecked. Probably sleep deprivation and stress."
+                }
+            },
+            {
+                "topic": "The Danger",
+                "player_query": "Oakhaven is an exclusion zone. Radiation, squatters, maybe worse. Why risk it now?",
+                "npc_response": "Jax leans in, lowering his voice. 'Because the building is scheduled for demolition next week. Omni-Global bought the land. If I don't get that d— that *drive* tonight, it's gone forever. There's no radiation, that's just corp propaganda to keep scavs out. It's clean. Please. I need this.'",
+                "negotiation_check": {
+                    "difficulty": 10,
+                    "skill": "Persuasion / Streetwise",
+                    "success": "You squeeze him. '5k total. 2.5 now.' He doesn't even argue. He authorizes the transfer immediately. He's not thinking about money; he's thinking about survival.",
+                    "failure": "He shakes his head. '4k is all I have liquid. Take it or I find someone else. But I'd rather it be you. I trust you.'"
+                }
+            }
+        ],
+        "closing": {
+            "trigger": "Player accepts the mission.",
+            "read_aloud": "Jax lets out a breath he seems to have been holding since you sat down. He stands up, steadying himself on the table. The neon light catches the sweat on his face, making him look like a wax figure melting in the heat.\n\n'My car's out back. It's a short ride to the perimeter. If we do this right, we're back before sunrise. And V... thank you.'\n\nHe walks toward the exit, his limp more pronounced than he's admitting. You grab your gear. The rain is coming down harder now.",
+            "transition_to": "AChangeOfHeart_Act_01_Chapter_01_Scene_02"
+        }
+    },
+    
+    "loot": [
+        {
+            "item": "Credstick",
+            "value": "2000 credits (Advance payment)",
+            "notes": "Encrypted transaction from an untraceable account."
         }
     ],
     
     "music": null,
-    "ambience": null
+    "ambience": null,
+    "flags": ["adventure_start"]
 }

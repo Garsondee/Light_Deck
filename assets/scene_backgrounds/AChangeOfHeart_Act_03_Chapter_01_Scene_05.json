@@ -1,0 +1,109 @@
+{
+    "id": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+    "adventure": "A Change of Heart",
+    "act": 3,
+    "chapter": 1,
+    "scene": 5,
+    "type": "puzzle",
+    "title": "The Admin Wing",
+    "location": "Server Room Access",
+    "image": null,
+    "visuals": "ASCII_Overlay: A complex node-map of the network appears. Text streams on the side.",
+    "tone": "Revelation, Tension, Betrayal",
+    "lighting": "Flickering fluorescent tubes. Green terminal glow. Emergency lighting.",
+    "audio": "Humming servers, cooling fans, the click of old keyboards, distant alarms.",
+    "smell": "Ozone, dust, old plastic, stale recycled air.",
+    
+    "narrative": "Jax jacks into the door panel. 'Cover me. This code is... archaic.' While he works, the main terminal flickers to life.",
+    
+    "gmNotes": "This is the revelation scene. The terminal puzzle reveals Jax's true identity and his role in the massacre.",
+    
+    "npcs": [
+        {
+            "id": "jax",
+            "name": "Jaxson 'Jax' V.",
+            "role": "The Companion",
+            "statblock": null,
+            "state": "active",
+            "notes": "Hacking the door. Cannot see what player finds on terminal.",
+            "motivation": "Get to Elena before his heart gives out. He's running out of time.",
+            "personality": "Focused, sweating, hands shaking. Won't look at the terminal."
+        }
+    ],
+    
+    "challenges": [
+        {
+            "id": "hack_terminal",
+            "skill": "Netrunning",
+            "difficulty": 11,
+            "description": "Bypass the ICE protecting the archived log files.",
+            "success_effect": {
+                "text": "Access granted. The file structure unfolds before you. Decades of secrets laid bare.",
+                "sets_flag": "knows_jax_betrayal",
+                "unlocks_clue": "log_evidence"
+            },
+            "failure_effect": {
+                "text": "The system locks down. You trigger a silent alarm. Somewhere in the building, something stirs.",
+                "stress_damage": 1,
+                "sets_flag": "alarm_triggered"
+            }
+        },
+        {
+            "id": "read_chip",
+            "skill": "Tech",
+            "difficulty": 10,
+            "description": "If you have Jax's maintenance chip, read its data logs.",
+            "requires_item": "item_chip_89",
+            "success_effect": {
+                "text": "The chip contains User 89's access logs. 'Ventilation reversal authorized.' The timestamp is 15 years ago. The day of the massacre.",
+                "sets_flag": "knows_jax_betrayal",
+                "unlocks_clue": "chip_evidence"
+            },
+            "failure_effect": {
+                "text": "The chip's data is corrupted. You can only make out fragments.",
+                "stress_damage": 0
+            }
+        }
+    ],
+    
+    "terminal_access_points": [
+        {
+            "id": "admin_terminal",
+            "terminal_id": "oakhaven_admin_terminal",
+            "name": "Admin Workstation",
+            "description": "A dusty Bio-Dyne workstation. The screen flickers with 15-year-old data.",
+            "position": "center",
+            "requires_hack": false,
+            "on_access": {
+                "sets_flag": "accessed_admin_terminal"
+            }
+        }
+    ],
+    
+    "triggers": [
+        {
+            "id": "confront_jax",
+            "label": "Confront Jax",
+            "action": "narrative",
+            "condition": "knows_jax_betrayal",
+            "text": "You can show Jax what you found. His face goes pale. 'I... I didn't know. I was fifteen. They said they were just going to clear the building...'",
+            "sets_flag": "jax_confronted"
+        }
+    ],
+    
+    "exits": [
+        {
+            "target_scene_id": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+            "condition": "default",
+            "label": "Proceed to the Cryo Lab"
+        },
+        {
+            "target_scene_id": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+            "condition": "alarm_triggered",
+            "label": "Retreat to Courtyard (Security Response)"
+        }
+    ],
+    
+    "music": null,
+    "ambience": null
+}

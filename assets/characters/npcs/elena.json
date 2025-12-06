@@ -1,0 +1,83 @@
+{
+    "id": "elena",
+    "name": "Elena (Subject 01)",
+    "type": "npc",
+    "archetype": "macguffin",
+    
+    "public": {
+        "description": "A woman suspended in a cryo-stasis pod. Her face is peaceful, frozen mid-breath. Medical readouts pulse slowly - she's alive, but barely.",
+        "appearance": "Mid-20s appearance, dark hair floating in the suspension fluid. Pale skin with a faint blue tinge from the cryo process. A neural interface cable connects to the base of her skull.",
+        "demeanor": "Unconscious. But sometimes the screens nearby flicker when you look at her.",
+        "known_facts": [
+            "In cryo-stasis for an unknown duration",
+            "Connected to some kind of neural interface",
+            "Medical equipment suggests she was mid-treatment when frozen",
+            "The room she's in was hidden behind a maintenance panel"
+        ]
+    },
+    
+    "private": {
+        "full_description": "A woman in cryo-stasis. Type-H blood. A compatible donor for Jax - not because she's superior, but because she shares his artificial blood type. Her neural link has been active for 15 years; her mind is effectively awake in the local net.",
+        
+        "stats": {
+            "stress": 0,
+            "stressMax": 0,
+            "wounds": 1,
+            "armor": 0,
+            "attack": 0,
+            "defense": 0
+        },
+        
+        "attributes": {
+            "reflex": 0,
+            "body": 2,
+            "tech": 0,
+            "neural": 0,
+            "edge": 0,
+            "presence": 0
+        },
+        
+        "skills": {
+            "primary": null,
+            "primaryBonus": 0,
+            "secondary": null,
+            "secondaryBonus": 0
+        },
+        
+        "weapons": [],
+        
+        "abilities": [
+            {
+                "name": "Cryo-Stasis",
+                "description": "In a biocell designed to slow cell degradation. She was awaiting experimental treatment when the liquidation happened. The raiders missed her concealed room. She has been frozen mid-treatment for 15 years.",
+                "cooldown": null
+            },
+            {
+                "name": "Type-H Donor",
+                "description": "Shares Jax's artificial blood type. Her heart and blood are compatible - not because they're perfect, but because Bio-Dyne made them the same way. No hospital has Type-H blood on hand.",
+                "cooldown": null
+            },
+            {
+                "name": "Digital Resonance",
+                "description": "Her subconscious affects local electronics. Screens flicker, cursors move, files named 'help' appear.",
+                "cooldown": null
+            }
+        ],
+        
+        "cyberware": [],
+        
+        "behavior": {
+            "tactics": null,
+            "morale": null,
+            "motivation": null
+        },
+        
+        "secrets": {
+            "identity": "Subject 01 - The Control Subject for Project Heirloom",
+            "purpose": "Bio-Dyne kept her alive as a 'spare parts' repository. Her Type-H blood makes her compatible with any Heirloom subject - including Jax. She was the Control Subject, kept pristine while others were worked.",
+            "tragedy": "She was in a biocell awaiting treatment when the liquidation order came. The raiders cleared the building but missed her room - the entrance was concealed behind a maintenance panel. She has been frozen for 15 years, waiting for a cure that never came."
+        },
+        
+        "gm_notes": "Elena is not a character - she's a moral weight. She never speaks, never acts. She exists only as a choice.\n\nIf the player harvests her heart: She dies. Jax lives. The player gains the 'Blood Brothers' aspect.\nIf the player refuses: She lives. Jax dies. The player gains 'The Hard Line' aspect.\n\nThere is no third option. There is no clever solution. This is the point."
+    }
+}

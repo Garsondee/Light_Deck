@@ -1,0 +1,98 @@
+{
+    "id": "hazer_mook",
+    "name": "Hazer Sentinel",
+    "type": "mook",
+    "archetype": "survivor",
+    
+    "public": {
+        "description": "A figure in patched hazmat gear, face hidden behind a cracked respirator. They move with the careful gait of someone conserving energy. Occasional wet coughs echo from behind the mask.",
+        "appearance": "Scavenged hazmat suit covered in patches and repairs. Faded Bio-Dyne logo barely visible on the shoulder. Homemade filters attached to the respirator.",
+        "demeanor": "Wary and defensive. They watch you with tired eyes through scratched goggles. Not aggressive unless provoked.",
+        "known_facts": [
+            "Lives in the contaminated Oakhaven ruins",
+            "Clearly unwell - frequent coughing, slow movements",
+            "Protective of the area, treats it almost reverently",
+            "Wears old Bio-Dyne equipment"
+        ]
+    },
+    
+    "private": {
+        "full_description": "Sickly survivors in scavenged hazmat gear. Type-H blood. They protect the Oakhaven ruins as a tomb for their dead. All are dying from the same genetic timebomb - they just don't know why.",
+        
+        "stats": {
+            "stress": 0,
+            "stressMax": 1,
+            "wounds": 1,
+            "armor": 1,
+            "attack": 2,
+            "defense": 9
+        },
+        
+        "attributes": {
+            "reflex": 0,
+            "body": -1,
+            "tech": 0,
+            "neural": 0,
+            "edge": 1,
+            "presence": 0
+        },
+        
+        "skills": {
+            "primary": "Survival",
+            "primaryBonus": 2,
+            "secondary": "Melee",
+            "secondaryBonus": 1
+        },
+        
+        "weapons": [
+            {
+                "name": "Pipe / Club",
+                "damage": "1d6",
+                "type": "kinetic",
+                "notes": "Scavenged"
+            },
+            {
+                "name": "Old Pistol",
+                "damage": "1d6+1",
+                "type": "kinetic",
+                "notes": "Low ammo. Jams on 1-2."
+            }
+        ],
+        
+        "abilities": [
+            {
+                "name": "Genetic Decay",
+                "description": "The timebomb is killing them. Cannot sprint. Coughs when moving fast, giving away position (-2 to Stealth after running).",
+                "cooldown": null
+            },
+            {
+                "name": "Home Ground",
+                "description": "+2 to Survival and Stealth checks within Oakhaven.",
+                "cooldown": null
+            },
+            {
+                "name": "Desperate Defense",
+                "description": "When defending the shrine or cryo lab, gains +1 to attack and defense.",
+                "cooldown": null
+            }
+        ],
+        
+        "cyberware": [],
+        
+        "behavior": {
+            "tactics": "Ambush and overwhelm. Use knowledge of the terrain. Retreat if outmatched.",
+            "morale": "Flees if Rattle goes down or if half the group is defeated. Will surrender if cornered.",
+            "motivation": "Protect the dead. Keep scavengers out. They believe the ruins are sacred."
+        },
+        
+        "loot": [
+            { "item": "Empty bottle of Bio-Dyne Pure", "chance": 100 },
+            { "item": "Scrap components", "chance": 60 },
+            { "item": "Filtered water (1 bottle)", "chance": 40 },
+            { "item": "Old photo of family", "chance": 20 },
+            { "item": "Ammo (1d4 rounds)", "chance": 50 }
+        ],
+        
+        "gm_notes": "The Hazers are victims, not villains. They survived the Bio-Dyne gas attack 15 years ago and now live in the contaminated ruins. They are all dying from the genetic timebomb - falling ill simultaneously regardless of age or gender. They don't understand why.\n\nKilling them should feel wrong. Jax will react negatively. The ending changes based on how the player treats them.\n\nUse in groups of 2-4. They're not meant to be a serious combat threat - they're meant to be a moral challenge."
+    }
+}

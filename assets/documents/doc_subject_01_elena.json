@@ -1,0 +1,62 @@
+{
+    "id": "doc_subject_01_elena",
+    "name": "Subject 01 - Elena",
+    "type": "log_file",
+    "format": "terminal",
+    "adventure": "A Change of Heart",
+    
+    "metadata": {
+        "filename": "subject_01_elena.log",
+        "created": "2112-06-01",
+        "modified": "2142-08-22",
+        "author": "Bio-Dyne Medical Division",
+        "classification": "TOP SECRET",
+        "size": "6.8 KB"
+    },
+    
+    "style": {
+        "monospace": true,
+        "color": "#33ff66",
+        "headerColor": "#ff6666"
+    },
+    
+    "content": {
+        "header": "═══════════════════════════════════════════════════════════════\n  BIO-DYNE CORPORATION - PROJECT HEIRLOOM\n  SUBJECT FILE: 01 (CONTROL)\n═══════════════════════════════════════════════════════════════",
+        
+        "sections": [
+            {
+                "title": "SUBJECT IDENTIFICATION",
+                "text": "Name:           Elena\nDesignation:    Subject 01 (Control)\nBlood Type:     Type-H (Synthetic)\nDOB:            2112-06-01\nStatus:         VIABLE DONOR\nLocation:       Biocell-7 (Maintenance Wing)"
+            },
+            {
+                "title": "CONTROL SUBJECT PROTOCOL",
+                "text": "Subject 01 designated as CONTROL for Project Heirloom.\nMaintained in pristine condition while other subjects\nunderwent stress testing.\n\nPurpose: Organ repository for high-value subjects.\nAll organs verified Type-H compatible.\n\nNOTE: Control subject kept separate from general\n      population to prevent contamination."
+            },
+            {
+                "title": "CURRENT STATUS",
+                "text": "Location:       Biocell-7, Maintenance Wing\nAccess:         Panel 7-C (Concealed)\nStasis:         ACTIVE (15 years)\nVitals:         STABLE\nOrgan Status:   OPTIMAL\n\nAwaiting experimental treatment at time of\nliquidation order. Cell entrance concealed\nbehind maintenance panel - missed by sweep team."
+            },
+            {
+                "title": "LIQUIDATION REPORT EXCERPT",
+                "text": "Sweep Team Lead: 'Building clear. All subjects\n                  accounted for.'\nQA:              'What about the biocell in\n                  maintenance?'\nLead:            'What biocell? There's nothing\n                  behind that panel.'\nQA:              'Nevermind. Marking complete.'"
+            },
+            {
+                "title": "RECOVERY NOTES",
+                "text": "Subject 01 remains viable for organ harvest.\nType-H blood makes her compatible with any\nHeirloom subject.\n\nRecommendation: Leave in stasis until needed.\n                No maintenance required."
+            }
+        ],
+        
+        "footer": "═══════════════════════════════════════════════════════════════\n  END OF FILE\n═══════════════════════════════════════════════════════════════"
+    },
+    
+    "reveal_flags": [],
+    "unlocks_clues": ["elena_location", "elena_purpose"],
+    
+    "found_in": {
+        "terminals": ["oakhaven_admin_terminal"],
+        "items": [],
+        "scenes": ["AChangeOfHeart_Act_03_Chapter_01_Scene_05"]
+    },
+    
+    "gmNotes": "This document reveals Elena's location and purpose. It's clinical and cold - she's described as an 'organ repository'. The liquidation report excerpt shows how she was accidentally left behind."
+}

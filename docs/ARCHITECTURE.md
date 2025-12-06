@@ -1050,68 +1050,62 @@ EventBus.on('combat:attack_result', (data) => {
 
 ### 15.5 Data Models (Extended)
 
-#### CharacterSheet
+#### CharacterSheet (Neon Protocol v0.3)
 ```javascript
 {
     id: "pc_netrunner",
     name: "Player Character",
-    type: "pc", // "pc" | "npc"
+    handle: "Voltage",
+    background: "techie",
     
-    // Core Stats
-    stats: {
-        body: 5,
-        reflexes: 7,
-        tech: 8,
-        cool: 6,
-        intelligence: 7,
-        willpower: 5,
-        luck: 4,
-        move: 6,
-        empathy: 5
+    // Core Attributes (range: -1 to +3)
+    attributes: {
+        reflex: 1,
+        body: 0,
+        tech: 3,
+        neural: 2,
+        edge: 1,
+        presence: 1
     },
     
-    // Derived Stats
+    // Derived Stats (Stress/Wounds system)
     derived: {
-        maxHp: 35,
-        currentHp: 35,
-        maxHumanity: 50,
-        currentHumanity: 42,
-        deathSave: 5,
-        seriouslyWoundedThreshold: 18
+        stress: 0,
+        stressMax: 5,
+        wounds: [
+            { slot: 1, name: null, penalty: -1 },
+            { slot: 2, name: null, penalty: -2 },
+            { slot: 3, name: null, penalty: "out" }
+        ],
+        armor: 1
     },
     
-    // Resources
-    resources: {
-        luck: { current: 4, max: 4 },
-        ammo: { pistol: 12, smg: 30 },
-        eddies: 500
-    },
-    
-    // Skills (partial list)
+    // Skills (range: 0-5)
     skills: {
-        interface: 6,
-        electronics: 5,
-        hacking: 7,
-        handgun: 4,
-        evasion: 5,
-        perception: 4,
-        stealth: 3
+        netrunning: 3,
+        hardware: 3,
+        firearms: 1,
+        evasion: 2,
+        perception: 2,
+        stealth: 1
+        // ... etc
     },
     
-    // Inventory
-    inventory: [
-        { id: "cyberdeck_basic", name: "Basic Cyberdeck", equipped: true },
-        { id: "pistol_medium", name: "Medium Pistol", equipped: true, ammo: 12 }
+    // Gear
+    gear: [
+        { id: "cyberdeck_nomad", name: "Nomad Cyberdeck", quantity: 1 },
+        { id: "pistol_light", name: "Kang Tao Type-7", equipped: true }
     ],
     
-    // Conditions/Status Effects
-    conditions: [],
-    
-    // Cyberware
+    // Cyberware with Glitches (narrative complications)
     cyberware: [
-        { id: "neural_link", name: "Neural Link", humanity_cost: 2 },
-        { id: "optic_basic", name: "Cybereye (Basic)", humanity_cost: 2 }
-    ]
+        { id: "neural_link", name: "Neural Link Mk.II", slot: "head", 
+          glitch: "Sometimes I hear the Net whisper", active: true },
+        { id: "optic_hud", name: "Optic HUD", slot: "eyes",
+          glitch: "Ads flicker in my peripheral vision", active: true }
+    ],
+    
+    credits: 3200
 }
 ```
 
@@ -1830,7 +1824,9 @@ assets/scene_backgrounds/
 └── ...
 ```
 
-### 19.3 Scene JSON Schema
+### 19.3 Scene JSON Schema (Playable)
+
+> **Updated:** 2024-12-05 - Added `challenges`, `exits`, and `type` fields for programmatic gameplay.
 
 ```json
 {
@@ -1839,14 +1835,114 @@ assets/scene_backgrounds/
     "act": 1,
     "chapter": 1,
     "scene": 1,
-    "title": "The Beginning",
-    "description": "The adventure begins...",
+    "type": "social",
+    "title": "The Briefing",
+    "location": "Street Noodle Stand",
     "image": "AChangeOfHeart_Act_01_Chapter_01_Scene_01.png",
+    "visuals": "ASCII_Overlay: Static rain interference...",
+    
+    "narrative": "Read-aloud text for players...",
+    "gmNotes": "Private notes for GM only",
+    
+    "npcs": [
+        {
+            "id": "jax",
+            "name": "Jaxson 'Jax' V.",
+            "role": "The Companion",
+            "statblock": null,
+            "state": "active",
+            "notes": "Scene-specific notes"
+        }
+    ],
+    
+    "challenges": [
+        {
+            "id": "assess_jax",
+            "skill": "Empathy",
+            "difficulty": 12,
+            "description": "Read Jax's body language and detect his deception.",
+            "requires_item": null,
+            "requires_flag": null,
+            "success_effect": {
+                "text": "You notice he isn't checking his agent...",
+                "sets_flag": "suspects_jax_lying",
+                "unlocks_clue": "jax_deception",
+                "grants_item": null
+            },
+            "failure_effect": {
+                "text": "He seems jittery. Probably just nerves.",
+                "stress_damage": 0,
+                "sets_flag": null
+            }
+        }
+    ],
+    
+    "triggers": [
+        {
+            "id": "clue_sludge",
+            "label": "The Cough",
+            "action": "passive",
+            "condition": null,
+            "text": "Jax coughs into a napkin...",
+            "sets_flag": "witnessed_jax_cough"
+        }
+    ],
+    
+    "exits": [
+        {
+            "target_scene_id": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+            "condition": "default",
+            "label": "Accept the job and head to Oakhaven"
+        },
+        {
+            "target_scene_id": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+            "condition": "alarm_triggered",
+            "label": "Ambushed in the Courtyard"
+        }
+    ],
+    
     "music": null,
-    "ambience": null,
-    "notes": ""
+    "ambience": null
 }
 ```
+
+#### Scene Types
+
+| Type | Description |
+|------|-------------|
+| `social` | Dialogue and roleplay focused |
+| `infiltration` | Stealth and bypassing obstacles |
+| `exploration` | Investigation and discovery |
+| `combat` | Fighting encounters |
+| `puzzle` | Problem-solving challenges |
+| `choice` | Moral decisions with consequences |
+| `ending` | Conclusion scenes |
+
+#### Challenge Schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Unique identifier |
+| `skill` | string | Skill to roll (e.g., "Netrunning", "Empathy") |
+| `difficulty` | number | Target number to beat |
+| `description` | string | What the player is attempting |
+| `requires_item` | string? | Item ID required to attempt |
+| `requires_flag` | string? | Flag that must be set to attempt |
+| `success_effect.text` | string | Narrative result on success |
+| `success_effect.sets_flag` | string? | Flag to set on success |
+| `success_effect.unlocks_clue` | string? | Clue ID to unlock |
+| `success_effect.grants_item` | string? | Item ID to grant |
+| `failure_effect.text` | string | Narrative result on failure |
+| `failure_effect.stress_damage` | number | Stress to apply on failure |
+| `failure_effect.sets_flag` | string? | Flag to set on failure |
+
+#### Exit Schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `target_scene_id` | string | Scene ID to navigate to |
+| `condition` | string | `"default"` or a flag expression (e.g., `"alarm_triggered"`) |
+| `label` | string | Display text for the exit option |
 
 ### 19.4 API Endpoints
 
@@ -1979,6 +2075,503 @@ Trigger buttons execute predefined actions:
 | 2024-12-04 | 1.5 | CRT Transition System. TransitionManager for unified power-down/power-up effects. Scene changes, terminal toggle, and boot sequence all use consistent CRT fade. |
 | 2024-12-04 | 1.6 | Game System Foundation. Created GAME-SYSTEM.md with "Neon Protocol" rules. Player character and NPC JSON schemas. Example characters created in assets/characters/. |
 | 2024-12-04 | 1.7 | Adventure Guide System. Created AChangeOfHeart_Guide.json with indexed sections. Added NPCs to scene JSONs. API endpoints for guides and NPCs. GM Overlay now shows NPCs with state indicators and GUIDE button. |
+| 2024-12-05 | 1.8 | Playable Schema Update. Added `challenges` and `exits` to scenes for programmatic gameplay. Added `state_tracking`, `items`, and `clues` sections to adventure guide. All scene JSONs updated with skill checks, flag tracking, and navigation. |
+| 2024-12-05 | 1.9 | Terminal/Document/Program System. Three new JSON asset types: Terminals (in-game computers with unique styles), Documents (readable content), Programs (terminal apps/minigames). Scenes can now include `terminal_access_points`. API endpoints and export updated. |
+| 2024-12-05 | **2.0** | **GM Overlay v2 (React).** Complete React-based GM interface in `src/gm-overlay/`. Scene Activation System distinguishes browsing vs. pushing scenes to players. Player View Preview shows active scene thumbnail. Chat Log Panel with real-time Socket.io sync. Zustand stores for scene, view, session, chat state. Keyboard shortcuts (Shift+Enter to activate, Cmd+J for scene jumper). |
+| 2024-12-05 | 2.1 | **NPC Detail View with Public/Private Data.** NPC JSON schema updated with `public` and `private` sections. Server API filters data by role (`?role=gm` for full access). GM Overlay shows full statblock. Players use `/look <name>` command to see public info only. |
+
+---
+
+## 22. Adventure Guide Schema (Playable)
+
+> **Status:** IMPLEMENTED (2024-12-05)
+
+### 22.1 Overview
+
+The adventure guide now includes sections for programmatic gameplay tracking:
+- **state_tracking** - Boolean and enum flags for player choices
+- **items** - Database of key items, loot, and clutter
+- **clues** - Information discoveries that advance the mystery
+
+### 22.2 State Tracking Schema
+
+```json
+{
+    "state_tracking": {
+        "title": "Campaign Flags",
+        "description": "Boolean and enum flags that track player choices.",
+        "flags": [
+            {
+                "id": "knows_jax_betrayal",
+                "type": "boolean",
+                "default": false,
+                "description": "True if player reads the logs in Scene 5."
+            },
+            {
+                "id": "hazers_status",
+                "type": "enum",
+                "options": ["neutral", "negotiated", "spared", "killed"],
+                "default": "neutral",
+                "description": "How the player resolved the Hazer encounter."
+            },
+            {
+                "id": "jax_fate",
+                "type": "enum",
+                "options": ["alive", "dead"],
+                "default": "alive",
+                "description": "Whether Jax survives the adventure."
+            }
+        ]
+    }
+}
+```
+
+#### Flag Types
+
+| Type | Description |
+|------|-------------|
+| `boolean` | True/false state |
+| `enum` | One of several predefined options |
+
+### 22.3 Items Schema
+
+```json
+{
+    "items": {
+        "title": "Item Database",
+        "description": "Key items, clutter, and loot.",
+        "content": [
+            {
+                "id": "item_chip_89",
+                "name": "Rusted Maintenance Chip",
+                "type": "key_item",
+                "description": "Jax's 'lucky charm'. A corroded access chip.",
+                "data_content": "Log #4092: User 89 authorized ventilation reversal.",
+                "reveal_flag": "knows_jax_betrayal",
+                "location": "Jax carries this."
+            }
+        ]
+    }
+}
+```
+
+#### Item Types
+
+| Type | Description |
+|------|-------------|
+| `key_item` | Required for progression or reveals |
+| `clue` | Provides information about the mystery |
+| `consumable` | Single-use items (healing, buffs) |
+| `loot` | Sellable or tradeable items |
+| `clutter` | Flavor items with no mechanical use |
+| `gift` | Given by NPCs as rewards |
+
+### 22.4 Clues Schema
+
+```json
+{
+    "clues": {
+        "title": "Clue Database",
+        "description": "Information discoveries.",
+        "content": [
+            {
+                "id": "log_evidence",
+                "name": "The Terminal Logs",
+                "description": "Jax traded the ventilation codes to Bio-Dyne.",
+                "unlocked_by": ["hack_terminal"]
+            }
+        ]
+    }
+}
+```
+
+### 22.5 Flag Expressions
+
+Conditions in scenes use simple flag expressions:
+
+| Expression | Meaning |
+|------------|---------|
+| `"default"` | Always available |
+| `"flag_name"` | True if flag is set |
+| `"!flag_name"` | True if flag is NOT set |
+| `"flag1 AND flag2"` | Both flags must be set |
+| `"flag1 AND !flag2"` | flag1 set, flag2 not set |
+
+### 22.6 Integration Points
+
+- **Challenges** set flags via `success_effect.sets_flag` and `failure_effect.sets_flag`
+- **Triggers** set flags via `sets_flag`
+- **Exits** check flags via `condition`
+- **Challenges** can require items via `requires_item`
+- **Challenges** can require flags via `requires_flag`
+- **Challenges** can grant items via `success_effect.grants_item`
+
+---
+
+## 23. Terminal System
+
+> **Status:** IMPLEMENTED (2024-12-05)
+
+### 23.1 Overview
+
+Terminals are in-game computer interfaces that players can access. Each terminal has its own visual style, filesystem, documents, and programs. Scenes can contain `terminal_access_points` that link to terminal JSON files.
+
+### 23.2 File Structure
+
+```
+assets/terminals/
+├── oakhaven_admin_terminal.json
+├── oakhaven_lobby_kiosk.json
+└── ...
+```
+
+### 23.3 Terminal JSON Schema
+
+```json
+{
+    "id": "oakhaven_admin_terminal",
+    "name": "Oakhaven Admin Terminal",
+    "type": "workstation",
+    "location": "Admin Wing Server Room",
+    "adventure": "A Change of Heart",
+    
+    "description": "A dusty Bio-Dyne workstation...",
+    
+    "style": {
+        "theme": "biodyne_corporate",
+        "phosphor": "p1",
+        "primaryColor": "#33ff66",
+        "secondaryColor": "#228844",
+        "accentColor": "#ffaa00",
+        "backgroundColor": "#0a0a0a",
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": 14,
+        "scanlines": true,
+        "scanlineIntensity": 0.15,
+        "flicker": true,
+        "flickerIntensity": 0.03,
+        "noise": true,
+        "noiseIntensity": 0.02,
+        "crtCurvature": 0.09,
+        "bloom": true,
+        "bloomIntensity": 0.4
+    },
+    
+    "boot_sequence": {
+        "enabled": true,
+        "lines": [
+            { "text": "SYSTEM BOOT...", "speed": 80, "type": "system" }
+        ]
+    },
+    
+    "access_level": "guest",
+    "requires_hack": false,
+    "hack_difficulty": null,
+    
+    "filesystem": {
+        "root": "/biodyne/oakhaven",
+        "directories": [
+            {
+                "path": "/",
+                "name": "root",
+                "files": ["readme.txt"],
+                "subdirs": ["admin", "subjects"]
+            }
+        ]
+    },
+    
+    "documents": ["doc_readme", "doc_subject_89"],
+    "programs": ["prog_file_browser", "prog_ice_breaker"],
+    
+    "commands": {
+        "available": ["help", "dir", "cd", "cat", "run", "exit"],
+        "custom": []
+    },
+    
+    "events": {
+        "on_access": { "sets_flag": "accessed_terminal" },
+        "on_read_subject_89": { "sets_flag": "knows_jax_betrayal" }
+    },
+    
+    "gmNotes": "Private notes for GM"
+}
+```
+
+### 23.4 Terminal Types
+
+| Type | Description |
+|------|-------------|
+| `workstation` | Full computer with filesystem access |
+| `kiosk` | Public information terminal with menu |
+| `security` | Security system terminal |
+| `medical` | Medical records terminal |
+| `industrial` | Factory/facility control terminal |
+
+### 23.5 Scene Integration
+
+Scenes can include `terminal_access_points`:
+
+```json
+{
+    "terminal_access_points": [
+        {
+            "id": "admin_terminal",
+            "terminal_id": "oakhaven_admin_terminal",
+            "name": "Admin Workstation",
+            "description": "A dusty workstation...",
+            "position": "center",
+            "requires_hack": false,
+            "on_access": { "sets_flag": "accessed_terminal" }
+        }
+    ]
+}
+```
+
+---
+
+## 24. Document System
+
+> **Status:** IMPLEMENTED (2024-12-05)
+
+### 24.1 Overview
+
+Documents are in-game readable content. They can be found in terminals, given as physical items, or discovered in scenes. Each document has its own styling and content structure.
+
+### 24.2 File Structure
+
+```
+assets/documents/
+├── doc_subject_89_jaxson.json
+├── doc_liquidation_order.json
+├── doc_message_board_archive.json
+└── ...
+```
+
+### 24.3 Document JSON Schema
+
+```json
+{
+    "id": "doc_subject_89_jaxson",
+    "name": "Subject 89 - Jaxson V.",
+    "type": "log_file",
+    "format": "terminal",
+    "adventure": "A Change of Heart",
+    
+    "metadata": {
+        "filename": "subject_89_jaxson.log",
+        "created": "2127-03-15",
+        "modified": "2142-08-22",
+        "author": "Bio-Dyne Medical Division",
+        "classification": "CONFIDENTIAL",
+        "size": "4.2 KB"
+    },
+    
+    "style": {
+        "monospace": true,
+        "color": "#33ff66",
+        "headerColor": "#ffaa00"
+    },
+    
+    "content": {
+        "header": "═══ HEADER TEXT ═══",
+        "sections": [
+            {
+                "title": "SECTION TITLE",
+                "text": "Section content..."
+            }
+        ],
+        "footer": "═══ END OF FILE ═══"
+    },
+    
+    "requires_access": null,
+    "requires_hack": false,
+    "hack_difficulty": null,
+    
+    "reveal_flags": ["knows_jax_betrayal"],
+    "unlocks_clues": ["log_evidence"],
+    
+    "found_in": {
+        "terminals": ["oakhaven_admin_terminal"],
+        "items": ["item_chip_89"],
+        "scenes": []
+    },
+    
+    "gmNotes": "Private notes for GM"
+}
+```
+
+### 24.4 Document Types
+
+| Type | Description |
+|------|-------------|
+| `log_file` | System or access logs |
+| `memo` | Corporate memos and orders |
+| `message_log` | Chat/message archives |
+| `report` | Technical or medical reports |
+| `letter` | Personal correspondence |
+| `manual` | Technical manuals |
+| `note` | Handwritten notes |
+
+### 24.5 Document Formats
+
+| Format | Description |
+|--------|-------------|
+| `terminal` | Displayed in terminal style |
+| `document` | Displayed as formatted document |
+| `chat` | Displayed as message thread |
+| `handwritten` | Displayed with handwriting font |
+
+---
+
+## 25. Program System
+
+> **Status:** IMPLEMENTED (2024-12-05)
+
+### 25.1 Overview
+
+Programs are terminal applications that provide functionality or minigames. They can be file browsers, hacking tools, communication apps, or custom challenges.
+
+### 25.2 File Structure
+
+```
+assets/programs/
+├── prog_file_browser.json
+├── prog_ice_breaker.json
+├── prog_message_board.json
+└── ...
+```
+
+### 25.3 Program JSON Schema
+
+```json
+{
+    "id": "prog_ice_breaker",
+    "name": "ICE Breaker v2.1",
+    "type": "hacking_tool",
+    "category": "security",
+    "adventure": "A Change of Heart",
+    
+    "description": "A black-market decryption utility...",
+    
+    "style": {
+        "theme": "hacker",
+        "primaryColor": "#ff0066",
+        "animatedBackground": true,
+        "matrixRain": true
+    },
+    
+    "interface": {
+        "type": "minigame",
+        "display": "fullscreen",
+        "header": "╔══ ICE BREAKER ══╗"
+    },
+    
+    "mechanics": {
+        "type": "skill_challenge",
+        "skill": "Netrunning",
+        "base_difficulty": 12,
+        "attempts": 3,
+        
+        "phases": [
+            {
+                "name": "Pattern Analysis",
+                "difficulty_modifier": 0,
+                "success_text": "Pattern identified.",
+                "failure_text": "Pattern unclear."
+            }
+        ],
+        
+        "success_effect": {
+            "text": "ACCESS GRANTED",
+            "unlocks_access": true,
+            "sets_flag": "ice_breaker_success"
+        },
+        
+        "failure_effect": {
+            "text": "LOCKOUT",
+            "stress_damage": 1,
+            "triggers_alarm": true
+        }
+    },
+    
+    "visual_sequence": {
+        "enabled": true,
+        "frames": [
+            { "text": "Initializing...", "delay": 500 }
+        ]
+    },
+    
+    "found_in": {
+        "terminals": ["oakhaven_admin_terminal"],
+        "items": []
+    },
+    
+    "gmNotes": "Private notes for GM"
+}
+```
+
+### 25.4 Program Types
+
+| Type | Description |
+|------|-------------|
+| `utility` | System utilities (file browser, etc.) |
+| `hacking_tool` | Security bypass tools |
+| `application` | General applications |
+| `game` | In-universe games |
+| `diagnostic` | System diagnostic tools |
+
+### 25.5 Program Categories
+
+| Category | Description |
+|----------|-------------|
+| `system` | Core system utilities |
+| `security` | Hacking and security tools |
+| `communication` | Messaging and chat apps |
+| `entertainment` | Games and media |
+| `medical` | Medical system access |
+| `industrial` | Factory/facility control |
+
+### 25.6 Mechanics Types
+
+| Type | Description |
+|------|-------------|
+| `skill_challenge` | Multi-phase skill check |
+| `document_browser` | View documents |
+| `navigation` | Filesystem navigation |
+| `puzzle` | Logic puzzle |
+| `minigame` | Interactive game |
+
+---
+
+## 26. API Endpoints
+
+### 26.1 Terminal Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/terminals` | GET | List all terminals |
+| `/api/terminals/:id` | GET | Get specific terminal |
+
+### 26.2 Document Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/documents` | GET | List all documents |
+| `/api/documents/:id` | GET | Get specific document |
+
+### 26.3 Program Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/programs` | GET | List all programs |
+| `/api/programs/:id` | GET | Get specific program |
+
+### 26.4 Export Endpoint
+
+The `/api/export/:adventureId` endpoint now includes:
+- `terminals` - All terminal definitions
+- `documents` - All in-game documents
+- `programs` - All terminal programs
 
 ---
 

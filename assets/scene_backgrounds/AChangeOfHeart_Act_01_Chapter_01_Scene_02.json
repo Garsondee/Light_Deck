@@ -4,66 +4,95 @@
     "act": 1,
     "chapter": 1,
     "scene": 2,
-    "title": "The Chase",
-    "description": "Pursuit through the rain-soaked streets.",
+    "type": "infiltration",
+    "title": "The Gate",
+    "location": "Oakhaven Perimeter",
     "image": "AChangeOfHeart_Act_01_Chapter_01_Scene_02.png",
+    "visuals": "ASCII_Overlay: High contrast shadows. The 'Hazers' are rendered as silhouettes with glowing asterisks '*' for gas mask eyes.",
     
-    "narrative": "Read aloud to players:\n\nGunshots crack through the night air! The contact crumples, the data chip clattering to the wet pavement. The two figures from the alley are running toward you, weapons drawn.\n\nYou have seconds to act.",
+    "narrative": "The Oakhaven gate looms ahead. 'Bio-Hazard' signs are spray-painted over with the words 'BIO-DYNE KILLS'.\n\nGuards in heavy rain gear patrol the top. Jax pulls you into the shadows violently.\n'No contact,' he hisses. 'We don't talk to them. I know a vent around back.'",
     
-    "gmNotes": "This is a chase scene. The pursuers are corporate security - well-trained but not elite. They want the data chip recovered intact.\n\nIf players flee: Run a chase skill challenge (3 successes before 3 failures).\nIf players fight: Standard combat, 2 security operatives.",
+    "gmNotes": "Jax knows this place too well. He's been here before - 15 years ago, when he traded the vent codes.",
+    
+    "tone": "Tense, Stealthy, Ominous",
+    "lighting": "Moonlight filtered through toxic haze. Searchlights sweep the perimeter.",
+    "audio": "Wind through chain-link, distant coughing, the creak of rusted metal.",
+    "smell": "Chemical residue, wet concrete, decay.",
     
     "npcs": [
         {
-            "id": "corpo_security_squad",
-            "name": "Corporate Security (x2)",
-            "role": "Pursuers",
-            "statblock": "corpo_security_squad",
+            "id": "jax",
+            "name": "Jaxson 'Jax' V.",
+            "role": "The Companion",
+            "statblock": null,
             "state": "active",
-            "notes": "Want the data chip. Will call for backup if fight goes badly."
+            "notes": "Nervous. Knows the layout suspiciously well.",
+            "motivation": "Get inside without being seen. He can't let the Hazers recognize him.",
+            "personality": "Twitchy, whispering, constantly checking over his shoulder."
         },
         {
-            "id": "yuki_sato",
-            "name": "Yuki Sato",
-            "role": "Dying Contact",
-            "statblock": null,
-            "state": "defeated",
-            "notes": "Shot in the opening. Use 'Contact Dies' trigger for last words."
+            "id": "hazer_mook",
+            "name": "Hazer Guards (x2)",
+            "role": "Perimeter Watch",
+            "statblock": "hazer_mook",
+            "state": "active",
+            "notes": "Patrolling the gate. Will attack if spotted.",
+            "motivation": "Keep outsiders away from the shrine and the sleepers.",
+            "personality": "Vigilant but exhausted. They cough frequently."
         }
     ],
     
-    "skillChecks": [
+    "challenges": [
         {
-            "name": "Athletics",
-            "dc": 14,
-            "success": "You vault over a market stall, gaining ground on your pursuers.",
-            "fail": "You stumble on the slick pavement, losing precious seconds."
+            "id": "bypass_vent",
+            "skill": "Tech",
+            "difficulty": 8,
+            "description": "Bypass the rusted vent fan to enter Oakhaven undetected.",
+            "success_effect": {
+                "text": "You bypass the rusted fan. You slide into the tunnel. Above you, you hear the guards praying to 'keep the air seals tight'.",
+                "sets_flag": "entered_undetected"
+            },
+            "failure_effect": {
+                "text": "The grate screeches. You tumble in, taking 1 Stress. The guards are alerted.",
+                "stress_damage": 1,
+                "sets_flag": "alarm_triggered"
+            }
         },
         {
-            "name": "Stealth",
-            "dc": 16,
-            "success": "You duck into a side alley and press against the wall. The pursuers run past.",
-            "fail": "They spot your movement and adjust their pursuit."
-        },
-        {
-            "name": "Technology",
-            "dc": 13,
-            "success": "You hack a nearby drone to create a distraction.",
-            "fail": "The security systems reject your intrusion attempt."
+            "id": "sneak_past_guards",
+            "skill": "Stealth",
+            "difficulty": 10,
+            "description": "Move silently past the Hazer patrol.",
+            "success_effect": {
+                "text": "You slip through the shadows like a ghost. The guards never see you.",
+                "sets_flag": "entered_undetected"
+            },
+            "failure_effect": {
+                "text": "A guard spots movement. 'Intruders!' The alarm is raised.",
+                "sets_flag": "alarm_triggered"
+            }
         }
     ],
     
     "triggers": [
         {
-            "id": "contact_dies",
-            "label": "Contact Dies",
-            "action": "chat",
-            "text": "The contact's eyes go wide, then empty. Their last words are a whisper: 'Find... Aria...'"
+            "id": "jax_knowledge",
+            "label": "Jax's Familiarity",
+            "action": "passive",
+            "text": "Jax navigates the perimeter without hesitation. He knows exactly where the blind spots are. How?"
+        }
+    ],
+    
+    "exits": [
+        {
+            "target_scene_id": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+            "condition": "default",
+            "label": "Enter the Shrine"
         },
         {
-            "id": "chase_begins",
-            "label": "Chase Begins",
-            "action": "chat",
-            "text": "Roll initiative! The chase is on."
+            "target_scene_id": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+            "condition": "alarm_triggered",
+            "label": "Ambushed in the Courtyard"
         }
     ],
     

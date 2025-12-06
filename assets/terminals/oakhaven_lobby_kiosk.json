@@ -1,0 +1,84 @@
+{
+    "id": "oakhaven_lobby_kiosk",
+    "name": "Lobby Information Kiosk",
+    "type": "kiosk",
+    "location": "Oakhaven Main Lobby",
+    "adventure": "A Change of Heart",
+    
+    "description": "A public information terminal. The touch screen is cracked but still responsive. Faded Bio-Dyne branding covers the housing.",
+    
+    "style": {
+        "theme": "biodyne_public",
+        "phosphor": "p3",
+        "primaryColor": "#00aaff",
+        "secondaryColor": "#0066aa",
+        "accentColor": "#ffffff",
+        "backgroundColor": "#001122",
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": 16,
+        "scanlines": true,
+        "scanlineIntensity": 0.1,
+        "flicker": false,
+        "flickerIntensity": 0,
+        "noise": false,
+        "noiseIntensity": 0,
+        "crtCurvature": 0.05,
+        "bloom": true,
+        "bloomIntensity": 0.3
+    },
+    
+    "boot_sequence": {
+        "enabled": true,
+        "lines": [
+            { "text": "╔════════════════════════════════════╗", "speed": 100, "type": "system" },
+            { "text": "║   OAKHAVEN COMMUNITY CENTER        ║", "speed": 100, "type": "system" },
+            { "text": "║   Information Kiosk                 ║", "speed": 100, "type": "system" },
+            { "text": "╚════════════════════════════════════╝", "speed": 100, "type": "system" },
+            { "text": "", "delay": 300 },
+            { "text": "Welcome, Resident!", "speed": 40 },
+            { "text": "", "delay": 100 },
+            { "text": "Select an option or type a command.", "speed": 40 }
+        ]
+    },
+    
+    "access_level": "public",
+    "requires_hack": false,
+    
+    "menu": {
+        "enabled": true,
+        "options": [
+            { "key": "1", "label": "Community Announcements", "action": "read", "target": "doc_community_announcements" },
+            { "key": "2", "label": "Facility Map", "action": "read", "target": "doc_facility_map" },
+            { "key": "3", "label": "Message Board", "action": "run", "target": "prog_message_board" },
+            { "key": "4", "label": "Emergency Contacts", "action": "read", "target": "doc_emergency_contacts" },
+            { "key": "0", "label": "Exit", "action": "exit" }
+        ]
+    },
+    
+    "documents": [
+        "doc_community_announcements",
+        "doc_facility_map",
+        "doc_emergency_contacts"
+    ],
+    
+    "programs": [
+        "prog_message_board"
+    ],
+    
+    "commands": {
+        "available": ["help", "read", "run", "exit", "clear"],
+        "custom": []
+    },
+    
+    "events": {
+        "on_access": {
+            "sets_flag": "accessed_lobby_kiosk"
+        },
+        "on_read_message_board": {
+            "unlocks_clue": "final_messages",
+            "sets_flag": "read_panic_messages"
+        }
+    },
+    
+    "gmNotes": "This kiosk contains the community message board with the final panicked messages from residents during the gas attack. Very emotional content - use sparingly."
+}

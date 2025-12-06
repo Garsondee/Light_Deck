@@ -1,0 +1,83 @@
+{
+    "id": "prog_file_browser",
+    "name": "File Browser",
+    "type": "utility",
+    "category": "system",
+    "adventure": null,
+    
+    "description": "Standard file system browser. Navigate directories and open files.",
+    
+    "style": {
+        "theme": "system",
+        "primaryColor": "#33ff66",
+        "secondaryColor": "#228844",
+        "backgroundColor": "#0a0a0a",
+        "animatedBackground": false
+    },
+    
+    "interface": {
+        "type": "file_browser",
+        "display": "fullscreen",
+        "header": "╔══════════════════════════════════════════════════════════════╗\n║  FILE BROWSER                                                ║\n╚══════════════════════════════════════════════════════════════╝"
+    },
+    
+    "mechanics": {
+        "type": "navigation",
+        "skill": null,
+        "difficulty": null,
+        
+        "commands": {
+            "dir": {
+                "description": "List directory contents",
+                "usage": "dir [path]",
+                "aliases": ["ls", "list"]
+            },
+            "cd": {
+                "description": "Change directory",
+                "usage": "cd <path>",
+                "aliases": ["chdir"]
+            },
+            "read": {
+                "description": "Read a file",
+                "usage": "read <filename>",
+                "aliases": ["cat", "type", "open"]
+            },
+            "info": {
+                "description": "Show file information",
+                "usage": "info <filename>",
+                "aliases": ["stat"]
+            },
+            "back": {
+                "description": "Go to parent directory",
+                "usage": "back",
+                "aliases": [".."]
+            },
+            "exit": {
+                "description": "Exit file browser",
+                "usage": "exit",
+                "aliases": ["quit", "q"]
+            }
+        },
+        
+        "display_format": {
+            "directory": "[DIR]  {name}/",
+            "file": "       {name}  ({size})",
+            "locked": "[LOCK] {name}  (Access Denied)"
+        }
+    },
+    
+    "events": {
+        "on_access_denied": {
+            "text": "ACCESS DENIED. Insufficient privileges.",
+            "suggests": "Try using ICE Breaker to bypass security."
+        }
+    },
+    
+    "found_in": {
+        "terminals": ["oakhaven_admin_terminal", "oakhaven_lobby_kiosk"],
+        "items": [],
+        "scenes": []
+    },
+    
+    "gmNotes": "Standard file browser utility. Available on most terminals. Locked directories require hacking or the correct access level."
+}

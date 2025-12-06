@@ -1,0 +1,94 @@
+{
+    "id": "prog_ice_breaker",
+    "name": "ICE Breaker v2.1",
+    "type": "hacking_tool",
+    "category": "security",
+    "adventure": "A Change of Heart",
+    
+    "description": "A black-market decryption utility. Cracks corporate ICE (Intrusion Countermeasures Electronics) through brute force and pattern analysis.",
+    
+    "style": {
+        "theme": "hacker",
+        "primaryColor": "#ff0066",
+        "secondaryColor": "#ff00ff",
+        "backgroundColor": "#0a000a",
+        "animatedBackground": true,
+        "matrixRain": true
+    },
+    
+    "interface": {
+        "type": "minigame",
+        "display": "fullscreen",
+        "header": "╔══════════════════════════════════════╗\n║     ICE BREAKER v2.1                 ║\n║     'Melt the walls'                 ║\n╚══════════════════════════════════════╝"
+    },
+    
+    "mechanics": {
+        "type": "skill_challenge",
+        "skill": "Netrunning",
+        "base_difficulty": 12,
+        "time_limit": null,
+        "attempts": 3,
+        
+        "phases": [
+            {
+                "name": "Pattern Analysis",
+                "description": "Identify the encryption pattern",
+                "difficulty_modifier": 0,
+                "success_text": "Pattern identified. Encryption is Bio-Dyne Standard v4.",
+                "failure_text": "Pattern unclear. Retrying..."
+            },
+            {
+                "name": "Key Extraction",
+                "description": "Extract the decryption key from memory",
+                "difficulty_modifier": 2,
+                "success_text": "Key extracted: 0xDEADBEEF",
+                "failure_text": "Memory protected. Countermeasures detected."
+            },
+            {
+                "name": "Firewall Bypass",
+                "description": "Slip past the firewall without triggering alarms",
+                "difficulty_modifier": 3,
+                "success_text": "ACCESS GRANTED",
+                "failure_text": "ALARM TRIGGERED - Connection terminated"
+            }
+        ],
+        
+        "success_effect": {
+            "text": "ICE melted. Full access granted.",
+            "unlocks_access": true,
+            "sets_flag": "ice_breaker_success"
+        },
+        
+        "failure_effect": {
+            "text": "ICE Breaker crashed. System lockout initiated.",
+            "stress_damage": 1,
+            "sets_flag": "ice_breaker_failed",
+            "triggers_alarm": true
+        }
+    },
+    
+    "visual_sequence": {
+        "enabled": true,
+        "frames": [
+            { "text": "Initializing ICE Breaker...", "delay": 500 },
+            { "text": "[████████░░░░░░░░░░░░] 40%", "delay": 300 },
+            { "text": "[████████████░░░░░░░░] 60%", "delay": 300 },
+            { "text": "[████████████████░░░░] 80%", "delay": 300 },
+            { "text": "[████████████████████] 100%", "delay": 200 },
+            { "text": "", "delay": 100 },
+            { "text": "Scanning target system...", "delay": 800 },
+            { "text": "ICE detected: Bio-Dyne Corporate Standard", "delay": 500 },
+            { "text": "Difficulty: MODERATE", "delay": 300 },
+            { "text": "", "delay": 100 },
+            { "text": "Ready. Press ENTER to begin hack.", "delay": 0 }
+        ]
+    },
+    
+    "found_in": {
+        "terminals": ["oakhaven_admin_terminal"],
+        "items": ["item_hacking_chip"],
+        "scenes": []
+    },
+    
+    "gmNotes": "This is the main hacking minigame. It's a 3-phase skill challenge using Netrunning. Each phase gets harder. Failure triggers an alarm and locks the player out. Success grants access to protected files like the liquidation order."
+}

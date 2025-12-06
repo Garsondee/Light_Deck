@@ -320,6 +320,39 @@ const DebugUI = (function() {
             CRTShader.triggerGlitch(0.8, 500);
         });
         
+        glitchFolder.addSeparator();
+        
+        // === Dramatic Effects (GlitchEffects module) ===
+        if (typeof GlitchEffects !== 'undefined') {
+            glitchFolder.addButton({ title: '⚡ Power Loss' }).on('click', () => {
+                GlitchEffects.triggerEffect(GlitchEffects.EFFECTS.POWER_LOSS);
+            });
+            
+            glitchFolder.addButton({ title: '📡 Signal Loss' }).on('click', () => {
+                GlitchEffects.triggerEffect(GlitchEffects.EFFECTS.SIGNAL_LOSS);
+            });
+            
+            glitchFolder.addButton({ title: '📼 VHS Tracking' }).on('click', () => {
+                GlitchEffects.triggerEffect(GlitchEffects.EFFECTS.VHS_TRACKING);
+            });
+            
+            glitchFolder.addButton({ title: '🌈 VHS Color Bleed' }).on('click', () => {
+                GlitchEffects.triggerEffect(GlitchEffects.EFFECTS.VHS_COLOR_BLEED);
+            });
+            
+            glitchFolder.addButton({ title: '▬ VHS Dropout' }).on('click', () => {
+                GlitchEffects.triggerEffect(GlitchEffects.EFFECTS.VHS_DROPOUT);
+            });
+            
+            glitchFolder.addButton({ title: '⎯ VHS Head Switch' }).on('click', () => {
+                GlitchEffects.triggerEffect(GlitchEffects.EFFECTS.VHS_HEAD_SWITCH);
+            });
+            
+            glitchFolder.addButton({ title: '🎲 Random Dramatic Effect' }).on('click', () => {
+                GlitchEffects.triggerRandomEffect();
+            });
+        }
+        
         // === CRT Effects ===
         const crtFolder = pane.addFolder({ title: 'CRT Effects', expanded: false });
         

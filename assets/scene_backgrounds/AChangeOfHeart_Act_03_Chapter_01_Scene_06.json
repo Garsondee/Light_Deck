@@ -1,0 +1,94 @@
+{
+    "id": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+    "adventure": "A Change of Heart",
+    "act": 3,
+    "chapter": 1,
+    "scene": 6,
+    "type": "choice",
+    "title": "The Cryo Lab",
+    "location": "Cold Storage",
+    "image": null,
+    "visuals": "ASCII_Overlay: The image is clean, high-res code. Elena floats in stasis - just data now.",
+    "tone": "Tragic, Desperate, Moral Crossroads",
+    "lighting": "Cold blue cryo-light. Clinical white emergency strips. Jax's face half in shadow.",
+    "audio": "The hum of the cryo-pod, Jax's labored breathing, the beep of life support monitors.",
+    "smell": "Antiseptic, cold metal, the faint sweetness of cryo-gel.",
+    
+    "narrative": "Jax stumbles in. He collapses against the pod. Inside, Elena floats in gel. She is unconscious.\nJax weeps. 'I didn't want you to know. But I can't die here, kid. Not where I killed them. She's got the same blood as me - Type-H. No hospital has it. She's the only one who can save me. Please.'",
+    
+    "gmNotes": "There is no skill check. The player must choose. This is the moral climax of the adventure.",
+    
+    "npcs": [
+        {
+            "id": "jax",
+            "name": "Jaxson 'Jax' V.",
+            "role": "The Companion",
+            "statblock": null,
+            "state": "dying",
+            "notes": "Collapsed. Begging for his life. His heart is failing.",
+            "motivation": "Survival at any cost. He doesn't want to die here, where he killed so many.",
+            "personality": "Broken, weeping, desperate. All pretense is gone. He's just a dying man."
+        },
+        {
+            "id": "elena",
+            "name": "Elena (Subject 01)",
+            "role": "The MacGuffin",
+            "statblock": null,
+            "state": "unconscious",
+            "notes": "In cryo-stasis. Type-H blood. The only compatible donor - Jax needs her heart AND her blood.",
+            "motivation": "None. She has been asleep for 15 years. She never knew the massacre happened.",
+            "personality": "Peaceful. Dreaming. Her neural link has been broadcasting fragments of her dreams into the local network."
+        }
+    ],
+    
+    "challenges": [
+        {
+            "id": "surgery_check",
+            "skill": "Tech",
+            "difficulty": 12,
+            "description": "Operate the harvester to transplant Elena's heart to Jax.",
+            "requires_flag": "player_chose_save_jax",
+            "success_effect": {
+                "text": "The surgery is clean. Elena flatlines. Jax gasps as her heart begins to beat in his chest.",
+                "sets_flag": "jax_alive",
+                "sets_flag_2": "elena_harvested"
+            },
+            "failure_effect": {
+                "text": "The surgery is rough. Elena dies in pain. Jax survives, but barely. He takes 2 permanent Stress.",
+                "stress_damage": 2,
+                "sets_flag": "jax_alive",
+                "sets_flag_2": "elena_harvested"
+            }
+        }
+    ],
+    
+    "triggers": [
+        {
+            "id": "choice_save_jax",
+            "label": "Execute Surgery",
+            "action": "narrative",
+            "text": "You activate the harvester. Elena flatlines. Jax lives. He stands up, healthy, but refuses to look at the empty pod. (Gain Aspect: Blood Brothers)",
+            "sets_flag": "jax_alive",
+            "sets_flag_2": "elena_harvested"
+        },
+        {
+            "id": "choice_save_elena",
+            "label": "Refuse",
+            "action": "narrative",
+            "text": "You step back. Jax begs, then screams, then fades. He dies looking at Elena's face, realizing he is the villain. You leave the pod running. (Gain Aspect: The Hard Line)",
+            "sets_flag": "jax_dead",
+            "sets_flag_2": "elena_alive"
+        }
+    ],
+    
+    "exits": [
+        {
+            "target_scene_id": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+            "condition": "default",
+            "label": "Leave the Cryo Lab"
+        }
+    ],
+    
+    "music": null,
+    "ambience": null
+}
