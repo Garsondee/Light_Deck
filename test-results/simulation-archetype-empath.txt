@@ -1,0 +1,238 @@
+╔══════════════════════════════════════════════════════════╗
+║            VTT SIMULATION REPORT                         ║
+╚══════════════════════════════════════════════════════════╝
+
+Start:    2025-12-07T21:54:40.528Z
+End:      2025-12-07T21:55:11.797Z
+Duration: 31269ms
+Dice:     fair
+GM:       supportive
+Player:   cautious
+Archetype: The Empath
+
+Termination: ✓ completed
+  All selected scenes processed successfully
+
+─── SUMMARY ───────────────────────────────────────────────
+Scenes:        7 / 7
+Wounds:        0 (0 near-death)
+Deaths:        0
+Skill Checks:  0 / 0 passed
+Triggers:      0
+NPCs:          0
+Dead Ends:     0
+Difficulty:    TRIVIAL
+Coherence:     60/100
+Info Lookups:  49/57 found
+
+─── SCENES ────────────────────────────────────────────────
+  1. ✓ The Briefing
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+  2. ✓ The Gate
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+  3. ✓ The Shrine
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+  4. ✓ The Courtyard Ambush
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Hazer Patrol (x3)'s history? How did they end up here?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "Is there a way to resolve this without violence?" (type: skill_check)
+  5. ✓ The Admin Wing
+  6. ✓ The Cryo Lab
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Elena (Subject 01)'s history? How did they end up here?" (type: backstory)
+  7. ✓ The Exit
+
+─── ISSUES ────────────────────────────────────────────────
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_01
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_02
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_03
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Hazer Patrol (x3)'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "Is there a way to resolve this without violence?" (type: skill_check)
+     Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_06
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Elena (Subject 01)'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_06
+
+─── NPC STATES ────────────────────────────────────────────
+  Jaxson 'Jax' V.: dying (6 interactions)
+  Noodle Stall Cook: passive (1 interactions)
+  Hazer Guards (x2): active (2 interactions)
+  Elena (Subject 01): unconscious (1 interactions)
+  Rattle: watching (1 interactions)
+
+─── COHERENCE ANALYSIS ────────────────────────────────────
+Breadcrumbs:   STRONG
+Pacing Score:  20/100
+
+─── FAILED INFORMATION LOOKUPS ────────────────────────────
+🟡 [BACKSTORY] "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144491667.png
+
+🟡 [BACKSTORY] "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144495259.png
+
+🟡 [BACKSTORY] "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144499430.png
+
+🟡 [BACKSTORY] "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144503206.png
+
+🟡 [BACKSTORY] "What's Hazer Patrol (x3)'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144503890.png
+
+🟡 [SKILL_CHECK] "Is there a way to resolve this without violence?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-skill_check-1765144504569.png
+
+🟡 [BACKSTORY] "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144510303.png
+
+🟡 [BACKSTORY] "What's Elena (Subject 01)'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144510504.png
+
+─── RECOMMENDATIONS ───────────────────────────────────────
+🟢 [PACING] Unbalanced Pacing
+   Adventure pacing score is 20/100.
+   💡 Consider adding more variety between action, social, and exploration scenes.
+
+🔴 [INFORMATION] Missing Information in GM Overlay
+   GM could not find answers to 8 player question(s). Types: backstory, skill_check
+   💡 Ensure all scene-relevant information is accessible in the GM overlay. Check NPC details, environment descriptions, and navigation hints.
+
+─── ARCHETYPE ANALYSIS ────────────────────────────────────
+Archetype:     The Empath
+Motivation:    Help and connect
+
+⚠️ Unhandled Actions (edge cases):
+   - Try to save everyone
+   - Negotiate with hostile NPCs
+   - Ask for consent before major decisions
+   - Look for non-violent solutions
+   - Try to save everyone
+   - Negotiate with hostile NPCs
+   - Ask for consent before major decisions
+   - Look for non-violent solutions
+   - Try to save everyone
+   - Negotiate with hostile NPCs
+   - Ask for consent before major decisions
+   - Look for non-violent solutions
+   - Try to save everyone
+   - Negotiate with hostile NPCs
+   - Ask for consent before major decisions
+   - Look for non-violent solutions
+   - Try to save everyone
+   - Negotiate with hostile NPCs
+   - Ask for consent before major decisions
+   - Look for non-violent solutions
+   - Try to save everyone
+   - Negotiate with hostile NPCs
+   - Ask for consent before major decisions
+   - Look for non-violent solutions
+   - Negotiate with hostile NPCs
+   - Ask for consent before major decisions
+   - Look for non-violent solutions
+
+📝 Archetype Feedback:
+   🟡 [unhandled_action] The Empath wanted to: Try to save everyone
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_01
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Negotiate with hostile NPCs
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_01
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Ask for consent before major decisions
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_01
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Look for non-violent solutions
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_01
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Try to save everyone
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_02
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Negotiate with hostile NPCs
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_02
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Ask for consent before major decisions
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_02
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Look for non-violent solutions
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_02
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Try to save everyone
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_03
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Negotiate with hostile NPCs
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_03
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Ask for consent before major decisions
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_03
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Look for non-violent solutions
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_03
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Try to save everyone
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Negotiate with hostile NPCs
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Ask for consent before major decisions
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Look for non-violent solutions
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Try to save everyone
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_05
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Negotiate with hostile NPCs
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_05
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Ask for consent before major decisions
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_05
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Look for non-violent solutions
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_05
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Try to save everyone
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_06
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Negotiate with hostile NPCs
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_06
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Ask for consent before major decisions
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_06
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Look for non-violent solutions
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_06
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Negotiate with hostile NPCs
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_07
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Ask for consent before major decisions
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_07
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Empath wanted to: Look for non-violent solutions
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_07
+      💡 Consider adding support for this action or explaining why it's not possible.

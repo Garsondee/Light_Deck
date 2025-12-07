@@ -1,0 +1,5002 @@
+{
+  "meta": {
+    "startTime": "2025-12-07T21:54:25.435Z",
+    "endTime": "2025-12-07T21:55:06.729Z",
+    "duration": 41294,
+    "config": {
+      "maxScenes": -1,
+      "randomOrder": false,
+      "diceMode": "fair",
+      "gmBehavior": "thorough",
+      "playerBehavior": "thorough",
+      "maxTurnsPerScene": 20,
+      "playerMaxWounds": 6
+    }
+  },
+  "termination": {
+    "reason": "completed",
+    "details": "All selected scenes processed successfully",
+    "atScene": ""
+  },
+  "playerState": {
+    "wounds": 0,
+    "maxWounds": 6,
+    "inventory": [],
+    "flags": [],
+    "skillBonuses": {
+      "Tech": 6,
+      "Netrunning": 5,
+      "Perception": 4,
+      "Investigation": 3,
+      "Investigate": 3,
+      "Empathy": 3,
+      "Insight": 3,
+      "Stealth": 2,
+      "Persuasion": 2,
+      "Streetwise": 3,
+      "Medicine": 2,
+      "Combat": 2,
+      "Evasion": 3
+    }
+  },
+  "npcStates": [
+    {
+      "id": "jax",
+      "name": "Jaxson 'Jax' V.",
+      "state": "dying",
+      "disposition": 0,
+      "lastSeenScene": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+      "interactionCount": 6
+    },
+    {
+      "id": "cook",
+      "name": "Noodle Stall Cook",
+      "state": "passive",
+      "disposition": 0,
+      "lastSeenScene": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+      "interactionCount": 1
+    },
+    {
+      "id": "hazer_mook",
+      "name": "Hazer Guards (x2)",
+      "state": "active",
+      "disposition": 0,
+      "lastSeenScene": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+      "interactionCount": 2
+    },
+    {
+      "id": "elena",
+      "name": "Elena (Subject 01)",
+      "state": "unconscious",
+      "disposition": 0,
+      "lastSeenScene": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+      "interactionCount": 1
+    },
+    {
+      "id": "rattle",
+      "name": "Rattle",
+      "state": "watching",
+      "disposition": 0,
+      "lastSeenScene": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+      "interactionCount": 1
+    }
+  ],
+  "sceneAnalyses": [
+    {
+      "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+      "title": "The Briefing",
+      "completed": true,
+      "woundsTaken": 0,
+      "checksAttempted": 1,
+      "checksPassed": 1,
+      "triggersAvailable": 1,
+      "triggersFired": 1,
+      "npcsPresent": 2,
+      "npcsInteracted": 2,
+      "hasExitPath": true,
+      "exitsTaken": [],
+      "issues": [
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)"
+      ]
+    },
+    {
+      "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+      "title": "The Gate",
+      "completed": true,
+      "woundsTaken": 0,
+      "checksAttempted": 2,
+      "checksPassed": 2,
+      "triggersAvailable": 1,
+      "triggersFired": 1,
+      "npcsPresent": 2,
+      "npcsInteracted": 2,
+      "hasExitPath": true,
+      "exitsTaken": [],
+      "issues": [
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What's Hazer Guards (x2)'s history? How did they end up here?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+      ]
+    },
+    {
+      "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+      "title": "The Shrine",
+      "completed": true,
+      "woundsTaken": 0,
+      "checksAttempted": 2,
+      "checksPassed": 2,
+      "triggersAvailable": 1,
+      "triggersFired": 1,
+      "npcsPresent": 1,
+      "npcsInteracted": 1,
+      "hasExitPath": true,
+      "exitsTaken": [],
+      "issues": [
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+      ]
+    },
+    {
+      "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+      "title": "The Courtyard Ambush",
+      "completed": true,
+      "woundsTaken": 0,
+      "checksAttempted": 3,
+      "checksPassed": 2,
+      "triggersAvailable": 3,
+      "triggersFired": 3,
+      "npcsPresent": 2,
+      "npcsInteracted": 2,
+      "hasExitPath": true,
+      "exitsTaken": [],
+      "issues": [
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What's Hazer Patrol (x3)'s history? How did they end up here?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+      ]
+    },
+    {
+      "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+      "title": "The Admin Wing",
+      "completed": true,
+      "woundsTaken": 0,
+      "checksAttempted": 2,
+      "checksPassed": 2,
+      "triggersAvailable": 1,
+      "triggersFired": 1,
+      "npcsPresent": 1,
+      "npcsInteracted": 1,
+      "hasExitPath": true,
+      "exitsTaken": [],
+      "issues": [
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+      ]
+    },
+    {
+      "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+      "title": "The Cryo Lab",
+      "completed": true,
+      "woundsTaken": 0,
+      "checksAttempted": 1,
+      "checksPassed": 1,
+      "triggersAvailable": 2,
+      "triggersFired": 2,
+      "npcsPresent": 2,
+      "npcsInteracted": 2,
+      "hasExitPath": true,
+      "exitsTaken": [],
+      "issues": [
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What's Elena (Subject 01)'s history? How did they end up here?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+      ]
+    },
+    {
+      "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+      "title": "The Exit",
+      "completed": true,
+      "woundsTaken": 0,
+      "checksAttempted": 0,
+      "checksPassed": 0,
+      "triggersAvailable": 4,
+      "triggersFired": 4,
+      "npcsPresent": 1,
+      "npcsInteracted": 1,
+      "hasExitPath": true,
+      "exitsTaken": [],
+      "issues": [
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What's Rattle's history? How did they end up here?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)",
+        "[WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+      ]
+    }
+  ],
+  "diceStats": {
+    "totalRolls": 11,
+    "rolls": [
+      12,
+      11,
+      8,
+      20,
+      19,
+      16,
+      5,
+      18,
+      14,
+      7,
+      14
+    ],
+    "average": 13.090909090909092,
+    "criticalSuccesses": 1,
+    "criticalFailures": 0,
+    "successRate": 0.7272727272727273
+  },
+  "coherence": {
+    "breadcrumbStrength": "strong",
+    "forwardReferences": [],
+    "backwardReferences": [],
+    "npcContinuityIssues": [],
+    "informationGaps": [],
+    "paceScore": 20
+  },
+  "recommendations": [
+    {
+      "priority": "low",
+      "type": "pacing",
+      "title": "Unbalanced Pacing",
+      "description": "Adventure pacing score is 20/100.",
+      "suggestion": "Consider adding more variety between action, social, and exploration scenes."
+    },
+    {
+      "priority": "high",
+      "type": "information",
+      "title": "Missing Information in GM Overlay",
+      "description": "GM could not find answers to 23 player question(s). Types: backstory",
+      "suggestion": "Ensure all scene-relevant information is accessible in the GM overlay. Check NPC details, environment descriptions, and navigation hints."
+    }
+  ],
+  "informationLookups": [
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want? Why are they here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "Found NPC jax in scene",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 2,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 1501
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Noodle Stall Cook want? Why are they here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+          "npcId": "cook"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "Found NPC cook in scene",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 2,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 1316
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "Are any of these NPCs lying or hiding something?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_01"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "Found NPC Are in scene",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 2,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 894
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What's Jaxson 'Jax' V.'s history? How did they end up here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144474765.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What happened here before I arrived? What's the timeline?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_01"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 1,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144475311.png"
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.? What do I know about them?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Scene NPC list",
+      "timeToFind": 25
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Noodle Stall Cook? What do I know about them?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+          "npcId": "cook"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Scene NPC list",
+      "timeToFind": 15
+    },
+    {
+      "question": {
+        "type": "environment",
+        "query": "What do I see, hear, and smell here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_01"
+        }
+      },
+      "searchPath": [
+        "Checking Location section for environment details",
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 7
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want? Why are they here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "Found NPC jax in scene",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 2,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 1005
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Hazer Guards (x2) want? Why are they here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+          "npcId": "hazer_mook"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 599
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "Are any of these NPCs lying or hiding something?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "Found NPC Are in scene",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 2,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 1516
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What's Jaxson 'Jax' V.'s history? How did they end up here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144479379.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What's Hazer Guards (x2)'s history? How did they end up here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+          "npcId": "hazer_mook"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144480085.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What happened here before I arrived? What's the timeline?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144480645.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "How does this location connect to what I've seen before?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144481101.png"
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.? What do I know about them?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Scene NPC list",
+      "timeToFind": 15
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Hazer Guards (x2)? What do I know about them?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+          "npcId": "hazer_mook"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "NPCs in Scene (generic)",
+      "timeToFind": 124
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want? Why are they here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "Found NPC jax in scene",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 2,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 1481
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What's Jaxson 'Jax' V.'s history? How did they end up here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144483742.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What happened here before I arrived? What's the timeline?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_03"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144484260.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "How does this location connect to what I've seen before?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_03"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144485089.png"
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.? What do I know about them?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Scene NPC list",
+      "timeToFind": 146
+    },
+    {
+      "question": {
+        "type": "location_detail",
+        "query": "What is Community Center Basement like? Describe it in detail.",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_03"
+        }
+      },
+      "searchPath": [
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 20
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want? Why are they here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "Found NPC jax in scene",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 2,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 1005
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Hazer Patrol (x3) want? Why are they here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+          "npcId": "hazer_mook"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 80
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "Are any of these NPCs lying or hiding something?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "Found NPC Are in scene",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 2,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 1777
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What's Jaxson 'Jax' V.'s history? How did they end up here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144489147.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What's Hazer Patrol (x3)'s history? How did they end up here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+          "npcId": "hazer_mook"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144490035.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What happened here before I arrived? What's the timeline?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144490850.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "How does this location connect to what I've seen before?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144491568.png"
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.? What do I know about them?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Scene NPC list",
+      "timeToFind": 55
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Hazer Patrol (x3)? What do I know about them?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+          "npcId": "hazer_mook"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "NPCs in Scene (generic)",
+      "timeToFind": 189
+    },
+    {
+      "question": {
+        "type": "environment",
+        "query": "What do I see, hear, and smell here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04"
+        }
+      },
+      "searchPath": [
+        "Checking Location section for environment details",
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 137
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want? Why are they here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "Found NPC jax in scene",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 2,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 1283
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What's Jaxson 'Jax' V.'s history? How did they end up here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144494279.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What happened here before I arrived? What's the timeline?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144494639.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "How does this location connect to what I've seen before?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144495143.png"
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.? What do I know about them?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Scene NPC list",
+      "timeToFind": 60
+    },
+    {
+      "question": {
+        "type": "environment",
+        "query": "What do I see, hear, and smell here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05"
+        }
+      },
+      "searchPath": [
+        "Checking Location section for environment details",
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 14
+    },
+    {
+      "question": {
+        "type": "location_detail",
+        "query": "What is Server Room Access like? Describe it in detail.",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05"
+        }
+      },
+      "searchPath": [
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 10
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want? Why are they here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "Found NPC jax in scene",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 2,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 1262
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Elena (Subject 01) want? Why are they here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+          "npcId": "elena"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 640
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "Are any of these NPCs lying or hiding something?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "Found NPC Are in scene",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 2,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 1675
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What's Jaxson 'Jax' V.'s history? How did they end up here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144500027.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What's Elena (Subject 01)'s history? How did they end up here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+          "npcId": "elena"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144500537.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What happened here before I arrived? What's the timeline?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144500982.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "How does this location connect to what I've seen before?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144501584.png"
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.? What do I know about them?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Scene NPC list",
+      "timeToFind": 206
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Elena (Subject 01)? What do I know about them?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+          "npcId": "elena"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "NPCs in Scene (generic)",
+      "timeToFind": 77
+    },
+    {
+      "question": {
+        "type": "environment",
+        "query": "What do I see, hear, and smell here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06"
+        }
+      },
+      "searchPath": [
+        "Checking Location section for environment details",
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 10
+    },
+    {
+      "question": {
+        "type": "location_detail",
+        "query": "What is Cold Storage like? Describe it in detail.",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06"
+        }
+      },
+      "searchPath": [
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 29
+    },
+    {
+      "question": {
+        "type": "next_steps",
+        "query": "What should I do next? Where can I go from here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06"
+        }
+      },
+      "searchPath": [
+        "Looking for next steps/transitions",
+        "Checking Triggers section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Triggers section",
+      "timeToFind": 11
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Rattle want? Why are they here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+          "npcId": "rattle"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 160
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What's Rattle's history? How did they end up here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+          "npcId": "rattle"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144503829.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "What happened here before I arrived? What's the timeline?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_07"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144504696.png"
+    },
+    {
+      "question": {
+        "type": "backstory",
+        "query": "How does this location connect to what I've seen before?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_07"
+        }
+      },
+      "searchPath": [
+        "Unknown question type"
+      ],
+      "found": false,
+      "uiInteractions": 0,
+      "timeToFind": 0,
+      "screenshotPath": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144505605.png"
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Rattle? What do I know about them?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+          "npcId": "rattle"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "NPCs in Scene (generic)",
+      "timeToFind": 40
+    },
+    {
+      "question": {
+        "type": "environment",
+        "query": "What do I see, hear, and smell here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_07"
+        }
+      },
+      "searchPath": [
+        "Checking Location section for environment details",
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 16
+    },
+    {
+      "question": {
+        "type": "location_detail",
+        "query": "What is Main Gate like? Describe it in detail.",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_07"
+        }
+      },
+      "searchPath": [
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 181
+    }
+  ],
+  "events": [
+    {
+      "timestamp": 1765144465434,
+      "actor": "system",
+      "action": "Archetype initialized: The Detective",
+      "details": {
+        "motivation": "Uncover the truth",
+        "traits": {
+          "riskTolerance": 40,
+          "curiosity": 95,
+          "empathy": 50,
+          "suspicion": 80
+        }
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144465435,
+      "actor": "system",
+      "action": "Simulation starting",
+      "details": {
+        "config": {
+          "maxScenes": -1,
+          "randomOrder": false,
+          "diceMode": "fair",
+          "gmBehavior": "thorough",
+          "playerBehavior": "thorough",
+          "maxTurnsPerScene": 20,
+          "playerMaxWounds": 6
+        }
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144465687,
+      "actor": "system",
+      "action": "Scenes loaded",
+      "details": {
+        "count": 7
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144465726,
+      "actor": "system",
+      "action": "Adventure guide loaded",
+      "details": {
+        "adventure": "A Change of Heart",
+        "hasLore": true,
+        "hasNPCs": true
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144465727,
+      "actor": "system",
+      "action": "GM Validator initialized",
+      "details": {
+        "mysteries": 4,
+        "npcSecrets": 1
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144465727,
+      "actor": "gm",
+      "action": "Opening GM overlay",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144470735,
+      "actor": "gm",
+      "action": "GM overlay may not be fully loaded",
+      "details": {
+        "error": "TimeoutError: page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[class*=\"narrative\"], [class*=\"scene\"]') to be visible\u001b[22m\n"
+      },
+      "result": "warning",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144470735,
+      "actor": "system",
+      "action": "═══ SCENE START ═══",
+      "details": {
+        "title": "The Briefing",
+        "id": "AChangeOfHeart_Act_01_Chapter_01_Scene_01"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144470735,
+      "actor": "gm",
+      "action": "Activating scene",
+      "details": {
+        "id": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+        "title": "The Briefing"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144471050,
+      "actor": "gm",
+      "action": "Processing scene",
+      "details": {
+        "title": "The Briefing",
+        "location": "Street Noodle Stand",
+        "npcs": 2,
+        "triggers": 1,
+        "challenges": 1
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144471050,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "The Cough"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144471050,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "Jax suddenly doubles over, coughing violently into a synth-napkin. It's a wet, tearing sound. He cru..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144471050,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Jaxson 'Jax' V.",
+        "role": "The Companion",
+        "state": "active"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144471050,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Noodle Stall Cook",
+        "role": "Background NPC",
+        "state": "passive"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144471050,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Empathy",
+        "dc": 10
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144471051,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Empathy",
+        "roll": 12,
+        "bonus": 3,
+        "total": 15,
+        "dc": 10,
+        "critical": null
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144471051,
+      "actor": "player",
+      "action": "Observing scene",
+      "details": {
+        "location": "Street Noodle Stand"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144471051,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Jaxson 'Jax' V.",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144471051,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Noodle Stall Cook",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144471052,
+      "actor": "player",
+      "action": "The Detective considering questions",
+      "details": {
+        "count": 8,
+        "types": [
+          "npc_motivation",
+          "backstory",
+          "npc_info",
+          "environment"
+        ]
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144471052,
+      "actor": "player",
+      "action": "The Detective might attempt",
+      "details": {
+        "actions": [
+          "Examine every item for clues",
+          "Cross-reference NPC statements",
+          "Search for hidden documents",
+          "Analyze physical evidence"
+        ]
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144471052,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want? Why are they here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144472553,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 1501,
+        "interactions": 2
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144472553,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Noodle Stall Cook want? Why are they here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144473869,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 1316,
+        "interactions": 2
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144473870,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "Are any of these NPCs lying or hiding something?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144474764,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 894,
+        "interactions": 2
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144474764,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144475310,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144474765.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144475310,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144475310,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144475310,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What happened here before I arrived? What's the timeline?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144475571,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144475311.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144475571,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144475571,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 1,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144475572,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.? What do I know about them?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144475597,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 25,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144475597,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Noodle Stall Cook? What do I know about them?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144475612,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 15,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144475613,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "environment",
+        "query": "What do I see, hear, and smell here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144475620,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "environment",
+        "found": true,
+        "timeMs": 7,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144475620,
+      "actor": "system",
+      "action": "═══ SCENE END ═══",
+      "details": {
+        "title": "The Briefing",
+        "wounds": 0,
+        "checks": "1/1"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144475822,
+      "actor": "system",
+      "action": "═══ SCENE START ═══",
+      "details": {
+        "title": "The Gate",
+        "id": "AChangeOfHeart_Act_01_Chapter_01_Scene_02"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144475822,
+      "actor": "gm",
+      "action": "Activating scene",
+      "details": {
+        "id": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+        "title": "The Gate"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144476205,
+      "actor": "gm",
+      "action": "Processing scene",
+      "details": {
+        "title": "The Gate",
+        "location": "Oakhaven Perimeter",
+        "npcs": 2,
+        "triggers": 1,
+        "challenges": 2
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144476206,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Jax's Familiarity"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144476206,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "Jax navigates the perimeter without hesitation. He knows exactly where the blind spots are. How?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144476206,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Jaxson 'Jax' V.",
+        "role": "The Companion",
+        "state": "active"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144476258,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Hazer Guards (x2)",
+        "role": "Perimeter Watch",
+        "state": "active"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144476258,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Tech",
+        "dc": 8
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144476258,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Tech",
+        "roll": 11,
+        "bonus": 6,
+        "total": 17,
+        "dc": 8,
+        "critical": null
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144476258,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Stealth",
+        "dc": 10
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144476258,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Stealth",
+        "roll": 8,
+        "bonus": 2,
+        "total": 10,
+        "dc": 10,
+        "critical": null
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144476258,
+      "actor": "player",
+      "action": "Observing scene",
+      "details": {
+        "location": "Oakhaven Perimeter"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144476258,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Jaxson 'Jax' V.",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144476258,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Hazer Guards (x2)",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144476259,
+      "actor": "player",
+      "action": "The Detective considering questions",
+      "details": {
+        "count": 9,
+        "types": [
+          "npc_motivation",
+          "backstory",
+          "npc_info"
+        ]
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144476259,
+      "actor": "player",
+      "action": "The Detective might attempt",
+      "details": {
+        "actions": [
+          "Examine every item for clues",
+          "Cross-reference NPC statements",
+          "Search for hidden documents",
+          "Analyze physical evidence"
+        ]
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144476259,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want? Why are they here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144477264,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 1005,
+        "interactions": 2
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144477264,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Hazer Guards (x2) want? Why are they here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144477863,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 599,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144477863,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "Are any of these NPCs lying or hiding something?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144479379,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 1516,
+        "interactions": 2
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144479379,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144480084,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144479379.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144480085,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144480085,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144480085,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What's Hazer Guards (x2)'s history? How did they end up here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144480644,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144480085.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144480645,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What's Hazer Guards (x2)'s history? How did they end up here?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144480645,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144480645,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What happened here before I arrived? What's the timeline?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144481101,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144480645.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144481101,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144481101,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144481101,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "How does this location connect to what I've seen before?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144481492,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144481101.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144481492,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144481492,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144481492,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.? What do I know about them?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144481507,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 15,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144481507,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Hazer Guards (x2)? What do I know about them?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144481631,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 124,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144481631,
+      "actor": "system",
+      "action": "═══ SCENE END ═══",
+      "details": {
+        "title": "The Gate",
+        "wounds": 0,
+        "checks": "2/2"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144481835,
+      "actor": "system",
+      "action": "═══ SCENE START ═══",
+      "details": {
+        "title": "The Shrine",
+        "id": "AChangeOfHeart_Act_02_Chapter_01_Scene_03"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144481835,
+      "actor": "gm",
+      "action": "Activating scene",
+      "details": {
+        "id": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+        "title": "The Shrine"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144482140,
+      "actor": "gm",
+      "action": "Processing scene",
+      "details": {
+        "title": "The Shrine",
+        "location": "Community Center Basement",
+        "npcs": 1,
+        "triggers": 1,
+        "challenges": 2
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144482155,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Jax's Discomfort"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144482258,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "Jax stares at the photos. His hands are shaking. He won't meet your eyes."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144482259,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Jaxson 'Jax' V.",
+        "role": "The Companion",
+        "state": "active"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144482259,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Investigate",
+        "dc": 9
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144482260,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Investigate",
+        "roll": 20,
+        "bonus": 3,
+        "total": 23,
+        "dc": 9,
+        "critical": "success"
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144482260,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Perception",
+        "dc": 12
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144482260,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Perception",
+        "roll": 19,
+        "bonus": 4,
+        "total": 23,
+        "dc": 12,
+        "critical": null
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144482260,
+      "actor": "player",
+      "action": "Observing scene",
+      "details": {
+        "location": "Community Center Basement"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144482260,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Jaxson 'Jax' V.",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144482260,
+      "actor": "player",
+      "action": "The Detective considering questions",
+      "details": {
+        "count": 6,
+        "types": [
+          "npc_motivation",
+          "backstory",
+          "npc_info",
+          "location_detail"
+        ]
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144482260,
+      "actor": "player",
+      "action": "The Detective might attempt",
+      "details": {
+        "actions": [
+          "Examine every item for clues",
+          "Cross-reference NPC statements",
+          "Search for hidden documents",
+          "Analyze physical evidence"
+        ]
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144482261,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want? Why are they here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144483742,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 1481,
+        "interactions": 2
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144483742,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144484260,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144483742.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144484260,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144484260,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144484260,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What happened here before I arrived? What's the timeline?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144485088,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144484260.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144485089,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144485089,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144485089,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "How does this location connect to what I've seen before?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144485602,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144485089.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144485602,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144485603,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144485603,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.? What do I know about them?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144485749,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 146,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144485749,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "location_detail",
+        "query": "What is Community Center Basement like? Describe it in detail."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144485769,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "location_detail",
+        "found": true,
+        "timeMs": 20,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144485769,
+      "actor": "system",
+      "action": "═══ SCENE END ═══",
+      "details": {
+        "title": "The Shrine",
+        "wounds": 0,
+        "checks": "2/2"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144485975,
+      "actor": "system",
+      "action": "═══ SCENE START ═══",
+      "details": {
+        "title": "The Courtyard Ambush",
+        "id": "AChangeOfHeart_Act_02_Chapter_01_Scene_04"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144485975,
+      "actor": "gm",
+      "action": "Activating scene",
+      "details": {
+        "id": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+        "title": "The Courtyard Ambush"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "gm",
+      "action": "Processing scene",
+      "details": {
+        "title": "The Courtyard Ambush",
+        "location": "Bio-Dyne Courtyard",
+        "npcs": 2,
+        "triggers": 3,
+        "challenges": 3
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Jax's Plea"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "Jax shouts: 'Don't kill them! Just knock them down! We aren't butchers!'"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Player Kills"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "Jax stares at the body. He freezes. 'I told you... I told you to stop.' He takes Mental Stress."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Player Spares"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "The Hazers are unconscious. Jax checks a pulse and sighs in relief. 'Good. Let's move.'"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Jaxson 'Jax' V.",
+        "role": "The Companion",
+        "state": "active"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Hazer Patrol (x3)",
+        "role": "Combatants",
+        "state": "active"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Persuasion",
+        "dc": 12
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Persuasion",
+        "roll": 16,
+        "bonus": 2,
+        "total": 18,
+        "dc": 12,
+        "critical": null
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Combat",
+        "dc": 10
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Combat",
+        "roll": 5,
+        "bonus": 2,
+        "total": 7,
+        "dc": 10,
+        "critical": null
+      },
+      "result": "FAILURE",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Combat",
+        "dc": 8
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Combat",
+        "roll": 18,
+        "bonus": 2,
+        "total": 20,
+        "dc": 8,
+        "critical": null
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "player",
+      "action": "Observing scene",
+      "details": {
+        "location": "Bio-Dyne Courtyard"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Jaxson 'Jax' V.",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486284,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Hazer Guards (x2)",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486285,
+      "actor": "player",
+      "action": "The Detective considering questions",
+      "details": {
+        "count": 10,
+        "types": [
+          "npc_motivation",
+          "backstory",
+          "npc_info",
+          "environment"
+        ]
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486285,
+      "actor": "player",
+      "action": "The Detective might attempt",
+      "details": {
+        "actions": [
+          "Examine every item for clues",
+          "Cross-reference NPC statements",
+          "Search for hidden documents",
+          "Analyze physical evidence"
+        ]
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144486285,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want? Why are they here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144487290,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 1005,
+        "interactions": 2
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144487290,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Hazer Patrol (x3) want? Why are they here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144487370,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 80,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144487370,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "Are any of these NPCs lying or hiding something?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144489147,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 1777,
+        "interactions": 2
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144489147,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144490035,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144489147.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144490035,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144490035,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144490035,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What's Hazer Patrol (x3)'s history? How did they end up here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144490849,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144490035.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144490850,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What's Hazer Patrol (x3)'s history? How did they end up here?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144490850,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144490850,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What happened here before I arrived? What's the timeline?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144491568,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144490850.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144491568,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144491568,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144491568,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "How does this location connect to what I've seen before?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144491953,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144491568.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144491954,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144491954,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144491954,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.? What do I know about them?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492009,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 55,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492009,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Hazer Patrol (x3)? What do I know about them?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492198,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 189,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492202,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "environment",
+        "query": "What do I see, hear, and smell here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492339,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "environment",
+        "found": true,
+        "timeMs": 137,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492340,
+      "actor": "system",
+      "action": "═══ SCENE END ═══",
+      "details": {
+        "title": "The Courtyard Ambush",
+        "wounds": 0,
+        "checks": "2/3"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492598,
+      "actor": "system",
+      "action": "═══ SCENE START ═══",
+      "details": {
+        "title": "The Admin Wing",
+        "id": "AChangeOfHeart_Act_03_Chapter_01_Scene_05"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492598,
+      "actor": "gm",
+      "action": "Activating scene",
+      "details": {
+        "id": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+        "title": "The Admin Wing"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492975,
+      "actor": "gm",
+      "action": "Processing scene",
+      "details": {
+        "title": "The Admin Wing",
+        "location": "Server Room Access",
+        "npcs": 1,
+        "triggers": 1,
+        "challenges": 2
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492976,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Confront Jax"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492976,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "You can show Jax what you found. His face goes pale. 'I... I didn't know. I was fifteen. They said t..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492976,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Jaxson 'Jax' V.",
+        "role": "The Companion",
+        "state": "active"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492976,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Netrunning",
+        "dc": 11
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492992,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Netrunning",
+        "roll": 14,
+        "bonus": 5,
+        "total": 19,
+        "dc": 11,
+        "critical": null
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492992,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Tech",
+        "dc": 10
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492992,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Tech",
+        "roll": 7,
+        "bonus": 6,
+        "total": 13,
+        "dc": 10,
+        "critical": null
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492992,
+      "actor": "player",
+      "action": "Observing scene",
+      "details": {
+        "location": "Server Room Access"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492992,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Jaxson 'Jax' V.",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492992,
+      "actor": "player",
+      "action": "The Detective considering questions",
+      "details": {
+        "count": 7,
+        "types": [
+          "npc_motivation",
+          "backstory",
+          "npc_info",
+          "environment",
+          "location_detail"
+        ]
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492992,
+      "actor": "player",
+      "action": "The Detective might attempt",
+      "details": {
+        "actions": [
+          "Examine every item for clues",
+          "Cross-reference NPC statements",
+          "Search for hidden documents",
+          "Analyze physical evidence"
+        ]
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144492995,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want? Why are they here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144494278,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 1283,
+        "interactions": 2
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144494278,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144494638,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144494279.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144494639,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144494639,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144494639,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What happened here before I arrived? What's the timeline?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144495142,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144494639.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144495143,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144495143,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144495143,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "How does this location connect to what I've seen before?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144495617,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144495143.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144495618,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144495618,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144495618,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.? What do I know about them?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144495678,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 60,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144495678,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "environment",
+        "query": "What do I see, hear, and smell here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144495692,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "environment",
+        "found": true,
+        "timeMs": 14,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144495692,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "location_detail",
+        "query": "What is Server Room Access like? Describe it in detail."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144495702,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "location_detail",
+        "found": true,
+        "timeMs": 10,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144495702,
+      "actor": "system",
+      "action": "═══ SCENE END ═══",
+      "details": {
+        "title": "The Admin Wing",
+        "wounds": 0,
+        "checks": "2/2"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496032,
+      "actor": "system",
+      "action": "═══ SCENE START ═══",
+      "details": {
+        "title": "The Cryo Lab",
+        "id": "AChangeOfHeart_Act_03_Chapter_01_Scene_06"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496033,
+      "actor": "gm",
+      "action": "Activating scene",
+      "details": {
+        "id": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+        "title": "The Cryo Lab"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496446,
+      "actor": "gm",
+      "action": "Processing scene",
+      "details": {
+        "title": "The Cryo Lab",
+        "location": "Cold Storage",
+        "npcs": 2,
+        "triggers": 2,
+        "challenges": 1
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496447,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Execute Surgery"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496447,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "You activate the harvester. Elena flatlines. Jax lives. He stands up, healthy, but refuses to look a..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496447,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Refuse"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496447,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "You step back. Jax begs, then screams, then fades. He dies looking at Elena's face, realizing he is ..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496447,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Jaxson 'Jax' V.",
+        "role": "The Companion",
+        "state": "dying"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496447,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Elena (Subject 01)",
+        "role": "The MacGuffin",
+        "state": "unconscious"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496447,
+      "actor": "gm",
+      "action": "Calling for skill check",
+      "details": {
+        "skill": "Tech",
+        "dc": 12
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496447,
+      "actor": "player",
+      "action": "Rolling skill check",
+      "details": {
+        "skill": "Tech",
+        "roll": 14,
+        "bonus": 6,
+        "total": 20,
+        "dc": 12,
+        "critical": null
+      },
+      "result": "SUCCESS",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496447,
+      "actor": "player",
+      "action": "Observing scene",
+      "details": {
+        "location": "Cold Storage"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496447,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Jaxson 'Jax' V.",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496447,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Elena (Subject 01)",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496448,
+      "actor": "player",
+      "action": "The Detective considering questions",
+      "details": {
+        "count": 12,
+        "types": [
+          "npc_motivation",
+          "backstory",
+          "npc_info",
+          "environment",
+          "location_detail",
+          "next_steps"
+        ]
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496448,
+      "actor": "player",
+      "action": "The Detective might attempt",
+      "details": {
+        "actions": [
+          "Examine every item for clues",
+          "Cross-reference NPC statements",
+          "Search for hidden documents",
+          "Analyze physical evidence"
+        ]
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144496448,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want? Why are they here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144497710,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 1262,
+        "interactions": 2
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144497711,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Elena (Subject 01) want? Why are they here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144498351,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 640,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144498351,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "Are any of these NPCs lying or hiding something?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144500026,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 1675,
+        "interactions": 2
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144500026,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144500537,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144500027.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144500537,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144500537,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144500537,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What's Elena (Subject 01)'s history? How did they end up here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144500981,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144500537.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144500982,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What's Elena (Subject 01)'s history? How did they end up here?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144500982,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144500982,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What happened here before I arrived? What's the timeline?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144501579,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144500982.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144501579,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144501579,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144501579,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "How does this location connect to what I've seen before?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144502637,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144501584.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144502637,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144502637,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144502637,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.? What do I know about them?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144502843,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 206,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144502843,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Elena (Subject 01)? What do I know about them?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144502920,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 77,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144502920,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "environment",
+        "query": "What do I see, hear, and smell here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144502930,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "environment",
+        "found": true,
+        "timeMs": 10,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144502930,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "location_detail",
+        "query": "What is Cold Storage like? Describe it in detail."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144502959,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "location_detail",
+        "found": true,
+        "timeMs": 29,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144502959,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "next_steps",
+        "query": "What should I do next? Where can I go from here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144502970,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "next_steps",
+        "found": true,
+        "timeMs": 11,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144502970,
+      "actor": "system",
+      "action": "═══ SCENE END ═══",
+      "details": {
+        "title": "The Cryo Lab",
+        "wounds": 0,
+        "checks": "1/1"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503360,
+      "actor": "system",
+      "action": "═══ SCENE START ═══",
+      "details": {
+        "title": "The Exit",
+        "id": "AChangeOfHeart_Act_03_Chapter_01_Scene_07"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503360,
+      "actor": "gm",
+      "action": "Activating scene",
+      "details": {
+        "id": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+        "title": "The Exit"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503668,
+      "actor": "gm",
+      "action": "Processing scene",
+      "details": {
+        "title": "The Exit",
+        "location": "Main Gate",
+        "npcs": 1,
+        "triggers": 4,
+        "challenges": 0
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503668,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Rattle's Mercy"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503668,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "Rattle meets you at the gate. He sees you are empty-handed. He removes his mask - his face is ruined..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503668,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "Silent Judgment"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503668,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "The Hazers watch from the rooftops. No one speaks. No one moves. You walk out alone, past the bodies..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503668,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "The Weight"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503668,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "You carry Jax out. He's breathing. Elena's heart beats in his chest. The Hazers watch from the rooft..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503668,
+      "actor": "gm",
+      "action": "Firing trigger",
+      "details": {
+        "label": "The Sting"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503668,
+      "actor": "gm",
+      "action": "Narrating",
+      "details": {
+        "text": "[EPILOGUE - Read after a pause] Three months later, Jax calls you. His voice is weaker. 'It's happen..."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503668,
+      "actor": "gm",
+      "action": "Introducing NPC",
+      "details": {
+        "name": "Rattle",
+        "role": "Hazer Leader",
+        "state": "watching"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503668,
+      "actor": "player",
+      "action": "Observing scene",
+      "details": {
+        "location": "Main Gate"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503668,
+      "actor": "player",
+      "action": "NPC interaction",
+      "details": {
+        "npc": "Rattle",
+        "interaction": "conversation"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503668,
+      "actor": "player",
+      "action": "The Detective considering questions",
+      "details": {
+        "count": 7,
+        "types": [
+          "npc_motivation",
+          "backstory",
+          "npc_info",
+          "environment",
+          "location_detail"
+        ]
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503668,
+      "actor": "player",
+      "action": "The Detective might attempt",
+      "details": {
+        "actions": [
+          "Examine every item for clues",
+          "Cross-reference NPC statements",
+          "Search for hidden documents",
+          "Analyze physical evidence"
+        ]
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503669,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Rattle want? Why are they here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503829,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 160,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144503829,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What's Rattle's history? How did they end up here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144504695,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144503829.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144504695,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What's Rattle's history? How did they end up here?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144504695,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144504695,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "What happened here before I arrived? What's the timeline?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144505604,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144504696.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144505604,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144505604,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144505605,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "backstory",
+        "query": "How does this location connect to what I've seen before?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144506270,
+      "actor": "system",
+      "action": "Screenshot captured",
+      "details": {
+        "path": "C:\\Users\\Ingram\\Documents\\Light_Deck\\test-results\\screenshots\\error-info-not-found-backstory-1765144505605.png"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144506270,
+      "actor": "system",
+      "action": "Issue: INFORMATION_NOT_FOUND",
+      "details": {
+        "message": "GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+      },
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144506270,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "backstory",
+        "found": false,
+        "timeMs": 0,
+        "interactions": 0
+      },
+      "result": "NOT FOUND",
+      "severity": "warning"
+    },
+    {
+      "timestamp": 1765144506270,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_info",
+        "query": "Who is Rattle? What do I know about them?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144506310,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_info",
+        "found": true,
+        "timeMs": 40,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144506310,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "environment",
+        "query": "What do I see, hear, and smell here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144506326,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "environment",
+        "found": true,
+        "timeMs": 16,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144506327,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "location_detail",
+        "query": "What is Main Gate like? Describe it in detail."
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144506508,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "location_detail",
+        "found": true,
+        "timeMs": 181,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144506508,
+      "actor": "system",
+      "action": "═══ SCENE END ═══",
+      "details": {
+        "title": "The Exit",
+        "wounds": 0,
+        "checks": "0/0"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144506733,
+      "actor": "system",
+      "action": "GM Validation complete",
+      "details": {
+        "totalCritiques": 28,
+        "validIssues": 28,
+        "intentionalDesign": 0,
+        "gmDiscretion": 0,
+        "falsePositives": 0
+      },
+      "severity": "info"
+    }
+  ],
+  "issues": [
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+      "message": "GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+      "message": "GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+      "message": "GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+      "message": "GM could not find answer to player question: \"What's Hazer Guards (x2)'s history? How did they end up here?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+      "message": "GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+      "message": "GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+      "message": "GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+      "message": "GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+      "message": "GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+      "message": "GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+      "message": "GM could not find answer to player question: \"What's Hazer Patrol (x3)'s history? How did they end up here?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+      "message": "GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+      "message": "GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+      "message": "GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+      "message": "GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+      "message": "GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+      "message": "GM could not find answer to player question: \"What's Jaxson 'Jax' V.'s history? How did they end up here?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+      "message": "GM could not find answer to player question: \"What's Elena (Subject 01)'s history? How did they end up here?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+      "message": "GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+      "message": "GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+      "message": "GM could not find answer to player question: \"What's Rattle's history? How did they end up here?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+      "message": "GM could not find answer to player question: \"What happened here before I arrived? What's the timeline?\" (type: backstory)"
+    },
+    {
+      "severity": "warning",
+      "type": "INFORMATION_NOT_FOUND",
+      "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+      "message": "GM could not find answer to player question: \"How does this location connect to what I've seen before?\" (type: backstory)"
+    }
+  ],
+  "summary": {
+    "totalScenes": 7,
+    "scenesCompleted": 7,
+    "totalWounds": 0,
+    "nearDeathCount": 0,
+    "deaths": 0,
+    "triggersActivated": 13,
+    "skillChecksMade": 11,
+    "skillChecksPassed": 10,
+    "npcsInteracted": 11,
+    "deadEndsFound": 0,
+    "softLocksFound": 0,
+    "difficultyRating": "trivial",
+    "coherenceScore": 60,
+    "informationLookupsAttempted": 59,
+    "informationLookupsSucceeded": 36,
+    "informationLookupsFailed": 23
+  },
+  "archetype": "detective",
+  "archetypeReport": {
+    "archetype": "detective",
+    "successfulPaths": [],
+    "satisfyingMoments": [],
+    "unansweredQuestions": [],
+    "failedActions": [
+      "Examine every item for clues",
+      "Cross-reference NPC statements",
+      "Search for hidden documents",
+      "Analyze physical evidence",
+      "Examine every item for clues",
+      "Cross-reference NPC statements",
+      "Search for hidden documents",
+      "Analyze physical evidence",
+      "Examine every item for clues",
+      "Cross-reference NPC statements",
+      "Search for hidden documents",
+      "Analyze physical evidence",
+      "Examine every item for clues",
+      "Cross-reference NPC statements",
+      "Search for hidden documents",
+      "Analyze physical evidence",
+      "Examine every item for clues",
+      "Cross-reference NPC statements",
+      "Search for hidden documents",
+      "Analyze physical evidence",
+      "Examine every item for clues",
+      "Cross-reference NPC statements",
+      "Search for hidden documents",
+      "Analyze physical evidence",
+      "Examine every item for clues",
+      "Cross-reference NPC statements",
+      "Search for hidden documents",
+      "Analyze physical evidence"
+    ],
+    "confusionPoints": [],
+    "feedback": [
+      {
+        "scene": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Examine every item for clues",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Cross-reference NPC statements",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Search for hidden documents",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_01_Chapter_01_Scene_01",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Analyze physical evidence",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Examine every item for clues",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Cross-reference NPC statements",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Search for hidden documents",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Analyze physical evidence",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Examine every item for clues",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Cross-reference NPC statements",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Search for hidden documents",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_03",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Analyze physical evidence",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Examine every item for clues",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Cross-reference NPC statements",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Search for hidden documents",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Analyze physical evidence",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Examine every item for clues",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Cross-reference NPC statements",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Search for hidden documents",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Analyze physical evidence",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Examine every item for clues",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Cross-reference NPC statements",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Search for hidden documents",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Analyze physical evidence",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Examine every item for clues",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Cross-reference NPC statements",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Search for hidden documents",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      },
+      {
+        "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_07",
+        "type": "unhandled_action",
+        "description": "The Detective wanted to: Analyze physical evidence",
+        "suggestion": "Consider adding support for this action or explaining why it's not possible.",
+        "severity": "medium",
+        "gmValidation": {
+          "status": "valid_issue",
+          "reasoning": "This critique appears to identify a genuine gap in the adventure content.",
+          "gmNotes": "Consider addressing this in the scene content or GM notes."
+        }
+      }
+    ],
+    "emotionalArc": []
+  }
+}

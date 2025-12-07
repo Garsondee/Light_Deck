@@ -1,0 +1,57 @@
+╔══════════════════════════════════════════════════════════╗
+║            VTT SIMULATION REPORT                         ║
+╚══════════════════════════════════════════════════════════╝
+
+Start:    2025-12-07T21:54:20.316Z
+End:      2025-12-07T21:54:33.361Z
+Duration: 13045ms
+Dice:     unlucky
+GM:       adversarial
+Player:   cautious
+
+Termination: ✓ completed
+  All selected scenes processed successfully
+
+─── SUMMARY ───────────────────────────────────────────────
+Scenes:        5 / 5
+Wounds:        0 (0 near-death)
+Deaths:        0
+Skill Checks:  5 / 10 passed
+Triggers:      0
+NPCs:          0
+Dead Ends:     0
+Difficulty:    HARD
+Coherence:     60/100
+Info Lookups:  13/13 found
+
+─── DICE STATS ────────────────────────────────────────────
+Total Rolls:   10
+Average:       6.4
+Nat 20s:       0
+Nat 1s:        0
+
+─── SCENES ────────────────────────────────────────────────
+  1. ✓ The Briefing 🎲0/1
+  2. ✓ The Gate 🎲1/2
+  3. ✓ The Shrine 🎲1/2
+  4. ✓ The Courtyard Ambush 🎲2/3
+  5. ✓ The Admin Wing 🎲1/2
+
+─── NPC STATES ────────────────────────────────────────────
+  Jaxson 'Jax' V.: active (5 interactions)
+  Noodle Stall Cook: passive (1 interactions)
+  Hazer Guards (x2): active (2 interactions)
+
+─── COHERENCE ANALYSIS ────────────────────────────────────
+Breadcrumbs:   STRONG
+Pacing Score:  20/100
+
+─── RECOMMENDATIONS ───────────────────────────────────────
+🟡 [DIFFICULTY] High Difficulty Spike
+   Scene "The Briefing" has a very low pass rate on skill checks.
+   💡 Consider lowering DCs or adding alternative paths for failed checks.
+   📍 Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_01
+
+🟢 [PACING] Unbalanced Pacing
+   Adventure pacing score is 20/100.
+   💡 Consider adding more variety between action, social, and exploration scenes.

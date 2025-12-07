@@ -128,11 +128,11 @@ const App = (function() {
             console.log('[APP] UIManager initialized');
         }
         
-        // Initialize Debug UI (Tweakpane) - Scene Viewer controls
-        DebugUI.init();
-        
-        // Initialize Terminal UI (Tweakpane) - Terminal controls
-        TerminalUI.init();
+        // Initialize unified Settings UI (Tweakpane) - combines all settings
+        if (typeof SettingsUI !== 'undefined') {
+            SettingsUI.init();
+            console.log('[APP] SettingsUI initialized');
+        }
         
         // Initialize SyncManager (multiplayer synchronization)
         initSyncManager();
@@ -153,29 +153,23 @@ const App = (function() {
         // Register action handlers with InputManager
         // This is the ONLY place keyboard actions are wired up
         InputManager.registerHandlers({
-            onDebugUIToggle: () => {
-                // Toggle Scene Viewer Tweakpane
-                if (typeof DebugUI !== 'undefined') {
-                    DebugUI.toggleVisibility();
-                }
-
-                // Keep [OPTIONS] header text brightness/state in sync when the
-                // backtick key is used (instead of the physical/chat button).
-                if (typeof ChatManager !== 'undefined' &&
-                    typeof ChatManager.getControlState === 'function' &&
-                    typeof ChatManager.setControlState === 'function') {
-                    const current = ChatManager.getControlState('options');
-                    const next = !current;
-                    ChatManager.setControlState('options', next);
+            onSettingsUIToggle: () => {
+                // Toggle unified settings panel (F1)
+                if (typeof SettingsUI !== 'undefined') {
+                    SettingsUI.toggle();
                 }
             },
-            onTerminalUIToggle: () => TerminalUI.toggleVisibility(),
             onCaretReset: () => {
                 if (typeof AnimationManager !== 'undefined') {
                     AnimationManager.resetCaretPhase();
                 }
             },
             onEscape: () => {
+                // Close settings panel if open
+                if (typeof SettingsUI !== 'undefined' && SettingsUI.isVisible()) {
+                    SettingsUI.hide();
+                    return;
+                }
                 // Exit terminal mode if active
                 if (ThreeSetup.isTerminalMode()) {
                     const btn = document.getElementById('term-btn');
@@ -191,8 +185,7 @@ const App = (function() {
             StartupManager.runBootSequence().then(() => {
                 // After boot, show welcome messages
                 addChatMessage('system', 'Systems online. Awaiting input.');
-                addChatMessage('system', 'Press ` to toggle Scene Viewer controls.');
-                addChatMessage('system', 'Press ~ to toggle Terminal controls.');
+                addChatMessage('system', 'Press F1 to open Settings.');
             });
         } else {
             // Normal startup - fade in from black even without full boot sequence
@@ -229,8 +222,7 @@ const App = (function() {
 
             // Normal startup messages
             addChatMessage('system', 'Systems online. Awaiting input.');
-            addChatMessage('system', 'Press ` to toggle Scene Viewer controls.');
-            addChatMessage('system', 'Press ~ to toggle Terminal controls.');
+            addChatMessage('system', 'Press F1 to open Settings.');
         }
     }
 

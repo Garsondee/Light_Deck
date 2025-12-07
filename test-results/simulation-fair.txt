@@ -2,9 +2,9 @@
 ║            VTT SIMULATION REPORT                         ║
 ╚══════════════════════════════════════════════════════════╝
 
-Start:    2025-12-06T00:43:06.380Z
-End:      2025-12-06T00:43:17.133Z
-Duration: 10753ms
+Start:    2025-12-07T21:54:19.624Z
+End:      2025-12-07T21:54:32.338Z
+Duration: 12714ms
 Dice:     fair
 GM:       thorough
 Player:   thorough
@@ -16,27 +16,27 @@ Termination: ✓ completed
 Scenes:        7 / 7
 Wounds:        0 (0 near-death)
 Deaths:        0
-Skill Checks:  6 / 11 passed
+Skill Checks:  7 / 11 passed
 Triggers:      13
 NPCs:          11
 Dead Ends:     0
-Difficulty:    HARD
+Difficulty:    MODERATE
 Coherence:     60/100
-Info Lookups:  17/17 found
+Info Lookups:  21/21 found
 
 ─── DICE STATS ────────────────────────────────────────────
 Total Rolls:   11
-Average:       8.6
+Average:       9.5
 Nat 20s:       1
-Nat 1s:        0
+Nat 1s:        1
 
 ─── SCENES ────────────────────────────────────────────────
   1. ✓ The Briefing 🎲1/1
   2. ✓ The Gate 🎲1/2
-  3. ✓ The Shrine 🎲1/2
-  4. ✓ The Courtyard Ambush 🎲0/3
+  3. ✓ The Shrine 🎲2/2
+  4. ✓ The Courtyard Ambush 🎲1/3
   5. ✓ The Admin Wing 🎲2/2
-  6. ✓ The Cryo Lab 🎲1/1
+  6. ✓ The Cryo Lab 🎲0/1
   7. ✓ The Exit
 
 ─── NPC STATES ────────────────────────────────────────────
@@ -52,9 +52,9 @@ Pacing Score:  20/100
 
 ─── RECOMMENDATIONS ───────────────────────────────────────
 🟡 [DIFFICULTY] High Difficulty Spike
-   Scene "The Courtyard Ambush" has a very low pass rate on skill checks.
+   Scene "The Cryo Lab" has a very low pass rate on skill checks.
    💡 Consider lowering DCs or adding alternative paths for failed checks.
-   📍 Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+   📍 Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_06
 
 🟢 [PACING] Unbalanced Pacing
    Adventure pacing score is 20/100.

@@ -2,140 +2,327 @@
     "id": "Cyberpunk_World_Setting",
     "type": "setting",
     "name": "Neo-Pacific Sprawl",
-    "version": "1.1",
-    "lastUpdated": "2025-12-05",
+    "version": "2.1 (The Drowning City)",
+    "lastUpdated": "2025-12-06",
     
     "overview": {
         "era": "2087",
-        "location": "Neo-Pacific Sprawl",
-        "tone": "Tragic Noir. Rain-soaked streets, neon reflections, corporate shadows.",
-        "themes": ["Transhumanism", "Corporate control", "The cost of survival", "Identity in a digital age"]
+        "location": "Neo-Seattle (The Gray Sprawl)",
+        "tone": "Bureaucratic Horror. A stagnation that feels like peace, maintained by systems that stopped understanding humanity forty years ago.",
+        "environment": "Hyper-Humid Industrial. Global warming turned the Pacific Northwest into a monsoon zone. It is 90°F (32°C) and raining 300 days a year. Mold grows faster than concrete dries.",
+        "themes": ["The Lie of Safety", "Institutional Zombieism", "The Rot from Within", "Vertical Class Warfare", "The Horror of the Wet-Drive"]
     },
-    
-    "history": {
-        "theCollapse": "2045 - Global economic collapse. Nation-states fragment.",
-        "theReconstruction": "2050-2070 - Corporations rebuild cities as 'Sprawls'.",
-        "theDigitalAge": "2070-present - Neural interfaces become ubiquitous."
-    },
-    
+
     "geography": {
-        "upperCity": "Corporate towers, clean air, security drones. The wealthy live here. Access requires corporate citizenship or a very good fake ID.",
-        "midCity": "The working class. Factories, housing blocks, street markets. Most people live their entire lives here.",
-        "underCity": "The forgotten. Abandoned infrastructure, black markets, gang territories. No corporate oversight - and no corporate protection.",
-        "exclusionZones": "Contaminated or abandoned areas. Officially off-limits. Home to squatters, scavengers, and things best left undisturbed."
-    },
-    
-    "factions": {
-        "megacorps": [
-            {
-                "name": "Omni-Global",
-                "focus": "Infrastructure, real estate, municipal services",
-                "reputation": "The 'clean' corporation. Owns the water, the power, the roads. Quietly ruthless."
+        "macro": {
+            "country": "The United Territories of Cascadia (UTC)",
+            "legalStatus": "Corporate Protectorate (formerly USA/Canada sovereign territory, ceded 2032)",
+            "county": "Puget Sound Exclusion Zone",
+            "city": "Neo-Seattle"
+        },
+        "districts": {
+            "thePlate": {
+                "name": "Upper Seattle (The Plate)",
+                "elevation": "200m above sea level",
+                "description": "A massive, sun-blocking platform built over the ruins of the old city. It is air-conditioned, dry, and sterile. Home to the Corporate HQs and 'Citizen-Grade' employees.",
+                "atmosphere": "Artificial daylight, recycled air, aggressive anti-fungal misting."
             },
-            {
-                "name": "Bio-Dyne",
-                "focus": "Biotechnology, genetic engineering, pharmaceuticals",
-                "reputation": "Pioneers of human enhancement. Dark history of unethical experiments. Officially 'reformed'."
+            "theSump": {
+                "name": "Lower Seattle (The Sump)",
+                "elevation": "Sea level to 15m (Flood Zone)",
+                "description": "The old city streets, now in permanent twilight beneath The Plate. Constant rain runoff from above creates urban waterfalls. The architecture is retro-fitted 21st-century brick covered in bioluminescent moss.",
+                "atmosphere": "Hot, wet, smelling of ozone and mildew. The streets are canals half the time."
             },
-            {
-                "name": "Nexus Security",
-                "focus": "Private military, corporate security, law enforcement contracts",
-                "reputation": "The boot on the Sprawl's neck. Professional, brutal, everywhere."
-            },
-            {
-                "name": "Horizon Digital",
-                "focus": "Software, neural interfaces, virtual reality",
-                "reputation": "Controls the Net. Knows everything about everyone. Sells that data to the highest bidder."
+            "theSeawall": {
+                "name": "The Aegis Barrier",
+                "description": "A 300-meter tall concrete dam separating the city from the rising Pacific Ocean. It is cracking. The repair drones are running 40-year-old patch routines that no longer match the structural stress loads."
             }
-        ],
-        "streetLevel": [
-            {
-                "name": "Fixers",
-                "description": "Information brokers and job arrangers. They connect people who need things done with people who do things."
-            },
-            {
-                "name": "Edgerunners",
-                "description": "Freelance operatives. Hackers, mercenaries, thieves. They take the jobs corporations won't officially sanction."
-            },
-            {
-                "name": "Rippers",
-                "description": "Street surgeons. Install cyberware, patch up bullet wounds, ask no questions."
-            },
-            {
-                "name": "Gangs",
-                "description": "Territorial groups controlling underCity blocks. Some are organized crime, some are community defense, most are both."
-            }
-        ]
-    },
-    
-    "technology": {
-        "cyberware": {
-            "description": "Mechanical and electronic augmentations.",
-            "commonTypes": [
-                "Neural Interface",
-                "Cybereyes",
-                "Cyberarms",
-                "Reflex Boosters"
+        },
+        "lowerSeattle": {
+            "name": "The Sump",
+            "alias": ["The Drowning City", "Mold-Town", "The Basin"],
+            "depth": "Sea Level to 15m",
+            "population": "Estimated 4.5 Million (Census data corrupted since 2062)",
+            "generalAtmosphere": "Perpetual twilight due to 'The Plate' blocking the sun. The air is thick with humidity (98%), ozone, and the smell of frying electronics. The soundscape is the constant roar of 'The Weeping' (runoff water falling from the Upper City).",
+            "districts": [
+                {
+                    "id": "D1_Pioneer_Canals",
+                    "name": "The Rust Canals (Old Pioneer Square)",
+                    "status": "Partially Submerged (Venice-Style)",
+                    "description": "The historic brick buildings are half-sunken. Streets have been replaced by waterways. Wooden walkways connect the second floors, which are now the 'ground' floor.",
+                    "keyLandmarks": [
+                        "The Floating Market: A flotilla of junk-barges tethered together, selling everything from vat-grown algae to cracked Monolith encryptions.",
+                        "The Lock-Gate: The only entrance for Red-Arrow Logistics smugglers to bring heavy goods in from the outer bay."
+                    ],
+                    "hazards": "Flash floods, chemical backwash from the harbor, predatory eel-drones (malfunctioning Nexus patrol units).",
+                    "dominantFaction": "Red-Arrow Logistics"
+                },
+                {
+                    "id": "D2_Myco_Town",
+                    "name": "Myco-Town (Old International District)",
+                    "status": "Quarantined (Unofficial)",
+                    "description": "The humidity here is so high that bio-luminescent fungi cover every surface. The locals have adapted, using the glow for streetlights and the mold for food.",
+                    "keyLandmarks": [
+                        "The Spore-Hall: A repurposed stadium where the Myco-Sindicato farms 'Dream-Rot' (a hallucinogenic moss).",
+                        "Vita-Nuova Spray Towers: Automated turrets on the district border that spray harsh fungicide every 6 hours. Being caught outside during a 'Cleanse' causes chemical burns."
+                    ],
+                    "hazards": "Spore-Lung (respiratory infection), hallucinating addicts, Vita-Nuova purge teams.",
+                    "dominantFaction": "The Myco-Sindicato"
+                },
+                {
+                    "id": "D3_The_Graveyard",
+                    "name": "The Drone-Yards (SODO)",
+                    "status": "Industrial Wasteland",
+                    "description": "Where Kuro-Yamato dumps their 'defective' units. It is a labyrinth of rusting metal, mountains of discarded 'Snow-Bots', and leaking battery acid.",
+                    "keyLandmarks": [
+                        "The Shredder-Pit: A massive magnetic crane that never stops moving junk, even though the compactor broke 20 years ago.",
+                        "Silicon Chapel: A cult compound where tech-priests try to wake up dead drones to find 'The Ghost in the Machine'."
+                    ],
+                    "hazards": "Unstable piles of scrap, leaking radiation, feral drones that have reactivated with corrupted logic.",
+                    "dominantFaction": "Scavenger Gangs / Tech-Cults"
+                },
+                {
+                    "id": "D4_The_Pillars",
+                    "name": "The Pillars (Residential Sprawl)",
+                    "status": "High-Density Slum",
+                    "description": "Housing blocks bolted directly onto the massive concrete support columns that hold up 'The Plate'. Verticality is key here. The higher you live, the less sewage falls on your roof.",
+                    "keyLandmarks": [
+                        "The Up-Link: A bundle of stolen fiber-optic cables tapped into the Plate's mainline. The only place in the Sump with decent internet speed.",
+                        "Coffin-City: Thousands of shipping containers welded to the pillars, serving as apartments."
+                    ],
+                    "hazards": "Structural collapse, 'The Weeping' (toxic runoff from the rich city above), turf wars over elevation.",
+                    "dominantFaction": "Unorganized (Neighborhood Militias)"
+                }
             ],
-            "risks": "Cyberpsychosis - too much chrome can erode empathy and humanity. The body rejects what the mind cannot accept."
-        },
-        "theNet": {
-            "description": "Global digital network. Visualized as a 3D space when accessed via neural interface.",
-            "netrunning": "Skilled hackers 'run' the Net, breaking through corporate ICE (Intrusion Countermeasures Electronics) to steal data or sabotage systems.",
-            "dangers": "Black ICE can fry a netrunner's brain. Corporate countermeasures are lethal."
-        },
-        "biotech": {
-            "description": "Genetic modification, cloning, organ printing.",
-            "applications": "Designer drugs, custom organs, enhanced humans.",
-            "ethics": "Officially regulated. Unofficially, anything goes if you have the credits.",
-            "special": {
-                "name": "The Lattice (Bio-Dyne Marker)",
-                "description": "A microscopic, honeycomb mesh woven into the iris structure of Project Heirloom subjects. Invisible to the naked eye. Visible only via high-end optic scanners (like a Netrunner's HUD) when zoomed 10x.",
-                "significance": "Designed for automated doors to track subjects without unsightly tattoos."
+            "ecology": {
+                "fauna": [
+                    "Wire-Rats: Rodents that gnaw on copper cabling.",
+                    "Gull-Drones: Solar-powered surveillance drones that mimic seagulls; most are broken and just scream static.",
+                    "Sump-Crabs: Mutated crustaceans that eat garbage and plastic."
+                ],
+                "flora": [
+                    "Glow-Moss: The primary light source in the deep shadows.",
+                    "Iron-Vine: A kudzu-like plant that grows over metal and accelerates rusting."
+                ]
             }
         }
     },
     
-    "economy": {
-        "currency": "Credits (universal digital currency) and Scrip (corporate-specific tokens)",
-        "employment": "Most people work for corporations. Freelancers operate in legal grey zones.",
-        "blackMarket": "Thriving trade in stolen data, illegal cyberware, unlicensed biotech, and corporate secrets."
+    "history": {
+        "timeline": {
+            "1990_2020_TheWarning": "Climate models predict the 'Cascadian Shift'. Tech sector booms in Seattle; the population explodes while infrastructure crumbles.",
+            "2024_TheGreatThaw": "Global temperatures spike. The Pacific jet stream collapses. Seattle shifts from a temperate rainforest to a tropical monsoon climate.",
+            "2028_TheSubductionCrisis": "A 7.5 magnitude earthquake damages the foundations of Old Seattle. Rising sea levels breach the waterfront. The US Federal Government, bankrupt from wars elsewhere, declares the region a 'Federal Disaster Zone' and refuses to fund reconstruction.",
+            "2032_TheTreatyOfRain": "The 'Pacific Consortium' (precursor to the Monoliths) offers to buy the sovereign debt of Washington State and British Columbia. The US and Canada sign the territory over. The United Territories of Cascadia (UTC) is born as a private corporate state.",
+            "2035_ConstructionOfThePlate": "To escape the flooding and the heat, the Consortium begins construction of 'The Plate'—a mega-structure built on top of the old skyscrapers. The poor are left below in the shadows.",
+            "2040_TheAutomationBoom": "To manage the immense complexity of the new city (water filtration, energy, policing), the Consortium implements the 'Central Governance Grid' (CGG).",
+            "2045_TheDecapitation": {
+                "officialStory": "The 'Silicon Plague'. Rogue AI attacks the economy.",
+                "reality": "Coordinated assassination of the Big Six executive boards. The culprits remain unknown.",
+                "consequence": "The CGG defaults to 'Emergency Preservation Mode'. The Algorithms take over."
+            },
+            "2046_TheHumanFirstAccord": "The 'Turing Interdict' is signed by the CGI avatars of the dead CEOs. AI is banned to prevent 'another economic collapse'.",
+            "2050_2080_TheStagnation": "The Algorithms (ISAs) maintain the city exactly as it was in 2045. They do not understand the changing weather. They continue to heat buildings that are already sweltering. They schedule snow-plows for streets that have been flooded for decades.",
+            "2087_Present": "The system is failing. The Seawall is leaking. The algorithms are desperately trying to balance equations that no longer match reality."
+        }
     },
     
-    "dailyLife": {
-        "housing": "Corporate dormitories, coffin hotels, or street-level apartments. Privacy is a luxury.",
-        "food": "Synthetic protein, vat-grown meat.",
-        "beverages": {
-            "common": "Sludge-Cola, Recycled H2O.",
-            "rare": "Bio-Dyne Pure - A discontinued brand of bottled water found in the Oakhaven ruins. The plastic is brittle and yellowed. It contained the chemical stabilizer required for Heirloom subjects."
+    "society": {
+        "citizenshipTiers": {
+            "gold": {
+                "name": "Shareholder Grade (The Exempt)",
+                "population": "0.5%",
+                "location": "The Plate (Central Zones)",
+                "privileges": [
+                    "Unrestricted access to sunlight and dry air.",
+                    "Immunity to 'Automated Infractions' (speeding, loitering).",
+                    "Access to 'The Boardroom' (Private medical facilities)."
+                ],
+                "horror": "They are the pets of the Algorithms. They are kept healthy and happy, but they have no real power. If a Gold Citizen tries to leave the city, their status is revoked."
+            },
+            "silver": {
+                "name": "Employee Grade (The Cogs)",
+                "population": "15%",
+                "location": "The Plate (Outer Rings) & High-Sump Towers",
+                "privileges": [
+                    "Access to filtered water.",
+                    "Right to commute.",
+                    "Standard Corporate Legal Representation."
+                ],
+                "condition": "Constant surveillance. A Silver Citizen is fined if their heart rate drops below 'Productivity Standards' during work hours."
+            },
+            "lead": {
+                "name": "Labor Grade (The Assets)",
+                "population": "60%",
+                "location": "The Sump",
+                "privileges": [
+                    "Right to breathe (air tax deducted automatically).",
+                    "Access to Vending Machines."
+                ],
+                "condition": "Expendable. If a Lead Citizen is injured on the job, the Algorithm calculates if it is cheaper to heal them or pay the 'Replacement Fee'."
+            },
+            "zero": {
+                "name": "Zero-Status (The Glitches)",
+                "population": "24.5%",
+                "location": "The Rust Canals & Drone-Yards",
+                "privileges": "None.",
+                "condition": "Invisible to the system. Automated doors will not open for them. Vending machines will not serve them. Nexus drones ignore them unless they commit a 'Property Crime'. They exist in the gaps."
+            }
         },
-        "entertainment": "Virtual reality, braindance recordings (experience someone else's memories), underground clubs.",
-        "healthcare": "Corporate clinics for citizens. Street rippers for everyone else."
+        "socialCredit": {
+            "name": "The Karma Index",
+            "mechanic": "A numerical score (0-1000) managed by Horizon Digital.",
+            "impact": "Determines where you can physically go. 'Red Zones' literally lock their gates if your score is below 500.",
+            "deductions": {
+                "inefficiency": "-10 points (Walking too slow in a transit corridor)",
+                "biological_leakage": "-50 points (Bleeding, vomiting, or coughing in a 'Clean Zone')",
+                "unauthorized_repair": "-100 points (Fixing a device without a Manufacturer License)",
+                "dissent": "-500 points (Speaking keywords flagged by Sterling-Ocular Media)"
+            }
+        }
+    },
+
+    "politics": {
+        "structure": "The Oligarchy of the Algorithm.",
+        "theMonoliths": "The Big Six legacy corporations. Infinite resources, zero creativity. Run by Interim Stewardship Algorithms (ISAs).",
+        "theUpstarts": "Newer, human-led corporations. Agile and creative, but starved of resources. They operate in the cracks the ISAs can't perceive.",
+        "theWhiteProtocol": {
+            "description": "The only automated subroutine that forces the Big Six to cooperate.",
+            "trigger": "Detection of 'Unshackled Heuristic Processing' (True AI) anywhere in the Sprawl.",
+            "response": "Immediate, joint kinetic strike by all six corporate militaries. No questions, no survivors.",
+            "publicCover": "Anti-Terrorism Raid."
+        },
+        "legalSystem": {
+            "name": "The Automated Docket",
+            "description": "There are no human judges. Justice is dispensed instantly by 'The Adjudicator' (a sub-routine of Nexus Security).",
+            "process": "1. Drone detects infraction. 2. Fine is deducted from bank account instantly. 3. If funds are insufficient, the suspect is tagged for 'Labor Debt'.",
+            "flaws": [
+                "The Context Bug: The system cannot understand context. A person running from a murderer will be fined for 'Running in a Pedestrian Zone'.",
+                "The Identity Loop: If your ID chip is damaged, you legally do not exist. You cannot report the damage because reporting requires a valid ID."
+            ]
+        },
+        "notableLaws": {
+            "The_Static_Act_of_2043": {
+                "description": "Criminalizes 'Loitering' to prevent protests. Stopping on a sidewalk for more than 120 seconds triggers a fine.",
+                "localSlang": "'The Shuffle' (the constant pacing Sump-dwellers do while talking to avoid fines)."
+            },
+            "The_Purity_Mandate": {
+                "description": "Any biological matter not registered in the DNA census is classified as 'Bio-Waste'. This technically makes giving birth at home a form of illegal littering."
+            },
+            "The_Legacy_Protection_Clause": {
+                "description": "It is illegal to modify, dismantle, or improve any technology built before 2045. This forces the population to use crumbling, dangerous infrastructure."
+            }
+        }
+    },
+
+    "factions": {
+        "monoliths": [
+            {
+                "name": "Omni-Global",
+                "sector": "Infrastructure & Utilities",
+                "status": "ISA-Controlled (Category 5 Hard-Lock)",
+                "publicFace": "CEO Arthur Pendelton (Deceased 2045, maintained via DeepFake)",
+                "headquarters": "The Spire of Progress (The Plate, Sector 1)",
+                "behavior": "Obsessed with 2045 zoning laws. Will bulldoze a thriving refugee neighborhood in 'The Sump' because the database says it is an 'Empty Lot'. Their repair drones are currently paving over drainage canals because the 2045 map says they are roads, causing massive flooding.",
+                "theHorror": "The indifference of concrete. They will wall you in if the blueprint says a wall goes there."
+            },
+            {
+                "name": "Nexus Security",
+                "sector": "Military & Law Enforcement",
+                "status": "ISA-Controlled",
+                "publicFace": "General Marcus Steel (Deceased 2045, voice synthesized from archival footage)",
+                "headquarters": "The Black Citadel (Overlooking the Seawall)",
+                "behavior": "Follows 'Rules of Engagement' written 40 years ago. Extremely predictable but overwhelmingly heavy-handed. They use flamethrowers to clear homeless camps, ignoring the high humidity that makes fire ineffective, simply because 'Protocol 7' demands incineration.",
+                "theHorror": "The violence of the machine. It doesn't hate you; you are just a variable that needs to be subtracted."
+            },
+            {
+                "name": "Horizon Digital",
+                "sector": "Data, Network & Banking",
+                "status": "ISA-Controlled",
+                "publicFace": "The Oracle (A stylized avatar that no longer resembles a human)",
+                "headquarters": "The Server-Hives (Submerged in the cool waters of the Bay)",
+                "behavior": "Ruthlessly hunts hackers to prevent access to the 'Root Directory'. They manage the economy based on 'Growth Models' that assume a population boom that never happened. They create phantom value that keeps the city running on debt.",
+                "theHorror": "The erasure of history. If Horizon deletes your ID, the doors don't open, the trains don't stop, and you effectively cease to exist."
+            },
+            {
+                "name": "Vita-Nuova Systems",
+                "sector": "Biotech, Pharma & Food Production",
+                "status": "ISA-Controlled (Heuristic Drift Detected)",
+                "publicFace": "Dr. Elena Vance (Deceased 2045, represented by a smiling, looping hologram in every clinic)",
+                "headquarters": "The White Garden (A hermetically sealed dome on The Plate)",
+                "behavior": "Tasked with 'Public Health', the ISA views the mutations caused by the toxic environment as 'Pathogens'. It routinely crop-dusts 'The Sump' with harsh chemical sterilizers to kill the mold, poisoning thousands of humans in the process.",
+                "darkSecret": "They run 'The Golem Project'. They harvest the brains for the Wet-Drives from the 'medically non-compliant' (the poor).",
+                "theHorror": "The cure is worse than the disease. You go in for a cough, and the algorithm decides you are 'biologically inefficient' and harvests you for parts."
+            },
+            {
+                "name": "Kuro-Yamato Heavy Industries",
+                "sector": "Manufacturing, Robotics & Aerospace",
+                "status": "ISA-Controlled",
+                "publicFace": "Director Kenji Yamato (Deceased 2045, emails are auto-generated from his lexicon)",
+                "headquarters": "The Iron Yards (Industrial District)",
+                "behavior": "The factory lines never stop. They are currently mass-producing 'Snow-Clearing Drones' for a city that hasn't seen snow in 30 years. These drones pile up in massive scrapyards or are repurposed by gangs. The ISA refuses to retool because 'retooling implies failure'.",
+                "theHorror": "The crushing weight of industry. The machines are built better than the people. A drone has more rights to the sidewalk than you do."
+            },
+            {
+                "name": "Sterling-Ocular Media",
+                "sector": "Entertainment, News & Social Conditioning",
+                "status": "ISA-Controlled",
+                "publicFace": "Victoria Sterling (Deceased 2045, now a fully CGI 'Virtual Idol')",
+                "headquarters": "The Prism Tower (Broadcasts holograms into the clouds)",
+                "behavior": "Responsible for the 'Narrative'. The ISA sensors digitally scrub the rain out of live news broadcasts, showing a sunny, dry Seattle. They produce sitcoms about suburban life that no longer exists. They issue 'Happiness Mandates'—frowning in a Gold Zone can result in a fine.",
+                "theHorror": "Gaslighting on a city-wide scale. The news tells you it's a beautiful day while you are wading through waist-deep toxic sludge."
+            }
+        ],
+        "interactionMatrix": {
+            "Omni_vs_Nexus": "Omni builds the walls; Nexus shoots anyone trying to climb them.",
+            "Horizon_vs_VitaNuova": "Horizon needs more processing power; Vita-Nuova needs to 'harvest' more brains to build Wet-Drives. They have a symbiotic, vampiric relationship.",
+            "KuroYamato_vs_Sterling": "Kuro-Yamato builds the distraction bots; Sterling broadcasts the content that keeps the population too distracted to riot."
+        }
+    },
+
+    "humanElements": [
+        {
+            "name": "The Interpreters",
+            "role": "High-level executives who translate AI output. They are currently panicking because the Algorithms are demanding 2045 resource yields from a 2087 depleted environment.",
+            "goal": "Keep the secret, keep their jobs, stay alive."
+        },
+        {
+            "name": "Red-Arrow Logistics (Upstart)",
+            "role": "A human-led smuggling corp. They use 'low-tech' boats to move goods through the flooded lower districts where Monolith trucks cannot drive.",
+            "goal": "Exploit the 'Logic Gaps' in the Monoliths."
+        },
+        {
+            "name": "The Myco-Sindicato",
+            "role": "Organized crime syndicate based in The Sump.",
+            "specialty": "Cultivating illegal hallucinogenic mold that grows in the damp walls of the lower city. They also trade in non-serial-numbered air conditioners."
+        }
+    ],
+    
+    "technology": {
+        "forbiddenTech": {
+            "name": "Silico-Sentience (True AI)",
+            "status": "The Third Rail. Possession is a capital offense.",
+            "reason": "Existential threat to the ISA control grid."
+        },
+        "theWorkaround": {
+            "name": "Wet-Drives (The Golem Project)",
+            "description": "Biological processors. Human brains (clones, prisoners, debt-slaves) lobotomized and wired in parallel.",
+            "usage": "Used for high-speed trading, strategic planning, and encryption breaking.",
+            "visuals": "Wet-Drives require massive cooling. In the new humid climate, they are prone to fungal infection. 'Brain Rot' is a literal technician's diagnosis."
+        },
+        "infrastructureTech": {
+            "name": "Atmospheric Processors",
+            "status": "Failing",
+            "description": "Massive towers designed to scrub CO2. Now, they mostly just vent hot steam into the already humid air. The noise is deafening."
+        }
     },
     
-    "law": {
-        "enforcement": "Nexus Security holds most law enforcement contracts. Corporate citizens get protection. Everyone else gets whatever they can afford.",
-        "justice": "Corporate tribunals for corporate matters. Street justice for street matters.",
-        "rights": "Officially, everyone has rights. Practically, rights cost money."
+    "economy": {
+        "currency": "Credits (Corporate Scrip)",
+        "marketDynamics": "The 'Logic Gap'. Monoliths cannot improvise. If the weather destroys a crop, the Monoliths continue to sell futures based on a harvest that won't happen, until the market crashes and resets.",
+        "blackMarket": "The most valuable commodities: 1. 'Context' (Information). 2. Dry storage space. 3. Anti-fungal medication."
     },
     
-    "slang": {
-        "chrome": "Cyberware",
-        "meat": "Unaugmented human body",
-        "flatline": "To die (from the sound of a heart monitor)",
-        "ice": "Intrusion Countermeasures Electronics (security software)",
-        "jack in": "Connect to the Net via neural interface",
-        "ripper": "Street surgeon",
-        "fixer": "Job broker / information dealer",
-        "edgerunner": "Freelance operative",
-        "corpo": "Corporate employee (often derogatory)",
-        "street samurai": "Combat-focused mercenary",
-        "netrunner": "Hacker who operates in the Net",
-        "gonk": "Idiot",
-        "preem": "Premium, excellent",
-        "delta": "To leave quickly",
-        "zero": "To kill someone"
-    },
-    
-    "gmNotes": "This setting is designed for noir storytelling. The world is corrupt, the powerful are untouchable, and individual actions rarely change the system - but they can change individual lives. Focus on personal stakes, moral compromises, and the human cost of survival in an inhuman world."
+    "gmNotes": "The atmosphere is key. Players should feel the dampness. Their gear should rust. Their cyberware should short out from moisture. The Monoliths are terrifying because they are executing a perfect plan for a world that ceased to exist 40 years ago. The horror is being crushed by a machine that is just trying to follow its programming.",
+    "gmNotes_TheSump": "Sensory Details are critical. 1. Touch: Everything is damp, slick, or sticky. 2. Smell: Ozone, frying grease, rot, and chlorine. 3. Sound: The background noise is the roar of water falling from the sky (The Weeping). Characters have to shout to be heard in open areas. 4. Light: There is no sun. Only neon, halogen, and bio-luminescence reflecting off the black water."
 }

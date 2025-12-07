@@ -614,13 +614,134 @@ Future: Players can view their character sheets; GM can view all.
 
 ---
 
-## 13. Revision History
+## 13. Debt System
+
+> *"In the sprawl, everyone owes someone. The only question is how much."*
+
+### 13.1 Overview
+
+Debt is a core narrative and mechanical element. Every character starts with debt based on their background, and can take on more for additional starting equipment. Debt creates ongoing tension and story hooks throughout the campaign.
+
+### 13.2 Starting Debt
+
+| Background | Base Debt | Creditor Type | Interest Rate |
+|------------|-----------|---------------|---------------|
+| Street Kid | 8,000¢ | Loan Shark | 15% |
+| Corporate | 15,000¢ | Corporation | 12% |
+| Techie | 10,000¢ | Equipment Vendor | 10% |
+| Nomad | 6,000¢ | Clan/Family | 8% |
+| Medic | 12,000¢ | Academy/Institution | 10% |
+| Enforcer | 9,000¢ | Arms Dealer | 14% |
+
+### 13.3 Debt Packages
+
+Players can increase starting debt for extra equipment:
+
+| Package | Contents | Added Debt |
+|---------|----------|------------|
+| Survival Kit | Med kit, 3 stim packs, trauma patch | +2,000¢ |
+| Street Arsenal | Heavy pistol, 50 rounds, combat knife | +3,000¢ |
+| Tech Toolkit | Advanced toolkit, diagnostic scanner | +2,500¢ |
+| Chrome Upgrade | One cyberware piece (≤3,000¢) | +4,000¢ |
+| Fixer's Favor | Upgrade Neutral contact → Ally | +1,500¢ |
+| Clean SIN | Legitimate identity, no flags | +5,000¢ |
+| Safe House | Secure location access | +3,500¢ |
+| Wheels | Basic motorcycle or car | +4,500¢ |
+
+**Limit:** Maximum 3 packages per character.
+
+### 13.4 Debt Mechanics
+
+**Minimum Payment:** 10% of total debt per month (in-game time)
+
+**Debt Status:**
+| Status | Condition | Effect |
+|--------|-----------|--------|
+| Current | Payments on time | No penalty |
+| Overdue | Missed 1-2 payments | -1 to Streetwise (reputation) |
+| Defaulted | Missed 3+ payments | Creditor sends collectors |
+| Paid | Debt cleared | Creditor may become contact |
+
+**Interest Accrual:** Interest compounds monthly on unpaid balance.
+
+### 13.5 Creditor Interactions
+
+Creditors are NPCs who can appear in adventures:
+
+**Collection Methods (by creditor type):**
+- **Loan Shark:** Sends enforcers, takes cuts from jobs, sells debt
+- **Corporation:** Garnishes wages, blacklists from contracts, legal action
+- **Vendor:** Repossesses equipment, refuses service, bad references
+- **Clan:** Social pressure, family obligations, honor debts
+- **Academy:** License revocation, professional blacklist
+- **Arms Dealer:** Demands "favors," cuts off supply, violent collection
+
+**Negotiation:** Some creditors can be negotiated with:
+- Extend payment terms (increases total owed)
+- Work off debt (dangerous jobs)
+- Transfer debt to another creditor
+- Pay lump sum for discount
+
+### 13.6 Paying Off Debt
+
+**Methods:**
+1. **Direct Payment:** Pay credits toward balance
+2. **Jobs:** Some jobs offer debt reduction as payment
+3. **Negotiation:** Convince creditor to reduce/forgive
+4. **Elimination:** Remove the creditor (extreme, has consequences)
+5. **Transfer:** Shift debt to someone else
+
+**Rewards for Clearing Debt:**
+- Creditor may become a contact (Ally or Neutral)
+- Reputation boost (+1 to relevant social checks)
+- Access to creditor's network/resources
+- Story milestone achievement
+
+### 13.7 Debt in Play
+
+**GM Guidance:**
+- Use debt as a story hook, not a punishment
+- Creditors should be interesting NPCs, not just obstacles
+- Offer multiple ways to address debt
+- Debt creates motivation for taking risky jobs
+- Clearing debt should feel like an achievement
+
+**Player Agency:**
+- Players choose how much debt to start with
+- Multiple paths to address debt
+- Debt consequences are telegraphed, not sudden
+- High debt = more desperate, but more equipped
+
+### 13.8 Example Creditors
+
+**Viktor "Vic" Malone** (Loan Shark - Street Kid)
+- Runs protection in the Warrens
+- Patient but ruthless
+- Will offer jobs to work off debt
+- Can become an ally if debt is paid honorably
+
+**Meridian Systems Corp.** (Corporation - Corporate)
+- Faceless corporate entity
+- Sends legal notices, then "asset recovery teams"
+- Debt can be transferred to a fixer for a fee
+- Clearing debt removes corporate blacklist
+
+**Tanaka Tools Ltd.** (Vendor - Techie)
+- Family-owned equipment supplier
+- Reasonable but firm
+- Will accept equipment trade-ins
+- Good relationship = access to rare parts
+
+---
+
+## 14. Revision History
 
 | Date | Version | Notes |
 |------|---------|-------|
 | 2024-12-04 | 0.1 | Initial system stub — attributes, skills, combat basics |
 | 2024-12-04 | 0.2 | Added adventure guide schema, scene NPC registration, API endpoints |
 | 2024-12-05 | 0.3 | **"A Change of Heart" Overhaul** — Stress/Wounds replace HP, Glitches replace Humanity, Spotlight replaces Action Economy, Netrunning becomes Time/Heat, attributes flattened to -1/+3 |
+| 2024-12-06 | 0.4 | **Debt System** — Starting debt by background, debt packages for extra gear, creditor NPCs, debt mechanics (payments, status, consequences), integration with character creation |
 
 ---
 

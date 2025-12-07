@@ -140,6 +140,21 @@ const Audio = (function() {
     }
     
     /**
+     * Set SFX volume (0-1)
+     */
+    function setSfxVolume(vol) {
+        state.sfxVolume = Math.max(0, Math.min(1, vol));
+    }
+    
+    /**
+     * Toggle SFX on/off
+     */
+    function toggleSfx(enabled) {
+        state.sfxEnabled = enabled !== undefined ? enabled : !state.sfxEnabled;
+        return state.sfxEnabled;
+    }
+    
+    /**
      * Toggle music on/off
      */
     function toggleMusic(enabled) {
@@ -255,7 +270,9 @@ const Audio = (function() {
         pause,
         resume,
         setMusicVolume,
+        setSfxVolume,
         toggleMusic,
+        toggleSfx,
         getTracks,
         getState,
         loadTrackList,

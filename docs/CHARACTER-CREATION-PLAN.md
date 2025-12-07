@@ -106,7 +106,75 @@ For each: Name, Relationship, One-line description.
 - **Goal** — What are you working toward?
 - **Notes** — Anything else
 
-### Phase 10: Confirmation
+### Phase 10: Debt & Equipment Selection (NEW)
+
+After character creation, players face the reality of life in the sprawl: **debt**.
+
+#### Starting Debt by Background
+
+| Background | Base Debt | Creditor | Reason |
+|------------|-----------|----------|--------|
+| **Street Kid** | 8,000¢ | Loan shark (Viktor "Vic" Malone) | Protection money, survival loans |
+| **Corporate** | 15,000¢ | Meridian Systems Corp. | Golden parachute clawback clause |
+| **Techie** | 10,000¢ | Equipment vendor (Tanaka Tools) | Workshop equipment financing |
+| **Nomad** | 6,000¢ | Clan debt (The Dustrunners) | Vehicle repairs, fuel advances |
+| **Medic** | 12,000¢ | Medical academy (Nightcity Med) | Tuition and licensing fees |
+| **Enforcer** | 9,000¢ | Arms dealer (Iron Mike) | Weapons and armor on credit |
+
+#### Debt Packages (Optional Extra Gear)
+
+Players can take on additional debt for extra starting equipment:
+
+| Package | Contents | Added Debt |
+|---------|----------|------------|
+| **Survival Kit** | Med kit, 3 stim packs, trauma patch | +2,000¢ |
+| **Street Arsenal** | Heavy pistol, 50 rounds, combat knife | +3,000¢ |
+| **Tech Toolkit** | Advanced toolkit, diagnostic scanner, spare parts | +2,500¢ |
+| **Chrome Upgrade** | One additional cyberware piece (up to 3,000¢ value) | +4,000¢ |
+| **Fixer's Favor** | Upgrade one contact from Neutral → Ally | +1,500¢ |
+| **Clean SIN** | Legitimate identity, no criminal record flags | +5,000¢ |
+| **Safe House** | Access to a secure location in the city | +3,500¢ |
+| **Wheels** | Basic motorcycle or beat-up car | +4,500¢ |
+
+**Maximum Packages:** Players can take up to 3 debt packages.
+
+#### Debt Display
+
+```
+═══ YOUR FINANCIAL SITUATION ═══
+
+Base Debt (Techie): 10,000¢
+  Creditor: Tanaka Tools Ltd.
+  "They want their money. They always do."
+
+Selected Packages:
+  [x] Tech Toolkit (+2,500¢)
+  [ ] Street Arsenal (+3,000¢)
+  [x] Clean SIN (+5,000¢)
+
+─────────────────────────────────
+TOTAL DEBT: 17,500¢
+─────────────────────────────────
+
+Minimum Monthly Payment: 1,750¢
+Interest Rate: 12% APR
+
+[CONFIRM] [REMOVE PACKAGE] [ADD PACKAGE]
+```
+
+### Phase 11: Document Generation
+
+After confirming debt, the system generates identity documents:
+
+1. **Corporate ID Card** — Your official contractor identification
+2. **SIN Card** — System Identification Number (real or forged)
+3. **Debt Statement** — Itemized breakdown of what you owe
+4. **Equipment Manifest** — List of all starting gear
+5. **Contact Dossiers** — Brief files on your 3 contacts
+
+These documents are displayed one by one with dramatic effect, then stored in the player's terminal for later reference.
+
+### Phase 12: Confirmation
 Review screen showing full character. Confirm or go back to edit.
 
 ---
@@ -553,10 +621,45 @@ Character saved. Welcome to the sprawl, Voltage.
     "experience": "number",
     "notes": "string",
     
+    "debt": {
+        "total": "number",
+        "baseDebt": "number",
+        "packageDebt": "number",
+        "creditor": {
+            "name": "string",
+            "type": "loan_shark | corporation | vendor | clan | academy | dealer",
+            "relationship": "hostile | neutral | professional"
+        },
+        "packages": ["string (package IDs)"],
+        "interestRate": 0.12,
+        "minimumPayment": "number (10% of total)",
+        "paymentHistory": [],
+        "status": "current | overdue | defaulted | paid"
+    },
+    
+    "documents": {
+        "corporateId": {
+            "number": "string",
+            "issued": "ISO timestamp",
+            "expires": "ISO timestamp",
+            "clearance": "LEVEL 1 (CONTRACTOR)"
+        },
+        "sin": {
+            "number": "string",
+            "type": "real | forged",
+            "flags": []
+        },
+        "debtStatement": {
+            "accountNumber": "string",
+            "generated": "ISO timestamp"
+        }
+    },
+    
     "meta": {
         "created": "ISO timestamp",
         "lastModified": "ISO timestamp",
-        "version": "1.0"
+        "version": "1.0",
+        "onboardingComplete": "boolean"
     }
 }
 ```
@@ -570,9 +673,60 @@ assets/
 ├── flaws/
 │   └── flaws.json           # All flaw definitions
 ├── backgrounds/
-│   └── backgrounds.json     # Background definitions with gear
-└── cyberware/
-    └── starter_chrome.json  # Cyberware available at creation
+│   └── backgrounds.json     # Background definitions with gear & debt
+├── cyberware/
+│   └── starter_chrome.json  # Cyberware available at creation
+├── debt/
+│   ├── creditors.json       # Creditor NPCs by background
+│   └── packages.json        # Debt package definitions
+└── templates/
+    └── documents/           # Document generation templates
+        ├── corporate_id.json
+        ├── sin_card.json
+        ├── debt_statement.json
+        └── equipment_manifest.json
+```
+
+### 6.3 Creditor Schema
+
+```json
+{
+    "id": "vic_malone",
+    "name": "Viktor 'Vic' Malone",
+    "type": "loan_shark",
+    "background": "street_kid",
+    "organization": "Independent",
+    "description": "A scarred veteran of the street wars who runs a 'protection' racket in the Warrens.",
+    "personality": "Patient but ruthless. Gives you time, but never forgets.",
+    "baseDebt": 8000,
+    "interestRate": 0.15,
+    "collectionMethods": [
+        "Sends enforcers to 'remind' you",
+        "Takes a cut of your jobs",
+        "May sell your debt to worse people"
+    ],
+    "negotiable": true,
+    "canBecomeAlly": true,
+    "questHook": "Vic has a job that could clear your debt... if you survive."
+}
+```
+
+### 6.4 Debt Package Schema
+
+```json
+{
+    "id": "survival_kit",
+    "name": "Survival Kit",
+    "description": "Basic supplies for staying alive in the sprawl.",
+    "cost": 2000,
+    "contents": [
+        { "item": "med_kit", "quantity": 1 },
+        { "item": "stim_pack", "quantity": 3 },
+        { "item": "trauma_patch", "quantity": 1 }
+    ],
+    "flavor": "You never know when you'll need to patch yourself up in a back alley.",
+    "recommended_for": ["street_kid", "enforcer", "nomad"]
+}
 ```
 
 ---

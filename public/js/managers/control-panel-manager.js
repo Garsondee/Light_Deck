@@ -487,9 +487,9 @@ const ControlPanelManager = (function() {
                 if (typeof EventBus !== 'undefined') {
                     EventBus.emit('ui:options-toggle');
                 }
-                // Fallback: toggle DebugUI
-                if (typeof DebugUI !== 'undefined') {
-                    DebugUI.toggleVisibility();
+                // Toggle unified Settings UI when available
+                if (typeof SettingsUI !== 'undefined') {
+                    SettingsUI.toggle();
                 }
                 break;
                 

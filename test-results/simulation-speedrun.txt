@@ -1,0 +1,50 @@
+╔══════════════════════════════════════════════════════════╗
+║            VTT SIMULATION REPORT                         ║
+╚══════════════════════════════════════════════════════════╝
+
+Start:    2025-12-07T21:54:20.662Z
+End:      2025-12-07T21:54:33.512Z
+Duration: 12850ms
+Dice:     blessed
+GM:       efficient
+Player:   speedrun
+
+Termination: ✓ completed
+  All selected scenes processed successfully
+
+─── SUMMARY ───────────────────────────────────────────────
+Scenes:        7 / 7
+Wounds:        0 (0 near-death)
+Deaths:        0
+Skill Checks:  0 / 0 passed
+Triggers:      0
+NPCs:          0
+Dead Ends:     0
+Difficulty:    TRIVIAL
+Coherence:     60/100
+Info Lookups:  20/20 found
+
+─── SCENES ────────────────────────────────────────────────
+  1. ✓ The Briefing
+  2. ✓ The Gate
+  3. ✓ The Shrine
+  4. ✓ The Courtyard Ambush
+  5. ✓ The Admin Wing
+  6. ✓ The Cryo Lab
+  7. ✓ The Exit
+
+─── NPC STATES ────────────────────────────────────────────
+  Jaxson 'Jax' V.: dying (0 interactions)
+  Noodle Stall Cook: passive (0 interactions)
+  Hazer Guards (x2): active (0 interactions)
+  Elena (Subject 01): unconscious (0 interactions)
+  Rattle: watching (0 interactions)
+
+─── COHERENCE ANALYSIS ────────────────────────────────────
+Breadcrumbs:   STRONG
+Pacing Score:  20/100
+
+─── RECOMMENDATIONS ───────────────────────────────────────
+🟢 [PACING] Unbalanced Pacing
+   Adventure pacing score is 20/100.
+   💡 Consider adding more variety between action, social, and exploration scenes.

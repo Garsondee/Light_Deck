@@ -7,7 +7,7 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   
-  /* Run tests in files in parallel */
+  /* Allow tests within a file to run in parallel across workers */
   fullyParallel: true,
   
   /* Fail the build on CI if you accidentally left test.only in the source code */
@@ -16,12 +16,16 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   
-  /* Opt out of parallel tests on CI */
-  workers: process.env.CI ? 1 : undefined,
+  /* Use 5 workers by default for parallel test execution */
+  workers: 5,
+
+  /* Global test timeout (in milliseconds) */
+  timeout: 120 * 1000,
   
-  /* Reporter to use */
+  /* Reporters to use */
   reporter: [
     ['html', { open: 'never' }],
+    ['json', { outputFile: 'test-results/results.json' }],
     ['list']
   ],
   

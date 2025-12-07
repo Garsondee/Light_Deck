@@ -2079,6 +2079,7 @@ Trigger buttons execute predefined actions:
 | 2024-12-05 | 1.9 | Terminal/Document/Program System. Three new JSON asset types: Terminals (in-game computers with unique styles), Documents (readable content), Programs (terminal apps/minigames). Scenes can now include `terminal_access_points`. API endpoints and export updated. |
 | 2024-12-05 | **2.0** | **GM Overlay v2 (React).** Complete React-based GM interface in `src/gm-overlay/`. Scene Activation System distinguishes browsing vs. pushing scenes to players. Player View Preview shows active scene thumbnail. Chat Log Panel with real-time Socket.io sync. Zustand stores for scene, view, session, chat state. Keyboard shortcuts (Shift+Enter to activate, Cmd+J for scene jumper). |
 | 2024-12-05 | 2.1 | **NPC Detail View with Public/Private Data.** NPC JSON schema updated with `public` and `private` sections. Server API filters data by role (`?role=gm` for full access). GM Overlay shows full statblock. Players use `/look <name>` command to see public info only. |
+| 2024-12-06 | 2.2 | **Onboarding System.** New player onboarding flow with audio calibration, visual calibration, character creation, debt & equipment selection, and document generation. OnboardingManager state machine. Debt system with background-based starting debt and optional debt packages for extra gear. Generated identity documents (Corporate ID, SIN, Debt Statement). Commands: `/onboard`, `/create`, `/newchar`. |
 
 ---
 
@@ -2572,6 +2573,281 @@ The `/api/export/:adventureId` endpoint now includes:
 - `terminals` - All terminal definitions
 - `documents` - All in-game documents
 - `programs` - All terminal programs
+
+---
+
+## 27. Onboarding System
+
+> **Status:** PLANNED (2024-12-06)
+
+### 27.1 Overview
+
+The onboarding system guides new players through initial setup before entering the game world. It handles audio calibration, visual calibration, and character creation in a cohesive, immersive flow.
+
+**Entry Points:**
+- **Future:** Automatic after Light Deck startup screen (first-time users)
+- **Current:** Manual via `/onboard` command in chat
+
+### 27.2 Onboarding Flow
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    ONBOARDING SEQUENCE                           │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  Phase 1: AUDIO CALIBRATION                                      │
+│  ├── Play test music track (looping)                            │
+│  ├── Music volume slider (0-100%)                               │
+│  ├── SFX volume slider (0-100%)                                 │
+│  ├── [Test SFX] button → plays random sound effect              │
+│  └── [Continue] when satisfied                                   │
+│                                                                  │
+│  Phase 2: VISUAL CALIBRATION                                     │
+│  ├── Load test image with gradient/detail zones                 │
+│  ├── Brightness slider                                          │
+│  ├── Contrast slider                                            │
+│  ├── Instructions: "Adjust until you can see all 10 bars"       │
+│  └── [Continue] when satisfied                                   │
+│                                                                  │
+│  Phase 3: CHARACTER CREATION                                     │
+│  ├── Identity (name, handle, pronouns)                          │
+│  ├── Background selection                                       │
+│  ├── Attributes (8 points)                                      │
+│  ├── Skills (20 points)                                         │
+│  ├── Stunts (2 picks)                                           │
+│  ├── Flaws (optional, +1 stunt each)                            │
+│  ├── Cyberware (5,000¢ budget)                                  │
+│  ├── Contacts (3 NPCs)                                          │
+│  └── Final details                                               │
+│                                                                  │
+│  Phase 4: DEBT & EQUIPMENT SELECTION                             │
+│  ├── Display starting debt (based on background)                │
+│  ├── Show base equipment loadout                                │
+│  ├── Offer optional "debt packages" for extra gear              │
+│  │   └── Each package increases starting debt                   │
+│  ├── Generate identity documents                                │
+│  └── [Confirm] to finalize character                            │
+│                                                                  │
+│  Phase 5: DOCUMENT PRESENTATION                                  │
+│  ├── Display generated ID documents one by one                  │
+│  ├── Corporate ID card                                          │
+│  ├── SIN (System Identification Number)                         │
+│  ├── Debt statement from creditor                               │
+│  ├── Equipment manifest                                         │
+│  └── [Enter the Sprawl] → transition to first scene             │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 27.3 Audio Calibration Phase
+
+**Test Music:**
+- Plays a track from `/music/` folder (e.g., "02. New game # Load game.mp3")
+- Loops until phase complete
+
+**Test SFX Pool:**
+- `Audio.SFX.beep()` - Standard beep
+- `Audio.SFX.keystroke()` - Keyboard click
+- `Audio.SFX.errorBuzz()` - Error sound
+- `Audio.SFX.glitchCrackle()` - Glitch effect
+- `Terminal_Startup.mp3` - Boot sound
+
+**UI Elements:**
+```
+╔══════════════════════════════════════════════════════════════╗
+║  AUDIO CALIBRATION                                            ║
+╠══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  MUSIC VOLUME                                                 ║
+║  [████████████░░░░░░░░] 60%                                  ║
+║                                                               ║
+║  SFX VOLUME                                                   ║
+║  [██████████████░░░░░░] 70%                                  ║
+║                                                               ║
+║  [TEST SFX]                                                   ║
+║                                                               ║
+║  Adjust volumes until comfortable, then continue.             ║
+║                                                               ║
+║  [CONTINUE]                                                   ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
+### 27.4 Visual Calibration Phase
+
+**Test Image Requirements:**
+- Gradient bar from pure black to pure white (10 steps)
+- Fine detail zone (thin lines, small text)
+- High contrast zone (sharp edges)
+- Low contrast zone (subtle gradients)
+
+**Calibration Instructions:**
+1. "Adjust BRIGHTNESS until you can barely see the darkest bar"
+2. "Adjust CONTRAST until you can distinguish all 10 bars"
+3. "You should be able to read the small text below"
+
+**UI Elements:**
+```
+╔══════════════════════════════════════════════════════════════╗
+║  VISUAL CALIBRATION                                           ║
+╠══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  ┌──────────────────────────────────────────────────────┐    ║
+║  │  [TEST IMAGE WITH GRADIENT BARS]                      │    ║
+║  │  ░░▒▒▓▓██████████████████████████████████████████    │    ║
+║  │  1  2  3  4  5  6  7  8  9  10                        │    ║
+║  │                                                       │    ║
+║  │  Fine detail text: "The quick brown fox..."           │    ║
+║  └──────────────────────────────────────────────────────┘    ║
+║                                                               ║
+║  BRIGHTNESS                                                   ║
+║  [████████████░░░░░░░░] 60%                                  ║
+║                                                               ║
+║  CONTRAST                                                     ║
+║  [██████████████░░░░░░] 70%                                  ║
+║                                                               ║
+║  [CONTINUE]                                                   ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
+### 27.5 Debt & Equipment System
+
+**Starting Debt by Background:**
+
+| Background | Base Debt | Reason |
+|------------|-----------|--------|
+| Street Kid | 8,000¢ | Loan shark, protection money |
+| Corporate | 15,000¢ | Golden parachute clawback |
+| Techie | 10,000¢ | Workshop equipment loan |
+| Nomad | 6,000¢ | Vehicle repairs, fuel debt |
+| Medic | 12,000¢ | Medical school loans |
+| Enforcer | 9,000¢ | Weapons, armor financing |
+
+**Debt Packages (Optional):**
+
+| Package | Extra Gear | Added Debt |
+|---------|------------|------------|
+| **Survival Kit** | Med kit, 3 stim packs, trauma patch | +2,000¢ |
+| **Street Arsenal** | Heavy pistol, 50 rounds, knife | +3,000¢ |
+| **Tech Toolkit** | Advanced toolkit, diagnostic scanner | +2,500¢ |
+| **Chrome Upgrade** | One additional cyberware piece (up to 3,000¢ value) | +4,000¢ |
+| **Fixer's Favor** | One free contact upgrade (Neutral → Ally) | +1,500¢ |
+| **Clean SIN** | Legitimate identity, no criminal flags | +5,000¢ |
+
+**Debt Consequences:**
+- Creditors may appear as NPCs during adventures
+- High debt = more desperate jobs, worse pay
+- Debt can be paid down with credits earned
+- Defaulting triggers "collection" encounters
+
+### 27.6 Generated Documents
+
+After character creation, the system generates immersive identity documents:
+
+**Corporate ID Card:**
+```
+╔══════════════════════════════════════════════════════════════╗
+║  MERIDIAN SYSTEMS CORP.                                       ║
+║  EMPLOYEE IDENTIFICATION                                      ║
+╠══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  NAME: [Character Name]                                       ║
+║  HANDLE: [Street Name]                                        ║
+║  SIN: [Generated Number]                                      ║
+║  CLEARANCE: LEVEL 1 (CONTRACTOR)                             ║
+║                                                               ║
+║  ISSUED: [Date]                                               ║
+║  EXPIRES: [Date + 1 year]                                     ║
+║                                                               ║
+║  [BARCODE/QR PLACEHOLDER]                                     ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
+**Debt Statement:**
+```
+╔══════════════════════════════════════════════════════════════╗
+║  NIGHTCITY CREDIT UNION                                       ║
+║  ACCOUNT STATEMENT                                            ║
+╠══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  ACCOUNT HOLDER: [Character Name]                             ║
+║  ACCOUNT #: [Generated]                                       ║
+║                                                               ║
+║  OUTSTANDING BALANCE: [Total Debt]¢                          ║
+║                                                               ║
+║  BREAKDOWN:                                                   ║
+║  - Base obligation: [Base Debt]¢                             ║
+║  - Equipment financing: [Package Debt]¢                      ║
+║  - Interest (12% APR): [Interest]¢                           ║
+║                                                               ║
+║  MINIMUM PAYMENT DUE: [10% of total]¢                        ║
+║  DUE DATE: [30 days from now]                                ║
+║                                                               ║
+║  ⚠ FAILURE TO PAY MAY RESULT IN ASSET SEIZURE               ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
+### 27.7 State Management
+
+**OnboardingManager State:**
+```javascript
+{
+    phase: 'audio' | 'visual' | 'character' | 'debt' | 'documents' | 'complete',
+    
+    audio: {
+        musicVolume: 0.5,
+        sfxVolume: 0.7,
+        testTrackPlaying: false
+    },
+    
+    visual: {
+        brightness: 1.0,
+        contrast: 1.0
+    },
+    
+    character: {
+        // Full character creation state
+        // See CHARACTER-CREATION-PLAN.md
+    },
+    
+    debt: {
+        baseDebt: 0,
+        packages: [],
+        totalDebt: 0
+    },
+    
+    documents: {
+        generated: false,
+        viewed: []
+    }
+}
+```
+
+### 27.8 API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/onboarding/start` | POST | Initialize onboarding session |
+| `/api/onboarding/audio` | POST | Save audio preferences |
+| `/api/onboarding/visual` | POST | Save visual preferences |
+| `/api/onboarding/character` | POST | Save character data |
+| `/api/onboarding/debt` | POST | Save debt selections |
+| `/api/onboarding/complete` | POST | Finalize and create character |
+
+### 27.9 Files
+
+| File | Purpose |
+|------|---------|
+| `public/js/managers/onboarding-manager.js` | Onboarding flow state machine |
+| `public/assets/onboarding/test-image.png` | Visual calibration test image |
+| `assets/templates/documents/` | Document templates for generation |
+
+### 27.10 Future Enhancements
+
+- [ ] Skip onboarding for returning players (detect saved character)
+- [ ] Import character from JSON file
+- [ ] Randomize character option ("Roll the dice")
+- [ ] Pre-generated character templates
+- [ ] Tutorial mode after onboarding
 
 ---
 

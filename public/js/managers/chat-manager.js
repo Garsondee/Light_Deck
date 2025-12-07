@@ -52,8 +52,8 @@ const ChatManager = (function() {
     // Control bar configuration
     const controlBar = {
         controls: [
-            // OPTIONS starts active/green to match the default DebugUI state
-            { id: 'options', label: 'OPTIONS', active: true },
+            // OPTIONS now starts inactive; user opens Settings (F1/OPTIONS) explicitly
+            { id: 'options', label: 'OPTIONS', active: false },
             { id: 'gmMode', label: 'GM MODE', active: false },
             { id: 'terminal', label: 'TERMINAL', active: false }
         ],
@@ -955,8 +955,8 @@ const ChatManager = (function() {
                 if (typeof EventBus !== 'undefined') {
                     EventBus.emit('ui:options-toggle');
                 }
-                if (typeof DebugUI !== 'undefined') {
-                    DebugUI.toggleVisibility();
+                if (typeof SettingsUI !== 'undefined') {
+                    SettingsUI.toggle();
                 }
                 break;
                 
@@ -1118,7 +1118,19 @@ const ChatManager = (function() {
                 case 'dicetest':
                     testDice();
                     break;
+                case 'onboard':
+                case 'onboarding':
+                case 'newchar':
+                case 'create':
+                    startOnboarding();
+                    break;
                 default:
+                    // Check if OnboardingManager wants to handle this command
+                    if (typeof OnboardingManager !== 'undefined' && OnboardingManager.isActive()) {
+                        if (OnboardingManager.handleCommand(cmd, args)) {
+                            return;
+                        }
+                    }
                     addMessage('error', `Unknown command: ${cmd}`);
             }
             return;
@@ -1695,9 +1707,11 @@ const ChatManager = (function() {
         addMessage('system', '/dice - Show dice settings');
         addMessage('system', '/dicecolor #hex - Set dice color');
         addMessage('system', '/dicetest - Test roll animation');
+        addMessage('system', '─── CHARACTER ───');
+        addMessage('system', '/onboard - Start onboarding');
+        addMessage('system', '/create - Create character');
         addMessage('system', '─── SHORTCUTS ───');
-        addMessage('system', '` - Scene Viewer controls');
-        addMessage('system', '~ - Terminal controls');
+        addMessage('system', 'F1 - Settings panel');
         addMessage('system', 'TAB - Header navigation');
     }
     
@@ -1807,6 +1821,27 @@ const ChatManager = (function() {
         
         addMessage('system', 'Testing 3D dice...');
         rollDice('2d6');
+    }
+    
+    /**
+     * Start the onboarding/character creation process
+     * This will switch to terminal mode on the main display
+     */
+    function startOnboarding() {
+        if (typeof OnboardingManager === 'undefined') {
+            addMessage('error', 'Onboarding system not available');
+            return;
+        }
+        
+        if (OnboardingManager.isActive()) {
+            addMessage('error', 'Onboarding already in progress. Use /cancel to exit.');
+            return;
+        }
+        
+        addMessage('system', 'Starting onboarding... switching to terminal mode.');
+        
+        // OnboardingManager.start() will handle switching to terminal mode
+        OnboardingManager.start();
     }
     
     // ═══════════════════════════════════════════════════════════════════

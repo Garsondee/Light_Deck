@@ -37,9 +37,9 @@ const InputManager = (function() {
     // Action handlers - registered by other managers
     const actionHandlers = {
         onTerminalToggle: null,      // Called when Tab pressed
-        onDebugUIToggle: null,       // Called when ` pressed  
-        onTerminalUIToggle: null,    // Called when ~ pressed
-        onCaretReset: null           // Called on typing to reset caret phase
+        onSettingsUIToggle: null,    // Called when F1 pressed
+        onCaretReset: null,          // Called on typing to reset caret phase
+        onEscape: null               // Called on Escape
     };
     
     // ═══════════════════════════════════════════════════════════════════
@@ -120,20 +120,11 @@ const InputManager = (function() {
             return;
         }
         
-        // Backtick - Toggle debug UI (Scene Viewer controls)
-        if (key === '`') {
+        // F1 - Toggle unified settings panel
+        if (key === 'F1') {
             e.preventDefault();
-            if (actionHandlers.onDebugUIToggle) {
-                actionHandlers.onDebugUIToggle();
-            }
-            return;
-        }
-        
-        // Tilde - Toggle terminal UI controls
-        if (key === '~') {
-            e.preventDefault();
-            if (actionHandlers.onTerminalUIToggle) {
-                actionHandlers.onTerminalUIToggle();
+            if (actionHandlers.onSettingsUIToggle) {
+                actionHandlers.onSettingsUIToggle();
             }
             return;
         }

@@ -17,7 +17,8 @@
     "test:simulation": "npx playwright test simulation.spec.ts",
     "test:simulation:headed": "npx playwright test simulation.spec.ts --headed",
     "test:simulation:full": "npx playwright test simulation.spec.ts --headed --timeout=300000",
-    "test:report": "npx playwright show-report"
+    "test:report": "npx playwright show-report",
+    "test:summary": "npx playwright test --reporter=list,json && node scripts/summarize-tests.js"
   },
   "dependencies": {
     "@3d-dice/dice-box": "^1.1.3",

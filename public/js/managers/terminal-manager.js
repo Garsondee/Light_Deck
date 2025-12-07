@@ -71,6 +71,20 @@ const TerminalManager = (function() {
     // Command handlers
     const commandHandlers = new Map();
     
+    /**
+     * Detect if running in Playwright test mode via URL query param.
+     * When testMode=1, boot sequence is skipped.
+     */
+    function isTestMode() {
+        try {
+            if (typeof window === 'undefined' || !window.location || !window.location.search) return false;
+            const params = new URLSearchParams(window.location.search);
+            return params.get('testMode') === '1';
+        } catch (err) {
+            return false;
+        }
+    }
+    
     const terminalVertexShader = `
         varying vec2 vUv;
         void main() {
@@ -683,6 +697,12 @@ const TerminalManager = (function() {
                 addLine(`Error: ${error.message}`, 'error');
             }
         } else {
+            // Try OnboardingManager.handleInput for raw input (e.g., number selections)
+            if (typeof OnboardingManager !== 'undefined' && OnboardingManager.handleInput) {
+                const handled = OnboardingManager.handleInput(input.trim());
+                if (handled) return;
+            }
+            
             addLine(`Unknown command: ${command}`, 'error');
             addLine('Type "help" for available commands.', 'system');
         }
@@ -715,6 +735,11 @@ const TerminalManager = (function() {
         }, { description: 'Show command history' });
         
         registerCommand('exit', () => {
+            // During onboarding, 'exit' cancels onboarding instead of exiting terminal
+            if (typeof OnboardingManager !== 'undefined' && OnboardingManager.isActive()) {
+                OnboardingManager.cancel();
+                return;
+            }
             // Emit event to exit terminal mode
             if (typeof EventBus !== 'undefined') {
                 EventBus.emit('terminal:exit');
@@ -775,6 +800,19 @@ const TerminalManager = (function() {
         
         show();
         clear();
+        
+        // In test mode, skip the boot animation entirely
+        if (isTestMode()) {
+            addLine('LIGHT DECK TERMINAL v2.1.4 (test mode)', 'output');
+            addLine('Boot sequence skipped for tests.', 'system');
+            addLine('', 'output');
+            addLine('Type "help" for available commands.', 'system');
+            state.bootInProgress = false;
+            state.bootComplete = true;
+            dirty = true;
+            console.log('[TerminalManager] Boot sequence skipped (test mode)');
+            return;
+        }
         
         // Boot sequence text
         const bootLines = [

@@ -1,0 +1,368 @@
+╔══════════════════════════════════════════════════════════╗
+║            VTT SIMULATION REPORT                         ║
+╚══════════════════════════════════════════════════════════╝
+
+Start:    2025-12-07T21:54:25.435Z
+End:      2025-12-07T21:55:06.729Z
+Duration: 41294ms
+Dice:     fair
+GM:       thorough
+Player:   thorough
+Archetype: The Detective
+
+Termination: ✓ completed
+  All selected scenes processed successfully
+
+─── SUMMARY ───────────────────────────────────────────────
+Scenes:        7 / 7
+Wounds:        0 (0 near-death)
+Deaths:        0
+Skill Checks:  10 / 11 passed
+Triggers:      13
+NPCs:          11
+Dead Ends:     0
+Difficulty:    TRIVIAL
+Coherence:     60/100
+Info Lookups:  36/59 found
+
+─── DICE STATS ────────────────────────────────────────────
+Total Rolls:   11
+Average:       13.1
+Nat 20s:       1
+Nat 1s:        0
+
+─── SCENES ────────────────────────────────────────────────
+  1. ✓ The Briefing 🎲1/1
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What happened here before I arrived? What's the timeline?" (type: backstory)
+  2. ✓ The Gate 🎲2/2
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Hazer Guards (x2)'s history? How did they end up here?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What happened here before I arrived? What's the timeline?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "How does this location connect to what I've seen before?" (type: backstory)
+  3. ✓ The Shrine 🎲2/2
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What happened here before I arrived? What's the timeline?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "How does this location connect to what I've seen before?" (type: backstory)
+  4. ✓ The Courtyard Ambush 🎲2/3
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Hazer Patrol (x3)'s history? How did they end up here?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What happened here before I arrived? What's the timeline?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "How does this location connect to what I've seen before?" (type: backstory)
+  5. ✓ The Admin Wing 🎲2/2
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What happened here before I arrived? What's the timeline?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "How does this location connect to what I've seen before?" (type: backstory)
+  6. ✓ The Cryo Lab 🎲1/1
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Elena (Subject 01)'s history? How did they end up here?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What happened here before I arrived? What's the timeline?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "How does this location connect to what I've seen before?" (type: backstory)
+  7. ✓ The Exit
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What's Rattle's history? How did they end up here?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "What happened here before I arrived? What's the timeline?" (type: backstory)
+     └─ [WARNING] INFORMATION_NOT_FOUND: GM could not find answer to player question: "How does this location connect to what I've seen before?" (type: backstory)
+
+─── ISSUES ────────────────────────────────────────────────
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_01
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What happened here before I arrived? What's the timeline?" (type: backstory)
+     Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_01
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_02
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Hazer Guards (x2)'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_02
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What happened here before I arrived? What's the timeline?" (type: backstory)
+     Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_02
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "How does this location connect to what I've seen before?" (type: backstory)
+     Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_02
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_03
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What happened here before I arrived? What's the timeline?" (type: backstory)
+     Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_03
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "How does this location connect to what I've seen before?" (type: backstory)
+     Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_03
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Hazer Patrol (x3)'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What happened here before I arrived? What's the timeline?" (type: backstory)
+     Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "How does this location connect to what I've seen before?" (type: backstory)
+     Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_05
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What happened here before I arrived? What's the timeline?" (type: backstory)
+     Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_05
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "How does this location connect to what I've seen before?" (type: backstory)
+     Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_05
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Jaxson 'Jax' V.'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_06
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Elena (Subject 01)'s history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_06
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What happened here before I arrived? What's the timeline?" (type: backstory)
+     Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_06
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "How does this location connect to what I've seen before?" (type: backstory)
+     Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_06
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What's Rattle's history? How did they end up here?" (type: backstory)
+     Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_07
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "What happened here before I arrived? What's the timeline?" (type: backstory)
+     Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_07
+  🟡 [INFORMATION_NOT_FOUND] GM could not find answer to player question: "How does this location connect to what I've seen before?" (type: backstory)
+     Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_07
+
+─── NPC STATES ────────────────────────────────────────────
+  Jaxson 'Jax' V.: dying (6 interactions)
+  Noodle Stall Cook: passive (1 interactions)
+  Hazer Guards (x2): active (2 interactions)
+  Elena (Subject 01): unconscious (1 interactions)
+  Rattle: watching (1 interactions)
+
+─── COHERENCE ANALYSIS ────────────────────────────────────
+Breadcrumbs:   STRONG
+Pacing Score:  20/100
+
+─── FAILED INFORMATION LOOKUPS ────────────────────────────
+🟡 [BACKSTORY] "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144474765.png
+
+🟡 [BACKSTORY] "What happened here before I arrived? What's the timeline?"
+   Search path: Unknown question type
+   Time: 1ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144475311.png
+
+🟡 [BACKSTORY] "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144479379.png
+
+🟡 [BACKSTORY] "What's Hazer Guards (x2)'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144480085.png
+
+🟡 [BACKSTORY] "What happened here before I arrived? What's the timeline?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144480645.png
+
+🟡 [BACKSTORY] "How does this location connect to what I've seen before?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144481101.png
+
+🟡 [BACKSTORY] "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144483742.png
+
+🟡 [BACKSTORY] "What happened here before I arrived? What's the timeline?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144484260.png
+
+🟡 [BACKSTORY] "How does this location connect to what I've seen before?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144485089.png
+
+🟡 [BACKSTORY] "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144489147.png
+
+🟡 [BACKSTORY] "What's Hazer Patrol (x3)'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144490035.png
+
+🟡 [BACKSTORY] "What happened here before I arrived? What's the timeline?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144490850.png
+
+🟡 [BACKSTORY] "How does this location connect to what I've seen before?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144491568.png
+
+🟡 [BACKSTORY] "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144494279.png
+
+🟡 [BACKSTORY] "What happened here before I arrived? What's the timeline?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144494639.png
+
+🟡 [BACKSTORY] "How does this location connect to what I've seen before?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144495143.png
+
+🟡 [BACKSTORY] "What's Jaxson 'Jax' V.'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144500027.png
+
+🟡 [BACKSTORY] "What's Elena (Subject 01)'s history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144500537.png
+
+🟡 [BACKSTORY] "What happened here before I arrived? What's the timeline?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144500982.png
+
+🟡 [BACKSTORY] "How does this location connect to what I've seen before?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144501584.png
+
+🟡 [BACKSTORY] "What's Rattle's history? How did they end up here?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144503829.png
+
+🟡 [BACKSTORY] "What happened here before I arrived? What's the timeline?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144504696.png
+
+🟡 [BACKSTORY] "How does this location connect to what I've seen before?"
+   Search path: Unknown question type
+   Time: 0ms, UI interactions: 0
+   📸 Screenshot: C:\Users\Ingram\Documents\Light_Deck\test-results\screenshots\error-info-not-found-backstory-1765144505605.png
+
+─── RECOMMENDATIONS ───────────────────────────────────────
+🟢 [PACING] Unbalanced Pacing
+   Adventure pacing score is 20/100.
+   💡 Consider adding more variety between action, social, and exploration scenes.
+
+🔴 [INFORMATION] Missing Information in GM Overlay
+   GM could not find answers to 23 player question(s). Types: backstory
+   💡 Ensure all scene-relevant information is accessible in the GM overlay. Check NPC details, environment descriptions, and navigation hints.
+
+─── ARCHETYPE ANALYSIS ────────────────────────────────────
+Archetype:     The Detective
+Motivation:    Uncover the truth
+
+⚠️ Unhandled Actions (edge cases):
+   - Examine every item for clues
+   - Cross-reference NPC statements
+   - Search for hidden documents
+   - Analyze physical evidence
+   - Examine every item for clues
+   - Cross-reference NPC statements
+   - Search for hidden documents
+   - Analyze physical evidence
+   - Examine every item for clues
+   - Cross-reference NPC statements
+   - Search for hidden documents
+   - Analyze physical evidence
+   - Examine every item for clues
+   - Cross-reference NPC statements
+   - Search for hidden documents
+   - Analyze physical evidence
+   - Examine every item for clues
+   - Cross-reference NPC statements
+   - Search for hidden documents
+   - Analyze physical evidence
+   - Examine every item for clues
+   - Cross-reference NPC statements
+   - Search for hidden documents
+   - Analyze physical evidence
+   - Examine every item for clues
+   - Cross-reference NPC statements
+   - Search for hidden documents
+   - Analyze physical evidence
+
+📝 Archetype Feedback:
+   🟡 [unhandled_action] The Detective wanted to: Examine every item for clues
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_01
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Cross-reference NPC statements
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_01
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Search for hidden documents
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_01
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Analyze physical evidence
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_01
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Examine every item for clues
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_02
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Cross-reference NPC statements
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_02
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Search for hidden documents
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_02
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Analyze physical evidence
+      Scene: AChangeOfHeart_Act_01_Chapter_01_Scene_02
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Examine every item for clues
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_03
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Cross-reference NPC statements
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_03
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Search for hidden documents
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_03
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Analyze physical evidence
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_03
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Examine every item for clues
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Cross-reference NPC statements
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Search for hidden documents
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Analyze physical evidence
+      Scene: AChangeOfHeart_Act_02_Chapter_01_Scene_04
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Examine every item for clues
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_05
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Cross-reference NPC statements
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_05
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Search for hidden documents
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_05
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Analyze physical evidence
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_05
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Examine every item for clues
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_06
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Cross-reference NPC statements
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_06
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Search for hidden documents
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_06
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Analyze physical evidence
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_06
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Examine every item for clues
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_07
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Cross-reference NPC statements
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_07
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Search for hidden documents
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_07
+      💡 Consider adding support for this action or explaining why it's not possible.
+   🟡 [unhandled_action] The Detective wanted to: Analyze physical evidence
+      Scene: AChangeOfHeart_Act_03_Chapter_01_Scene_07
+      💡 Consider adding support for this action or explaining why it's not possible.

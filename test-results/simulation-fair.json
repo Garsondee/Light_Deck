@@ -1,8 +1,8 @@
 {
   "meta": {
-    "startTime": "2025-12-06T00:43:06.380Z",
-    "endTime": "2025-12-06T00:43:17.133Z",
-    "duration": 10753,
+    "startTime": "2025-12-07T21:54:19.624Z",
+    "endTime": "2025-12-07T21:54:32.338Z",
+    "duration": 12714,
     "config": {
       "maxScenes": -1,
       "randomOrder": false,
@@ -118,7 +118,7 @@
       "completed": true,
       "woundsTaken": 0,
       "checksAttempted": 2,
-      "checksPassed": 1,
+      "checksPassed": 2,
       "triggersAvailable": 1,
       "triggersFired": 1,
       "npcsPresent": 1,
@@ -133,7 +133,7 @@
       "completed": true,
       "woundsTaken": 0,
       "checksAttempted": 3,
-      "checksPassed": 0,
+      "checksPassed": 1,
       "triggersAvailable": 3,
       "triggersFired": 3,
       "npcsPresent": 2,
@@ -163,7 +163,7 @@
       "completed": true,
       "woundsTaken": 0,
       "checksAttempted": 1,
-      "checksPassed": 1,
+      "checksPassed": 0,
       "triggersAvailable": 2,
       "triggersFired": 2,
       "npcsPresent": 2,
@@ -191,22 +191,22 @@
   "diceStats": {
     "totalRolls": 11,
     "rolls": [
-      14,
-      4,
-      2,
-      5,
-      20,
-      5,
-      6,
-      2,
       15,
-      16,
-      6
+      9,
+      6,
+      11,
+      12,
+      2,
+      13,
+      1,
+      11,
+      20,
+      4
     ],
-    "average": 8.636363636363637,
+    "average": 9.454545454545455,
     "criticalSuccesses": 1,
-    "criticalFailures": 0,
-    "successRate": 0.36363636363636365
+    "criticalFailures": 1,
+    "successRate": 0.5454545454545454
   },
   "coherence": {
     "breadcrumbStrength": "strong",
@@ -220,9 +220,9 @@
     {
       "priority": "medium",
       "type": "difficulty",
-      "scene": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+      "scene": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
       "title": "High Difficulty Spike",
-      "description": "Scene \"The Courtyard Ambush\" has a very low pass rate on skill checks.",
+      "description": "Scene \"The Cryo Lab\" has a very low pass rate on skill checks.",
       "suggestion": "Consider lowering DCs or adding alternative paths for failed checks."
     },
     {
@@ -250,7 +250,7 @@
       "found": true,
       "uiInteractions": 1,
       "foundIn": "Scene NPC list",
-      "timeToFind": 22
+      "timeToFind": 216
     },
     {
       "question": {
@@ -269,7 +269,7 @@
       "found": true,
       "uiInteractions": 2,
       "foundIn": "NPC listed (no detail)",
-      "timeToFind": 627
+      "timeToFind": 1228
     },
     {
       "question": {
@@ -286,7 +286,7 @@
       "found": true,
       "uiInteractions": 1,
       "foundIn": "Location section",
-      "timeToFind": 4
+      "timeToFind": 23
     },
     {
       "question": {
@@ -302,15 +302,15 @@
       "found": true,
       "uiInteractions": 1,
       "foundIn": "Location section",
-      "timeToFind": 4
+      "timeToFind": 29
     },
     {
       "question": {
         "type": "npc_info",
-        "query": "Who is Hazer Guards (x2)?",
+        "query": "Who is Jaxson 'Jax' V.?",
         "context": {
           "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
-          "npcId": "hazer_mook"
+          "npcId": "jax"
         }
       },
       "searchPath": [
@@ -319,42 +319,42 @@
       ],
       "found": true,
       "uiInteractions": 1,
-      "foundIn": "NPCs in Scene (generic)",
-      "timeToFind": 16
+      "foundIn": "Scene NPC list",
+      "timeToFind": 49
     },
     {
       "question": {
-        "type": "npc_motivation",
-        "query": "What does Hazer Guards (x2) want?",
-        "context": {
-          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02",
-          "npcId": "hazer_mook"
-        }
-      },
-      "searchPath": [
-        "Looking for NPC motivation/goals",
-        "NPC section exists but no detail view"
-      ],
-      "found": true,
-      "uiInteractions": 1,
-      "foundIn": "NPC listed (no detail)",
-      "timeToFind": 7
-    },
-    {
-      "question": {
-        "type": "location_detail",
-        "query": "What is Oakhaven Perimeter like?",
+        "type": "environment",
+        "query": "What do I see/hear/smell here?",
         "context": {
           "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02"
         }
       },
       "searchPath": [
+        "Checking Location section for environment details",
         "Checking Location section"
       ],
       "found": true,
       "uiInteractions": 1,
       "foundIn": "Location section",
-      "timeToFind": 8
+      "timeToFind": 23
+    },
+    {
+      "question": {
+        "type": "next_steps",
+        "query": "What should I do next?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_01_Chapter_01_Scene_02"
+        }
+      },
+      "searchPath": [
+        "Looking for next steps/transitions",
+        "Checking Triggers section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Triggers section",
+      "timeToFind": 13
     },
     {
       "question": {
@@ -372,7 +372,7 @@
       "found": true,
       "uiInteractions": 1,
       "foundIn": "Scene NPC list",
-      "timeToFind": 10
+      "timeToFind": 47
     },
     {
       "question": {
@@ -389,7 +389,7 @@
       "found": true,
       "uiInteractions": 1,
       "foundIn": "Location section",
-      "timeToFind": 4
+      "timeToFind": 18
     },
     {
       "question": {
@@ -407,7 +407,25 @@
       "found": true,
       "uiInteractions": 1,
       "foundIn": "NPCs in Scene (generic)",
-      "timeToFind": 12
+      "timeToFind": 166
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Hazer Patrol (x3) want?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04",
+          "npcId": "hazer_mook"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 29
     },
     {
       "question": {
@@ -424,17 +442,89 @@
       "found": true,
       "uiInteractions": 1,
       "foundIn": "Location section",
-      "timeToFind": 3
+      "timeToFind": 19
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Scene NPC list",
+      "timeToFind": 45
+    },
+    {
+      "question": {
+        "type": "npc_motivation",
+        "query": "What does Jaxson 'Jax' V. want?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Looking for NPC motivation/goals",
+        "Found NPC jax in scene",
+        "NPC section exists but no detail view"
+      ],
+      "found": true,
+      "uiInteractions": 2,
+      "foundIn": "NPC listed (no detail)",
+      "timeToFind": 1258
     },
     {
       "question": {
         "type": "location_detail",
-        "query": "What is Bio-Dyne Courtyard like?",
+        "query": "What is Server Room Access like?",
         "context": {
-          "sceneId": "AChangeOfHeart_Act_02_Chapter_01_Scene_04"
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05"
         }
       },
       "searchPath": [
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 114
+    },
+    {
+      "question": {
+        "type": "npc_info",
+        "query": "Who is Jaxson 'Jax' V.?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
+          "npcId": "jax"
+        }
+      },
+      "searchPath": [
+        "Checking current scene for NPC",
+        "Found NPCs in Scene section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Scene NPC list",
+      "timeToFind": 44
+    },
+    {
+      "question": {
+        "type": "environment",
+        "query": "What do I see/hear/smell here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06"
+        }
+      },
+      "searchPath": [
+        "Checking Location section for environment details",
         "Checking Location section"
       ],
       "found": true,
@@ -444,77 +534,19 @@
     },
     {
       "question": {
-        "type": "npc_info",
-        "query": "Who is Jaxson 'Jax' V.?",
+        "type": "location_detail",
+        "query": "What is Cold Storage like?",
         "context": {
-          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
-          "npcId": "jax"
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06"
         }
       },
       "searchPath": [
-        "Checking current scene for NPC",
-        "Found NPCs in Scene section"
+        "Checking Location section"
       ],
       "found": true,
       "uiInteractions": 1,
-      "foundIn": "Scene NPC list",
-      "timeToFind": 8
-    },
-    {
-      "question": {
-        "type": "npc_motivation",
-        "query": "What does Jaxson 'Jax' V. want?",
-        "context": {
-          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_05",
-          "npcId": "jax"
-        }
-      },
-      "searchPath": [
-        "Looking for NPC motivation/goals",
-        "Found NPC jax in scene",
-        "NPC section exists but no detail view"
-      ],
-      "found": true,
-      "uiInteractions": 2,
-      "foundIn": "NPC listed (no detail)",
-      "timeToFind": 625
-    },
-    {
-      "question": {
-        "type": "npc_info",
-        "query": "Who is Jaxson 'Jax' V.?",
-        "context": {
-          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
-          "npcId": "jax"
-        }
-      },
-      "searchPath": [
-        "Checking current scene for NPC",
-        "Found NPCs in Scene section"
-      ],
-      "found": true,
-      "uiInteractions": 1,
-      "foundIn": "Scene NPC list",
-      "timeToFind": 13
-    },
-    {
-      "question": {
-        "type": "npc_motivation",
-        "query": "What does Jaxson 'Jax' V. want?",
-        "context": {
-          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_06",
-          "npcId": "jax"
-        }
-      },
-      "searchPath": [
-        "Looking for NPC motivation/goals",
-        "Found NPC jax in scene",
-        "NPC section exists but no detail view"
-      ],
-      "found": true,
-      "uiInteractions": 2,
-      "foundIn": "NPC listed (no detail)",
-      "timeToFind": 614
+      "foundIn": "Location section",
+      "timeToFind": 16
     },
     {
       "question": {
@@ -532,12 +564,46 @@
       "found": true,
       "uiInteractions": 1,
       "foundIn": "NPCs in Scene (generic)",
-      "timeToFind": 14
+      "timeToFind": 88
+    },
+    {
+      "question": {
+        "type": "environment",
+        "query": "What do I see/hear/smell here?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_07"
+        }
+      },
+      "searchPath": [
+        "Checking Location section for environment details",
+        "Checking Location section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Location section",
+      "timeToFind": 15
+    },
+    {
+      "question": {
+        "type": "next_steps",
+        "query": "What should I do next?",
+        "context": {
+          "sceneId": "AChangeOfHeart_Act_03_Chapter_01_Scene_07"
+        }
+      },
+      "searchPath": [
+        "Looking for next steps/transitions",
+        "Checking Triggers section"
+      ],
+      "found": true,
+      "uiInteractions": 1,
+      "foundIn": "Triggers section",
+      "timeToFind": 25
     }
   ],
   "events": [
     {
-      "timestamp": 1764981786380,
+      "timestamp": 1765144459624,
       "actor": "system",
       "action": "Simulation starting",
       "details": {
@@ -554,7 +620,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981786416,
+      "timestamp": 1765144459669,
       "actor": "system",
       "action": "Scenes loaded",
       "details": {
@@ -563,7 +629,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981786434,
+      "timestamp": 1765144459932,
       "actor": "system",
       "action": "Adventure guide loaded",
       "details": {
@@ -574,13 +640,13 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981786434,
+      "timestamp": 1765144459932,
       "actor": "gm",
       "action": "Opening GM overlay",
       "severity": "info"
     },
     {
-      "timestamp": 1764981791458,
+      "timestamp": 1765144464940,
       "actor": "gm",
       "action": "GM overlay may not be fully loaded",
       "details": {
@@ -590,7 +656,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981791459,
+      "timestamp": 1765144464941,
       "actor": "system",
       "action": "═══ SCENE START ═══",
       "details": {
@@ -600,7 +666,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981791459,
+      "timestamp": 1765144464941,
       "actor": "gm",
       "action": "Activating scene",
       "details": {
@@ -610,7 +676,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981791766,
+      "timestamp": 1765144465251,
       "actor": "gm",
       "action": "Processing scene",
       "details": {
@@ -623,7 +689,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981791766,
+      "timestamp": 1765144465251,
       "actor": "gm",
       "action": "Firing trigger",
       "details": {
@@ -632,7 +698,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981791767,
+      "timestamp": 1765144465251,
       "actor": "gm",
       "action": "Narrating",
       "details": {
@@ -641,7 +707,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981791767,
+      "timestamp": 1765144465252,
       "actor": "gm",
       "action": "Introducing NPC",
       "details": {
@@ -652,7 +718,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981791767,
+      "timestamp": 1765144465252,
       "actor": "gm",
       "action": "Introducing NPC",
       "details": {
@@ -663,7 +729,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981791768,
+      "timestamp": 1765144465252,
       "actor": "gm",
       "action": "Calling for skill check",
       "details": {
@@ -673,14 +739,14 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981791769,
+      "timestamp": 1765144465252,
       "actor": "player",
       "action": "Rolling skill check",
       "details": {
         "skill": "Empathy",
-        "roll": 14,
+        "roll": 15,
         "bonus": 3,
-        "total": 17,
+        "total": 18,
         "dc": 10,
         "critical": null
       },
@@ -688,7 +754,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981791770,
+      "timestamp": 1765144465252,
       "actor": "player",
       "action": "Observing scene",
       "details": {
@@ -697,7 +763,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981791770,
+      "timestamp": 1765144465252,
       "actor": "player",
       "action": "NPC interaction",
       "details": {
@@ -707,7 +773,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981791770,
+      "timestamp": 1765144465252,
       "actor": "player",
       "action": "NPC interaction",
       "details": {
@@ -717,7 +783,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981791771,
+      "timestamp": 1765144465253,
       "actor": "player",
       "action": "Asking question",
       "details": {
@@ -727,20 +793,20 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981791793,
+      "timestamp": 1765144465469,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
         "type": "npc_info",
         "found": true,
-        "timeMs": 22,
+        "timeMs": 216,
         "interactions": 1
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981791793,
+      "timestamp": 1765144465469,
       "actor": "player",
       "action": "Asking question",
       "details": {
@@ -750,20 +816,20 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792420,
+      "timestamp": 1765144466697,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
         "type": "npc_motivation",
         "found": true,
-        "timeMs": 627,
+        "timeMs": 1228,
         "interactions": 2
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981792420,
+      "timestamp": 1765144466697,
       "actor": "player",
       "action": "Asking question",
       "details": {
@@ -773,20 +839,20 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792424,
+      "timestamp": 1765144466720,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
         "type": "environment",
         "found": true,
-        "timeMs": 4,
+        "timeMs": 23,
         "interactions": 1
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981792424,
+      "timestamp": 1765144466720,
       "actor": "player",
       "action": "Asking question",
       "details": {
@@ -796,20 +862,20 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792428,
+      "timestamp": 1765144466749,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
         "type": "location_detail",
         "found": true,
-        "timeMs": 4,
+        "timeMs": 29,
         "interactions": 1
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981792428,
+      "timestamp": 1765144466749,
       "actor": "system",
       "action": "═══ SCENE END ═══",
       "details": {
@@ -820,7 +886,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792631,
+      "timestamp": 1765144467003,
       "actor": "system",
       "action": "═══ SCENE START ═══",
       "details": {
@@ -830,7 +896,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792631,
+      "timestamp": 1765144467003,
       "actor": "gm",
       "action": "Activating scene",
       "details": {
@@ -840,7 +906,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792939,
+      "timestamp": 1765144467307,
       "actor": "gm",
       "action": "Processing scene",
       "details": {
@@ -853,7 +919,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792939,
+      "timestamp": 1765144467308,
       "actor": "gm",
       "action": "Firing trigger",
       "details": {
@@ -862,7 +928,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792939,
+      "timestamp": 1765144467308,
       "actor": "gm",
       "action": "Narrating",
       "details": {
@@ -871,7 +937,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792939,
+      "timestamp": 1765144467308,
       "actor": "gm",
       "action": "Introducing NPC",
       "details": {
@@ -882,7 +948,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792939,
+      "timestamp": 1765144467308,
       "actor": "gm",
       "action": "Introducing NPC",
       "details": {
@@ -893,7 +959,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792939,
+      "timestamp": 1765144467308,
       "actor": "gm",
       "action": "Calling for skill check",
       "details": {
@@ -903,14 +969,14 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792939,
+      "timestamp": 1765144467308,
       "actor": "player",
       "action": "Rolling skill check",
       "details": {
         "skill": "Tech",
-        "roll": 4,
+        "roll": 9,
         "bonus": 6,
-        "total": 10,
+        "total": 15,
         "dc": 8,
         "critical": null
       },
@@ -918,7 +984,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792939,
+      "timestamp": 1765144467308,
       "actor": "gm",
       "action": "Calling for skill check",
       "details": {
@@ -928,14 +994,14 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792939,
+      "timestamp": 1765144467308,
       "actor": "player",
       "action": "Rolling skill check",
       "details": {
         "skill": "Stealth",
-        "roll": 2,
+        "roll": 6,
         "bonus": 2,
-        "total": 4,
+        "total": 8,
         "dc": 10,
         "critical": null
       },
@@ -943,7 +1009,7 @@
       "severity": "warning"
     },
     {
-      "timestamp": 1764981792939,
+      "timestamp": 1765144467308,
       "actor": "player",
       "action": "Observing scene",
       "details": {
@@ -952,7 +1018,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792939,
+      "timestamp": 1765144467308,
       "actor": "player",
       "action": "NPC interaction",
       "details": {
@@ -962,7 +1028,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792939,
+      "timestamp": 1765144467308,
       "actor": "player",
       "action": "NPC interaction",
       "details": {
@@ -972,76 +1038,76 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981792939,
+      "timestamp": 1765144467308,
       "actor": "player",
       "action": "Asking question",
       "details": {
         "type": "npc_info",
-        "query": "Who is Hazer Guards (x2)?"
+        "query": "Who is Jaxson 'Jax' V.?"
       },
       "severity": "info"
     },
     {
-      "timestamp": 1764981792955,
+      "timestamp": 1765144467357,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
         "type": "npc_info",
         "found": true,
-        "timeMs": 16,
+        "timeMs": 49,
         "interactions": 1
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981792955,
+      "timestamp": 1765144467357,
       "actor": "player",
       "action": "Asking question",
       "details": {
-        "type": "npc_motivation",
-        "query": "What does Hazer Guards (x2) want?"
+        "type": "environment",
+        "query": "What do I see/hear/smell here?"
       },
       "severity": "info"
     },
     {
-      "timestamp": 1764981792962,
+      "timestamp": 1765144467380,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
-        "type": "npc_motivation",
+        "type": "environment",
         "found": true,
-        "timeMs": 7,
+        "timeMs": 23,
         "interactions": 1
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981792962,
+      "timestamp": 1765144467380,
       "actor": "player",
       "action": "Asking question",
       "details": {
-        "type": "location_detail",
-        "query": "What is Oakhaven Perimeter like?"
+        "type": "next_steps",
+        "query": "What should I do next?"
       },
       "severity": "info"
     },
     {
-      "timestamp": 1764981792970,
+      "timestamp": 1765144467393,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
-        "type": "location_detail",
+        "type": "next_steps",
         "found": true,
-        "timeMs": 8,
+        "timeMs": 13,
         "interactions": 1
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981792970,
+      "timestamp": 1765144467393,
       "actor": "system",
       "action": "═══ SCENE END ═══",
       "details": {
@@ -1052,7 +1118,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981793185,
+      "timestamp": 1765144467604,
       "actor": "system",
       "action": "═══ SCENE START ═══",
       "details": {
@@ -1062,7 +1128,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981793186,
+      "timestamp": 1765144467604,
       "actor": "gm",
       "action": "Activating scene",
       "details": {
@@ -1072,7 +1138,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981793495,
+      "timestamp": 1765144467914,
       "actor": "gm",
       "action": "Processing scene",
       "details": {
@@ -1085,7 +1151,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981793495,
+      "timestamp": 1765144467914,
       "actor": "gm",
       "action": "Firing trigger",
       "details": {
@@ -1094,7 +1160,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981793495,
+      "timestamp": 1765144467914,
       "actor": "gm",
       "action": "Narrating",
       "details": {
@@ -1103,7 +1169,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981793495,
+      "timestamp": 1765144467914,
       "actor": "gm",
       "action": "Introducing NPC",
       "details": {
@@ -1114,7 +1180,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981793495,
+      "timestamp": 1765144467914,
       "actor": "gm",
       "action": "Calling for skill check",
       "details": {
@@ -1124,22 +1190,22 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981793496,
+      "timestamp": 1765144467914,
       "actor": "player",
       "action": "Rolling skill check",
       "details": {
         "skill": "Investigate",
-        "roll": 5,
+        "roll": 11,
         "bonus": 3,
-        "total": 8,
+        "total": 14,
         "dc": 9,
         "critical": null
       },
-      "result": "FAILURE",
-      "severity": "warning"
+      "result": "SUCCESS",
+      "severity": "info"
     },
     {
-      "timestamp": 1764981793496,
+      "timestamp": 1765144467915,
       "actor": "gm",
       "action": "Calling for skill check",
       "details": {
@@ -1149,22 +1215,22 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981793496,
+      "timestamp": 1765144467915,
       "actor": "player",
       "action": "Rolling skill check",
       "details": {
         "skill": "Perception",
-        "roll": 20,
+        "roll": 12,
         "bonus": 4,
-        "total": 24,
+        "total": 16,
         "dc": 12,
-        "critical": "success"
+        "critical": null
       },
       "result": "SUCCESS",
       "severity": "info"
     },
     {
-      "timestamp": 1764981793496,
+      "timestamp": 1765144467915,
       "actor": "player",
       "action": "Observing scene",
       "details": {
@@ -1173,7 +1239,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981793496,
+      "timestamp": 1765144467915,
       "actor": "player",
       "action": "NPC interaction",
       "details": {
@@ -1183,7 +1249,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981793496,
+      "timestamp": 1765144467915,
       "actor": "player",
       "action": "Asking question",
       "details": {
@@ -1193,20 +1259,20 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981793506,
+      "timestamp": 1765144467962,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
         "type": "npc_info",
         "found": true,
-        "timeMs": 10,
+        "timeMs": 47,
         "interactions": 1
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981793506,
+      "timestamp": 1765144467963,
       "actor": "player",
       "action": "Asking question",
       "details": {
@@ -1216,31 +1282,31 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981793510,
+      "timestamp": 1765144467981,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
         "type": "environment",
         "found": true,
-        "timeMs": 4,
+        "timeMs": 18,
         "interactions": 1
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981793510,
+      "timestamp": 1765144467981,
       "actor": "system",
       "action": "═══ SCENE END ═══",
       "details": {
         "title": "The Shrine",
         "wounds": 0,
-        "checks": "1/2"
+        "checks": "2/2"
       },
       "severity": "info"
     },
     {
-      "timestamp": 1764981793725,
+      "timestamp": 1765144468194,
       "actor": "system",
       "action": "═══ SCENE START ═══",
       "details": {
@@ -1250,7 +1316,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981793726,
+      "timestamp": 1765144468194,
       "actor": "gm",
       "action": "Activating scene",
       "details": {
@@ -1260,7 +1326,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794034,
+      "timestamp": 1765144468510,
       "actor": "gm",
       "action": "Processing scene",
       "details": {
@@ -1273,7 +1339,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794034,
+      "timestamp": 1765144468510,
       "actor": "gm",
       "action": "Firing trigger",
       "details": {
@@ -1282,7 +1348,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794034,
+      "timestamp": 1765144468510,
       "actor": "gm",
       "action": "Narrating",
       "details": {
@@ -1291,7 +1357,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794034,
+      "timestamp": 1765144468510,
       "actor": "gm",
       "action": "Firing trigger",
       "details": {
@@ -1300,7 +1366,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794034,
+      "timestamp": 1765144468510,
       "actor": "gm",
       "action": "Narrating",
       "details": {
@@ -1309,7 +1375,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794034,
+      "timestamp": 1765144468510,
       "actor": "gm",
       "action": "Firing trigger",
       "details": {
@@ -1318,7 +1384,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794034,
+      "timestamp": 1765144468510,
       "actor": "gm",
       "action": "Narrating",
       "details": {
@@ -1327,7 +1393,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794034,
+      "timestamp": 1765144468510,
       "actor": "gm",
       "action": "Introducing NPC",
       "details": {
@@ -1338,7 +1404,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794034,
+      "timestamp": 1765144468510,
       "actor": "gm",
       "action": "Introducing NPC",
       "details": {
@@ -1349,7 +1415,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794034,
+      "timestamp": 1765144468510,
       "actor": "gm",
       "action": "Calling for skill check",
       "details": {
@@ -1359,14 +1425,14 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794034,
+      "timestamp": 1765144468510,
       "actor": "player",
       "action": "Rolling skill check",
       "details": {
         "skill": "Persuasion",
-        "roll": 5,
+        "roll": 2,
         "bonus": 2,
-        "total": 7,
+        "total": 4,
         "dc": 12,
         "critical": null
       },
@@ -1374,7 +1440,7 @@
       "severity": "warning"
     },
     {
-      "timestamp": 1764981794034,
+      "timestamp": 1765144468510,
       "actor": "gm",
       "action": "Calling for skill check",
       "details": {
@@ -1384,22 +1450,22 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794035,
+      "timestamp": 1765144468510,
       "actor": "player",
       "action": "Rolling skill check",
       "details": {
         "skill": "Combat",
-        "roll": 6,
+        "roll": 13,
         "bonus": 2,
-        "total": 8,
+        "total": 15,
         "dc": 10,
         "critical": null
       },
-      "result": "FAILURE",
-      "severity": "warning"
+      "result": "SUCCESS",
+      "severity": "info"
     },
     {
-      "timestamp": 1764981794035,
+      "timestamp": 1765144468511,
       "actor": "gm",
       "action": "Calling for skill check",
       "details": {
@@ -1409,22 +1475,22 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794035,
+      "timestamp": 1765144468511,
       "actor": "player",
       "action": "Rolling skill check",
       "details": {
         "skill": "Combat",
-        "roll": 2,
+        "roll": 1,
         "bonus": 2,
-        "total": 4,
+        "total": 3,
         "dc": 8,
-        "critical": null
+        "critical": "failure"
       },
       "result": "FAILURE",
       "severity": "warning"
     },
     {
-      "timestamp": 1764981794035,
+      "timestamp": 1765144468511,
       "actor": "player",
       "action": "Observing scene",
       "details": {
@@ -1433,7 +1499,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794035,
+      "timestamp": 1765144468511,
       "actor": "player",
       "action": "NPC interaction",
       "details": {
@@ -1443,7 +1509,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794035,
+      "timestamp": 1765144468511,
       "actor": "player",
       "action": "NPC interaction",
       "details": {
@@ -1453,7 +1519,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794035,
+      "timestamp": 1765144468511,
       "actor": "player",
       "action": "Asking question",
       "details": {
@@ -1463,20 +1529,43 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794047,
+      "timestamp": 1765144468677,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
         "type": "npc_info",
         "found": true,
-        "timeMs": 12,
+        "timeMs": 166,
         "interactions": 1
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981794048,
+      "timestamp": 1765144468677,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "npc_motivation",
+        "query": "What does Hazer Patrol (x3) want?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144468706,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "npc_motivation",
+        "found": true,
+        "timeMs": 29,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144468706,
       "actor": "player",
       "action": "Asking question",
       "details": {
@@ -1486,54 +1575,31 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794051,
+      "timestamp": 1765144468725,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
         "type": "environment",
         "found": true,
-        "timeMs": 3,
+        "timeMs": 19,
         "interactions": 1
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981794051,
-      "actor": "player",
-      "action": "Asking question",
-      "details": {
-        "type": "location_detail",
-        "query": "What is Bio-Dyne Courtyard like?"
-      },
-      "severity": "info"
-    },
-    {
-      "timestamp": 1764981794061,
-      "actor": "gm",
-      "action": "Information lookup",
-      "details": {
-        "type": "location_detail",
-        "found": true,
-        "timeMs": 10,
-        "interactions": 1
-      },
-      "result": "FOUND",
-      "severity": "info"
-    },
-    {
-      "timestamp": 1764981794062,
+      "timestamp": 1765144468725,
       "actor": "system",
       "action": "═══ SCENE END ═══",
       "details": {
         "title": "The Courtyard Ambush",
         "wounds": 0,
-        "checks": "0/3"
+        "checks": "1/3"
       },
       "severity": "info"
     },
     {
-      "timestamp": 1764981794281,
+      "timestamp": 1765144468928,
       "actor": "system",
       "action": "═══ SCENE START ═══",
       "details": {
@@ -1543,7 +1609,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794281,
+      "timestamp": 1765144468928,
       "actor": "gm",
       "action": "Activating scene",
       "details": {
@@ -1553,7 +1619,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794590,
+      "timestamp": 1765144469236,
       "actor": "gm",
       "action": "Processing scene",
       "details": {
@@ -1566,7 +1632,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794591,
+      "timestamp": 1765144469236,
       "actor": "gm",
       "action": "Firing trigger",
       "details": {
@@ -1575,7 +1641,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794591,
+      "timestamp": 1765144469236,
       "actor": "gm",
       "action": "Narrating",
       "details": {
@@ -1584,7 +1650,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794591,
+      "timestamp": 1765144469236,
       "actor": "gm",
       "action": "Introducing NPC",
       "details": {
@@ -1595,7 +1661,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794591,
+      "timestamp": 1765144469236,
       "actor": "gm",
       "action": "Calling for skill check",
       "details": {
@@ -1605,14 +1671,14 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794591,
+      "timestamp": 1765144469236,
       "actor": "player",
       "action": "Rolling skill check",
       "details": {
         "skill": "Netrunning",
-        "roll": 15,
+        "roll": 11,
         "bonus": 5,
-        "total": 20,
+        "total": 16,
         "dc": 11,
         "critical": null
       },
@@ -1620,7 +1686,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794591,
+      "timestamp": 1765144469236,
       "actor": "gm",
       "action": "Calling for skill check",
       "details": {
@@ -1630,22 +1696,22 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794591,
+      "timestamp": 1765144469236,
       "actor": "player",
       "action": "Rolling skill check",
       "details": {
         "skill": "Tech",
-        "roll": 16,
+        "roll": 20,
         "bonus": 6,
-        "total": 22,
+        "total": 26,
         "dc": 10,
-        "critical": null
+        "critical": "success"
       },
       "result": "SUCCESS",
       "severity": "info"
     },
     {
-      "timestamp": 1764981794591,
+      "timestamp": 1765144469237,
       "actor": "player",
       "action": "Observing scene",
       "details": {
@@ -1654,7 +1720,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794591,
+      "timestamp": 1765144469237,
       "actor": "player",
       "action": "NPC interaction",
       "details": {
@@ -1664,7 +1730,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794591,
+      "timestamp": 1765144469237,
       "actor": "player",
       "action": "Asking question",
       "details": {
@@ -1674,20 +1740,20 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981794599,
+      "timestamp": 1765144469282,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
         "type": "npc_info",
         "found": true,
-        "timeMs": 8,
+        "timeMs": 45,
         "interactions": 1
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981794600,
+      "timestamp": 1765144469282,
       "actor": "player",
       "action": "Asking question",
       "details": {
@@ -1697,20 +1763,43 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795225,
+      "timestamp": 1765144470540,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
         "type": "npc_motivation",
         "found": true,
-        "timeMs": 625,
+        "timeMs": 1258,
         "interactions": 2
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981795225,
+      "timestamp": 1765144470540,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "location_detail",
+        "query": "What is Server Room Access like?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144470654,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "location_detail",
+        "found": true,
+        "timeMs": 114,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144470654,
       "actor": "system",
       "action": "═══ SCENE END ═══",
       "details": {
@@ -1721,7 +1810,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795443,
+      "timestamp": 1765144471050,
       "actor": "system",
       "action": "═══ SCENE START ═══",
       "details": {
@@ -1731,7 +1820,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795443,
+      "timestamp": 1765144471050,
       "actor": "gm",
       "action": "Activating scene",
       "details": {
@@ -1741,7 +1830,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795752,
+      "timestamp": 1765144471359,
       "actor": "gm",
       "action": "Processing scene",
       "details": {
@@ -1754,7 +1843,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795753,
+      "timestamp": 1765144471359,
       "actor": "gm",
       "action": "Firing trigger",
       "details": {
@@ -1763,7 +1852,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795753,
+      "timestamp": 1765144471359,
       "actor": "gm",
       "action": "Narrating",
       "details": {
@@ -1772,7 +1861,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795753,
+      "timestamp": 1765144471359,
       "actor": "gm",
       "action": "Firing trigger",
       "details": {
@@ -1781,7 +1870,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795753,
+      "timestamp": 1765144471359,
       "actor": "gm",
       "action": "Narrating",
       "details": {
@@ -1790,7 +1879,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795753,
+      "timestamp": 1765144471360,
       "actor": "gm",
       "action": "Introducing NPC",
       "details": {
@@ -1801,7 +1890,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795753,
+      "timestamp": 1765144471360,
       "actor": "gm",
       "action": "Introducing NPC",
       "details": {
@@ -1812,7 +1901,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795753,
+      "timestamp": 1765144471360,
       "actor": "gm",
       "action": "Calling for skill check",
       "details": {
@@ -1822,22 +1911,22 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795753,
+      "timestamp": 1765144471360,
       "actor": "player",
       "action": "Rolling skill check",
       "details": {
         "skill": "Tech",
-        "roll": 6,
+        "roll": 4,
         "bonus": 6,
-        "total": 12,
+        "total": 10,
         "dc": 12,
         "critical": null
       },
-      "result": "SUCCESS",
-      "severity": "info"
+      "result": "FAILURE",
+      "severity": "warning"
     },
     {
-      "timestamp": 1764981795753,
+      "timestamp": 1765144471360,
       "actor": "player",
       "action": "Observing scene",
       "details": {
@@ -1846,7 +1935,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795753,
+      "timestamp": 1765144471360,
       "actor": "player",
       "action": "NPC interaction",
       "details": {
@@ -1856,7 +1945,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795753,
+      "timestamp": 1765144471360,
       "actor": "player",
       "action": "NPC interaction",
       "details": {
@@ -1866,7 +1955,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795753,
+      "timestamp": 1765144471360,
       "actor": "player",
       "action": "Asking question",
       "details": {
@@ -1876,54 +1965,77 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981795766,
+      "timestamp": 1765144471404,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
         "type": "npc_info",
         "found": true,
-        "timeMs": 13,
+        "timeMs": 44,
         "interactions": 1
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981795766,
+      "timestamp": 1765144471404,
       "actor": "player",
       "action": "Asking question",
       "details": {
-        "type": "npc_motivation",
-        "query": "What does Jaxson 'Jax' V. want?"
+        "type": "environment",
+        "query": "What do I see/hear/smell here?"
       },
       "severity": "info"
     },
     {
-      "timestamp": 1764981796380,
+      "timestamp": 1765144471414,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
-        "type": "npc_motivation",
+        "type": "environment",
         "found": true,
-        "timeMs": 614,
-        "interactions": 2
+        "timeMs": 10,
+        "interactions": 1
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981796380,
+      "timestamp": 1765144471414,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "location_detail",
+        "query": "What is Cold Storage like?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144471430,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "location_detail",
+        "found": true,
+        "timeMs": 16,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144471430,
       "actor": "system",
       "action": "═══ SCENE END ═══",
       "details": {
         "title": "The Cryo Lab",
         "wounds": 0,
-        "checks": "1/1"
+        "checks": "0/1"
       },
       "severity": "info"
     },
     {
-      "timestamp": 1764981796596,
+      "timestamp": 1765144471641,
       "actor": "system",
       "action": "═══ SCENE START ═══",
       "details": {
@@ -1933,7 +2045,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981796597,
+      "timestamp": 1765144471641,
       "actor": "gm",
       "action": "Activating scene",
       "details": {
@@ -1943,7 +2055,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981796905,
+      "timestamp": 1765144471952,
       "actor": "gm",
       "action": "Processing scene",
       "details": {
@@ -1956,7 +2068,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981796905,
+      "timestamp": 1765144471952,
       "actor": "gm",
       "action": "Firing trigger",
       "details": {
@@ -1965,7 +2077,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981796905,
+      "timestamp": 1765144471952,
       "actor": "gm",
       "action": "Narrating",
       "details": {
@@ -1974,7 +2086,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981796905,
+      "timestamp": 1765144471952,
       "actor": "gm",
       "action": "Firing trigger",
       "details": {
@@ -1983,7 +2095,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981796905,
+      "timestamp": 1765144471952,
       "actor": "gm",
       "action": "Narrating",
       "details": {
@@ -1992,7 +2104,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981796905,
+      "timestamp": 1765144471952,
       "actor": "gm",
       "action": "Firing trigger",
       "details": {
@@ -2001,7 +2113,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981796905,
+      "timestamp": 1765144471952,
       "actor": "gm",
       "action": "Narrating",
       "details": {
@@ -2010,7 +2122,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981796905,
+      "timestamp": 1765144471952,
       "actor": "gm",
       "action": "Firing trigger",
       "details": {
@@ -2019,7 +2131,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981796905,
+      "timestamp": 1765144471952,
       "actor": "gm",
       "action": "Narrating",
       "details": {
@@ -2028,7 +2140,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981796905,
+      "timestamp": 1765144471952,
       "actor": "gm",
       "action": "Introducing NPC",
       "details": {
@@ -2039,7 +2151,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981796905,
+      "timestamp": 1765144471952,
       "actor": "player",
       "action": "Observing scene",
       "details": {
@@ -2048,7 +2160,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981796905,
+      "timestamp": 1765144471953,
       "actor": "player",
       "action": "NPC interaction",
       "details": {
@@ -2058,7 +2170,7 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981796906,
+      "timestamp": 1765144471953,
       "actor": "player",
       "action": "Asking question",
       "details": {
@@ -2068,20 +2180,66 @@
       "severity": "info"
     },
     {
-      "timestamp": 1764981796920,
+      "timestamp": 1765144472041,
       "actor": "gm",
       "action": "Information lookup",
       "details": {
         "type": "npc_info",
         "found": true,
-        "timeMs": 14,
+        "timeMs": 88,
         "interactions": 1
       },
       "result": "FOUND",
       "severity": "info"
     },
     {
-      "timestamp": 1764981796920,
+      "timestamp": 1765144472041,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "environment",
+        "query": "What do I see/hear/smell here?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144472056,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "environment",
+        "found": true,
+        "timeMs": 15,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144472056,
+      "actor": "player",
+      "action": "Asking question",
+      "details": {
+        "type": "next_steps",
+        "query": "What should I do next?"
+      },
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144472081,
+      "actor": "gm",
+      "action": "Information lookup",
+      "details": {
+        "type": "next_steps",
+        "found": true,
+        "timeMs": 25,
+        "interactions": 1
+      },
+      "result": "FOUND",
+      "severity": "info"
+    },
+    {
+      "timestamp": 1765144472082,
       "actor": "system",
       "action": "═══ SCENE END ═══",
       "details": {
@@ -2101,14 +2259,14 @@
     "deaths": 0,
     "triggersActivated": 13,
     "skillChecksMade": 11,
-    "skillChecksPassed": 6,
+    "skillChecksPassed": 7,
     "npcsInteracted": 11,
     "deadEndsFound": 0,
     "softLocksFound": 0,
-    "difficultyRating": "hard",
+    "difficultyRating": "moderate",
     "coherenceScore": 60,
-    "informationLookupsAttempted": 17,
-    "informationLookupsSucceeded": 17,
+    "informationLookupsAttempted": 21,
+    "informationLookupsSucceeded": 21,
     "informationLookupsFailed": 0
   }
 }
