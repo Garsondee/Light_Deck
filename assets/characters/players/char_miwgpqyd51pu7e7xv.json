@@ -1,0 +1,55 @@
+{
+  "id": "char_miwgpqyd51pu7e7xv",
+  "name": "fdsa",
+  "handle": "sdggsd",
+  "pronouns": "she/her",
+  "portrait": {
+    "id": "portrait_9",
+    "filename": "npc (9).png",
+    "name": "Portrait 9",
+    "url": "/assets/portraits/npc%20(9).png"
+  },
+  "background": {
+    "key": "techie",
+    "name": "Techie",
+    "skills": {
+      "hardware": 1,
+      "rigging": 1
+    },
+    "gear": [
+      "Tool kit",
+      "Basic drone",
+      "Workshop access"
+    ],
+    "debt": 10000,
+    "creditor": {
+      "name": "Tanaka Tools Ltd.",
+      "type": "vendor"
+    }
+  },
+  "settings": {
+    "audio": {
+      "musicVolume": 50,
+      "sfxVolume": 70
+    },
+    "visual": {
+      "brightness": 100,
+      "contrast": 100
+    }
+  },
+  "debt": {
+    "packages": [
+      "chrome_upgrade",
+      "fixers_favor",
+      "clean_sin"
+    ],
+    "packageDebt": 10500,
+    "totalDebt": 20500
+  },
+  "meta": {
+    "created": "2025-12-08T01:18:04.981Z",
+    "lastModified": "2025-12-08T01:18:05.333Z",
+    "version": "2.0",
+    "onboardingComplete": true
+  }
+}

@@ -23,11 +23,16 @@ This document defines manual and automated testing procedures for Light Deck VTT
 # Start the server
 npm run start
 
-# Run all tests
+# Run all Playwright test suites (EXCLUDES long-form simulation)
 npm run test
 
 # Run specific test file
 npx playwright test tests/smoke.spec.ts
+
+# Run long-form adventure simulation and commentary tests only
+npm run test:simulation           # headless
+npm run test:simulation:headed    # visible browser
+npm run test:simulation:full      # headed, extended timeout
 ```
 
 **Base URL:** `http://localhost:3000`
@@ -48,16 +53,11 @@ The onboarding system guides new players through character creation via the term
 | `ONB-004` | Prevent double-start | Start onboarding, then type `/onboard` again | Error message: "Onboarding already in progress" |
 | `ONB-005` | Start from terminal mode | Enter terminal mode, type `onboard` | Onboarding starts without mode switch |
 
-#### Playwright Selectors
+#### Playwright Selectors (legacy DOM-based example)
 ```typescript
-// Chat input
-const chatInput = page.locator('#chat-input');
-
-// Terminal canvas (for visual verification)
-const terminalCanvas = page.locator('#terminal-canvas');
-
-// Check terminal visibility
-await expect(terminalCanvas).toBeVisible();
+// NOTE: Chat input and terminal are now rendered via Three.js and
+// verified through JS helpers rather than DOM selectors.
+// See `tests/onboarding.spec.ts` for the current helper approach.
 ```
 
 ---
@@ -333,20 +333,11 @@ The terminal is a canvas-based Three.js rendering system with phosphor text effe
 | `TRM-062` | Input disabled during boot | Type during boot | Input ignored |
 | `TRM-063` | Prompt appears after boot | Boot completes | `> ` prompt visible |
 
-#### Playwright Selectors
+#### Playwright Selectors (legacy example)
 ```typescript
-// Terminal state checks (canvas-based, use JS evaluation)
-const isTerminalVisible = await page.evaluate(() => {
-  return typeof TerminalManager !== 'undefined' && TerminalManager.isVisible();
-});
-
-const terminalPhase = await page.evaluate(() => {
-  return TerminalManager.getState().bootComplete;
-});
-
-// Input simulation (terminal captures keyboard directly)
-await page.keyboard.type('help');
-await page.keyboard.press('Enter');
+// In the current implementation, tests call TerminalManager.handleChar
+// and TerminalManager.handleKey directly from page.evaluate().
+// See `tests/terminal.spec.ts` for up‑to‑date helpers.
 ```
 
 ---
@@ -413,8 +404,8 @@ The scene viewer displays background images with CRT/ASCII shader effects.
 
 | Test ID | Description | Steps | Expected Result |
 |---------|-------------|-------|-----------------|
-| `SCN-010` | Next scene | Call `SceneManager.next()` | Advances to next scene |
-| `SCN-011` | Previous scene | Call `SceneManager.prev()` | Goes to previous scene |
+| `SCN-010` | Next scene | Call `SceneManager.nextScene()` | Advances to next scene |
+| `SCN-011` | Previous scene | Call `SceneManager.prevScene()` | Goes to previous scene |
 | `SCN-012` | First scene boundary | Call `prev()` at index 0 | Stays at index 0 |
 | `SCN-013` | Last scene boundary | Call `next()` at last index | Stays at last index |
 | `SCN-014` | Go to specific scene | Call `setCurrentIndex(3)` | Jumps to scene 3 |
@@ -447,7 +438,7 @@ The scene viewer displays background images with CRT/ASCII shader effects.
 |---------|-------------|-------|-----------------|
 | `SCN-040` | Current scene getter | Call `SceneManager.getCurrentScene()` | Returns current scene object |
 | `SCN-041` | Current index getter | Call `SceneManager.getCurrentIndex()` | Returns current index |
-| `SCN-042` | Scene count | Call `SceneManager.getScenes().length` | Returns total scenes |
+| `SCN-042` | Scene count | Call `SceneManager.getSceneCount()` | Returns total scenes |
 | `SCN-043` | Loading state | During load | `state.loading = true` |
 
 ### 5.6 Multiplayer Scene Sync

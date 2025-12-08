@@ -7,6 +7,10 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   
+  // Exclude long-form adventure simulation from the default suite
+  // Run explicitly via `npm run test:simulation` instead
+  testIgnore: ['tests/simulation.spec.ts'],
+  
   /* Allow tests within a file to run in parallel across workers */
   fullyParallel: true,
   

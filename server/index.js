@@ -42,6 +42,15 @@ const io = new Server(httpServer);
 
 const PORT = process.env.PORT || 3000;
 
+// Parse JSON bodies
+app.use(express.json());
+
+// Ensure characters directory exists
+const charactersDir = path.join(__dirname, '../assets/characters/players');
+if (!fs.existsSync(charactersDir)) {
+    fs.mkdirSync(charactersDir, { recursive: true });
+}
+
 // Serve static files from public directory
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -85,6 +94,172 @@ app.get('/api/music', (req, res) => {
 // Basic health check endpoint
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', timestamp: Date.now() });
+});
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CHARACTER MANAGEMENT - Save, load, list, and delete player characters
+// ═══════════════════════════════════════════════════════════════════════════
+
+// List all player characters
+app.get('/api/characters', (req, res) => {
+    try {
+        const files = fs.readdirSync(charactersDir)
+            .filter(f => f.endsWith('.json'));
+        
+        const characters = files.map(f => {
+            try {
+                const content = fs.readFileSync(path.join(charactersDir, f), 'utf8');
+                const char = JSON.parse(content);
+                return {
+                    id: char.id,
+                    name: char.name,
+                    handle: char.handle,
+                    background: char.background,
+                    portrait: char.portrait,
+                    meta: char.meta
+                };
+            } catch (err) {
+                console.error(`Error reading character ${f}:`, err);
+                return null;
+            }
+        }).filter(c => c !== null);
+        
+        // Sort by last modified (newest first)
+        characters.sort((a, b) => {
+            const dateA = new Date(a.meta?.lastModified || 0);
+            const dateB = new Date(b.meta?.lastModified || 0);
+            return dateB - dateA;
+        });
+        
+        res.json(characters);
+    } catch (err) {
+        console.error('Error listing characters:', err);
+        res.json([]);
+    }
+});
+
+// Get a specific character
+app.get('/api/characters/:id', (req, res) => {
+    const charFile = path.join(charactersDir, `${req.params.id}.json`);
+    
+    try {
+        if (!fs.existsSync(charFile)) {
+            return res.status(404).json({ error: 'Character not found' });
+        }
+        
+        const content = fs.readFileSync(charFile, 'utf8');
+        const character = JSON.parse(content);
+        res.json(character);
+    } catch (err) {
+        console.error('Error loading character:', err);
+        res.status(500).json({ error: 'Failed to load character' });
+    }
+});
+
+// Save a new character or update existing
+app.post('/api/characters', (req, res) => {
+    try {
+        const character = req.body;
+        
+        if (!character.id) {
+            return res.status(400).json({ error: 'Character ID required' });
+        }
+        
+        // Update last modified timestamp
+        character.meta = character.meta || {};
+        character.meta.lastModified = new Date().toISOString();
+        
+        const charFile = path.join(charactersDir, `${character.id}.json`);
+        fs.writeFileSync(charFile, JSON.stringify(character, null, 2));
+        
+        console.log(`[Server] Saved character: ${character.name} (${character.id})`);
+        res.json({ success: true, id: character.id });
+    } catch (err) {
+        console.error('Error saving character:', err);
+        res.status(500).json({ error: 'Failed to save character' });
+    }
+});
+
+// Update an existing character
+app.put('/api/characters/:id', (req, res) => {
+    const charFile = path.join(charactersDir, `${req.params.id}.json`);
+    
+    try {
+        if (!fs.existsSync(charFile)) {
+            return res.status(404).json({ error: 'Character not found' });
+        }
+        
+        const character = req.body;
+        character.id = req.params.id; // Ensure ID matches
+        character.meta = character.meta || {};
+        character.meta.lastModified = new Date().toISOString();
+        
+        fs.writeFileSync(charFile, JSON.stringify(character, null, 2));
+        
+        console.log(`[Server] Updated character: ${character.name} (${character.id})`);
+        res.json({ success: true, id: character.id });
+    } catch (err) {
+        console.error('Error updating character:', err);
+        res.status(500).json({ error: 'Failed to update character' });
+    }
+});
+
+// Delete a character
+app.delete('/api/characters/:id', (req, res) => {
+    const charFile = path.join(charactersDir, `${req.params.id}.json`);
+    
+    try {
+        if (!fs.existsSync(charFile)) {
+            return res.status(404).json({ error: 'Character not found' });
+        }
+        
+        fs.unlinkSync(charFile);
+        console.log(`[Server] Deleted character: ${req.params.id}`);
+        res.json({ success: true });
+    } catch (err) {
+        console.error('Error deleting character:', err);
+        res.status(500).json({ error: 'Failed to delete character' });
+    }
+});
+
+// API endpoint to list available character portraits
+app.get('/api/portraits', (req, res) => {
+    const portraitsDir = path.join(__dirname, '../public/assets/portraits');
+    
+    try {
+        if (!fs.existsSync(portraitsDir)) {
+            return res.json([]);
+        }
+        
+        const files = fs.readdirSync(portraitsDir)
+            .filter(f => /\.(png|jpg|jpeg|webp|gif)$/i.test(f));
+        
+        const portraits = files.map((f, index) => {
+            // Generate a clean name from filename
+            // e.g., "npc (2).png" -> "Portrait 2"
+            const match = f.match(/\((\d+)\)/);
+            const num = match ? match[1] : (index + 1);
+            
+            return {
+                id: `portrait_${num}`,
+                filename: f,
+                name: `Portrait ${num}`,
+                url: `/assets/portraits/${encodeURIComponent(f)}`
+            };
+        });
+        
+        // Sort by number
+        portraits.sort((a, b) => {
+            const numA = parseInt(a.id.split('_')[1]);
+            const numB = parseInt(b.id.split('_')[1]);
+            return numA - numB;
+        });
+        
+        res.json(portraits);
+    } catch (err) {
+        console.error('Error listing portraits:', err);
+        res.json([]);
+    }
 });
 
 // API endpoint to list available scenes

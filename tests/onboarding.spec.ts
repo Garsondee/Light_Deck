@@ -1,5 +1,13 @@
 import { test, expect, Page } from '@playwright/test';
 
+// Ambient declarations for browser globals used inside page.evaluate.
+// These exist at runtime on window; we declare them here to silence TS errors
+// in this test file without affecting the app code.
+declare const TerminalManager: any;
+declare const ChatManager: any;
+declare const OnboardingManager: any;
+declare const App: any;
+
 /**
  * Onboarding System Tests
  * 
@@ -407,10 +415,75 @@ test.describe('1.4 Phase 3: Character Creation - Identity', () => {
     expect(state.character.name).toBe('Jane Mary Doe');
   });
 
-  test('ONB-035: Continue to background', async ({ page }) => {
+  test('ONB-035: Continue to portrait', async ({ page }) => {
     await terminalSubmit(page, 'name Test');
     await terminalSubmit(page, 'continue');
     await page.waitForTimeout(1000);
+    
+    const charPhase = await getCharacterPhase(page);
+    expect(charPhase).toBe('portrait');
+  });
+
+});
+
+// ============================================================================
+// SECTION 4.5: CHARACTER CREATION - PORTRAIT
+// ============================================================================
+
+test.describe('1.4.5 Phase 3: Character Creation - Portrait', () => {
+  
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/?testMode=1');
+    await waitForAppReady(page);
+    await startOnboardingFromChat(page);
+    
+    // Advance to portrait phase
+    await terminalSubmit(page, 'continue'); // Skip audio
+    await page.waitForTimeout(300);
+    await terminalSubmit(page, 'continue'); // Skip visual
+    await page.waitForTimeout(300);
+    await terminalSubmit(page, 'name Test');
+    await terminalSubmit(page, 'continue'); // Skip identity -> portrait
+    await page.waitForTimeout(300);
+  });
+
+  test('ONB-036: Portrait phase displays', async ({ page }) => {
+    const phase = await getOnboardingPhase(page);
+    expect(phase).toBe('character');
+    
+    const charPhase = await getCharacterPhase(page);
+    expect(charPhase).toBe('portrait');
+  });
+
+  test('ONB-037: Select portrait by number', async ({ page }) => {
+    await terminalSubmit(page, '1');
+    
+    const state = await getOnboardingState(page);
+    expect(state.character.portrait).toBe('portrait_2');
+  });
+
+  test('ONB-038: Select portrait by command', async ({ page }) => {
+    await terminalSubmit(page, 'portrait 2');
+    
+    const state = await getOnboardingState(page);
+    expect(state.character.portrait).toBe('portrait_9');
+  });
+
+  test('ONB-039: Continue to background', async ({ page }) => {
+    await terminalSubmit(page, 'continue');
+    await page.waitForTimeout(500);
+    
+    const charPhase = await getCharacterPhase(page);
+    expect(charPhase).toBe('background');
+  });
+
+  test('ONB-040: Portrait optional - can skip', async ({ page }) => {
+    // Don't select a portrait, just continue
+    await terminalSubmit(page, 'continue');
+    await page.waitForTimeout(500);
+    
+    const state = await getOnboardingState(page);
+    expect(state.character.portrait).toBeNull();
     
     const charPhase = await getCharacterPhase(page);
     expect(charPhase).toBe('background');
@@ -435,7 +508,9 @@ test.describe('1.5 Phase 3: Character Creation - Background', () => {
     await terminalSubmit(page, 'continue'); // Skip visual
     await page.waitForTimeout(300);
     await terminalSubmit(page, 'name Test');
-    await terminalSubmit(page, 'continue'); // Skip identity
+    await terminalSubmit(page, 'continue'); // Skip identity -> portrait
+    await page.waitForTimeout(300);
+    await terminalSubmit(page, 'continue'); // Skip portrait -> background
     await page.waitForTimeout(300);
   });
 
@@ -487,7 +562,9 @@ test.describe('1.6 Phase 4: Debt & Equipment', () => {
     await terminalSubmit(page, 'continue'); // Skip visual
     await page.waitForTimeout(1500);
     await terminalSubmit(page, 'name Test');
-    await terminalSubmit(page, 'continue'); // Skip identity
+    await terminalSubmit(page, 'continue'); // Skip identity -> portrait
+    await page.waitForTimeout(500);
+    await terminalSubmit(page, 'continue'); // Skip portrait -> background
     await page.waitForTimeout(500);
     await terminalSubmit(page, '1'); // Select Street Kid
     await terminalSubmit(page, 'continue'); // Go to debt
@@ -561,6 +638,10 @@ test.describe('1.7-1.8 Documents & Completion', () => {
     await terminalSubmit(page, 'continue');
     await page.waitForTimeout(500);
     
+    // Portrait phase (skip)
+    await terminalSubmit(page, 'continue');
+    await page.waitForTimeout(500);
+    
     // Background phase
     await terminalSubmit(page, '1'); // Street Kid
     await terminalSubmit(page, 'continue');
@@ -596,15 +677,18 @@ test.describe('1.7-1.8 Documents & Completion', () => {
     await terminalSubmit(page, 'name Test Character');
     await terminalSubmit(page, 'handle Chrome');
     await terminalSubmit(page, 'pronouns they/them');
-    await terminalSubmit(page, 'continue'); // Identity
+    await terminalSubmit(page, 'continue'); // Identity -> Portrait
+    await page.waitForTimeout(500);
+    await terminalSubmit(page, '1'); // Select portrait
+    await terminalSubmit(page, 'continue'); // Portrait -> Background
     await page.waitForTimeout(500);
     await terminalSubmit(page, '2'); // Corporate
-    await terminalSubmit(page, 'continue'); // Background
+    await terminalSubmit(page, 'continue'); // Background -> Debt
     await page.waitForTimeout(1500);
     await terminalSubmit(page, 'add 1'); // Add survival kit
-    await terminalSubmit(page, 'continue'); // Debt
+    await terminalSubmit(page, 'continue'); // Debt -> Documents
     await page.waitForTimeout(4000);
-    await terminalSubmit(page, 'continue'); // Documents
+    await terminalSubmit(page, 'continue'); // Documents -> Complete
     await page.waitForTimeout(3000);
     
     // Get final state before it resets

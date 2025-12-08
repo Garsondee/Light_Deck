@@ -1,5 +1,6 @@
-import { Settings, X, BookOpen, Play, FileDown } from 'lucide-react';
+import { Settings, X, BookOpen, Play, FileDown, Users } from 'lucide-react';
 import { cn } from '../../utils/cn';
+import { usePlayerStore } from '../../store/playerStore';
 
 interface HeaderProps {
   sceneLabel: string;
@@ -20,6 +21,11 @@ export function Header({
   onExportAll,
   onClose 
 }: HeaderProps) {
+  const { connectedPlayers, isPanelOpen, openPanel } = usePlayerStore();
+  
+  // Count only players (not GMs)
+  const playerCount = connectedPlayers.filter(p => p.role === 'player').length;
+  
   return (
     <header
       className={cn(
@@ -63,6 +69,25 @@ export function Header({
         {/* Right side controls */}
         <div className="flex items-center gap-4 flex-shrink-0">
           <span className="text-neutral-400 text-sm font-mono">{position}</span>
+
+          {/* Player count button */}
+          <button
+            onClick={openPanel}
+            className={cn(
+              'px-3 py-1.5 rounded text-xs font-medium flex items-center gap-1.5 transition-colors',
+              isPanelOpen 
+                ? 'bg-cyan-600 text-white' 
+                : 'bg-neutral-700 hover:bg-neutral-600 text-neutral-200',
+              playerCount > 0 && 'ring-1 ring-green-400/50'
+            )}
+            title="Manage player characters"
+          >
+            <Users size={14} />
+            <span>{playerCount}</span>
+            {playerCount > 0 && (
+              <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+            )}
+          </button>
 
           <button
             onClick={onExportAll}

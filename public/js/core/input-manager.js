@@ -33,6 +33,12 @@ const InputManager = (function() {
     
     // Focus management
     let focusLockInterval = null;
+
+    // Onboarding interaction
+    // When true, we are explicitly focusing the chat panel while onboarding
+    // visuals are active. In this state, chat input should receive keys and
+    // onboarding should NOT.
+    let chatOverrideDuringOnboarding = false;
     
     // Action handlers - registered by other managers
     const actionHandlers = {
@@ -86,14 +92,22 @@ const InputManager = (function() {
      */
     function handleKeydown(e) {
         const key = e.key;
-        
+
         // Debug: log all key presses
         console.log('[InputManager] keydown:', key, 'mode:', currentMode);
-        
+
         // Skip if in Tweakpane or other external UI
         if (isInExternalUI()) {
             console.log('[InputManager] Skipping - in external UI');
             return;
+        }
+
+        // Detect onboarding visual flow state on each key
+        const onboardingActive = isOnboardingActive();
+
+        // Auto-clear chat override if onboarding is no longer active
+        if (!onboardingActive && chatOverrideDuringOnboarding) {
+            chatOverrideDuringOnboarding = false;
         }
         
         // ─────────────────────────────────────────────────────────────────
@@ -101,11 +115,35 @@ const InputManager = (function() {
         // ─────────────────────────────────────────────────────────────────
         
         // Tab - Focus management
-        //  - In Scene Viewer: reserved for ChatManager header/input focus
-        //  - In Terminal mode: move focus from terminal to chat log input
+        //  - During onboarding: when onboarding owns focus, let Tab fall
+        //    through so screens (ASCIIFormRenderer) can handle navigation.
+        //    If we have explicitly handed focus to chat, keep existing
+        //    toggle behaviour.
+        //  - In Scene Viewer (no onboarding): reserved for ChatManager
+        //    header/input focus.
+        //  - In Terminal mode (no onboarding): move focus from terminal to
+        //    chat log input.
         if (key === 'Tab') {
+            // When onboarding visuals are active and we have NOT handed focus
+            // to chat, do not treat Tab as a global hotkey. Let the
+            // OnboardingScreenManager / ASCIIFormRenderer handle it instead.
+            if (onboardingActive && !chatOverrideDuringOnboarding) {
+                return;
+            }
+
             e.preventDefault();
-            
+
+            if (onboardingActive && chatOverrideDuringOnboarding) {
+                // Toggling back from chat override to onboarding: stop
+                // forcing chat input active; subsequent Tabs will be handled
+                // by onboarding again.
+                chatOverrideDuringOnboarding = false;
+                if (typeof ChatManager !== 'undefined' && typeof ChatManager.setInputActive === 'function') {
+                    ChatManager.setInputActive(false);
+                }
+                return;
+            }
+
             if (currentMode === Mode.TERMINAL) {
                 // Hand keyboard focus to chat input while terminal view is up
                 if (typeof ChatManager !== 'undefined' && typeof ChatManager.setInputActive === 'function') {
@@ -173,10 +211,22 @@ const InputManager = (function() {
         } else {
             // Scene Viewer mode
             
+            // When onboarding visuals are active and we haven't explicitly
+            // handed focus to chat, onboarding owns the keyboard. Do not
+            // page or route keys into chat.
+            if (onboardingActive && !chatOverrideDuringOnboarding) {
+                return;
+            }
+
             // Handle paging keys for chat
             if (['PageUp', 'PageDown', 'Home', 'End'].includes(key)) {
                 e.preventDefault();
                 handleChatPaging(key);
+                // If chat has explicit focus during onboarding, prevent the
+                // event from reaching onboarding handlers.
+                if (chatOverrideDuringOnboarding) {
+                    e.stopPropagation();
+                }
                 return;
             }
             
@@ -193,6 +243,9 @@ const InputManager = (function() {
                 // Try special keys first (works for both input and control bar)
                 if (chatActive && ChatManager.handleKey(key, modifiers)) {
                     e.preventDefault();
+                    if (chatOverrideDuringOnboarding) {
+                        e.stopPropagation();
+                    }
                     return;
                 }
                 
@@ -200,6 +253,9 @@ const InputManager = (function() {
                 if (ChatManager.isInputActive() && key.length === 1 && !e.ctrlKey && !e.altKey) {
                     e.preventDefault();
                     ChatManager.handleChar(key);
+                    if (chatOverrideDuringOnboarding) {
+                        e.stopPropagation();
+                    }
                     return;
                 }
             }
@@ -282,6 +338,21 @@ const InputManager = (function() {
             return true;
         }
         
+        return false;
+    }
+    
+    /**
+     * Check if the visual onboarding flow is currently active
+     */
+    function isOnboardingActive() {
+        // Check OnboardingFlow (new screen-based system)
+        if (typeof OnboardingFlow !== 'undefined' && OnboardingFlow.isActive()) {
+            return true;
+        }
+        // Check OnboardingScreenManager visibility
+        if (typeof OnboardingScreenManager !== 'undefined' && OnboardingScreenManager.isVisible()) {
+            return true;
+        }
         return false;
     }
     

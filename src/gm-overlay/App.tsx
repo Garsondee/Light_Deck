@@ -19,6 +19,9 @@ import { AdHocCheckModal } from './components/modals/AdHocCheckModal';
 import { SettingsModal } from './components/modals/SettingsModal';
 import { ExportAllModal } from './components/modals/ExportAllModal';
 
+// Floating panels
+import { PlayerManagerPanel } from './components/panels/PlayerManagerPanel';
+
 export function App() {
   const { 
     currentScene, 
@@ -116,6 +119,9 @@ export function App() {
       <AdHocCheckModal />
       <SettingsModal />
       <ExportAllModal />
+
+      {/* Floating Panels */}
+      <PlayerManagerPanel />
     </GMOverlayShell>
   );
 }

@@ -1,0 +1,55 @@
+{
+  "id": "char_miwg9uid5tm9xqkg7",
+  "name": "Basil 1.3",
+  "handle": "Canker",
+  "pronouns": "they/them",
+  "portrait": {
+    "id": "portrait_2",
+    "filename": "npc (2).png",
+    "name": "Portrait 2",
+    "url": "/assets/portraits/npc%20(2).png"
+  },
+  "background": {
+    "key": "corporate",
+    "name": "Corporate",
+    "skills": {
+      "persuasion": 1,
+      "investigation": 1
+    },
+    "gear": [
+      "Business suit",
+      "Encrypted comm",
+      "+2000¢"
+    ],
+    "debt": 15000,
+    "creditor": {
+      "name": "Meridian Systems Corp.",
+      "type": "corporation"
+    }
+  },
+  "settings": {
+    "audio": {
+      "musicVolume": 50,
+      "sfxVolume": 70
+    },
+    "visual": {
+      "brightness": 100,
+      "contrast": 100
+    }
+  },
+  "debt": {
+    "packages": [
+      "chrome_upgrade",
+      "tech_toolkit",
+      "street_arsenal"
+    ],
+    "packageDebt": 9500,
+    "totalDebt": 24500
+  },
+  "meta": {
+    "created": "2025-12-08T01:05:43.093Z",
+    "lastModified": "2025-12-08T01:05:43.433Z",
+    "version": "2.0",
+    "onboardingComplete": true
+  }
+}

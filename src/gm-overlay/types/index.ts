@@ -241,3 +241,89 @@ export interface SessionState {
     time: string;
   };
 }
+
+// Connected player (from Socket.io presence)
+export interface ConnectedPlayer {
+  socketId: string;
+  name: string;
+  role: 'player' | 'gm';
+  view: string;
+  characterId?: string;
+}
+
+// Player Character types
+export interface PlayerCharacter {
+  id: string;
+  name: string;
+  handle: string;
+  background: string;
+  portrait: string | null;
+  pronouns?: string;
+  
+  attributes: {
+    reflex: number;
+    body: number;
+    tech: number;
+    neural: number;
+    edge: number;
+    presence: number;
+  };
+  
+  skills: Record<string, number>;
+  
+  derived: {
+    stress: number;
+    stressMax: number;
+    wounds: WoundSlot[];
+    armor: number;
+  };
+  
+  cyberware: Cyberware[];
+  gear: GearItem[];
+  weapons: PlayerWeapon[];
+  contacts: Contact[];
+  notes: string;
+  credits: number;
+  experience: number;
+  
+  meta?: {
+    created?: string;
+    lastModified?: string;
+  };
+}
+
+export interface WoundSlot {
+  slot: number;
+  name: string | null;
+  penalty: number | 'out';
+}
+
+export interface Cyberware {
+  id: string;
+  name: string;
+  slot: string;
+  glitch?: string;
+  active: boolean;
+}
+
+export interface GearItem {
+  id: string;
+  name: string;
+  quantity: number;
+}
+
+export interface PlayerWeapon {
+  id: string;
+  name: string;
+  damage: string;
+  type?: string;
+  range?: string;
+  ammo?: number;
+  ammoMax?: number;
+}
+
+export interface Contact {
+  name: string;
+  relationship: 'ally' | 'neutral' | 'rival';
+  description: string;
+}

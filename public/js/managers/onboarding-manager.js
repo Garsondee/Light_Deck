@@ -27,6 +27,7 @@ const OnboardingManager = (function() {
     
     const CHARACTER_PHASES = {
         IDENTITY: 'identity',
+        PORTRAIT: 'portrait',
         BACKGROUND: 'background',
         ATTRIBUTES: 'attributes',
         SKILLS: 'skills',
@@ -37,6 +38,10 @@ const OnboardingManager = (function() {
         DETAILS: 'details',
         CONFIRM: 'confirm'
     };
+    
+    // Available portrait options
+    // These will be loaded dynamically from the server
+    let PORTRAITS = [];
     
     // Background definitions with debt
     const BACKGROUNDS = {
@@ -183,6 +188,7 @@ const OnboardingManager = (function() {
             name: '',
             handle: '',
             pronouns: 'they/them',
+            portrait: null,
             background: null,
             
             attributes: {
@@ -261,8 +267,28 @@ const OnboardingManager = (function() {
     function init() {
         console.log('[OnboardingManager] Initialized');
         
+        // Load available portraits from server
+        loadPortraits();
+        
         // Register onboarding commands with TerminalManager
         registerTerminalCommands();
+    }
+    
+    /**
+     * Load available portraits from the server
+     */
+    async function loadPortraits() {
+        try {
+            const response = await fetch('/api/portraits');
+            if (response.ok) {
+                PORTRAITS = await response.json();
+                console.log('[OnboardingManager] Loaded', PORTRAITS.length, 'portraits');
+            }
+        } catch (err) {
+            console.warn('[OnboardingManager] Failed to load portraits:', err);
+            // Fallback to empty array - will be handled gracefully
+            PORTRAITS = [];
+        }
     }
     
     /**
@@ -368,6 +394,15 @@ const OnboardingManager = (function() {
             }
         }, { description: 'Set pronouns' });
         
+        // Portrait command
+        TerminalManager.registerCommand('portrait', (args) => {
+            if (state.active && state.phase === PHASES.CHARACTER && state.characterPhase === CHARACTER_PHASES.PORTRAIT) {
+                setPortrait(args.join(' '));
+            } else {
+                TerminalManager.addLine('Command only available during portrait phase.', 'error');
+            }
+        }, { description: 'Select portrait by number' });
+        
         TerminalManager.registerCommand('background', (args) => {
             if (state.active && state.phase === PHASES.CHARACTER && state.characterPhase === CHARACTER_PHASES.BACKGROUND) {
                 setBackground(args.join(' '));
@@ -437,6 +472,7 @@ const OnboardingManager = (function() {
         state.character.name = '';
         state.character.handle = '';
         state.character.pronouns = 'they/them';
+        state.character.portrait = null;
         state.character.background = null;
         state.character.attributes = { reflex: 0, body: 0, tech: 0, neural: 0, edge: 0, presence: 0 };
         state.character.attributePoints = 8;
@@ -838,6 +874,64 @@ const OnboardingManager = (function() {
         term.addLine('  continue             - Next phase', 'output');
     }
     
+    function showPortraitPhase() {
+        state.characterPhase = CHARACTER_PHASES.PORTRAIT;
+        
+        const term = TerminalManager;
+        if (!term) return;
+        
+        term.addLine('', 'output');
+        term.addLine('═══ PORTRAIT ═══', 'system');
+        term.addLine('', 'output');
+        term.addLine("What do you look like?", 'output');
+        term.addLine('', 'output');
+        
+        if (PORTRAITS.length === 0) {
+            term.addLine('No portraits available. Skipping...', 'system');
+            term.addLine('Type "continue" to proceed.', 'output');
+            return;
+        }
+        
+        term.addLine('Available portraits:', 'system');
+        term.addLine('', 'output');
+        
+        PORTRAITS.forEach((portrait, i) => {
+            const selected = state.character.portrait === portrait.id ? ' [SELECTED]' : '';
+            term.addLine(`  [${i + 1}] ${portrait.name}${selected}`, 'output');
+        });
+        
+        term.addLine('', 'output');
+        term.addLine(`Type a number (1-${PORTRAITS.length}) to select, or: portrait <number>`, 'output');
+        term.addLine('Type "continue" to proceed.', 'output');
+    }
+    
+    function setPortrait(input) {
+        const term = TerminalManager;
+        
+        if (PORTRAITS.length === 0) {
+            if (term) term.addLine('No portraits available.', 'error');
+            return;
+        }
+        
+        const num = parseInt(input);
+        if (num >= 1 && num <= PORTRAITS.length) {
+            const portrait = PORTRAITS[num - 1];
+            state.character.portrait = portrait.id;
+            
+            if (term) {
+                term.addLine('', 'output');
+                term.addLine(`Portrait selected: ${portrait.name}`, 'system');
+                term.addLine(`Image: ${portrait.url}`, 'output');
+                term.addLine('', 'output');
+                term.addLine('Type "continue" to proceed.', 'system');
+            }
+        } else {
+            if (term) {
+                term.addLine(`Invalid selection. Choose 1-${PORTRAITS.length}.`, 'error');
+            }
+        }
+    }
+    
     function showBackgroundPhase() {
         state.characterPhase = CHARACTER_PHASES.BACKGROUND;
         
@@ -1189,8 +1283,14 @@ const OnboardingManager = (function() {
         state.active = false;
         state.phase = PHASES.COMPLETE;
         
-        // Save character data
+        // Build character data
         const characterData = buildCharacterData();
+        
+        // Save character to server
+        await saveCharacter(characterData);
+        
+        // Also save to localStorage as backup/quick access
+        saveCharacterToLocalStorage(characterData);
         
         // Emit completion event
         if (typeof EventBus !== 'undefined') {
@@ -1207,6 +1307,7 @@ const OnboardingManager = (function() {
             term.addLine('', 'output');
             await term.typewrite('Onboarding complete. Good luck out there.', { speed: 30, type: 'system' });
             term.addLine('', 'output');
+            term.addLine('Character saved.', 'system');
             term.addLine('Exiting terminal mode...', 'output');
         }
         
@@ -1220,14 +1321,71 @@ const OnboardingManager = (function() {
         return characterData;
     }
     
+    /**
+     * Save character to server
+     */
+    async function saveCharacter(characterData) {
+        try {
+            const response = await fetch('/api/characters', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(characterData)
+            });
+            
+            if (response.ok) {
+                console.log('[OnboardingManager] Character saved to server');
+            } else {
+                console.warn('[OnboardingManager] Failed to save character to server');
+            }
+        } catch (err) {
+            console.warn('[OnboardingManager] Error saving character:', err);
+        }
+    }
+    
+    /**
+     * Save character to localStorage for quick access
+     */
+    function saveCharacterToLocalStorage(characterData) {
+        try {
+            // Get existing characters list
+            const existing = JSON.parse(localStorage.getItem('lightdeck_characters') || '[]');
+            
+            // Remove if already exists (update)
+            const filtered = existing.filter(c => c.id !== characterData.id);
+            
+            // Add new character
+            filtered.unshift(characterData);
+            
+            // Keep only last 10 characters in localStorage
+            const trimmed = filtered.slice(0, 10);
+            
+            localStorage.setItem('lightdeck_characters', JSON.stringify(trimmed));
+            localStorage.setItem('lightdeck_active_character', characterData.id);
+            
+            console.log('[OnboardingManager] Character saved to localStorage');
+        } catch (err) {
+            console.warn('[OnboardingManager] Error saving to localStorage:', err);
+        }
+    }
+    
     function buildCharacterData() {
         const bg = BACKGROUNDS[state.character.background] || {};
+        
+        // Get portrait data if selected
+        const portraitData = state.character.portrait 
+            ? PORTRAITS.find(p => p.id === state.character.portrait) 
+            : null;
         
         return {
             id: generateCharacterId(),
             name: state.character.name,
             handle: state.character.handle,
             pronouns: state.character.pronouns,
+            portrait: portraitData ? {
+                id: portraitData.id,
+                name: portraitData.name,
+                url: portraitData.url
+            } : null,
             background: state.character.background,
             
             attributes: state.character.attributes,
@@ -1297,7 +1455,13 @@ const OnboardingManager = (function() {
                 // Advance within character sub-phases before moving to the next main phase
                 if (state.phase === PHASES.CHARACTER) {
                     if (state.characterPhase === CHARACTER_PHASES.IDENTITY) {
-                        // Move from identity -> background selection
+                        // Move from identity -> portrait selection
+                        showPortraitPhase();
+                        return true;
+                    }
+                    
+                    if (state.characterPhase === CHARACTER_PHASES.PORTRAIT) {
+                        // Move from portrait -> background selection
                         showBackgroundPhase();
                         return true;
                     }
@@ -1389,6 +1553,13 @@ const OnboardingManager = (function() {
                 }
                 break;
                 
+            case 'portrait':
+                if (state.phase === PHASES.CHARACTER && state.characterPhase === CHARACTER_PHASES.PORTRAIT) {
+                    setPortrait(args.join(' '));
+                    return true;
+                }
+                break;
+                
             case 'background':
                 if (state.phase === PHASES.CHARACTER && state.characterPhase === CHARACTER_PHASES.BACKGROUND) {
                     setBackground(args.join(' '));
@@ -1421,9 +1592,18 @@ const OnboardingManager = (function() {
     function handleInput(input) {
         if (!state.active) return false;
         
+        const num = parseInt(input);
+        
+        // Check for number input during portrait selection
+        if (state.phase === PHASES.CHARACTER && state.characterPhase === CHARACTER_PHASES.PORTRAIT) {
+            if (num >= 1 && num <= PORTRAITS.length) {
+                setPortrait(input);
+                return true;
+            }
+        }
+        
         // Check for number input during background selection
         if (state.phase === PHASES.CHARACTER && state.characterPhase === CHARACTER_PHASES.BACKGROUND) {
-            const num = parseInt(input);
             if (num >= 1 && num <= 6) {
                 setBackground(input);
                 return true;

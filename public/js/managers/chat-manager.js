@@ -1825,9 +1825,23 @@ const ChatManager = (function() {
     
     /**
      * Start the onboarding/character creation process
-     * This will switch to terminal mode on the main display
+     * Uses the new screen-based OnboardingFlow if available,
+     * falls back to legacy terminal-based OnboardingManager
      */
     function startOnboarding() {
+        // Try new screen-based onboarding first
+        if (typeof OnboardingFlow !== 'undefined' && OnboardingFlow.isInitialized()) {
+            if (OnboardingFlow.isActive()) {
+                addMessage('error', 'Onboarding already in progress. Use /cancel to exit.');
+                return;
+            }
+            
+            addMessage('system', 'Starting character creation...');
+            OnboardingFlow.start();
+            return;
+        }
+        
+        // Fall back to legacy terminal-based onboarding
         if (typeof OnboardingManager === 'undefined') {
             addMessage('error', 'Onboarding system not available');
             return;

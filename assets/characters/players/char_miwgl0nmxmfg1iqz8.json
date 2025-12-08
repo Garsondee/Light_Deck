@@ -1,0 +1,55 @@
+{
+  "id": "char_miwgl0nmxmfg1iqz8",
+  "name": "sdggsd",
+  "handle": "gsdgds",
+  "pronouns": "she/her",
+  "portrait": {
+    "id": "portrait_2",
+    "filename": "npc (2).png",
+    "name": "Portrait 2",
+    "url": "/assets/portraits/npc%20(2).png"
+  },
+  "background": {
+    "key": "nomad",
+    "name": "Nomad",
+    "skills": {
+      "survival": 1,
+      "firearms": 1
+    },
+    "gear": [
+      "Motorcycle",
+      "Road leathers",
+      "Rifle"
+    ],
+    "debt": 6000,
+    "creditor": {
+      "name": "The Dustrunners",
+      "type": "clan"
+    }
+  },
+  "settings": {
+    "audio": {
+      "musicVolume": 50,
+      "sfxVolume": 70
+    },
+    "visual": {
+      "brightness": 100,
+      "contrast": 100
+    }
+  },
+  "debt": {
+    "packages": [
+      "street_arsenal",
+      "tech_toolkit",
+      "chrome_upgrade"
+    ],
+    "packageDebt": 9500,
+    "totalDebt": 15500
+  },
+  "meta": {
+    "created": "2025-12-08T01:14:24.274Z",
+    "lastModified": "2025-12-08T01:14:24.615Z",
+    "version": "2.0",
+    "onboardingComplete": true
+  }
+}

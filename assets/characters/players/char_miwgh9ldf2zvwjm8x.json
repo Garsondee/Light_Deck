@@ -1,0 +1,55 @@
+{
+  "id": "char_miwgh9ldf2zvwjm8x",
+  "name": "fsadgsdg",
+  "handle": "gsdgsd",
+  "pronouns": "she/her",
+  "portrait": {
+    "id": "portrait_2",
+    "filename": "npc (2).png",
+    "name": "Portrait 2",
+    "url": "/assets/portraits/npc%20(2).png"
+  },
+  "background": {
+    "key": "corporate",
+    "name": "Corporate",
+    "skills": {
+      "persuasion": 1,
+      "investigation": 1
+    },
+    "gear": [
+      "Business suit",
+      "Encrypted comm",
+      "+2000¢"
+    ],
+    "debt": 15000,
+    "creditor": {
+      "name": "Meridian Systems Corp.",
+      "type": "corporation"
+    }
+  },
+  "settings": {
+    "audio": {
+      "musicVolume": 50,
+      "sfxVolume": 70
+    },
+    "visual": {
+      "brightness": 100,
+      "contrast": 100
+    }
+  },
+  "debt": {
+    "packages": [
+      "chrome_upgrade",
+      "tech_toolkit",
+      "street_arsenal"
+    ],
+    "packageDebt": 9500,
+    "totalDebt": 24500
+  },
+  "meta": {
+    "created": "2025-12-08T01:11:29.233Z",
+    "lastModified": "2025-12-08T01:11:29.540Z",
+    "version": "2.0",
+    "onboardingComplete": true
+  }
+}

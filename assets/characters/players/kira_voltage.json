@@ -1,113 +1,139 @@
 {
-    "id": "kira_voltage",
-    "name": "Kira Tanaka",
-    "handle": "Voltage",
-    "background": "techie",
-    "portrait": null,
-    
-    "attributes": {
-        "reflex": 1,
-        "body": 0,
-        "tech": 3,
-        "neural": 2,
-        "edge": 1,
-        "presence": 1
+  "id": "kira_voltage",
+  "name": "Kira Tanaka",
+  "handle": "Voltage",
+  "background": "techie",
+  "portrait": null,
+  "attributes": {
+    "reflex": 1,
+    "body": 0,
+    "tech": 3,
+    "neural": 2,
+    "edge": 1,
+    "presence": 1
+  },
+  "skills": {
+    "firearms": 1,
+    "heavy_weapons": 0,
+    "melee": 0,
+    "evasion": 2,
+    "netrunning": 3,
+    "hardware": 3,
+    "rigging": 2,
+    "medicine": 1,
+    "persuasion": 1,
+    "intimidation": 0,
+    "deception": 2,
+    "streetwise": 2,
+    "perception": 2,
+    "investigation": 1,
+    "stealth": 1,
+    "survival": 0
+  },
+  "derived": {
+    "stress": 0,
+    "stressMax": 5,
+    "wounds": [
+      {
+        "slot": 1,
+        "name": null,
+        "penalty": -1
+      },
+      {
+        "slot": 2,
+        "name": null,
+        "penalty": -2
+      },
+      {
+        "slot": 3,
+        "name": null,
+        "penalty": "out"
+      }
+    ],
+    "armor": 1
+  },
+  "cyberware": [
+    {
+      "id": "neural_link_mk2",
+      "name": "Neural Link Mk.II",
+      "slot": "head",
+      "glitch": "Sometimes I hear the Net whisper",
+      "active": true
     },
-    
-    "skills": {
-        "firearms": 1,
-        "heavy_weapons": 0,
-        "melee": 0,
-        "evasion": 2,
-        "netrunning": 3,
-        "hardware": 3,
-        "rigging": 2,
-        "medicine": 1,
-        "persuasion": 1,
-        "intimidation": 0,
-        "deception": 2,
-        "streetwise": 2,
-        "perception": 2,
-        "investigation": 1,
-        "stealth": 1,
-        "survival": 0
+    {
+      "id": "optic_hud",
+      "name": "Optic HUD Display",
+      "slot": "eyes",
+      "glitch": "Ads flicker in my peripheral vision",
+      "active": true
     },
-    
-    "derived": {
-        "stress": 0,
-        "stressMax": 5,
-        "wounds": [
-            { "slot": 1, "name": null, "penalty": -1 },
-            { "slot": 2, "name": null, "penalty": -2 },
-            { "slot": 3, "name": null, "penalty": "out" }
-        ],
-        "armor": 1
+    {
+      "id": "interface_plugs",
+      "name": "Interface Plugs",
+      "slot": "arms",
+      "glitch": "My fingers twitch when I'm near unshielded electronics",
+      "active": true
+    }
+  ],
+  "gear": [
+    {
+      "id": "cyberdeck_nomad",
+      "name": "Nomad Cyberdeck",
+      "quantity": 1
     },
-    
-    "cyberware": [
-        {
-            "id": "neural_link_mk2",
-            "name": "Neural Link Mk.II",
-            "slot": "head",
-            "glitch": "Sometimes I hear the Net whisper",
-            "active": true
-        },
-        {
-            "id": "optic_hud",
-            "name": "Optic HUD Display",
-            "slot": "eyes",
-            "glitch": "Ads flicker in my peripheral vision",
-            "active": true
-        },
-        {
-            "id": "interface_plugs",
-            "name": "Interface Plugs",
-            "slot": "arms",
-            "glitch": "My fingers twitch when I'm near unshielded electronics",
-            "active": true
-        }
-    ],
-    
-    "gear": [
-        { "id": "cyberdeck_nomad", "name": "Nomad Cyberdeck", "quantity": 1 },
-        { "id": "toolkit_electronics", "name": "Electronics Toolkit", "quantity": 1 },
-        { "id": "drone_recon", "name": "Recon Drone (Sparrow)", "quantity": 1 },
-        { "id": "credstick", "name": "Credstick", "quantity": 1 },
-        { "id": "burner_comm", "name": "Burner Comm", "quantity": 2 }
-    ],
-    
-    "weapons": [
-        {
-            "id": "pistol_light",
-            "name": "Kang Tao Type-7 Pistol",
-            "damage": "2d6",
-            "type": "kinetic",
-            "range": "short",
-            "ammo": 12,
-            "ammoMax": 12
-        }
-    ],
-    
-    "contacts": [
-        {
-            "name": "Marcus \"Patch\" Webb",
-            "relationship": "ally",
-            "description": "Ripperdoc in the Hollows. Owes Kira for saving his clinic from a gang shakedown."
-        },
-        {
-            "name": "Yuki Sato",
-            "relationship": "neutral",
-            "description": "Fixer who deals in tech salvage. Professional relationship, always takes a cut."
-        },
-        {
-            "name": "DataWraith",
-            "relationship": "rival",
-            "description": "Anonymous netrunner who burned Kira on a job. Identity unknown. Score to settle."
-        }
-    ],
-    
-    "notes": "Former Arasaka junior tech who walked away after discovering what they were really building. Now freelances in the sprawl, taking jobs that let her stick it to the corps. Has a soft spot for street kids—reminds her of herself before the scholarship.\n\nSignature move: Uses her drone for recon before any job. Never goes in blind.",
-    
-    "credits": 3200,
-    "experience": 0
+    {
+      "id": "toolkit_electronics",
+      "name": "Electronics Toolkit",
+      "quantity": 1
+    },
+    {
+      "id": "drone_recon",
+      "name": "Recon Drone (Sparrow)",
+      "quantity": 1
+    },
+    {
+      "id": "credstick",
+      "name": "Credstick",
+      "quantity": 1
+    },
+    {
+      "id": "burner_comm",
+      "name": "Burner Comm",
+      "quantity": 2
+    }
+  ],
+  "weapons": [
+    {
+      "id": "pistol_light",
+      "name": "Kang Tao Type-7 Pistol",
+      "damage": "2d6",
+      "type": "kinetic",
+      "range": "short",
+      "ammo": 12,
+      "ammoMax": 12
+    }
+  ],
+  "contacts": [
+    {
+      "name": "Marcus \"Patch\" Webb",
+      "relationship": "ally",
+      "description": "Ripperdoc in the Hollows. Owes Kira for saving his clinic from a gang shakedown."
+    },
+    {
+      "name": "Yuki Sato",
+      "relationship": "neutral",
+      "description": "Fixer who deals in tech salvage. Professional relationship, always takes a cut."
+    },
+    {
+      "name": "DataWraith",
+      "relationship": "rival",
+      "description": "Anonymous netrunner who burned Kira on a job. Identity unknown. Score to settle."
+    }
+  ],
+  "notes": "Former Arasaka junior tech who walked away after discovering what they were really building. Now freelances in the sprawl, taking jobs that let her stick it to the corps. Has a soft spot for street kids—reminds her of herself before the scholarship.\n\nSignature move: Uses her drone for recon before any job. Never goes in blind.",
+  "credits": 3200,
+  "experience": 0,
+  "meta": {
+    "lastModified": "2025-12-08T00:59:29.037Z"
+  }
 }

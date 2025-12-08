@@ -85,6 +85,7 @@ const SettingsUI = (function() {
         buildSceneViewerSection();
         buildTerminalSection();
         buildAudioSection();
+        buildOnboardingSection();
         buildPresetsSection();
         buildExportSection();
         
@@ -347,6 +348,215 @@ const SettingsUI = (function() {
         });
         
         setTimeout(initAudioControls, 500);
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════════
+    // ONBOARDING SECTION
+    // ═══════════════════════════════════════════════════════════════════════
+    
+    function buildOnboardingSection() {
+        const folder = pane.addFolder({ title: '🎮 Onboarding', expanded: false });
+        
+        // Onboarding controls
+        const onboardingState = {
+            active: false,
+            currentScreen: 'none'
+        };
+        
+        // Start/Stop buttons
+        folder.addButton({ title: '▶ Start Onboarding' }).on('click', () => {
+            if (typeof OnboardingFlow !== 'undefined' && OnboardingFlow.isInitialized()) {
+                OnboardingFlow.start();
+                onboardingState.active = true;
+                pane.refresh();
+            } else if (typeof OnboardingManager !== 'undefined') {
+                OnboardingManager.start();
+            }
+        });
+        
+        folder.addButton({ title: '⏹ Cancel Onboarding' }).on('click', () => {
+            if (typeof OnboardingFlow !== 'undefined' && OnboardingFlow.isActive()) {
+                OnboardingFlow.cancel();
+                onboardingState.active = false;
+                pane.refresh();
+            } else if (typeof OnboardingManager !== 'undefined' && OnboardingManager.isActive()) {
+                OnboardingManager.cancel();
+            }
+        });
+        
+        // Screen navigation (for testing)
+        const screenFolder = folder.addFolder({ title: 'Screen Navigation', expanded: false });
+        
+        screenFolder.addButton({ title: '→ Boot Screen' }).on('click', () => {
+            if (typeof OnboardingFlow !== 'undefined') {
+                OnboardingFlow.goToScreen('boot');
+            }
+        });
+        
+        screenFolder.addButton({ title: '→ Audio Screen' }).on('click', () => {
+            if (typeof OnboardingFlow !== 'undefined') {
+                OnboardingFlow.goToScreen('audio');
+            }
+        });
+        
+        screenFolder.addButton({ title: '→ Identity Screen' }).on('click', () => {
+            if (typeof OnboardingFlow !== 'undefined') {
+                OnboardingFlow.goToScreen('identity');
+            }
+        });
+        
+        screenFolder.addButton({ title: '→ Portrait Screen' }).on('click', () => {
+            if (typeof OnboardingFlow !== 'undefined') {
+                OnboardingFlow.goToScreen('portrait');
+            }
+        });
+        
+        // Debug info
+        const debugFolder = folder.addFolder({ title: 'Debug', expanded: false });
+        
+        debugFolder.addMonitor(onboardingState, 'active', { label: 'Active' });
+        
+        // Update monitor periodically
+        setInterval(() => {
+            if (typeof OnboardingFlow !== 'undefined') {
+                onboardingState.active = OnboardingFlow.isActive();
+                onboardingState.currentScreen = OnboardingFlow.getCurrentScreen() || 'none';
+            }
+        }, 500);
+        
+        // ═══════════════════════════════════════════════════════════════════
+        // CRT OVERRIDES - Onboarding-specific CRT settings
+        // ═══════════════════════════════════════════════════════════════════
+        const crtFolder = folder.addFolder({ title: 'CRT Overrides', expanded: false });
+        
+        // Onboarding-specific CRT config preset (hard-coded for readability)
+        const onboardingCRT = {
+            brightness: 1.0,
+            contrast: 1.0,
+            scanlineIntensity: 0.01,
+            noiseIntensity: 0.0,
+            vignetteStrength: 0.80,
+            shimmerIntensity: 0.25,
+            unrealBloomEnabled: true,
+            unrealBloomStrength: 0.66,
+            unrealBloomRadius: 1.0,
+            chromaticAberration: 0.001,
+            // Neutral curvature for onboarding to avoid input misalignment.
+            barrelDistortion: 0.0,
+            barrelZoom: 1.0,
+            phosphorMaskIntensity: 0.10,
+            glitchAmount: 0.0
+        };
+        
+        function applyOnboardingCRT() {
+            if (typeof OnboardingScreenManager !== 'undefined' &&
+                OnboardingScreenManager.setCRTConfig) {
+                OnboardingScreenManager.setCRTConfig(onboardingCRT);
+            }
+        }
+        
+        // Color / Brightness
+        crtFolder.addInput(onboardingCRT, 'brightness', {
+            label: 'Brightness', min: 0.5, max: 2.0, step: 0.01
+        }).on('change', applyOnboardingCRT);
+        
+        crtFolder.addInput(onboardingCRT, 'contrast', {
+            label: 'Contrast', min: 0.5, max: 2.0, step: 0.01
+        }).on('change', applyOnboardingCRT);
+        
+        // Effects
+        crtFolder.addInput(onboardingCRT, 'scanlineIntensity', {
+            label: 'Scanlines', min: 0, max: 0.3, step: 0.01
+        }).on('change', applyOnboardingCRT);
+        
+        crtFolder.addInput(onboardingCRT, 'noiseIntensity', {
+            label: 'Noise', min: 0, max: 0.1, step: 0.005
+        }).on('change', applyOnboardingCRT);
+        
+        crtFolder.addInput(onboardingCRT, 'vignetteStrength', {
+            label: 'Vignette', min: 0, max: 0.8, step: 0.01
+        }).on('change', applyOnboardingCRT);
+        
+        crtFolder.addInput(onboardingCRT, 'shimmerIntensity', {
+            label: 'Shimmer', min: 0, max: 0.5, step: 0.01
+        }).on('change', applyOnboardingCRT);
+        
+        // Bloom
+        crtFolder.addInput(onboardingCRT, 'unrealBloomEnabled', {
+            label: 'Bloom Enabled'
+        }).on('change', applyOnboardingCRT);
+        
+        crtFolder.addInput(onboardingCRT, 'unrealBloomStrength', {
+            label: 'Bloom Strength', min: 0, max: 3, step: 0.01
+        }).on('change', applyOnboardingCRT);
+        
+        crtFolder.addInput(onboardingCRT, 'unrealBloomRadius', {
+            label: 'Bloom Radius', min: 0, max: 1, step: 0.01
+        }).on('change', applyOnboardingCRT);
+        
+        // CRT Effects
+        crtFolder.addInput(onboardingCRT, 'chromaticAberration', {
+            label: 'Chromatic Aberration', min: 0, max: 0.02, step: 0.001
+        }).on('change', applyOnboardingCRT);
+        
+        crtFolder.addInput(onboardingCRT, 'barrelDistortion', {
+            label: 'Barrel Distortion', min: 0, max: 0.5, step: 0.01
+        }).on('change', applyOnboardingCRT);
+        
+        crtFolder.addInput(onboardingCRT, 'barrelZoom', {
+            label: 'Zoom Compensation', min: 0.9, max: 1.2, step: 0.01
+        }).on('change', applyOnboardingCRT);
+        
+        crtFolder.addInput(onboardingCRT, 'phosphorMaskIntensity', {
+            label: 'Phosphor Mask', min: 0, max: 1, step: 0.01
+        }).on('change', applyOnboardingCRT);
+        
+        crtFolder.addInput(onboardingCRT, 'glitchAmount', {
+            label: 'Glitch Amount', min: 0, max: 1, step: 0.01
+        }).on('change', applyOnboardingCRT);
+        
+        // Utility buttons
+        crtFolder.addButton({ title: '↺ Copy from Scene Viewer' }).on('click', () => {
+            if (typeof CRTShader !== 'undefined' && CRTShader.config) {
+                const c = CRTShader.config;
+                onboardingCRT.brightness = c.brightness;
+                onboardingCRT.contrast = c.contrast;
+                onboardingCRT.scanlineIntensity = c.scanlineIntensity;
+                onboardingCRT.noiseIntensity = c.noiseIntensity;
+                onboardingCRT.vignetteStrength = c.vignetteStrength;
+                onboardingCRT.shimmerIntensity = c.shimmerIntensity;
+                onboardingCRT.unrealBloomEnabled = c.unrealBloomEnabled;
+                onboardingCRT.unrealBloomStrength = c.unrealBloomStrength;
+                onboardingCRT.unrealBloomRadius = c.unrealBloomRadius;
+                onboardingCRT.chromaticAberration = c.chromaticAberration;
+                onboardingCRT.barrelDistortion = c.barrelDistortion;
+                onboardingCRT.barrelZoom = c.barrelZoom;
+                onboardingCRT.phosphorMaskIntensity = c.phosphorMaskIntensity;
+                onboardingCRT.glitchAmount = c.glitchAmount;
+                applyOnboardingCRT();
+                pane.refresh();
+            }
+        });
+        
+        crtFolder.addButton({ title: '🖥️ Use Clean Preset' }).on('click', () => {
+            // A cleaner preset for onboarding readability
+            onboardingCRT.brightness = 1.1;
+            onboardingCRT.contrast = 1.0;
+            onboardingCRT.scanlineIntensity = 0.01;
+            onboardingCRT.noiseIntensity = 0.0;
+            onboardingCRT.vignetteStrength = 0.3;
+            onboardingCRT.shimmerIntensity = 0.0;
+            onboardingCRT.unrealBloomEnabled = true;
+            onboardingCRT.unrealBloomStrength = 0.5;
+            onboardingCRT.unrealBloomRadius = 0.3;
+            onboardingCRT.chromaticAberration = 0.001;
+            onboardingCRT.barrelDistortion = 0.05;
+            onboardingCRT.barrelZoom = 1.02;
+            onboardingCRT.phosphorMaskIntensity = 0.05;
+            onboardingCRT.glitchAmount = 0.0;
+            applyOnboardingCRT();
+            pane.refresh();
+        });
     }
     
     // ═══════════════════════════════════════════════════════════════════════

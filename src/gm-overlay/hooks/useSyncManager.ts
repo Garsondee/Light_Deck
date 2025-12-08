@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useChatStore } from '../store/chatStore';
 import { useSceneStore } from '../store/sceneStore';
 import { useSessionStore } from '../store/sessionStore';
+import { usePlayerStore } from '../store/playerStore';
+import type { ConnectedPlayer } from '../types';
 
 // Socket.io types
 interface Socket {
@@ -40,6 +42,7 @@ export function useSyncManager() {
   const { addMessage } = useChatStore();
   const { goToSceneById, loadScenes, activateScene } = useSceneStore();
   const { addRecentScene } = useSessionStore();
+  const { setConnectedPlayers, addConnectedPlayer, removeConnectedPlayer } = usePlayerStore();
 
   // Wait for Socket.io to load
   useEffect(() => {
@@ -135,6 +138,17 @@ export function useSyncManager() {
     // Handle presence updates
     socket.on(MessageType.PRESENCE, (data) => {
       console.log('[GM Overlay] Presence update:', data.users);
+      
+      // Update player store with connected users
+      const players: ConnectedPlayer[] = data.users.map((u: any) => ({
+        socketId: u.socketId || u.id,
+        name: u.name,
+        role: u.role,
+        view: u.view || 'unknown',
+        characterId: u.characterId,
+      }));
+      setConnectedPlayers(players);
+      
       addMessage({
         type: 'system',
         text: `${data.users.length} user(s) connected`,
@@ -143,6 +157,15 @@ export function useSyncManager() {
 
     // Handle user join
     socket.on(MessageType.JOIN, (data) => {
+      // Add to connected players
+      addConnectedPlayer({
+        socketId: data.socketId || data.id || '',
+        name: data.name,
+        role: data.role,
+        view: data.view || 'unknown',
+        characterId: data.characterId,
+      });
+      
       addMessage({
         type: 'system',
         text: `${data.name} joined (${data.role})`,
@@ -150,7 +173,12 @@ export function useSyncManager() {
     });
 
     // Handle user leave
-    socket.on(MessageType.LEAVE, () => {
+    socket.on(MessageType.LEAVE, (data) => {
+      // Remove from connected players
+      if (data?.socketId) {
+        removeConnectedPlayer(data.socketId);
+      }
+      
       addMessage({
         type: 'system',
         text: `User left`,
@@ -170,7 +198,7 @@ export function useSyncManager() {
       socket.disconnect();
       socketRef.current = null;
     };
-  }, [ioReady, addMessage]);
+  }, [ioReady, addMessage, setConnectedPlayers, addConnectedPlayer, removeConnectedPlayer]);
 
   // Handle scene activation events
   useEffect(() => {

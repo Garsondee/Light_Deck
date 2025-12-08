@@ -137,6 +137,20 @@ const App = (function() {
         // Initialize SyncManager (multiplayer synchronization)
         initSyncManager();
         
+        // Initialize OnboardingFlow (new screen-based onboarding)
+        if (typeof OnboardingFlow !== 'undefined') {
+            const scene = ThreeSetup.getScene();
+            OnboardingFlow.init(scene);
+            console.log('[APP] OnboardingFlow initialized');
+            
+            // Register update callback with AnimationManager
+            if (typeof AnimationManager !== 'undefined') {
+                AnimationManager.register('onboarding', (delta) => {
+                    OnboardingFlow.update(delta / 1000);  // Convert ms to seconds
+                }, { priority: 50 });
+            }
+        }
+        
         // Set up UI event listeners
         initDicePanel();
         initGMButton();
