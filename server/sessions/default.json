@@ -1,0 +1,331 @@
+{
+  "id": "default",
+  "adventureId": null,
+  "currentScene": null,
+  "users": {
+    "63f051194701014f14f9304a5c59218afaf10ccea4d59dc445c56a5c4c5fc126": {
+      "token": "63f051194701014f14f9304a5c59218afaf10ccea4d59dc445c56a5c4c5fc126",
+      "name": "Player_7FRO",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198415171,
+      "connected": false
+    },
+    "30433b154b081e4145351a2316616bb3bd25d3ff96459f1c1fb6b55404e5b6e4": {
+      "token": "30433b154b081e4145351a2316616bb3bd25d3ff96459f1c1fb6b55404e5b6e4",
+      "name": "Player_RXD1",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198417886,
+      "connected": false
+    },
+    "bd613c2308e6a502cbc6e7a45602c386eb87951b68ac6292595c85f8374e8db2": {
+      "token": "bd613c2308e6a502cbc6e7a45602c386eb87951b68ac6292595c85f8374e8db2",
+      "name": "Player_905P",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198407807,
+      "connected": false
+    },
+    "84085400b09eacd53959aeac9a294a0e9bc7806cee8a80f0e73802a72f38e414": {
+      "token": "84085400b09eacd53959aeac9a294a0e9bc7806cee8a80f0e73802a72f38e414",
+      "name": "Player_2XDD",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198409294,
+      "connected": false
+    },
+    "559cf4ce036c0a61ece2d92d04e4928c6f02d47be7f02087ee7285067cd964ba": {
+      "token": "559cf4ce036c0a61ece2d92d04e4928c6f02d47be7f02087ee7285067cd964ba",
+      "name": "Player_IE6L",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198418611,
+      "connected": false
+    },
+    "cf1f0d0b1947406cbbb85ef961a561adc3a0ea389a713e7d4867ca41cddff8fd": {
+      "token": "cf1f0d0b1947406cbbb85ef961a561adc3a0ea389a713e7d4867ca41cddff8fd",
+      "name": "Player_3NNR",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198407611,
+      "connected": false
+    },
+    "280160909f52f358ec20ef6367c4112967964b2e596236fe9286bc26a3f53b00": {
+      "token": "280160909f52f358ec20ef6367c4112967964b2e596236fe9286bc26a3f53b00",
+      "name": "Player_AXIJ",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198416911,
+      "connected": false
+    },
+    "f3863a4cf03d5cdec46aa0d1eb785f8e6a3404fb89eae7730bd8cfea21876f2d": {
+      "token": "f3863a4cf03d5cdec46aa0d1eb785f8e6a3404fb89eae7730bd8cfea21876f2d",
+      "name": "Player_3OQ0",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198417084,
+      "connected": false
+    },
+    "006faa13460144f0239d0e94c2457addfe7bc776cf3e076b2c07e0c2fa8b8b7d": {
+      "token": "006faa13460144f0239d0e94c2457addfe7bc776cf3e076b2c07e0c2fa8b8b7d",
+      "name": "Player_KVCN",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198424292,
+      "connected": false
+    },
+    "a5b24d7a304528eb82e38b6ad2cd43a7d2bdce1df2f153ffac8548eb84933640": {
+      "token": "a5b24d7a304528eb82e38b6ad2cd43a7d2bdce1df2f153ffac8548eb84933640",
+      "name": "Player_LQ8N",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198434889,
+      "connected": false
+    },
+    "9f85d8fc766837cad71b796ddf1308f45251b74991104704f1545bf762495ae3": {
+      "token": "9f85d8fc766837cad71b796ddf1308f45251b74991104704f1545bf762495ae3",
+      "name": "Player_4H6A",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198446373,
+      "connected": false
+    },
+    "61a92fa8928b422b268de80d5a0234e4a9bc925f424dfac575fa7ec121f5c8d1": {
+      "token": "61a92fa8928b422b268de80d5a0234e4a9bc925f424dfac575fa7ec121f5c8d1",
+      "name": "Player_2Q1Y",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198428741,
+      "connected": false
+    },
+    "9f5796be5b4c10b2e7654725e0fe4dcdbd439ed88738832df2c59a3f85aab9d6": {
+      "token": "9f5796be5b4c10b2e7654725e0fe4dcdbd439ed88738832df2c59a3f85aab9d6",
+      "name": "Player_DHNS",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198427058,
+      "connected": false
+    },
+    "ead4c6d17b45974a47332d77eb5017eeb3b62e4282f88e716895d3af014d29ba": {
+      "token": "ead4c6d17b45974a47332d77eb5017eeb3b62e4282f88e716895d3af014d29ba",
+      "name": "Player_1JC3",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198447181,
+      "connected": false
+    },
+    "6c2cdcf5a22cb0e79d0a1ef58a0105beddcad7cf5ac44e2d7dc782f346b2db8d": {
+      "token": "6c2cdcf5a22cb0e79d0a1ef58a0105beddcad7cf5ac44e2d7dc782f346b2db8d",
+      "name": "Player_KWRA",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198437745,
+      "connected": false
+    },
+    "15be789fd4169367b4bf0be80a9de40aeb37e2bf75f6955f85974d4ba648cc1a": {
+      "token": "15be789fd4169367b4bf0be80a9de40aeb37e2bf75f6955f85974d4ba648cc1a",
+      "name": "Player_G107",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198434861,
+      "connected": false
+    },
+    "ef29190090a9374549a05490e4762004f414efc4fefb73151da8df379ff04582": {
+      "token": "ef29190090a9374549a05490e4762004f414efc4fefb73151da8df379ff04582",
+      "name": "Player_SB82",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198437106,
+      "connected": true
+    },
+    "4e209ee1c6198f83f600ea65478c535351bff4445cbde77da1370f041d6a4c8d": {
+      "token": "4e209ee1c6198f83f600ea65478c535351bff4445cbde77da1370f041d6a4c8d",
+      "name": "Player_G862",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198439652,
+      "connected": true
+    },
+    "11d9e2c71be1fbc8a1823b881e728f9acdee3442878859fd2cc191bcee12eca7": {
+      "token": "11d9e2c71be1fbc8a1823b881e728f9acdee3442878859fd2cc191bcee12eca7",
+      "name": "Player_ERGP",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198491616,
+      "connected": false
+    },
+    "cff5da864a1b8b626af27067e7c32303589311fadcd79c2a3f41b9b4521493ee": {
+      "token": "cff5da864a1b8b626af27067e7c32303589311fadcd79c2a3f41b9b4521493ee",
+      "name": "Player_P1JM",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198491641,
+      "connected": false
+    },
+    "076e0d27fdbaf01b98a460683e1bfa0469068cf745f5ce5f1ec77d3e9d9ba4fa": {
+      "token": "076e0d27fdbaf01b98a460683e1bfa0469068cf745f5ce5f1ec77d3e9d9ba4fa",
+      "name": "Player_TGX3",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198500046,
+      "connected": false
+    },
+    "1199b3f2acf5a5264dc57722cfb2cf6d97f49bb944a27fdb35785d72da3c51b8": {
+      "token": "1199b3f2acf5a5264dc57722cfb2cf6d97f49bb944a27fdb35785d72da3c51b8",
+      "name": "Player_A7NQ",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198492293,
+      "connected": false
+    },
+    "5ac25faa48a75f73d2bffe82a69a6d62c11caa2e420162e750a98e28e96e4bfa": {
+      "token": "5ac25faa48a75f73d2bffe82a69a6d62c11caa2e420162e750a98e28e96e4bfa",
+      "name": "Player_YECX",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198500049,
+      "connected": false
+    },
+    "dbb3a9cee657580e7fa3b3774dd959fa7921bb69f7b8628ef6fcd5b30f3a6d32": {
+      "token": "dbb3a9cee657580e7fa3b3774dd959fa7921bb69f7b8628ef6fcd5b30f3a6d32",
+      "name": "Player_NYH5",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198499693,
+      "connected": false
+    },
+    "ffb8b61614e2d05b07da56323dba7eea5378e4f7ae6b920869eeefc3d7a93c80": {
+      "token": "ffb8b61614e2d05b07da56323dba7eea5378e4f7ae6b920869eeefc3d7a93c80",
+      "name": "Player_RDK5",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198498904,
+      "connected": false
+    },
+    "99bec9d24f84539583866a1d95a190a5c745f703e6143c0f680d278adfac12ba": {
+      "token": "99bec9d24f84539583866a1d95a190a5c745f703e6143c0f680d278adfac12ba",
+      "name": "Player_TCZJ",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198506135,
+      "connected": false
+    },
+    "7e8ecd1ff6217637ed35cd3469bd19789e6e105f00af9fbdc0bf3ea29834d25c": {
+      "token": "7e8ecd1ff6217637ed35cd3469bd19789e6e105f00af9fbdc0bf3ea29834d25c",
+      "name": "Player_XVV0",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198516887,
+      "connected": false
+    },
+    "04f63b045cd598dd2e66b1cb922f832b748a90822050b1edd93b0081b13725f9": {
+      "token": "04f63b045cd598dd2e66b1cb922f832b748a90822050b1edd93b0081b13725f9",
+      "name": "Player_LZTC",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198527096,
+      "connected": false
+    },
+    "79f7136ae4dafb8642fb79ce0dcb2ddca0a3d0a783a4a9927ae5ff71be3fb741": {
+      "token": "79f7136ae4dafb8642fb79ce0dcb2ddca0a3d0a783a4a9927ae5ff71be3fb741",
+      "name": "Player_GR98",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198507050,
+      "connected": false
+    },
+    "97817b1abd3772a45b8a1685be34dda5704cab736588c786475622cbde9ab008": {
+      "token": "97817b1abd3772a45b8a1685be34dda5704cab736588c786475622cbde9ab008",
+      "name": "Player_W61Q",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198510505,
+      "connected": false
+    },
+    "8f7fcfa362734b1c02e5a2e5e6116df73c5959eabe3d2e313ebfaeae7c1613b2": {
+      "token": "8f7fcfa362734b1c02e5a2e5e6116df73c5959eabe3d2e313ebfaeae7c1613b2",
+      "name": "Player_KD1Z",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198527880,
+      "connected": false
+    },
+    "145802cd6969e60f4f33d915009e732a763e26ce0cb95fd24b97387b050b58e9": {
+      "token": "145802cd6969e60f4f33d915009e732a763e26ce0cb95fd24b97387b050b58e9",
+      "name": "Player_NVLN",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198514860,
+      "connected": false
+    },
+    "9f9a9e4cff1a6b582aa388b5dab328fc000e90a282f1d20fce6359d826aef381": {
+      "token": "9f9a9e4cff1a6b582aa388b5dab328fc000e90a282f1d20fce6359d826aef381",
+      "name": "Player_F5SU",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198519342,
+      "connected": false
+    },
+    "ed84c2d1e48c7da4bce159ce35c81730bef83cb0f041916e87aaf98f478c305f": {
+      "token": "ed84c2d1e48c7da4bce159ce35c81730bef83cb0f041916e87aaf98f478c305f",
+      "name": "Player_T8WT",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198518802,
+      "connected": true
+    },
+    "4dce118cc0741381671bcc71b47bfa83ec7058dc56da6fdcc82bd58b8d1122f3": {
+      "token": "4dce118cc0741381671bcc71b47bfa83ec7058dc56da6fdcc82bd58b8d1122f3",
+      "name": "Player_PS1T",
+      "role": "player",
+      "view": "scene",
+      "characterId": null,
+      "lastSeen": 1765198521168,
+      "connected": true
+    }
+  },
+  "npcStates": {},
+  "flags": {},
+  "campaignClock": {
+    "day": 1,
+    "time": "00:00"
+  },
+  "chatHistory": [],
+  "createdAt": 1765198394660,
+  "updatedAt": 1765198527880
+}

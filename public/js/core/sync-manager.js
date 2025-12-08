@@ -52,7 +52,13 @@ const SyncManager = (function() {
         
         // Self-test
         ECHO_REQUEST: 'sync:echo_request',
-        ECHO_RESPONSE: 'sync:echo_response'
+        ECHO_RESPONSE: 'sync:echo_response',
+        
+        // Session persistence
+        RECONNECT: 'sync:reconnect',
+        TOKEN: 'sync:token',
+        NPC_STATE: 'sync:npc_state',
+        FLAG_UPDATE: 'sync:flag_update'
     };
     
     // View modes
@@ -74,9 +80,13 @@ const SyncManager = (function() {
     let initialized = false;
     let socket = null;
     
+    // Storage key for session token
+    const TOKEN_STORAGE_KEY = 'lightdeck_session_token';
+    
     // Local user state
     const localState = {
         id: null,           // Socket ID
+        token: null,        // Session persistence token
         name: 'Anonymous',  // Display name
         role: Role.PLAYER,  // 'player' or 'gm'
         view: ViewMode.SCENE_VIEWER,  // Current view mode
@@ -320,10 +330,59 @@ const SyncManager = (function() {
         // ─────────────────────────────────────────────────────────────────
         
         socket.on(MessageType.STATE_SYNC, (data) => {
-            console.log('[SyncManager] State sync received');
+            console.log('[SyncManager] State sync received:', data);
+            
+            // Apply restored state
+            if (data.currentScene) {
+                console.log('[SyncManager] Restoring scene:', data.currentScene);
+                emitEvent('sync:scene_change', { scene: data.currentScene, isRestore: true });
+            }
+            
+            if (data.npcStates) {
+                console.log('[SyncManager] Restoring NPC states:', Object.keys(data.npcStates).length, 'NPCs');
+                emitEvent('sync:npc_states_restored', { npcStates: data.npcStates });
+            }
+            
+            if (data.flags) {
+                console.log('[SyncManager] Restoring flags:', Object.keys(data.flags).length, 'flags');
+                emitEvent('sync:flags_restored', { flags: data.flags });
+            }
             
             if (handlers.onStateSync) handlers.onStateSync(data);
             emitEvent('sync:state', data);
+        });
+        
+        // ─────────────────────────────────────────────────────────────────
+        // SESSION PERSISTENCE EVENTS
+        // ─────────────────────────────────────────────────────────────────
+        
+        // Token received from server (store for reconnection)
+        socket.on(MessageType.TOKEN, (data) => {
+            if (data.token) {
+                storeToken(data.token);
+            }
+        });
+        
+        // NPC state update from GM
+        socket.on(MessageType.NPC_STATE, (data) => {
+            const { from, npcId, ...updates } = data;
+            
+            // Don't echo our own updates back
+            if (from === localState.id) return;
+            
+            console.log('[SyncManager] NPC state update:', npcId, updates);
+            emitEvent('sync:npc_state', { npcId, ...updates });
+        });
+        
+        // Flag update from GM
+        socket.on(MessageType.FLAG_UPDATE, (data) => {
+            const { from, key, value } = data;
+            
+            // Don't echo our own updates back
+            if (from === localState.id) return;
+            
+            console.log('[SyncManager] Flag update:', key, '=', value);
+            emitEvent('sync:flag_update', { key, value });
         });
         
         // ─────────────────────────────────────────────────────────────────
@@ -440,12 +499,46 @@ const SyncManager = (function() {
     function sendJoin() {
         if (!socket || !connection.connected) return;
         
+        // Try to load existing token from localStorage
+        const storedToken = localStorage.getItem(TOKEN_STORAGE_KEY);
+        if (storedToken) {
+            localState.token = storedToken;
+            console.log('[SyncManager] Found stored session token, attempting reconnect');
+        }
+        
         socket.emit(MessageType.JOIN, {
             name: localState.name,
             role: localState.role,
             view: localState.view,
-            sessionId: localState.sessionId
+            sessionId: localState.sessionId,
+            token: localState.token
         });
+    }
+    
+    /**
+     * Store session token received from server
+     */
+    function storeToken(token) {
+        localState.token = token;
+        localStorage.setItem(TOKEN_STORAGE_KEY, token);
+        console.log('[SyncManager] Session token stored');
+    }
+    
+    /**
+     * Clear stored session token
+     */
+    function clearToken() {
+        localState.token = null;
+        localStorage.removeItem(TOKEN_STORAGE_KEY);
+        console.log('[SyncManager] Session token cleared');
+    }
+    
+    /**
+     * Request current session state from server
+     */
+    function requestState() {
+        if (!socket || !connection.connected) return;
+        socket.emit(MessageType.STATE_REQUEST, {});
     }
     
     /**
@@ -678,6 +771,10 @@ const SyncManager = (function() {
         
         // Session
         getSessionId,
+        
+        // Session persistence
+        clearToken,
+        requestState,
         
         // Self-test
         isSelfTestPassed,

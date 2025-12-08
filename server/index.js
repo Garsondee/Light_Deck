@@ -5,6 +5,7 @@ const { Server } = require('socket.io');
 const path = require('path');
 const multer = require('multer');
 const fs = require('fs');
+const SessionManager = require('./SessionManager');
 
 const app = express();
 
@@ -1208,7 +1209,12 @@ const MessageType = {
     PONG: 'sync:pong',
     ERROR: 'sync:error',
     ECHO_REQUEST: 'sync:echo_request',
-    ECHO_RESPONSE: 'sync:echo_response'
+    ECHO_RESPONSE: 'sync:echo_response',
+    // Session persistence
+    RECONNECT: 'sync:reconnect',
+    TOKEN: 'sync:token',
+    NPC_STATE: 'sync:npc_state',
+    FLAG_UPDATE: 'sync:flag_update',
 };
 
 /**
@@ -1271,33 +1277,70 @@ io.on('connection', (socket) => {
     // ─────────────────────────────────────────────────────────────────────
     
     socket.on(MessageType.JOIN, (data) => {
-        const { name, role, view, sessionId } = data;
+        const { name, role, view, sessionId, token } = data;
         const roomId = sessionId || 'default';
         
-        // Store user
+        let userToken = token;
+        let isReconnect = false;
+        let persistentUser = null;
+        
+        // Check if this is a reconnection with existing token
+        if (token) {
+            const result = SessionManager.reconnectUser(token);
+            if (result) {
+                isReconnect = true;
+                persistentUser = result.user;
+                console.log('[Sync] User reconnected with token:', persistentUser.name);
+            }
+        }
+        
+        // If no valid token, register as new user
+        if (!persistentUser) {
+            const result = SessionManager.registerUser(roomId, {
+                name: name || 'Anonymous',
+                role: role || 'player',
+                view: view || 'scene',
+            });
+            userToken = result.token;
+            persistentUser = result.user;
+        }
+        
+        // Store in-memory user state (maps socket.id to user info)
         users.set(socket.id, {
             id: socket.id,
-            name: name || 'Anonymous',
-            role: role || 'player',
-            view: view || 'scene',
+            token: userToken,
+            name: persistentUser.name,
+            role: persistentUser.role,
+            view: persistentUser.view,
             sessionId: roomId
         });
         
         // Join socket.io room
         socket.join(roomId);
         
-        // Add to session
+        // Add to in-memory session
         const session = getSession(roomId);
         session.players.add(socket.id);
         
-        console.log('[Sync] User joined:', name, `(${role})`, 'in session:', roomId);
+        console.log('[Sync] User joined:', persistentUser.name, `(${persistentUser.role})`, 'in session:', roomId, isReconnect ? '(reconnect)' : '(new)');
+        
+        // Send token to client for storage
+        socket.emit(MessageType.TOKEN, { token: userToken });
+        
+        // If reconnecting, send current session state
+        if (isReconnect) {
+            const sessionState = SessionManager.getSessionState(roomId);
+            if (sessionState) {
+                socket.emit(MessageType.STATE_SYNC, sessionState);
+            }
+        }
         
         // Broadcast join to others in session
         socket.to(roomId).emit(MessageType.JOIN, {
             id: socket.id,
-            name,
-            role,
-            view
+            name: persistentUser.name,
+            role: persistentUser.role,
+            view: persistentUser.view
         });
         
         // Send full presence to the joining user
@@ -1383,6 +1426,9 @@ io.on('connection', (socket) => {
             session.scene = data.scene;
         }
         
+        // Persist scene change
+        SessionManager.setScene(user.sessionId, data.scene);
+        
         // Broadcast to all players in session
         io.to(user.sessionId).emit(MessageType.SCENE_CHANGE, {
             from: socket.id,
@@ -1391,6 +1437,80 @@ io.on('connection', (socket) => {
         });
         
         console.log('[Sync] Scene change:', data.scene);
+    });
+    
+    // ─────────────────────────────────────────────────────────────────────
+    // NPC STATE: GM updates NPC status (alive, dead, hidden, etc.)
+    // ─────────────────────────────────────────────────────────────────────
+    
+    socket.on(MessageType.NPC_STATE, (data) => {
+        const user = users.get(socket.id);
+        if (!user || user.role !== 'gm') {
+            socket.emit(MessageType.ERROR, { message: 'Only GM can update NPC state' });
+            return;
+        }
+        
+        const { npcId, ...updates } = data;
+        if (!npcId) {
+            socket.emit(MessageType.ERROR, { message: 'NPC ID required' });
+            return;
+        }
+        
+        // Persist NPC state
+        SessionManager.updateNPCState(user.sessionId, npcId, updates);
+        
+        // Broadcast to all in session
+        io.to(user.sessionId).emit(MessageType.NPC_STATE, {
+            from: socket.id,
+            npcId,
+            ...updates
+        });
+        
+        console.log('[Sync] NPC state update:', npcId, updates);
+    });
+    
+    // ─────────────────────────────────────────────────────────────────────
+    // FLAG UPDATE: GM updates campaign flags
+    // ─────────────────────────────────────────────────────────────────────
+    
+    socket.on(MessageType.FLAG_UPDATE, (data) => {
+        const user = users.get(socket.id);
+        if (!user || user.role !== 'gm') {
+            socket.emit(MessageType.ERROR, { message: 'Only GM can update flags' });
+            return;
+        }
+        
+        const { key, value } = data;
+        if (!key) {
+            socket.emit(MessageType.ERROR, { message: 'Flag key required' });
+            return;
+        }
+        
+        // Persist flag
+        SessionManager.setFlag(user.sessionId, key, value);
+        
+        // Broadcast to all in session
+        io.to(user.sessionId).emit(MessageType.FLAG_UPDATE, {
+            from: socket.id,
+            key,
+            value
+        });
+        
+        console.log('[Sync] Flag update:', key, '=', value);
+    });
+    
+    // ─────────────────────────────────────────────────────────────────────
+    // STATE REQUEST: Client requests current session state
+    // ─────────────────────────────────────────────────────────────────────
+    
+    socket.on(MessageType.STATE_REQUEST, () => {
+        const user = users.get(socket.id);
+        if (!user) return;
+        
+        const sessionState = SessionManager.getSessionState(user.sessionId);
+        if (sessionState) {
+            socket.emit(MessageType.STATE_SYNC, sessionState);
+        }
     });
     
     // ─────────────────────────────────────────────────────────────────────
@@ -1463,17 +1583,38 @@ io.on('connection', (socket) => {
                 }
             }
             
+            // Mark user as disconnected in persistent session (preserves state for reconnect)
+            if (user.token) {
+                SessionManager.disconnectUser(user.token);
+            }
+            
             // Broadcast leave to session
             socket.to(user.sessionId).emit(MessageType.LEAVE, {
                 id: socket.id
             });
             
-            console.log('[Sync] User left:', user.name);
+            console.log('[Sync] User left:', user.name, '(state preserved for reconnect)');
             users.delete(socket.id);
         } else {
             console.log('[Sync] Client disconnected:', socket.id);
         }
     });
+});
+
+// Initialize SessionManager
+SessionManager.init();
+
+// Handle graceful shutdown
+process.on('SIGINT', () => {
+    console.log('\n[Server] Shutting down...');
+    SessionManager.saveAllSessions();
+    process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+    console.log('\n[Server] Shutting down...');
+    SessionManager.saveAllSessions();
+    process.exit(0);
 });
 
 // Start server

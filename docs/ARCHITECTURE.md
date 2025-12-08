@@ -6,246 +6,504 @@
 ## 1. Project Overview
 
 **Project Name:** Light Deck  
-**Target Users:** 1 GM + 1 Player (Netrunner/Programmer character)  
-**Platform:** Web / JavaScript + Three.js  
-**Hosting:** Self-hosted Ubuntu VM (Node.js backend)  
-**Core Concept:** A diegetic "Command Line" and "Augmented Reality" viewer. The player interacts with the game world exclusively through this screen, which simulates their cybernetic eyes and hacking deck. The GM controls scenes, content, and narrative flow from behind a password-protected interface.
+**Target Users:** 1 GM + X Players (Netrunner/Programmer character)  
+**Platform:** Web / Node.js + Three.js + React (GM Overlay)  
+**Hosting:** Node.js app on Linux (optionally behind a reverse proxy)  
+**Core Concept:** A diegetic "Command Line" + CRT viewer. The player experiences the game world entirely through a simulated cyberdeck display (ASCII/CRT effects, terminal, chat, dice). The GM runs the adventure through a separate, non-diegetic GM Overlay.
+
+High-level principles:
+
+- **Single Visual Pipeline (Player View):** Everything the player sees is rendered through Three.js with post‑processing (CRT, bloom, phosphor glow). No DOM overlays for the player.
+- **Asset‑Driven Adventure:** Scenes, terminals, adventure guide, and game content are JSON assets under `assets/`.
+- **Real‑Time Sync:** A Socket.io based SyncManager keeps GM and player views synchronized (scenes, chat, dice, presence).
+- **Non‑Diegetic GM Tools:** A React GM Overlay (`src/gm-overlay/`) provides structured access to scenes, NPCs, flags, and tools. Players never see this UI.
+
+---
+
+## 1.1 Progress & Roadmap
+
+### ✅ Completed
+
+| Area | Feature |
+|------|---------|
+| **Player Rendering** | Three.js-only CRT pipeline (no DOM UI for player) |
+| **Player Rendering** | Canvas-based terminal (`TerminalManager` + `TextRenderer`) |
+| **Player Rendering** | Canvas-based chat & dice (`ChatManager`) |
+| **Player Rendering** | CRT shader with ASCII mode toggle, phosphor glow, scanlines |
+| **Player Rendering** | Scene transitions (power-down/power-up CRT effect) |
+| **Multiplayer** | SyncManager (Socket.io): presence, chat, dice, scene sync |
+| **Multiplayer** | Self-test on connect, view-change broadcasts |
+| **Server** | Express static serving + REST APIs (characters, scenes, portraits, guides) |
+| **Server** | Socket.io message routing, sessions, GM auth |
+| **Content** | Scene JSON schema (challenges, triggers, exits, flags) |
+| **Content** | Adventure Guide JSON (state_tracking, items, clues) |
+| **Content** | Terminal JSON schema (filesystem, documents, programs, events) |
+| **GM Overlay v2** | React app with Zustand stores, Tailwind styling |
+| **GM Overlay v2** | Scene browsing vs activation (Shift+Enter to push to players) |
+| **GM Overlay v2** | Scene Jumper modal (Cmd+J) |
+| **GM Overlay v2** | Header, Breadcrumbs, IndexBar, MainPanel/Sidebar layout |
+| **GM Overlay v2** | Chat log panel with Socket.io integration |
+| **GM Overlay v2** | Player Manager panel (character editing) |
+| **GM Overlay v2** | NPC Detail View (loads from `/api/npcs/:id?role=gm`) |
+| **GM Overlay v2** | Global Search (Cmd+K) — searches scenes, NPCs, items |
+| **GM Overlay v2** | Ad-Hoc Skill Check modal — broadcasts roll to players |
+| **Multiplayer** | Session persistence — token-based reconnection with state recovery |
+| **Onboarding** | Visual ASCII-form onboarding screens (boot, audio, identity, portrait, background, debt, documents) |
+| **Onboarding** | Character JSON export and persistence via Character API |
+| **Testing** | Playwright tests for onboarding, terminal, chat, scenes |
+| **Testing** | Simulation tests (player archetypes + GM validator) |
+
+### 🚧 In Progress / Partial
+
+| Area | Feature | Status |
+|------|---------|--------|
+| **Onboarding** | Visual calibration screen | Planned, not yet built |
+
+### 📋 Discussed / Not Yet Implemented
+
+| Area | Feature | Notes |
+|------|---------|-------|
+| **GM Overlay v2** | Conversation Guide View | Disposition-based dialogue hints (see `GM_OVERLAY_V2_PLAN.md`) |
+| **GM Overlay v2** | Karaoke Mode | Teleprompter-style read-aloud scrolling |
+| **GM Overlay v2** | Session Scratchpad | Editable notes persisted to localStorage |
+| **GM Overlay v2** | Flags Panel | Toggle campaign flags from sidebar |
+| **GM Overlay v2** | Undo/Confirmation system | 5-second undo toast for scene activation |
+| **GM Overlay v2** | Dashboard / Hub view | Landing page with party status, campaign clock |
+| **GM Overlay v2** | Pop-out panels | Multi-monitor support |
+| **Player View** | In-world terminal apps | Load terminal JSON, run programs, filesystem navigation |
+| **Player View** | Combat system | Initiative, HP, conditions, stress |
+| **Player View** | Character sheet display | View/edit character in CRT UI |
+| **Multiplayer** | Private messages | GM ↔ Player whispers |
+| **Multiplayer** | Spectator mode | View-only access |
+| **Audio** | Scene-linked music/ambience | Auto-play on scene change |
 
 ---
 
 ## 2. High-Level Architecture
 
+```text
+┌────────────────────────────────────────────────────────────────────────────┐
+│                               LIGHT DECK                                   │
+├────────────────────────────────────────────────────────────────────────────┤
+│                                                                            │
+│  ┌─────────────────────────────────┐  ┌──────────────────────────────────┐ │
+│  │         PLAYER VIEW             │  │            GM VIEW               │ │
+│  │   (Three.js CRT Display)       │  │      (React GM Overlay v2)       │ │
+│  │                                 │  │                                  │ │
+│  │  - Scene Viewer (ASCII/CRT)    │  │  - Scene index & navigation      │ │
+│  │  - Terminal Mode               │  │  - NPC detail & flags            │ │
+│  │  - Chat & Dice (canvas text)   │  │  - Session notes & quick tools   │ │
+│  │                                 │  │  - Integration with SyncManager  │ │
+│  └─────────────────────────────────┘  └──────────────────────────────────┘ │
+│                                                                            │
+├────────────────────────────────────────────────────────────────────────────┤
+│                             NODE.JS SERVER                                │
+│                                                                            │
+│  - Express static serving (`/`, `/assets`, `/music`, `/sounds`, `/public`) │
+│  - REST endpoints: characters, scenes, portraits, adventure guides         │
+│  - Socket.io server for SyncManager                                       │
+│  - JSON assets on disk (scenes, guides, terminals, characters)           │
+│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                        THE OPTIC                                │
-├─────────────────────────────────────────────────────────────────┤
-│  ┌─────────────────────────────────┐  ┌──────────────────────┐  │
-│  │                                 │  │     CHAT LOG         │  │
-│  │      MAIN VIEWING AREA          │  │  (Rolls & Results)   │  │
-│  │      (ASCII Visual Feed)        │  │                      │  │
-│  │                                 │  │                      │  │
-│  │   - Scene Graphics              │  │  - Roll History      │  │
-│  │   - Terminal Overlay (toggle)   │  │  - GM Messages       │  │
-│  │   - Shimmer/Glitch Effects      │  │  - System Output     │  │
-│  │                                 │  │                      │  │
-│  │                                 │  ├──────────────────────┤  │
-│  │                                 │  │   DICE BUTTONS       │  │
-│  │                                 │  │  [d4][d6][d8][d10]   │  │
-│  │                                 │  │  [d12][d20][d100]    │  │
-│  │                                 │  │  [+mod][-mod][ROLL]  │  │
-│  └─────────────────────────────────┘  └──────────────────────┘  │
-├─────────────────────────────────────────────────────────────────┤
-│  [GM ACCESS] ← Password Protected                               │
-└─────────────────────────────────────────────────────────────────┘
-```
+
+There are **two primary UIs** sharing the same backend:
+
+- **Player CRT UI (public/index.html + Three.js):**
+  - Single canvas with CRT/ASCII shader pipeline.
+  - Text (terminal, chat, dice) rendered via `TextRenderer` → CanvasTexture → Three.js planes.
+  - Terminal and scene viewer share the same CRT/post‑processing stack.
+
+- **GM Overlay v2 (React, `src/gm-overlay/`):**
+  - DOM‑based React app, visually modern and non‑diegetic.
+  - Connects to the same Socket.io server as the player.
+  - Reads JSON scene/adventure data via HTTP APIs.
 
 ---
 
 ## 3. User Roles & Access
 
-### 3.1 Player Mode (Default)
-- Views the main ASCII visual feed
-- Interacts with the terminal overlay (when active)
-- Rolls dice via the dice panel
-- Reads chat log / roll history
+### 3.1 Player
 
-### 3.2 GM Mode (Password Protected)
-- **Access:** Button in corner → simple password prompt
-- **Security Note:** Basic protection only; system will run behind professional auth layer
-- **Capabilities:**
-  - Create/edit scenes
-  - Upload and configure scene images
-  - Manage terminal file contents
-  - Trigger visual effects (glitches, transitions)
-  - Send messages to chat log
-  - Control which files are "discoverable" or "decrypted"
+- Connects to the **Player View** (CRT canvas) in a browser.
+- Sees:
+  - ASCII/CRT scene viewer.
+  - Canvas‑based terminal mode.
+  - Canvas‑based chat and dice panel.
+- Interacts via:
+  - Keyboard (terminal commands, chat commands, dice rolls).
+  - Mouse (onboarding UI, clickable elements in some flows).
 
----
+### 3.2 Game Master (GM)
 
-## 4. Core Components
+- Uses the **GM Overlay v2** to run the adventure.
+- Sees:
+  - Scene index and navigation.
+  - NPC, item, and clue details.
+  - Flags and state tracking from the Adventure Guide.
+  - Integrated chat and presence information via SyncManager.
+- Controls:
+  - Which scene is active for players.
+  - When to trigger checks, reveals, and transitions.
+  - Player character records (via character APIs and tooling).
 
-### 4.1 Main Viewing Area (The Visual Feed)
-
-The dominant screen element. Displays the current scene as processed imagery.
-
-#### Visual Philosophy
-- **Source Material:** High-contrast images (Midjourney or similar) with "chiaroscuro" 3-shade palettes
-- **The Filter:** ASCII shader — image rendered entirely using text characters
-- **Color Palette:** Monochrome (Amber/Green on Black) or strict 3-bit color
-
-#### The "Living" Text Effects
-| Effect | Description | Trigger |
-|--------|-------------|---------|
-| **Shimmer** | Characters within same luminance range randomly swap every few frames | Constant (ambient) |
-| **Glitch** | Horizontal displacement, character corruption, ripple distortion | GM trigger, damage, narrative beats |
-| **Wipe/Recompile** | ASCII "rebuilds" when transitioning scenes | Scene change |
-
-#### Technical Decision: Three.js Rendering
-
-**Decision:** Use Three.js for the visual feed rendering.
-
-| Approach | Pros | Cons |
-|----------|------|------|
-| ~~HTML5 Canvas~~ | Simple 2D API | Limited shader support, manual everything |
-| ~~DOM Grid~~ | Easy styling | Poor performance at scale |
-| **Three.js** | GPU shaders, WebGL power, familiar to dev | Heavier dependency, overkill for simple 2D |
-
-**Rationale:** Three.js provides:
-- Custom GLSL shaders for the ASCII effect (runs on GPU)
-- Built-in animation loop and timing
-- Easy texture loading for scene images
-- Future-proofing for 3D effects if desired
-- Developer familiarity
-
-**Implementation:**
-- Render scene image to a plane geometry
-- Apply custom ASCII shader as material
-- Shimmer/glitch effects as shader uniforms
-- Terminal overlay remains DOM-based (HTML/CSS)
+Authentication is currently lightweight (password in `.env` and command‑level gating); the system is designed to run behind a more robust upstream auth layer if needed.
 
 ---
 
-### 4.2 Chat Log Panel (Right Side)
+## 4. Player Rendering Pipeline (Three.js + CRT)
 
-Persistent sidebar displaying:
-- **Roll Results:** Dice outcomes with timestamps
-- **GM Messages:** Narrative text, prompts
-- **System Output:** Terminal command results (mirrored)
-- **Player Actions:** Log of significant interactions
+### 4.1 Overview
 
-#### Dice Roller (Bottom of Chat Panel)
-- **Standard Dice:** d4, d6, d8, d10, d12, d20, d100
-- **Modifier Input:** +/- numeric field
-- **Multi-Dice:** Click multiple dice buttons to queue, then roll
-- **Roll Button:** Executes queued dice + modifier, outputs to chat log
+The player UI is rendered through a unified Three.js pipeline:
 
-```
-Example Output:
-[14:32] ROLL: 2d6 + 3 → [4, 6] + 3 = 13
+- **RenderManager** orchestrates the main scene, camera, render targets, and post‑processing.
+- **TextRenderer** draws text into HTML canvas elements (terminal, chat, dice, onboarding) and exposes them as `THREE.CanvasTexture` objects.
+- **TerminalManager** and **ChatManager** manage their respective text buffers and call `TextRenderer`.
+- A **CRT/ASCII shader** (multi‑pass) renders:
+  - ASCII‑converted background images for the Scene Viewer.
+  - Phosphor‑style text for terminal/chat/dice.
+
+### 4.2 Scene Graph (Conceptual)
+
+```text
+Scene
+├── Camera (orthographic)
+├── ScenePlane        # main scene feed (ASCII/CRT)
+├── TerminalPlane     # terminal surface (shown in Terminal Mode)
+├── ChatPlane         # chat log + dice results
+└── UI planes         # onboarding/overlays as needed
 ```
 
----
+Render targets and post‑processing:
 
-### 4.3 Terminal Overlay (The Cyberdeck)
+- `sceneTarget` — base render target (scene + UI planes).
+- `CRTShader` — post‑processing pass for scanlines, curvature, glow.
+- Bloom/blur passes — phosphor bloom and softening.
 
-A toggleable overlay window simulating a UNIX-like CLI.
+The CRT shader can switch between **ASCII mode** and **plain phosphor mode** depending on context (e.g., ASCII for scenes, clearer text for onboarding forms).
 
-#### Activation
-- Player clicks terminal icon or GM enables it for a scene
-- Overlays the visual feed (semi-transparent or windowed)
+### 4.3 Text Rendering
 
-#### Command Set (Initial)
-| Command | Function |
-|---------|----------|
-| `help` | Lists available commands |
-| `ls` / `dir` | Lists files in current node |
-| `cat [file]` / `open [file]` | Displays text content |
-| `decrypt [file]` | Triggers mini-puzzle or progress bar |
-| `clear` | Wipes terminal screen |
-| `exit` | Closes terminal, returns to AR view |
+`TextRenderer` abstracts canvas‑based text drawing:
 
-#### Future Commands (Planned)
-- `connect [node]` — Navigate network topology
-- `scan` — Reveal hidden files or details in scene
-- `inject [payload]` — Trigger scene changes
-- `toggle_filter` — Hidden command to disable ASCII effect (narrative climax)
+- Draws monospaced text with phosphor glow and configurable colors.
+- Supports:
+  - Line wrapping and scrolling regions.
+  - Cursor/caret drawing for terminal input.
+  - Multiple independent canvases (terminal, chat, dice, onboarding).
+- Each canvas is uploaded to a `CanvasTexture` and mapped onto a plane in the Three.js scene.
+
+This design ensures **all visible text** passes through the same CRT/post‑processing pipeline as the background imagery.
 
 ---
 
-### 4.4 GM Control Panel
+## 5. Terminal System (Player View)
 
-Accessed via password-protected button. Provides:
+### 5.1 Overview
 
-#### Scene Management
-- **Scene List:** Create, edit, delete scenes
-- **Image Upload:** Attach source image to scene
-- **ASCII Settings:** Adjust character set, shimmer intensity, color palette per scene
+The terminal is a full‑screen (or dominant‑pane) **canvas‑based text UI** rendered via `TerminalManager` + `TextRenderer` onto `TerminalPlane`.
 
-#### Content Management
-- **File Editor:** Create/edit terminal files (name, content, encrypted status)
-- **File Visibility:** Toggle which files appear in `ls` output
-- **Decrypt Triggers:** Set what happens on successful decrypt
+Key properties:
 
-#### Live Controls
-- **Trigger Glitch:** Manual glitch effect button
-- **Send Message:** Push text to chat log
-- **Change Scene:** Instant or animated transition
-- **Toggle Terminal:** Enable/disable terminal for player
+- Input handled through a single `InputManager` (keyboard), dispatching to `TerminalManager`.
+- Text buffer stored in JS; rendering is stateless per frame (buffer → canvas → texture).
+- Supports standard terminal behaviors:
+  - Printable characters, backspace/delete, cursor movement.
+  - Scrollback and paging (up/down, page up/down).
+  - Clear screen, history recall.
+
+### 5.2 Commands & Integration
+
+The terminal command set includes (non‑exhaustive):
+
+- **Core:** `help`, `clear`, basic navigation/use commands.
+- **Chat:** slash commands like `/roll`, `/onboard` are actually processed by the chat/command layer, not by a shell.
+- **Onboarding:** specialized commands during legacy terminal onboarding (now superseded by the visual onboarding system).
+
+Tests interact with the terminal by calling `TerminalManager` methods directly via Playwright, rather than using DOM selectors.
 
 ---
 
-## 5. Server Infrastructure
+## 6. Chat & Dice System (Player View)
 
-### 5.1 Deployment Environment
+### 6.1 Overview
 
+Chat and dice are rendered as **canvas‑based panels** within the Three.js scene via `ChatManager` and `TextRenderer`.
+
+Responsibilities:
+
+- Maintain a scrollable message buffer of:
+  - Player chat.
+  - System messages.
+  - Dice roll results.
+  - SyncManager status (join/leave, view changes, self‑test results).
+- Render to a dedicated `CanvasTexture` mapped onto `ChatPlane`.
+
+### 6.2 Commands (Chat Input)
+
+Examples (non‑exhaustive):
+
+- `/roll XdY+Z` — roll dice, broadcast to all connected clients.
+- `/onboard` / `/create` / `/newchar` — start the onboarding flow.
+- `/who`, `/views`, `/gm <password>` — interact with SyncManager and GM role.
+
+Dice expressions and outputs are formatted in a consistent, log‑friendly way for both player and GM.
+
+---
+
+## 7. Onboarding System
+
+### 7.1 Overview
+
+The onboarding system guides new players through:
+
+1. Audio calibration.  
+2. Visual calibration.  
+3. Character creation (identity, background, attributes, skills).  
+4. Debt & equipment.  
+5. Document generation (Corporate ID, SIN, Debt Statement, Equipment Manifest).
+
+The current design is **visual and CRT‑native**:
+
+- Onboarding screens render to the **main CRT display** (left side) using ASCII‑style UI built with `TextRenderer` and helper modules such as an ASCII‑form renderer.
+- Input can be keyboard‑driven, with mouse support for some elements.
+
+### 7.2 Character Output
+
+On completion, onboarding produces a `PlayerCharacter` JSON structure with:
+
+- Identity (name, handle, pronouns).
+- Background and associated skills/starting debt.
+- Attributes & skills.
+- Gear, debt breakdown, and creditor info.
+- Generated documents metadata.
+
+Characters are persisted via the **Character API** (see Server & APIs).
+
+---
+
+## 8. Content & Data Model
+
+All adventure content is defined as JSON assets under `assets/`:
+
+- `assets/scene_backgrounds/*.json` — visual scenes.
+- `assets/adventures/*_Guide.json` — adventure guide metadata.
+- `assets/terminals/*.json` — in‑world terminals.
+- `assets/characters/players/*.json` — created player characters.
+
+### 8.1 Scene JSON (Playable Schema)
+
+Scenes encode both **visual state** and **playable structure**:
+
+- Metadata: adventure, act, chapter, scene, type (`social`, `combat`, etc.).
+- Visuals: image filename, ASCII/CRT notes.
+- Narrative text (read‑aloud) and GM notes (private).
+- NPC list (references to NPCs, scene‑local notes/state).
+- **Challenges:** skill checks with DC, success/failure text, flag & clue interactions.
+- **Triggers:** GM‑fired events (reveals, beats) that can also set flags.
+- **Exits:** conditional links to other scenes, keyed by simple flag expressions.
+- Optional music/ambience metadata.
+
+Scene assets drive both:
+
+- The **Player View** (which scene image and metadata to show).
+- The **GM Overlay**, which exposes and navigates scene content.
+
+### 8.2 Adventure Guide JSON
+
+Adventure guide files (e.g. `AChangeOfHeart_Guide.json`) provide:
+
+- `state_tracking` — boolean/enum flags representing campaign state.
+- `items` — keyed list of important items, with reveal conditions.
+- `clues` — key revelations, how they’re unlocked.
+
+These structures are used by:
+
+- The GM Overlay to show canonical state.
+- Simulation tooling (GM validator and archetype tests) to evaluate adventure coherence.
+
+### 8.3 Terminals JSON
+
+Terminal definitions describe in‑world computer systems:
+
+- Identity and location (name, adventure, location text).
+- Visual style (phosphor colors, scanlines, curvature, bloom).
+- Boot sequence text and timing.
+- Filesystem structure (directories and files).
+- Linked documents and programs.
+- Supported commands (`help`, `dir`, `cd`, `cat`, `run`, `exit`, etc.).
+- Event hooks (e.g., `on_access` sets a flag).
+
+These JSON files drive the **terminal apps** presented in Terminal Mode on the player view.
+
+### 8.4 Player Characters JSON
+
+Player characters created via onboarding are stored as JSON in `assets/characters/players/` and surfaced to the GM via the GM Overlay.
+
+---
+
+## 9. Multiplayer Sync (SyncManager)
+
+### 9.1 Overview
+
+Real‑time synchronization between GM and player is handled by **Socket.io**.
+
+Core features:
+
+- Presence tracking (who is connected, role, view).
+- Chat and dice roll broadcasting.
+- Scene activation broadcast (GM → players).
+- Basic self‑test on connect to verify round‑trip connectivity.
+
+### 9.2 Message Types (Representative)
+
+Message names follow a `sync:*` convention and are mirrored between client and server:
+
+- `sync:join` / `sync:leave` — users entering/exiting a session.
+- `sync:presence` — authoritative presence list per session.
+- `sync:view_change` — Scene vs Terminal vs GM overlay view changes.
+- `sync:chat` — chat messages.
+- `sync:roll` — dice rolls.
+- `sync:scene_change` — GM‑pushed scene activation.
+- `sync:echo_request` / `sync:echo_response` — connection self‑test.
+
+The server tracks users and sessions in `server/index.js` using in‑memory maps. Each Socket.io room corresponds to a session.
+
+### 9.3 GM Overlay Integration
+
+The React GM Overlay uses a `useSyncManager` hook to bridge to Socket.io:
+
+- Establishes a connection to the main server.
+- Joins as `role: 'gm'` with a session ID (`default` by default).
+- Listens for `sync:*` events and updates local stores (Zustand stores for chat, players, scenes).
+- Emits chat/roll/scene commands initiated from the GM UI.
+
+---
+
+## 10. Server & APIs
+
+### 10.1 Express Setup
+
+`server/index.js` is the entry point:
+
+- Loads environment configuration via `dotenv`.
+- Serves static content from:
+  - `/public` — player/GM static assets.
+  - `/assets` — scenes, portraits, textures.
+  - `/music` — music tracks.
+  - `/sounds` — SFX.
+- Mounts Socket.io on the same HTTP server.
+
+### 10.2 Representative REST Endpoints
+
+(See `server/index.js` for the full list; below is a summary of the main types.)
+
+- **Health & Music**
+  - `GET /api/health` — basic health check.
+  - `GET /api/music` — enumerates music tracks with cleaned names and URLs.
+
+- **Characters**
+  - `GET /api/characters` — list saved player characters (summary info).
+  - `GET /api/characters/:id` — load a specific character.
+  - `POST /api/characters` — create or upsert a character.
+  - `PUT /api/characters/:id` — update existing character.
+  - `DELETE /api/characters/:id` — delete character.
+
+- **Portraits**
+  - `GET /api/portraits` — list available portrait images, mapped from the filesystem.
+
+- **Scenes & Adventures**
+  - `GET /api/scenes` — list scenes from `assets/scene_backgrounds`, with derived `imageUrl`.
+  - `GET /api/adventures/:adventureId/guide` — load the Adventure Guide JSON.
+  - `GET /api/adventures/:adventureId/scenes` — scenes filtered by adventure.
+
+All game‑critical state (scenes, guides, terminals, characters) is **file‑backed JSON**, which keeps content authoring straightforward and version‑controllable.
+
+---
+
+## 11. GM Overlay v2 (React)
+
+### 11.1 Purpose
+
+The GM Overlay v2 is a **React 18+ app** that provides a structured, mouse‑driven interface for running "A Change of Heart". It focuses on information retrieval and improvisation support, not automation.
+
+Key design goals:
+
+- Predictable layout across scenes.
+- Quick navigation (scene jumper, global search).
+- Rich NPC and item detail views.
+- Integration with SyncManager for real‑time feedback.
+
+### 11.2 Technology Stack
+
+- React 18+
+- Tailwind CSS + local styles
+- Zustand stores for overlay state (scenes, view stack, session notes, chat)
+- Lucide icons and modern UI primitives
+- Socket.io client (provided globally, used via `useSyncManager`)
+
+### 11.3 File Structure (Simplified)
+
+Located under `src/gm-overlay/`:
+
+```text
+src/gm-overlay/
+├── index.tsx              # React entrypoint
+├── App.tsx                # App shell
+├── store/                 # Zustand stores (scene, view, session, players, chat)
+├── hooks/                 # e.g. useSyncManager
+├── components/            # Layout panels, views, sidebar, chat
+└── ...                    # Styles and utilities
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    UBUNTU VM SERVER                         │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│   ┌─────────────┐     ┌─────────────────────────────────┐   │
-│   │   NGINX     │────▶│      Node.js Application        │   │
-│   │  (Reverse   │     │                                 │   │
-│   │   Proxy)    │     │  - Express.js static server     │   │
-│   │             │     │  - WebSocket server (Socket.io) │   │
-│   │  Port 80/443│     │  - API endpoints                │   │
-│   └─────────────┘     │  - Port 3000 (internal)         │   │
-│                       └─────────────────────────────────┘   │
-│                                    │                        │
-│                                    ▼                        │
-│                       ┌─────────────────────────────────┐   │
-│                       │      File System Storage        │   │
-│                       │  - Scene images                 │   │
-│                       │  - MIDI files                   │   │
-│                       │  - Game state JSON              │   │
-│                       └─────────────────────────────────┘   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
 
-### 5.2 Technology Stack
+### 11.4 Integration with Adventure Data
 
-| Layer | Technology | Purpose |
-|-------|------------|--------|
-| **Reverse Proxy** | Nginx | SSL termination, static caching, URL routing |
-| **Backend** | Node.js + Express | Serve app, API, WebSocket |
-| **Real-time Sync** | Socket.io | GM ↔ Player state synchronization |
-| **Frontend** | Vanilla JS + Three.js | Rendering, UI, game logic |
-| **Process Manager** | PM2 | Keep Node.js running, auto-restart |
+The overlay consumes JSON data via the server APIs:
 
-### 5.3 API Endpoints
+- Scene list and details from `/api/scenes` and `/api/adventures/:id/scenes`.
+- Guide data from `/api/adventures/:id/guide`.
+- Character data and portraits from `/api/characters` and `/api/portraits`.
 
-| Endpoint | Method | Purpose |
-|----------|--------|--------|
-| `/` | GET | Serve main application |
-| `/api/auth/gm` | POST | Validate GM password |
-| `/api/state` | GET | Fetch current game state |
-| `/api/state` | POST | Save game state (GM only) |
-| `/api/scenes` | GET/POST | Scene CRUD operations |
-| `/api/assets/upload` | POST | Upload scene images (GM only) |
-| `/ws` | WebSocket | Real-time sync channel |
+It tracks **activation state** for scenes:
 
-### 5.4 WebSocket Events
-
-| Event | Direction | Payload |
-|-------|-----------|--------|
-| `scene:change` | GM → Player | `{ sceneId, transition }` |
-| `chat:message` | Both | `{ sender, text, timestamp }` |
-| `roll:result` | Both | `{ dice, results, total }` |
-| `effect:trigger` | GM → Player | `{ type: "glitch", intensity }` |
-| `terminal:toggle` | GM → Player | `{ enabled: boolean }` |
-| `file:unlock` | GM → Player | `{ fileId }` |
-| `audio:play` | GM → Player | `{ trackId, type }` |
-| `audio:stop` | GM → Player | `{ trackId }` |
-
-### 5.5 Security Considerations
-
-- **GM Password:** Stored as environment variable, checked server-side
-- **Session:** Simple token stored in localStorage after GM auth
-- **Upstream Auth:** System sits behind external auth layer (not our concern)
-- **HTTPS:** Nginx handles SSL certificates (Let's Encrypt)
+- Browsing scenes locally in the overlay (no change sent to player).
+- Activating a scene, which both:
+  - Updates overlay state.
+  - Emits a SyncManager scene change to update the player’s CRT view.
 
 ---
+
+## 12. Testing & Simulation (Summary)
+
+Playwright tests cover:
+
+- Onboarding phases and resulting character data.
+- Terminal input behavior and rendering.
+- Chat commands and dice rolls.
+- Scene load and SyncManager integration.
+- Adventure simulation tests (archetypes + GM validator) that:
+  - Load the Adventure Guide and scenes.
+  - Generate questions/criticisms from different player archetypes.
+  - Classify them via GM validation into actionable vs intended mysteries.
+
+This ensures that changes to content or architecture preserve the **playable adventure** semantics.
+
+---
+
+## 13. Revision History (Architecture Doc)
+
+| Date       | Version | Notes |
+|------------|---------|-------|
+| 2024-12-03 | 0.1     | Initial architecture draft (DOM + Three.js hybrid, now superseded). |
+| 2024-12-04 | 1.0     | Full Three.js UI migration: single animation loop, canvas‑based terminal & chat, unified CRT pipeline. |
+| 2024-12-04 | 1.1     | SyncManager added for real‑time multiplayer (chat, dice, presence, scene sync). |
+| 2024-12-05 | 2.0     | GM Overlay v2 (React) created under `src/gm-overlay/`, integrating with SyncManager and adventure assets. |
+| 2024-12-06 | 2.1     | Onboarding system stabilized with character export and document generation. |
+| 2025-12-08 | 3.0     | Architecture document rewritten to remove legacy DOM/hybrid details and reflect the current Three.js‑only player UI + React GM Overlay v2. |
+|
+This document describes the **current system**. Legacy implementation notes from earlier drafts have been intentionally removed to avoid confusion.
+
 
 ## 6. Three.js Rendering System
 
@@ -1802,6 +2060,107 @@ This lets the GM know if a player is "away" in the terminal.
 | `/logout` | Logout from GM role |
 | `/clear` | Clear chat log |
 | `/help` | Show command help |
+
+### 18.9 Session Persistence
+
+> **Status:** IMPLEMENTED (2024-12-08)
+
+Session persistence allows users to reconnect after disconnection and restore their state.
+
+#### Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    SESSION PERSISTENCE                           │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  CLIENT                                                          │
+│  ├── Token stored in localStorage                               │
+│  ├── Token sent with JOIN message on connect                    │
+│  └── STATE_SYNC received on reconnect → restore scene/flags    │
+│                                                                  │
+│  SERVER (SessionManager.js)                                      │
+│  ├── Sessions stored as JSON in server/sessions/                │
+│  ├── Token → User mapping for reconnection                      │
+│  ├── State: scene, NPC states, flags, chat history              │
+│  └── Auto-save with debounce, 24-hour expiry                    │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+#### Session State Schema
+
+```javascript
+{
+  id: string,              // Session ID (e.g., 'default')
+  adventureId: string,     // Current adventure
+  currentScene: string,    // Active scene ID
+  users: {                 // Token → UserState
+    [token]: {
+      token: string,
+      name: string,
+      role: 'player' | 'gm',
+      view: string,
+      characterId: string | null,
+      lastSeen: number,
+      connected: boolean
+    }
+  },
+  npcStates: {             // NPC ID → NPCState
+    [npcId]: {
+      id: string,
+      status: 'alive' | 'dead' | 'hidden' | 'fled',
+      currentStress: number,
+      wounds: number,
+      conditions: string[],
+      customData: object
+    }
+  },
+  flags: Record<string, boolean | string>,
+  campaignClock: { day: number, time: string },
+  chatHistory: Message[],  // Last 100 messages
+  createdAt: number,
+  updatedAt: number
+}
+```
+
+#### Message Types
+
+| Type | Direction | Purpose |
+|------|-----------|---------|
+| `sync:token` | Server→Client | Session token for localStorage |
+| `sync:state` | Server→Client | Full state sync on reconnect |
+| `sync:state_request` | Client→Server | Request current state |
+| `sync:npc_state` | GM→Server→Clients | NPC state update |
+| `sync:flag_update` | GM→Server→Clients | Campaign flag update |
+
+#### Reconnection Flow
+
+1. Client connects to server
+2. Client sends `sync:join` with stored token (if any)
+3. Server validates token:
+   - **Valid:** Mark user as reconnected, send `sync:state` with current state
+   - **Invalid/Missing:** Create new user, send new `sync:token`
+4. Client stores token in localStorage
+5. On state sync, client restores scene, flags, etc.
+
+#### Files
+
+| File | Purpose |
+|------|---------|
+| `server/SessionManager.js` | Server-side session persistence |
+| `server/sessions/*.json` | Persisted session files |
+| `public/js/core/sync-manager.js` | Client token handling |
+| `src/gm-overlay/hooks/useSyncManager.ts` | GM Overlay session sync |
+
+#### Testing
+
+Session persistence tests are in `tests/session-persistence.spec.ts`:
+- Token generation and storage
+- Reconnection with same identity
+- Scene state persistence
+- Multi-user scenarios
+- Error handling (invalid tokens)
 
 ---
 

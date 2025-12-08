@@ -96,9 +96,9 @@ export function GlobalSearchModal() {
         goToSceneById(result.id);
         break;
       case 'npc':
-        // Fetch full NPC data
+        // Fetch full NPC data (GM gets full access)
         try {
-          const response = await fetch(`/api/npcs/${result.id}`);
+          const response = await fetch(`/api/npcs/${result.id}?role=gm`);
           if (response.ok) {
             const npc = await response.json();
             selectNPC(npc);

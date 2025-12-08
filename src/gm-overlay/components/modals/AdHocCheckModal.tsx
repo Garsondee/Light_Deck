@@ -41,7 +41,12 @@ export function AdHocCheckModal() {
     const message = `[GM] ${selectedSkill} check (DC ${dc}): d20 = ${roll} - ${success ? '✓ SUCCESS' : '✗ FAIL'}`;
     addSystemMessage(message);
     
-    // Dispatch to main app
+    // Broadcast to all players via SyncManager
+    if ((window as any).GMOverlay?.chat?.send) {
+      (window as any).GMOverlay.chat.send(message);
+    }
+    
+    // Dispatch to main app for any additional handling
     window.dispatchEvent(new CustomEvent('gm-overlay:roll', {
       detail: { skill: selectedSkill, dc, roll, success }
     }));

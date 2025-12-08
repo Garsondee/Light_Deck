@@ -24,8 +24,17 @@ const MessageType = {
   CHAT: 'sync:chat',
   ROLL: 'sync:roll',
   SCENE_CHANGE: 'sync:scene_change',
+  STATE_SYNC: 'sync:state',
+  STATE_REQUEST: 'sync:state_request',
   ERROR: 'sync:error',
+  // Session persistence
+  TOKEN: 'sync:token',
+  NPC_STATE: 'sync:npc_state',
+  FLAG_UPDATE: 'sync:flag_update',
 };
+
+// Storage key for session token
+const TOKEN_STORAGE_KEY = 'lightdeck_gm_session_token';
 
 // Get io from window (loaded via script tag)
 function getIO(): ((url: string, options?: any) => Socket) | null {
@@ -41,7 +50,7 @@ export function useSyncManager() {
   const [ioReady, setIoReady] = useState(() => getIO() !== null);
   const { addMessage } = useChatStore();
   const { goToSceneById, loadScenes, activateScene } = useSceneStore();
-  const { addRecentScene } = useSessionStore();
+  const { addRecentScene, setFlag } = useSessionStore();
   const { setConnectedPlayers, addConnectedPlayer, removeConnectedPlayer } = usePlayerStore();
 
   // Wait for Socket.io to load
@@ -91,18 +100,22 @@ export function useSyncManager() {
     socket.on('connect', () => {
       console.log('[GM Overlay] Connected to server:', socket.id);
       
-      // Join as GM
+      // Check for existing session token
+      const storedToken = localStorage.getItem(TOKEN_STORAGE_KEY);
+      
+      // Join as GM (with token for reconnection)
       socket.emit(MessageType.JOIN, {
         name: 'Game Master',
         role: 'gm',
         view: 'gm-overlay',
         sessionId: 'default',
+        token: storedToken,
       });
 
       // Add system message
       addMessage({
         type: 'system',
-        text: 'Connected to server',
+        text: storedToken ? 'Reconnected to server' : 'Connected to server',
       });
     });
 
@@ -194,11 +207,63 @@ export function useSyncManager() {
       });
     });
 
+    // Handle session token (store for reconnection)
+    socket.on(MessageType.TOKEN, (data) => {
+      if (data.token) {
+        localStorage.setItem(TOKEN_STORAGE_KEY, data.token);
+        console.log('[GM Overlay] Session token stored');
+      }
+    });
+
+    // Handle state sync (restore session state on reconnect)
+    socket.on(MessageType.STATE_SYNC, (data) => {
+      console.log('[GM Overlay] State sync received:', data);
+      
+      // Restore scene if provided
+      if (data.currentScene) {
+        console.log('[GM Overlay] Restoring scene:', data.currentScene);
+        goToSceneById(data.currentScene);
+        addRecentScene(data.currentScene);
+      }
+      
+      // Restore flags if provided
+      if (data.flags) {
+        console.log('[GM Overlay] Restoring flags:', Object.keys(data.flags).length);
+        for (const [key, value] of Object.entries(data.flags)) {
+          setFlag(key, value as boolean | string);
+        }
+      }
+      
+      addMessage({
+        type: 'system',
+        text: 'Session state restored',
+      });
+    });
+
+    // Handle NPC state updates
+    socket.on(MessageType.NPC_STATE, (data) => {
+      // Don't echo our own updates
+      if (data.from === socket.id) return;
+      
+      console.log('[GM Overlay] NPC state update:', data.npcId, data);
+      // NPC state updates are handled by the scene store or a dedicated NPC store
+      // For now, just log them - can be wired to UI later
+    });
+
+    // Handle flag updates from other clients
+    socket.on(MessageType.FLAG_UPDATE, (data) => {
+      // Don't echo our own updates
+      if (data.from === socket.id) return;
+      
+      console.log('[GM Overlay] Flag update:', data.key, '=', data.value);
+      setFlag(data.key, data.value);
+    });
+
     return () => {
       socket.disconnect();
       socketRef.current = null;
     };
-  }, [ioReady, addMessage, setConnectedPlayers, addConnectedPlayer, removeConnectedPlayer]);
+  }, [ioReady, addMessage, setConnectedPlayers, addConnectedPlayer, removeConnectedPlayer, goToSceneById, addRecentScene, setFlag]);
 
   // Handle scene activation events
   useEffect(() => {
